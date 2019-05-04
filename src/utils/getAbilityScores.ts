@@ -1,5 +1,8 @@
 import Roll from "roll";
 
+/**
+ * Utility for rolling ability scores.
+ */
 export const getAbilityScores = () => {
   const roller = new Roll();
   const abilityScores: number[] = [];
