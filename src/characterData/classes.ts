@@ -20,9 +20,9 @@
  *     ability scores and displays character
  *
  * Goals to build app:
- * 1 - repo
- * 2 - create react app2
- * 3 - add dependencies: lodash, styled components, node roll
+ * 1 - map display classes to buttons with onClick handling to create{class}()
+ * utils (createThief, createElf, etc.)
+ * 2 - add primeRequisite and experience bonus info
  *
  * Uses of lodash 'sampleSize' util:
  * 1 - extra languages (based on INT score)
