@@ -26,7 +26,7 @@ import { thief } from "./classes/thief";
  * Uses of lodash 'sampleSize' util:
  * 1 - extra languages (based on INT score)
  * 2 - equipment and gear (give two pieces of gear)
- * 3 - random spell
+ * 3 - random spell + read magic (always)
  */
 
 /**
