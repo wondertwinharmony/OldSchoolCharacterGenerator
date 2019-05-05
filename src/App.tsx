@@ -8,7 +8,8 @@ import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
-import { getEquipment } from "./utils/getEquipment";
+// import { getEquipment } from "./utils/getEquipment";
+// import { getTraits } from "./utils/getTraits";
 
 interface Props {
   className?: string;
@@ -49,7 +50,6 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                 abilityScores,
                 getClassPrimeRequisites(classOptionKey)
               )}
-              {getEquipment(classOptionKey)}
             </ClassPrimeRequisites>
           </ClassOptionContainer>
         ))}
