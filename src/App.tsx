@@ -3,9 +3,11 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 import { gear } from "./characterData/gear";
+import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
+import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 interface Props {
   className?: string;
@@ -32,21 +34,20 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
         ))}
       </AbilityScoresContainer>
       <ClassButtonsContainer>
-        {/**
-        @todo
-        check class options here for any demihumans, if any
-        are in class options include note about how dorky
-        b/x treats races as classes (make a util)
-        */}
-        {classOptions.map((classOption: string) => (
-          <ClassOptionContainer key={classOption}>
+        {checkContainsDemihumans(classOptions) && "b/x you silly"}
+        {Object.keys(classOptions).map(classOptionKey => (
+          <ClassOptionContainer key={classOptionKey}>
             <ButtonContainer>
               <ClassButton variant="outline-secondary">
-                {classOption}
+                {classOptions[classOptionKey]}
               </ClassButton>
             </ButtonContainer>
             <ClassPrimeRequisites>
-              {getClassPrimeRequisites(classOption)}
+              {getClassPrimeRequisites(classOptionKey)}
+              {getExperienceAdjustment(
+                abilityScores,
+                getClassPrimeRequisites(classOptionKey)
+              )}
             </ClassPrimeRequisites>
           </ClassOptionContainer>
         ))}
