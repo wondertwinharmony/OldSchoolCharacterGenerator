@@ -1,3 +1,5 @@
+import { fighterEquipment } from "../equipmentKits";
+
 export const halfling = {
   name: "Halfling",
   requirements: "Minimum CON and DEX 9",
@@ -14,7 +16,7 @@ export const halfling = {
     breath: 13,
     magic: 14
   },
-  equipment: "see Fighter Equipment",
+  equipment: fighterEquipment,
   abilities: [
     "Prime Requisites: A halfling must have at least 13 in one or the other prime requisite in order to get a +5% to experience. The character must have a STR and DEX of 13 or higher to get a +10% bonus.",
     "Combat: Halflings may use any type of armour, though it must be tailored to their small size. Similarly, they may use any weapon which is appropriate to their stature. They cannot use longbows or two-handed swords.",

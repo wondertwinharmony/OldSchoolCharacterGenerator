@@ -1,3 +1,5 @@
+import { magicUserEquipment } from "../equipmentKits";
+
 export const elf = {
   name: "Elf",
   requirements: "Minimum INT 9",
@@ -14,7 +16,7 @@ export const elf = {
     breath: 15,
     magic: 15
   },
-  equipment: "see MagicUser equipment",
+  equipment: magicUserEquipment,
   abilities: [
     "Prime Requisites: An elf must have at least 13 in both prime requisites in order to get the +5% bonus to experience. An elf with an INT of at least 16 and a STR of at least 13 receives a +10% XP bonus.",
     "Detect Secret Doors: Elves have keen eyes that allow them, when actively searching, to detect hidden and secret doors with a 2-in-6 chance (see Searching in B/X Essentials: Core Rules).",

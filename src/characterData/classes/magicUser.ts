@@ -1,3 +1,5 @@
+import { magicUserEquipment } from "../equipmentKits";
+
 export const magicUser = {
   name: "Magic-User",
   requirements: "None",
@@ -14,7 +16,7 @@ export const magicUser = {
     breath: 16,
     magic: 15
   },
-  equipment: "see MagicUser equipment",
+  equipment: magicUserEquipment,
   abilities: [
     "Combat: Magic-users may only use daggers and are unable to use shields or wear any kind of armour. For this reason, magic-users are weak at low levels and, in an adventuring group, should be protected.",
     "Magical Research: A magic-user of any level may spend time and money to research new spells to add to his or her spell book. When a magic-user reaches 9th level, he or she is also able to create magic items and research other magical effects. These rules are detailed in the Magic section of B/X Essentials: Core Rules.",

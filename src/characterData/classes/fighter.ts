@@ -1,3 +1,5 @@
+import { fighterEquipment } from "../equipmentKits";
+
 export const fighter = {
   name: "Fighter",
   requirements: "None",
@@ -14,5 +16,5 @@ export const fighter = {
     breath: 15,
     magic: 16
   },
-  equipment: "see fighterEquipment"
+  equipment: fighterEquipment
 };

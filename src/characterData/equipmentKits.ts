@@ -4,7 +4,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross"
   ],
@@ -14,7 +15,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Wooden Cross"
   ],
@@ -24,7 +26,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross"
   ],
@@ -34,7 +37,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "12 Iron Spikes",
     "Wooden Cross",
@@ -47,7 +51,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "2 Small Sacks"
@@ -59,7 +64,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Wooden Cross",
     "2 Small Sacks"
@@ -71,7 +77,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "2 Small Sacks",
@@ -85,7 +92,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Wooden Cross"
   ],
@@ -97,7 +105,8 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "Small Sack"
@@ -109,7 +118,8 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Silver Cross"
   ],
@@ -118,7 +128,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll"
@@ -131,7 +142,8 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Silver Cross"
   ],
@@ -141,7 +153,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll",
@@ -156,7 +169,8 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Silver Cross",
     "3 Stakes & Mallet",
@@ -168,7 +182,8 @@ export const clericEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll"
@@ -182,7 +197,8 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Silver Cross",
     "Vial Holy Water",
@@ -199,7 +215,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -208,7 +225,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -218,7 +236,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -231,7 +250,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -243,7 +263,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -254,7 +275,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -265,7 +287,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -276,7 +299,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -286,7 +310,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "2 Flasks oil"
   ],
@@ -299,7 +324,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -311,7 +337,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Small Sack"
   ],
@@ -325,7 +352,8 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -338,7 +366,8 @@ export const fighterEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "5 Flasks oil"
   ],
@@ -352,7 +381,8 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "2 Small Sacks"
   ],
@@ -367,7 +397,8 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -383,7 +414,8 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ]
 ];
@@ -394,7 +426,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -402,7 +435,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "2 Flasks oil",
     "50' Rope"
   ],
@@ -412,7 +446,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -420,7 +455,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "Vial of Holy Water"
   ],
@@ -429,7 +465,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "5 Flasks of oil",
     "Silver Mirror",
@@ -440,7 +477,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "2 Vials Holy Water"
   ],
@@ -450,7 +488,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole",
     "Vial of Holy Water"
   ],
@@ -459,7 +498,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope",
     "2 Vials Holy Water"
   ],
@@ -469,7 +509,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -478,7 +519,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -486,7 +528,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "10' Pole"
   ],
@@ -495,7 +538,8 @@ export const magicUserEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "50' Rope"
   ],
@@ -505,7 +549,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "10' Pole"
   ],
@@ -515,7 +560,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "50' Rope"
   ],
@@ -525,7 +571,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "10' Pole"
   ],
@@ -535,7 +582,8 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "Scroll",
     "50' Rope"
   ]
@@ -549,7 +597,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -558,7 +607,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -570,7 +620,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -580,7 +631,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -591,7 +643,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -602,7 +655,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -614,7 +668,8 @@ export const thiefEquipment = [
     "6 Torches",
     "Backpack",
     "Waterskin",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -625,7 +680,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -638,7 +694,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -651,7 +708,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -661,7 +719,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -674,7 +733,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -687,7 +747,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -698,7 +759,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ],
   [
@@ -710,7 +772,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "50' Rope"
   ],
   [
@@ -724,7 +787,8 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "1 Week Iron Rations",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
     "10' Pole"
   ]
 ];
