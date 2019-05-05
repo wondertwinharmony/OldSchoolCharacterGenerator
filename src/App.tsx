@@ -1,8 +1,6 @@
-import { sampleSize } from "lodash";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
-import { gear } from "./characterData/gear";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
@@ -10,6 +8,7 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 // import { getEquipment } from "./utils/getEquipment";
 // import { getTraits } from "./utils/getTraits";
+import { getSpells } from "./utils/getSpells";
 
 interface Props {
   className?: string;
@@ -50,11 +49,11 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                 abilityScores,
                 getClassPrimeRequisites(classOptionKey)
               )}
+              {getSpells(true)}
             </ClassPrimeRequisites>
           </ClassOptionContainer>
         ))}
       </ClassButtonsContainer>
-      <div>{`Two random items: ${sampleSize(gear, 2)}`}</div>
     </div>
   );
 };
