@@ -7,6 +7,7 @@ import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
+import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 interface Props {
   className?: string;
@@ -43,6 +44,10 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
             </ButtonContainer>
             <ClassPrimeRequisites>
               {getClassPrimeRequisites(classOptionKey)}
+              {getExperienceAdjustment(
+                abilityScores,
+                getClassPrimeRequisites(classOptionKey)
+              )}
             </ClassPrimeRequisites>
           </ClassOptionContainer>
         ))}

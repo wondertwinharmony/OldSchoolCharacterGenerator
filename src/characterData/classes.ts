@@ -13,15 +13,6 @@ import { thief } from "./classes/thief";
  * 2 - based on ability scores rolled, display buttons for
  *     each possible class that could use those scores. Only
  *     non-humans are restricted so far.
- *
- *     Show this simply!!! Compare Prime Reqs w/Rolled Scores
- *     and display next to class choice as a message.
- *     3-5 XP Adjustment: -20%
- *     6-8 XP Adjustment: -10%
- *     9-12 XP Adjustment: None
- *     13-15 XP Adjustment: +5%
- *     16-18 XP Adjustment: +10%
- *
  * 2a- include a checkbox for random 1st level Knave spells?
  * 2b- include a note that dwarves, elves, and halflings are classes in early D&D!
  * 3 - clicking a button hides other classes and 6 rolled
