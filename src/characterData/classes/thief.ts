@@ -6,7 +6,7 @@ export const thief = {
   maximumLevel: "14",
   allowedArmor: "Leather armour, no shields",
   allowedWeapons: "Any",
-  languages: "Alignment language, Common",
+  languages: ["Alignment language", "Common"],
   saves: {
     poison: 13,
     wands: 14,
