@@ -17,6 +17,16 @@ interface Props {
 
 interface ImplProps extends Props {}
 
+/**
+ * @todo
+ * include "knave spell checkbox input",
+ * use a "useState" hook for tracking this
+ *
+ * @todo
+ * prettify display of prime req and exp
+ * adjustment bonus in this component
+ */
+
 const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   const [abilityScores, setAbilityScores] = useState(getAbilityScores);
   const [isClassSelected, setIsClassSelected] = useState(false);
@@ -115,6 +125,7 @@ const ClassButton = styled(Button)``;
 const ClassPrimeRequisites = styled.div``;
 
 const StyledApp = styled(AppImpl)`
+  font-family: "Roboto Mono", monospace;
   .btn {
     width: 100%;
   }

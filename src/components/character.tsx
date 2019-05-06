@@ -1,5 +1,5 @@
 // import { sampleSize } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
 import {
@@ -10,8 +10,12 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
+import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
+import { getArmorClass } from "../utils/getArmorClass";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
+import { getHitPoints } from "../utils/getHitPoints";
+import { getLanguages } from "../utils/getLanguages";
 
 interface Props {
   abilityScores: number[];
@@ -21,17 +25,24 @@ interface Props {
 
 /**
  * @todo
- * get ability score bonuses (in b/x they are +1 +2 or +3
- * depending on the ability attribute)
+ * calculate ac based on starting equipment
  *
  * @todo
- * calculate ac based on starting equipment and dex
+ * weapons need their information next to them in the
+ * equipment kits (use list in old school essentials),
+ * armor needs base ac listed as well,
+ * holy water listed as well
  *
  * @todo
- * calculate hp using node roll and hit dice (re-roll 1s 2s)
+ * possible icons to use:
+ * caret-down, caret-up
  *
  * @todo
+ * random name above race
  *
+ * @todo
+ * include language abilities @see getLanguages for wording
+ * of language abilities (ie "unable to read or write")
  */
 
 interface ImplProps extends Props {}
@@ -41,16 +52,47 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   className,
   classSelection
 }) => {
+  // Hit Points
+  const [hitPoints, setHitPoints] = useState(
+    getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
+  );
+  useEffect(() => {
+    setHitPoints(hitPoints);
+  }, [hitPoints]);
+  // Armor Class
+  const [armorClass, setArmorClass] = useState(
+    getArmorClass(abilityScores[DEX])
+  );
+  useEffect(() => {
+    setArmorClass(armorClass);
+  }, [armorClass]);
+  // Languages
+  const [languages, setLanguages] = useState(
+    getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
+  );
+  useEffect(() => {
+    setLanguages(languages);
+  }, [languages]);
+  // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
   const [isAbilitiesVisible, setIsAbilitiesVisible] = useState(true);
+  const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
+  const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
 
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
+
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
     getClassPrimeRequisites(classSelection)
   );
+  const strMod = getAbilityScoreModifier(abilityScores[STR]);
+  const dexMod = getAbilityScoreModifier(abilityScores[DEX]);
+  const conMod = getAbilityScoreModifier(abilityScores[CON]);
+  const intMod = getAbilityScoreModifier(abilityScores[INT]);
+  const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
+  const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
   return (
     <div className={className}>
       <ClassTitle>{characterClasses[classSelection].name} </ClassTitle>
@@ -68,16 +110,36 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
       {/* Ability Scores */}
       <AbilityScoresGrid>
-        <div>{`STR: ${abilityScores[STR]}`}</div>
-        <div>{`DEX: ${abilityScores[DEX]}`}</div>
-        <div>{`CON: ${abilityScores[CON]}`}</div>
-        <div>{`INT: ${abilityScores[INT]}`}</div>
-        <div>{`WIS: ${abilityScores[WIS]}`}</div>
-        <div>{`CHA: ${abilityScores[CHA]}`}</div>
+        <div>{`STR: ${abilityScores[STR]} ${
+          strMod === "None" ? "" : `(${strMod})`
+        }`}</div>
+        <div>{`DEX: ${abilityScores[DEX]} ${
+          dexMod === "None" ? "" : `(${dexMod})`
+        }`}</div>
+        <div>{`CON: ${abilityScores[CON]} ${
+          conMod === "None" ? "" : `(${conMod})`
+        }`}</div>
+        <div>{`INT: ${abilityScores[INT]} ${
+          intMod === "None" ? "" : `(${intMod})`
+        }`}</div>
+        <div>{`WIS: ${abilityScores[WIS]} ${
+          wisMod === "None" ? "" : `(${wisMod})`
+        }`}</div>
+        <div>{`CHA: ${abilityScores[CHA]} ${
+          chaMod === "None" ? "" : `(${chaMod})`
+        }`}</div>
       </AbilityScoresGrid>
 
       {/* Saves and Stats */}
       <SavesAndStatsGrid>
+        <StatsContainer>
+          <div>{`HP: ${hitPoints}`}</div>
+          <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
+          <div>{`AC: ${armorClass}`}</div>
+          <div>{`${
+            experienceAdjustment === "None" ? "" : `${experienceAdjustment}`
+          }`}</div>
+        </StatsContainer>
         <SavesContainer>
           <Save>
             Death Ray or Poison
@@ -110,18 +172,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             </SaveScore>
           </Save>
         </SavesContainer>
-        <StatsContainer>
-          <div>{`HP: getHPUtil()`}</div>
-          <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
-          <div>{`AC: getACUtil()`}</div>
-          <div>{`XP: 0 ${
-            experienceAdjustment === "None" ? "" : `(${experienceAdjustment})`
-          }`}</div>
-        </StatsContainer>
       </SavesAndStatsGrid>
 
       {/* Languages */}
-      {characterClasses[classSelection].abilities && (
+      {characterClasses[classSelection].languages && (
         <LanguagesContainer>
           <LanguagesHeader
             onClick={() => {
@@ -131,9 +185,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             Languages
             <div>iconHere</div>
           </LanguagesHeader>
-          {isLanguagesVisible && (
-            <div>{characterClasses[classSelection].languages}</div>
-          )}
+          {isLanguagesVisible && <div>{languages}</div>}
         </LanguagesContainer>
       )}
 
@@ -155,9 +207,39 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </AbilitiesContainer>
       )}
 
-      {/* Cleric */}
+      {/* Cleric Turn Undead */}
+      {characterClasses[classSelection].turn && (
+        <ClericTurnContainer>
+          <ClericTurnHeader
+            onClick={() => {
+              setIsClericTurnVisible(!isClericTurnVisible);
+            }}
+          >
+            ClericTurn
+            <div>iconHere</div>
+          </ClericTurnHeader>
+          {isClericTurnVisible && (
+            <div>{characterClasses[classSelection].turn}</div>
+          )}
+        </ClericTurnContainer>
+      )}
 
       {/* Spells */}
+      {characterClasses[classSelection].spells && (
+        <SpellsContainer>
+          <SpellsHeader
+            onClick={() => {
+              setIsSpellsVisible(!isSpellsVisible);
+            }}
+          >
+            Spells
+            <div>iconHere</div>
+          </SpellsHeader>
+          {isSpellsVisible && (
+            <div>{characterClasses[classSelection].spells}</div>
+          )}
+        </SpellsContainer>
+      )}
 
       {/* Thief Skills */}
       {characterClasses[classSelection].skills && (
@@ -209,14 +291,14 @@ const TraitsHeader = styled.div`
 
 const AbilityScoresGrid = styled.div`
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 125px 125px 125px;
   justify-content: center;
 `;
 
 const SavesAndStatsGrid = styled.div`
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 3fr;
   justify-content: center;
 `;
 
@@ -238,9 +320,10 @@ const SaveScore = styled.div`
 `;
 
 const StatsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
+  display: grid;
+  justify-content: center;
+  align-content: baseline;
+  grid-gap: 0.25rem;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
@@ -255,6 +338,20 @@ const LanguagesHeader = styled.div`
 const AbilitiesContainer = styled.div``;
 
 const AbilitiesHeader = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ClericTurnContainer = styled.div``;
+
+const ClericTurnHeader = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const SpellsContainer = styled.div``;
+
+const SpellsHeader = styled.div`
   display: flex;
   justify-content: center;
 `;
