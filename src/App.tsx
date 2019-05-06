@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
+import Character from "./components/character";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
@@ -8,7 +9,7 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 // import { getEquipment } from "./utils/getEquipment";
 // import { getTraits } from "./utils/getTraits";
-import { getSpells } from "./utils/getSpells";
+// import { getSpells } from "./utils/getSpells";
 
 interface Props {
   className?: string;
@@ -17,43 +18,66 @@ interface Props {
 interface ImplProps extends Props {}
 
 const AppImpl: React.SFC<ImplProps> = ({ className }) => {
-  const abilityScores = getAbilityScores();
+  const [abilityScores, setAbilityScores] = useState(getAbilityScores);
+  const [isClassSelected, setIsClassSelected] = useState(false);
+  const [classSelection, setClassSelection] = useState("");
+  useEffect(() => {
+    setAbilityScores(abilityScores);
+  }, [abilityScores]);
+
   const classOptions = getClassOptionsToDisplay(abilityScores);
   return (
     <div className={className}>
-      <AbilityScoresContainer>
-        <AbilityScore>STR</AbilityScore>
-        <AbilityScore>DEX</AbilityScore>
-        <AbilityScore>CON</AbilityScore>
-        <AbilityScore>INT</AbilityScore>
-        <AbilityScore>WIS</AbilityScore>
-        <AbilityScore>CHA</AbilityScore>
-      </AbilityScoresContainer>
-      <AbilityScoresContainer>
-        {abilityScores.map((abilityScore, index) => (
-          <AbilityScore key={index}>{abilityScore}</AbilityScore>
-        ))}
-      </AbilityScoresContainer>
-      <ClassButtonsContainer>
-        {checkContainsDemihumans(classOptions) && "b/x you silly"}
-        {Object.keys(classOptions).map(classOptionKey => (
-          <ClassOptionContainer key={classOptionKey}>
-            <ButtonContainer>
-              <ClassButton variant="outline-secondary">
-                {classOptions[classOptionKey]}
-              </ClassButton>
-            </ButtonContainer>
-            <ClassPrimeRequisites>
-              {getClassPrimeRequisites(classOptionKey)}
-              {getExperienceAdjustment(
-                abilityScores,
-                getClassPrimeRequisites(classOptionKey)
-              )}
-              {getSpells(true)}
-            </ClassPrimeRequisites>
-          </ClassOptionContainer>
-        ))}
-      </ClassButtonsContainer>
+      {!isClassSelected && (
+        <React.Fragment>
+          <AbilityScoresContainer>
+            <AbilityScore>STR</AbilityScore>
+            <AbilityScore>DEX</AbilityScore>
+            <AbilityScore>CON</AbilityScore>
+            <AbilityScore>INT</AbilityScore>
+            <AbilityScore>WIS</AbilityScore>
+            <AbilityScore>CHA</AbilityScore>
+          </AbilityScoresContainer>
+          <AbilityScoresContainer>
+            {abilityScores.map((abilityScore, index) => (
+              <AbilityScore key={index}>{abilityScore}</AbilityScore>
+            ))}
+          </AbilityScoresContainer>
+        </React.Fragment>
+      )}
+      {!isClassSelected && (
+        <ClassButtonsContainer>
+          {checkContainsDemihumans(classOptions) && "b/x you silly"}
+          {Object.keys(classOptions).map(classOptionKey => (
+            <ClassOptionContainer key={classOptionKey}>
+              <ButtonContainer>
+                <ClassButton
+                  variant="outline-secondary"
+                  onClick={() => {
+                    setIsClassSelected(true);
+                    setClassSelection(classOptionKey);
+                  }}
+                >
+                  {classOptions[classOptionKey]}
+                </ClassButton>
+              </ButtonContainer>
+              <ClassPrimeRequisites>
+                {getClassPrimeRequisites(classOptionKey)}
+                {getExperienceAdjustment(
+                  abilityScores,
+                  getClassPrimeRequisites(classOptionKey)
+                )}
+              </ClassPrimeRequisites>
+            </ClassOptionContainer>
+          ))}
+        </ClassButtonsContainer>
+      )}
+      {isClassSelected && classSelection && (
+        <Character
+          classSelection={classSelection}
+          abilityScores={abilityScores}
+        />
+      )}
     </div>
   );
 };
