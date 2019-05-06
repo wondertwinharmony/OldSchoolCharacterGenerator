@@ -6,7 +6,7 @@ export const halfling = {
   maximumLevel: "8",
   allowedArmor: "Any appropriate to size, including shields",
   allowedWeapons: "Appropriate to size (see below)",
-  languages: "Alignment language, Common, halfling",
+  languages: ["Alignment language", "Common", "Halfling"],
   saves: {
     poison: 10,
     wands: 11,
