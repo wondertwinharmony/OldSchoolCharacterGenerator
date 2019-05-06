@@ -31,6 +31,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   const [abilityScores, setAbilityScores] = useState(getAbilityScores);
   const [isClassSelected, setIsClassSelected] = useState(false);
   const [classSelection, setClassSelection] = useState("");
+  const [includeKnaveSpells, setIncludeKnaveSpells] = useState(false);
   useEffect(() => {
     setAbilityScores(abilityScores);
   }, [abilityScores]);
@@ -55,6 +56,13 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           </AbilityScoresContainer>
         </React.Fragment>
       )}
+      <div>
+        <input 
+          type="checkbox"
+          onChange={() => {setIncludeKnaveSpells(!includeKnaveSpells)}}
+        ></input>
+        <label>Include Knave Spells</label>
+      </div>
       {!isClassSelected && (
         <ClassButtonsContainer>
           {checkContainsDemihumans(classOptions) && "b/x you silly"}
@@ -86,6 +94,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
         <Character
           classSelection={classSelection}
           abilityScores={abilityScores}
+          includeKnaveSpells={includeKnaveSpells}
         />
       )}
     </div>

@@ -4,8 +4,9 @@ import { sampleSize } from "lodash";
 import Roll from "roll";
 
 /**
- * Utility function to determine equipment and starting gold for a character.
- * Returns an array of strings.
+ * Utility function to determine equipment and starting gold for a character. 
+ * Takes a parameter that specifies class.
+ * Returns an array of strings -- the names of equipment/items.
  * @param classOptionKey 
  */
 
