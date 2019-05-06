@@ -6,7 +6,14 @@ export const elf = {
   maximumLevel: "10",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
-  languages: "Alignment language, Common, elvish, gnoll, hobgoblin, and orcish",
+  languages: [
+    "Alignment language",
+    "Common",
+    "Elvish",
+    "Gnoll",
+    "Hobgoblin",
+    "Orcish"
+  ],
   saves: {
     poison: 12,
     wands: 13,
