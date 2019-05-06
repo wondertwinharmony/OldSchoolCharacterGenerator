@@ -19,7 +19,7 @@ export const settingLanguages = [
   "Medusa",
   "Minotaur",
   "Ogre",
-  "Orc",
+  "Orcish",
   "Pixie",
   "Human dialect"
 ];
