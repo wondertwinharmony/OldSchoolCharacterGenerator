@@ -9,18 +9,14 @@ import Roll from "roll";
  * Returns an array of strings -- the names of equipment/items.
  * @param classOptionKey 
  */
-
 export const getEquipment = (classOptionKey: string) => {
-  let characterEquipment = [];
   const roller = new Roll();
-
+  let characterEquipment = [];
   const characterRandomItems = sampleSize(gear, 2);
-  let characterEquipmentKit = sampleSize(characterClasses[classOptionKey].equipment, 1);
+  let characterEquipmentKit = sampleSize(characterClasses[classOptionKey].equipment, 1)[0];
   const characterStartingWealthString = `${roller.roll('3d6*10').result.toString()} gp`;
 
-  characterEquipmentKit.push(characterRandomItems);
-  characterEquipment.push(characterStartingWealthString, characterEquipmentKit.flat());
+  characterEquipment.push(characterStartingWealthString, characterEquipmentKit, characterRandomItems);
 
   return characterEquipment.flat();
 };
-

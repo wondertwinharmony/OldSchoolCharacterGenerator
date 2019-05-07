@@ -7,7 +7,6 @@ import { spells, knaveSpells } from "../characterData/spells";
  * Returns a string with spell name and description.
  * @param includeKnaveSpells 
  */
-
 export const getSpells = (includeKnaveSpells: boolean) => {
     if(includeKnaveSpells) {
         let allSpells = [];
