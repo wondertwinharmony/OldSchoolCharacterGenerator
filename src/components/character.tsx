@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
-import { weaponQualities } from "../characterData/weaponQualities";
+// import { weaponQualities } from "../characterData/weaponQualities";
+
 import {
   CHA,
   CON,
@@ -22,6 +23,7 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
+import { weaponQualitiesArr } from "../characterData/weaponQualities";
 
 interface Props {
   abilityScores: number[];
@@ -81,7 +83,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   const [characterName] = useState(getCharacterName());
 
-  const [weaponQualityDescriptions] = useState(weaponQualities);
+  // const [weaponQualityDescriptions] = useState(
+  //   weaponQualities
+  // );
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -308,7 +312,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
       </EquipmentContainer>
 
-      {/* Weapon Quality Descriptions */}
+      {/* Weapon Quality Descriptions
       <WeaponQualitiesContainer>
         <WeaponQualitiesHeader
           onClick={() => {
@@ -324,21 +328,30 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         {isWeaponQualitiesVisible && (
           <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>
         )}
+        {isWeaponQualitiesVisible && <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>}
+      </WeaponQualitiesContainer> */}
+
+      {/* Weapon Quality Descriptions */}
+      <WeaponQualitiesContainer>
+        <WeaponQualitiesHeader
+          onClick={() => {
+            setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
+          }}
+        >
+          Weapon Qualities
+          <div>iconHere</div>
+        </WeaponQualitiesHeader>
+        {isWeaponQualitiesVisible && <React.Fragment>{
+          (weaponQualitiesArr.map(item => {
+            let boldedWord = item.slice(0, item.indexOf(':')+1);
+            let everythingElse = item.slice(item.indexOf(':')+1, item.length);
+            return (<WeaponQualities><strong>{boldedWord}</strong>{everythingElse}</WeaponQualities>)
+          }))
+        }</React.Fragment>}
       </WeaponQualitiesContainer>
     </div>
   );
 };
-
-/*          {isThiefSkillsVisible &&
-            characterClasses[classSelection].skills!.map((skills, index) => (
-              <div key={index}>{skills}</div>
-            ))}
-
-            {isAbilitiesVisible &&
-            characterClasses[classSelection].abilities!.map((ability, index) => (
-              <div key={index}>{ability}</div>
-            ))}
-*/
 
 const CharacterName = styled.div`
   display: flex;
@@ -475,11 +488,16 @@ const WeaponQualitiesHeader = styled.div`
   justify-content: center;
 `;
 
+// const WeaponQualities = styled.span`
+//   display: flex;
+//   justify-content: center;
+//   white-space: pre-line;
+//   padding: 0.5rem;
+// `;
+
 const WeaponQualities = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
-  padding: 0.5rem;
+    padding: 0.5rem;
+    display: block;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`
