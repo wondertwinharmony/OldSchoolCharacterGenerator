@@ -19,6 +19,7 @@ import { getLanguages } from "../utils/getLanguages";
 import { getEquipment } from "../utils/getEquipment";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
+import { getCharacterName } from "../utils/getCharacterName";
 
 interface Props {
   abilityScores: number[];
@@ -91,6 +92,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     getTraits()
   )
 
+  const [characterName] = useState(
+    getCharacterName()
+  );
+
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
@@ -113,6 +118,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
   return (
     <div className={className}>
+      <CharacterName>{characterName}</CharacterName>
       <ClassTitle>{characterClasses[classSelection].name} </ClassTitle>
       <TraitsContainer>
         <TraitsHeader
@@ -219,8 +225,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <div>iconHere</div>
           </AbilitiesHeader>
           {isAbilitiesVisible &&
-            characterClasses[classSelection].abilities!.map(ability => (
-              <div>{ability}</div>
+            characterClasses[classSelection].abilities!.map((ability, index) => (
+              <div key={index}>{ability}</div>
             ))}
         </AbilitiesContainer>
       )}
@@ -271,8 +277,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <div>iconHere</div>
           </ThiefSkillsHeader>
           {isThiefSkillsVisible &&
-            characterClasses[classSelection].skills!.map(skills => (
-              <div>{skills}</div>
+            characterClasses[classSelection].skills!.map((skills, index) => (
+              <div key={index}>{skills}</div>
             ))}
         </ThiefSkillsContainer>
       )}
@@ -292,6 +298,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     </div>
   );
 };
+
+const CharacterName = styled.div`
+  display: flex;
+  justify-content: center; 
+`;
 
 const ClassTitle = styled.div`
   display: flex;
