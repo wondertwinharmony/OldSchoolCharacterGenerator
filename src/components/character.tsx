@@ -106,7 +106,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
   return (
     <div className={className}>
-      <ClassTitle>{characterClasses[classSelection].name} </ClassTitle>
+      <ClassTitle>
+        {`Level 1 ${characterClasses[classSelection].name}`}{" "}
+      </ClassTitle>
       <TraitsContainer>
         <TraitsHeader
           onClick={() => {
