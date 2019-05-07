@@ -27,7 +27,7 @@ export interface characterClass {
   allowedWeapons: string;
   languages: string[];
   saves: { [key: string]: number };
-  equipment: string;
+  equipment: string[][];
   abilities?: string[];
   spells?: string;
   turn?: string;

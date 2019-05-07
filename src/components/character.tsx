@@ -16,11 +16,15 @@ import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
+import { getEquipment } from "../utils/getEquipment";
+import { getSpells } from "../utils/getSpells";
+import { getTraits } from "../utils/getTraits";
 
 interface Props {
   abilityScores: number[];
   className?: string;
   classSelection: string;
+  includeKnaveSpells: boolean;
 }
 
 /**
@@ -50,7 +54,8 @@ interface ImplProps extends Props {}
 const CharacterImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
-  classSelection
+  classSelection,
+  includeKnaveSpells
 }) => {
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
@@ -73,6 +78,19 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
+
+  const [equipment] = useState(
+    getEquipment(classSelection)
+  );
+
+  const [spells] = useState(
+    getSpells(includeKnaveSpells)
+  );
+
+  const [traits] = useState(
+    getTraits()
+  )
+
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
@@ -105,7 +123,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           Traits
           <div>iconHere</div>
         </TraitsHeader>
-        {isTraitsVisible && <div>traits go here</div>}
+        {isTraitsVisible && <div>{traits}</div>}
       </TraitsContainer>
 
       {/* Ability Scores */}
@@ -236,7 +254,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <div>iconHere</div>
           </SpellsHeader>
           {isSpellsVisible && (
-            <div>{characterClasses[classSelection].spells}</div>
+            <div>{spells}</div>
           )}
         </SpellsContainer>
       )}
@@ -269,7 +287,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           Equipment
           <div>iconHere</div>
         </EquipmentHeader>
-        {isEquipmentVisible && <div>getEquipmentUtil()</div>}
+        {isEquipmentVisible && <div>{equipment}</div>}
       </EquipmentContainer>
     </div>
   );

@@ -1,3 +1,5 @@
+import { fighterEquipment } from "../equipmentKits";
+
 export const dwarf = {
   name: "Dwarf",
   requirements: "Minimum CON 9",
@@ -21,7 +23,7 @@ export const dwarf = {
     breath: 13,
     magic: 14
   },
-  equipment: "see Fighter equipment",
+  equipment: fighterEquipment,
   abilities: [
     "Combat: Dwarves may use any type of armour, however, due to their short height, may only use small or normal sized weapons. This means that dwarves cannot use longbows or two-handed swords.",
     "Detect Construction Tricks: From their experience underground, dwarves have a 2-in-6 chance of detecting false walls, hidden construction, or sloping passages. A dwarf must be actively searching for these abilities to function.",
