@@ -376,7 +376,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "2 Travel rations (1/day)",
     "50' Rope",
-    "Vial of Holy Water"
+    "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
@@ -405,7 +405,7 @@ export const magicUserEquipment = [
     "4 Flasks oil",
     "2 Travel rations (1/day)",
     "10' Pole",
-    "Vial of Holy Water"
+    "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
