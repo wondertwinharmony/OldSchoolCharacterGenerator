@@ -1,4 +1,3 @@
-// import { sampleSize } from "lodash";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
@@ -13,10 +12,10 @@ import {
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
+import { getEquipment } from "../utils/getEquipment";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
-import { getEquipment } from "../utils/getEquipment";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
 
@@ -64,13 +63,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
-  // Armor Class
-  const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX])
-  );
-  useEffect(() => {
-    setArmorClass(armorClass);
-  }, [armorClass]);
   // Languages
   const [languages, setLanguages] = useState(
     getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
@@ -78,18 +70,19 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
-
-  const [equipment] = useState(
-    getEquipment(classSelection)
+  // Equipment
+  const [equipment] = useState(getEquipment(classSelection));
+  // Armor Class
+  const [armorClass, setArmorClass] = useState(
+    getArmorClass(abilityScores[DEX], equipment)
   );
-
-  const [spells] = useState(
-    getSpells(includeKnaveSpells)
-  );
-
-  const [traits] = useState(
-    getTraits()
-  )
+  useEffect(() => {
+    setArmorClass(armorClass);
+  }, [armorClass]);
+  // Spells
+  const [spells] = useState(getSpells(includeKnaveSpells));
+  // Traits
+  const [traits] = useState(getTraits());
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -98,7 +91,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
-
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
 
   const experienceAdjustment = getExperienceAdjustment(
@@ -155,7 +147,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
           <div>{`AC: ${armorClass}`}</div>
           <div>{`${
-            experienceAdjustment === "None" ? "" : `${experienceAdjustment}`
+            experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
           }`}</div>
         </StatsContainer>
         <SavesContainer>
@@ -253,9 +245,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             Spells
             <div>iconHere</div>
           </SpellsHeader>
-          {isSpellsVisible && (
-            <div>{spells}</div>
-          )}
+          {isSpellsVisible && <div>{spells}</div>}
         </SpellsContainer>
       )}
 

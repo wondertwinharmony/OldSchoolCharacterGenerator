@@ -1,22 +1,5 @@
 import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
 /**
- * @todo
- * import equipment here and get what armor or
- * shield (if any) a character has
- * To determine AC:
- * ❌ 1 - search equipment for each item. If its there - adjust the base AC.
- * ✅ 2 - add DEX bonus adjustment
- *
- *
- * Base AC based on armor:
- * Unarmored: 10
- * Leather: 12
- * Chain mail: 14
- * Plate mail: 16
- * Shield: +1
- */
-
-/**
  * Utility for determining Armor Class (AC).
  * We determine ascending AC, because THAC0 is
  * awkward.
@@ -25,7 +8,7 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  *
  * @param dexScore
  */
-export const getArmorClass = (dexScore: number) => {
+export const getArmorClass = (dexScore: number, equipment: string[]) => {
   /**
    * Determine if character has any of the following types
    * of armor and use that as the base AC, otherwise base
@@ -37,8 +20,16 @@ export const getArmorClass = (dexScore: number) => {
    * Plate mail: 16
    * Shield: +1
    */
-  const baseArmorClass = 10;
+  let baseArmorClass = 10;
+  const leather = equipment.filter(item => item === "Leather Armor");
+  const chain = equipment.filter(item => item === "Chain Armor");
+  const plate = equipment.filter(item => item === "Plate Armor");
+  const shield = equipment.filter(item => item === "Shield");
 
+  if (leather.length === 1) baseArmorClass = 12;
+  if (chain.length === 1) baseArmorClass = 14;
+  if (plate.length === 1) baseArmorClass = 16;
+  if (shield.length === 1) baseArmorClass = baseArmorClass + 1;
   /**
    * Since getAbilityScoreModifier returns a string for display,
    * we need to do a little work here to make sure that "None"
