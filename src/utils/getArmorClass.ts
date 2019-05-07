@@ -8,7 +8,7 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  *
  * @param dexScore
  */
-export const getArmorClass = (dexScore: number, equipment: string[]) => {
+export const getArmorClass = (dexScore: number, equipment: string) => {
   /**
    * Determine if character has any of the following types
    * of armor and use that as the base AC, otherwise base
@@ -21,15 +21,15 @@ export const getArmorClass = (dexScore: number, equipment: string[]) => {
    * Shield: +1
    */
   let baseArmorClass = 10;
-  const leather = equipment.filter(item => item === "Leather Armor");
-  const chain = equipment.filter(item => item === "Chain Armor");
-  const plate = equipment.filter(item => item === "Plate Armor");
-  const shield = equipment.filter(item => item === "Shield");
+  const leather = equipment.includes("Leather Armor");
+  const chain = equipment.includes("Chain Armor");
+  const plate = equipment.includes("Plate Armor");
+  const shield = equipment.includes("Shield");
 
-  if (leather.length === 1) baseArmorClass = 12;
-  if (chain.length === 1) baseArmorClass = 14;
-  if (plate.length === 1) baseArmorClass = 16;
-  if (shield.length === 1) baseArmorClass = baseArmorClass + 1;
+  if (leather) baseArmorClass = 12;
+  if (chain) baseArmorClass = 14;
+  if (plate) baseArmorClass = 16;
+  if (shield) baseArmorClass = baseArmorClass + 1;
   /**
    * Since getAbilityScoreModifier returns a string for display,
    * we need to do a little work here to make sure that "None"

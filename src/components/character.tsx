@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
+import { weaponQualities } from "../characterData/weaponQualities";
 import {
   CHA,
   CON,
@@ -12,8 +13,10 @@ import {
 } from "../constants/abilityScoreConstants";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
+import { getCharacterName } from "../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
 import { getEquipment } from "../utils/getEquipment";
+import { getEquipmentSlots } from "../utils/getEquipmentSlots";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
@@ -85,6 +88,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   // Traits
   const [traits] = useState(getTraits());
 
+  const [characterName] = useState(getCharacterName());
+
+  const [weaponQualityDescriptions] = useState(weaponQualities);
+
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
@@ -93,6 +100,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
+  const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
+    true
+  );
 
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
@@ -106,6 +116,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
   return (
     <div className={className}>
+      <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}{" "}
       </ClassTitle>
@@ -204,7 +215,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </LanguagesHeader>
-          {isLanguagesVisible && <div>{languages}</div>}
+          {isLanguagesVisible && <Language>{languages}</Language>}
         </LanguagesContainer>
       )}
 
@@ -222,10 +233,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </AbilitiesHeader>
-          {isAbilitiesVisible &&
-            characterClasses[classSelection].abilities!.map(ability => (
-              <div>{ability}</div>
-            ))}
+          {isAbilitiesVisible && (
+            <Ability>
+              {characterClasses[classSelection].abilities!.join("\n\n")}
+            </Ability>
+          )}
         </AbilitiesContainer>
       )}
 
@@ -281,10 +293,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </ThiefSkillsHeader>
-          {isThiefSkillsVisible &&
-            characterClasses[classSelection].skills!.map(skills => (
-              <div>{skills}</div>
-            ))}
+          {isThiefSkillsVisible && (
+            <ThiefSkill>
+              {characterClasses[classSelection].skills!.join("\n")}
+            </ThiefSkill>
+          )}
         </ThiefSkillsContainer>
       )}
 
@@ -295,17 +308,51 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          Equipment
+          {`Equipment (${getEquipmentSlots(equipment)} slots)`}
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
           />
         </EquipmentHeader>
-        {isEquipmentVisible && <div>{equipment}</div>}
+        {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
       </EquipmentContainer>
+
+      {/* Weapon Quality Descriptions */}
+      <WeaponQualitiesContainer>
+        <WeaponQualitiesHeader
+          onClick={() => {
+            setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
+          }}
+        >
+          Weapon Qualities
+          <FontAwesomeIcon
+            icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
+        </WeaponQualitiesHeader>
+        {isWeaponQualitiesVisible && (
+          <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>
+        )}
+      </WeaponQualitiesContainer>
     </div>
   );
 };
+
+/*          {isThiefSkillsVisible &&
+            characterClasses[classSelection].skills!.map((skills, index) => (
+              <div key={index}>{skills}</div>
+            ))}
+
+            {isAbilitiesVisible &&
+            characterClasses[classSelection].abilities!.map((ability, index) => (
+              <div key={index}>{ability}</div>
+            ))}
+*/
+
+const CharacterName = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const ClassTitle = styled.div`
   display: flex;
@@ -367,11 +414,25 @@ const LanguagesHeader = styled.div`
   justify-content: center;
 `;
 
+const Language = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  padding: 0.5rem;
+`;
+
 const AbilitiesContainer = styled.div``;
 
 const AbilitiesHeader = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const Ability = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  padding: 0.5rem;
 `;
 
 const ClericTurnContainer = styled.div``;
@@ -395,11 +456,39 @@ const ThiefSkillsHeader = styled.div`
   justify-content: center;
 `;
 
+const ThiefSkill = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  padding: 0.5rem;
+`;
+
 const EquipmentContainer = styled.div``;
 
 const EquipmentHeader = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const Equipment = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  padding: 0.5rem;
+`;
+
+const WeaponQualitiesContainer = styled.div``;
+
+const WeaponQualitiesHeader = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const WeaponQualities = styled.div`
+  display: flex;
+  justify-content: center;
+  white-space: pre-line;
+  padding: 0.5rem;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`
