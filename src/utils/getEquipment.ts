@@ -14,9 +14,9 @@ export const getEquipment = (classOptionKey: string) => {
   let characterEquipment = [];
   const characterRandomItems = sampleSize(gear, 2);
   let characterEquipmentKit = sampleSize(characterClasses[classOptionKey].equipment, 1)[0];
-  const characterStartingWealthString = `${roller.roll('3d6*10').result.toString()} gp`;
+  const characterStartingWealthString = `•${roller.roll('3d6*10').result.toString()} gp`;
 
   characterEquipment.push(characterStartingWealthString, characterEquipmentKit, characterRandomItems);
 
-  return characterEquipment.flat();
+  return characterEquipment.flat().join('\n\n•');
 };
