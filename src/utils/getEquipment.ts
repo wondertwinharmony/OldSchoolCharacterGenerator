@@ -27,5 +27,18 @@ export const getEquipment = (classOptionKey: string) => {
     characterRandomItems
   );
 
-  return characterEquipment.flat().join("\n\n•");
+  const characterEquipmentString = characterEquipment.flat().join("\n\n•");
+  /**
+   * If class is a dwarf or halfling, and equipment
+   * contains a two-handed sword or long bow, we have
+   * to re-determine equipment. Dwarves and halflings
+   * cannot use these weapons due to their size
+   */
+  if (
+    (classOptionKey === "halfling" || classOptionKey === "dwarf") &&
+    (characterEquipmentString.includes("Two-Handed Sword") ||
+      characterEquipmentString.includes("Long Bow"))
+  )
+    getEquipment(classOptionKey);
+  return characterEquipmentString;
 };

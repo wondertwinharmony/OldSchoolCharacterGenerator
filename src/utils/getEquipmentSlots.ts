@@ -26,7 +26,7 @@
  * Two-Handed Sword: 3 slots
  */
 export const getEquipmentSlots = (equipment: string) => {
-  let slotCount = equipment.split(",").length;
+  let slotCount = equipment.split("\n\n").length;
 
   /**
    * Leather armor and chain armor only add +1 to count,
