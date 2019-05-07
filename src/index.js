@@ -1,8 +1,12 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App.tsx";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+
+library.add(faCaretUp, faCaretDown);
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
