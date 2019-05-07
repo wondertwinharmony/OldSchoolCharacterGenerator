@@ -60,19 +60,15 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
     <div className={className}>
       {!isClassSelected && (
         <GridContainer>
-          {/* <AbilityScoresContainer> */}
           <Ability>STR</Ability>
           <Ability>DEX</Ability>
           <Ability>CON</Ability>
           <Ability>INT</Ability>
           <Ability>WIS</Ability>
           <Ability>CHA</Ability>
-          {/* </AbilityScoresContainer>
-          <AbilityScoresContainer> */}
           {abilityScores.map((abilityScore, index) => (
             <AbilityScore key={index}>{abilityScore}</AbilityScore>
           ))}
-          {/* </AbilityScoresContainer> */}
         </GridContainer>
       )}
       {!isClassSelected && (
@@ -140,11 +136,6 @@ const AbilityScore = styled.div`
   font-size: 3rem;
   text-align: center;
 `;
-
-// const AbilityScoresContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-// `;
 
 const ClassButtonsContainer = styled.div`
   display: flex;
