@@ -1,6 +1,6 @@
 export const clericEquipment = [
   [
-    "Cudgel",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -10,7 +10,7 @@ export const clericEquipment = [
     "Wooden Cross"
   ],
   [
-    "Cudgel",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "Shield",
     "6 Torches",
     "Backpack",
@@ -21,7 +21,7 @@ export const clericEquipment = [
     "Wooden Cross"
   ],
   [
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -32,7 +32,7 @@ export const clericEquipment = [
     "Wooden Cross"
   ],
   [
-    "Quarter-Staff",
+    "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -47,7 +47,7 @@ export const clericEquipment = [
   ],
   [
     "Chain Armor",
-    "War Hammer",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -60,7 +60,7 @@ export const clericEquipment = [
   [
     "Chain Armor",
     "Shield",
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -73,7 +73,7 @@ export const clericEquipment = [
   [
     "Chain Armor",
     "Shield",
-    "War Hammer",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -88,7 +88,7 @@ export const clericEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -100,7 +100,7 @@ export const clericEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "War Hammer",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -113,7 +113,7 @@ export const clericEquipment = [
   ],
   [
     "Plate Armor",
-    "Quarter-Staff",
+    "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -124,7 +124,7 @@ export const clericEquipment = [
     "Silver Cross"
   ],
   [
-    "Cudgel",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -137,7 +137,7 @@ export const clericEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -149,7 +149,7 @@ export const clericEquipment = [
   ],
   [
     "Leather Armor",
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -164,7 +164,7 @@ export const clericEquipment = [
     "Plate Armor",
     "Shield",
     "Helmet",
-    "War Hammer",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -178,7 +178,7 @@ export const clericEquipment = [
   ],
   [
     "Chain Armor",
-    "War Hammer",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -192,7 +192,7 @@ export const clericEquipment = [
     "Plate Armor",
     "Shield",
     "Helmet",
-    "Mace",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -201,7 +201,7 @@ export const clericEquipment = [
     "Travel rations (1 day)",
     "50' Rope",
     "Silver Cross",
-    "Vial Holy Water",
+    "Vial Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)",
     "12 Iron Spikes",
     "3 Stakes & Mallet",
     "Small Sack"
@@ -210,8 +210,8 @@ export const clericEquipment = [
 
 export const fighterEquipment = [
   [
-    "Spear",
-    "Dagger",
+    "Spear (Damage: 1d6, Qualities: Brace, Melee, Missile (5’-20’ / 21’-40’ / 41’-60’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -220,7 +220,7 @@ export const fighterEquipment = [
     "50' Rope"
   ],
   [
-    "Cudgel",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -231,8 +231,8 @@ export const fighterEquipment = [
   ],
   [
     "Leather Armor",
-    "Morning Star",
-    "Dagger",
+    "Morning Star (Damage: 1d6, Qualities: Blunt, Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -242,11 +242,11 @@ export const fighterEquipment = [
   ],
   [
     "Leather Armor",
-    "Battle axe",
-    "Hand axe",
-    "Dagger",
-    "Sling",
-    "Pouch With 20 Sling Bullets",
+    "Battle axe (Damage: 1d8, Qualities: Melee, Slow, Two-handed)",
+    "Hand axe (Damage: 1d6, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Sling (Damage: 1d4, Qualities: Blunt, Missile (5’-40’ / 41’-80’ / 81’-160’))",
+    "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -256,10 +256,10 @@ export const fighterEquipment = [
   ],
   [
     "Chain Armor",
-    "Spear",
-    "Dagger",
-    "Sling",
-    "Pouch With 20 Sling Bullets",
+    "Spear (Damage: 1d6, Qualities: Brace, Melee, Missile (5’-20’ / 21’-40’ / 41’-60’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Sling (Damage: 1d4, Qualities: Blunt, Missile (5’-40’ / 41’-80’ / 81’-160’))",
+    "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -270,8 +270,8 @@ export const fighterEquipment = [
   [
     "Chain Armor",
     "Shield",
-    "Sword",
-    "Dagger",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -281,9 +281,9 @@ export const fighterEquipment = [
   ],
   [
     "Chain Armor",
-    "Spear",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
+    "Spear (Damage: 1d6, Qualities: Brace, Melee, Missile (5’-20’ / 21’-40’ / 41’-60’))",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -294,8 +294,8 @@ export const fighterEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "Sword",
-    "Dagger",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -305,8 +305,8 @@ export const fighterEquipment = [
   ],
   [
     "Plate Armor",
-    "Two-Handed Sword",
-    "3 Daggers",
+    "Two-Handed Sword (Damage: 1d8, Qualities: Melee)",
+    "3 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -318,9 +318,9 @@ export const fighterEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "Sword",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -330,10 +330,10 @@ export const fighterEquipment = [
   ],
   [
     "Plate Armor",
-    "Flail",
-    "Dagger",
-    "35 Short bow",
-    "Quiver of 20 Arrows",
+    "Flail (Damage: 1d6, Qualities: Blunt, Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -345,9 +345,9 @@ export const fighterEquipment = [
   [
     "Plate Armor",
     "Shield",
-    "Sword",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -359,10 +359,10 @@ export const fighterEquipment = [
   [
     "Plate Armor",
     "Helmet",
-    "2 Battle Axes",
-    "Dagger",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
+    "2 Battle Axe (Damage: 1d8, Qualities: Melee, Slow, Two-handed)s",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -373,10 +373,10 @@ export const fighterEquipment = [
   ],
   [
     "Plate Armor",
-    "Two-Handed Sword",
-    "Dagger",
-    "Short bow",
-    "Quiver of 20 Arrows",
+    "Two-Handed Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -388,11 +388,11 @@ export const fighterEquipment = [
   ],
   [
     "Plate Armor",
-    "Halberd",
-    "Dagger",
-    "Long bow",
-    "Quiver of 20 Arrows",
-    "2 Silver Tipped Arrows",
+    "Halberd (Damage: 1d10, Qualities: Brace, Melee, Slow, Two-handed)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Long bow (Damage: 1d6, Qualities: Missile (5’-70’ / 71’-140’ / 141’-210’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
+    "Silver Tipped Arrows (d4 usage die)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -405,11 +405,11 @@ export const fighterEquipment = [
     "Plate Armor",
     "Shield",
     "Helmet",
-    "Sword",
-    "2 Daggers",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
-    "4 Silver Tipped Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "2 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
+    "Silver Tipped Bolts (d4 usage die)",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -422,7 +422,7 @@ export const fighterEquipment = [
 
 export const magicUserEquipment = [
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -431,7 +431,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "2 Daggers",
+    "2 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -441,7 +441,7 @@ export const magicUserEquipment = [
     "50' Rope"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -451,7 +451,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -461,7 +461,7 @@ export const magicUserEquipment = [
     "Vial of Holy Water"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -473,17 +473,17 @@ export const magicUserEquipment = [
     "Belladona"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
     "Travel rations (1 day)",
     "Travel rations (1 day)",
     "50' Rope",
-    "2 Vials Holy Water"
+    "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
   [
-    "3 Daggers",
+    "3 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -494,17 +494,17 @@ export const magicUserEquipment = [
     "Vial of Holy Water"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
     "Travel rations (1 day)",
     "Travel rations (1 day)",
     "50' Rope",
-    "2 Vials Holy Water"
+    "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -514,7 +514,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -524,7 +524,7 @@ export const magicUserEquipment = [
     "50' Rope"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -534,7 +534,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "2 Daggers",
+    "2 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -544,7 +544,7 @@ export const magicUserEquipment = [
     "50' Rope"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -555,7 +555,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -566,7 +566,7 @@ export const magicUserEquipment = [
     "50' Rope"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -577,7 +577,7 @@ export const magicUserEquipment = [
     "10' Pole"
   ],
   [
-    "Dagger",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Backpack",
     "Waterskin",
     "Lantern",
@@ -591,9 +591,9 @@ export const magicUserEquipment = [
 
 export const thiefEquipment = [
   [
-    "Cudgel",
-    "Sling",
-    "Pouch With 20 Sling Bullets",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
+    "Sling (Damage: 1d4, Qualities: Blunt, Missile (5’-40’ / 41’-80’ / 81’-160’))",
+    "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Backpack",
     "Waterskin",
@@ -602,7 +602,7 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Cudgel",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -612,10 +612,10 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Cudgel",
-    "Dagger",
-    "Sling",
-    "Pouch With 20 Sling Bullets",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Sling (Damage: 1d4, Qualities: Blunt, Missile (5’-40’ / 41’-80’ / 81’-160’))",
+    "Pouch With Sling Bullets (d20 usage die)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -625,8 +625,8 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "Dagger",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -636,9 +636,9 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Cudgel",
-    "Light Crossbow",
-    "Case With 30 Quarrels",
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case With Bolts (d20 usage die)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -648,9 +648,9 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "Light Crossbow",
-    "Case of 30 Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case of 30 Bolts",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -660,10 +660,10 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Sword",
-    "2 Daggers",
-    "35 Short bow",
-    "Quiver of 20 Arrows",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "2 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
     "Leather Armor",
     "6 Torches",
     "Backpack",
@@ -673,36 +673,8 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "Dagger",
-    "Leather Armor",
-    "Backpack",
-    "Waterskin",
-    "Lantern",
-    "4 Flasks oil",
-    "Travel rations (1 day)",
-    "Travel rations (1 day)",
-    "10' Pole"
-  ],
-  [
-    "Sword",
-    "Light Crossbow",
-    "Case of 30 Quarrels",
-    "2 Silver Tipped Quarrels",
-    "Leather Armor",
-    "Backpack",
-    "Waterskin",
-    "Lantern",
-    "4 Flasks oil",
-    "Travel rations (1 day)",
-    "Travel rations (1 day)",
-    "50' Rope"
-  ],
-  [
-    "Sword",
-    "Dagger",
-    "Short bow",
-    "Quiver of 20 Arrows",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -713,7 +685,10 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Sword",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case of 30 Bolts",
+    "Silver Tipped Bolts (d4 usage die)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -724,10 +699,10 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "Light Crossbow",
-    "Case of 30 Quarrels",
-    "6 Silver Tipped Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -738,10 +713,7 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Sword",
-    "Short bow",
-    "Quiver of 20 Arrows",
-    "6 Silver Tipped Arrows",
+    "Sword (Damage: 1d8, Qualities: Melee)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -752,8 +724,10 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "4 Daggers",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case of 30 Bolts",
+    "Silver Tipped Bolts (d4 usage die)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -764,9 +738,10 @@ export const thiefEquipment = [
     "10' Pole"
   ],
   [
-    "Sword",
-    "Light Crossbow",
-    "Case of 30 Quarrels",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
+    "Silver Tipped Arrows (d4 usage die)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
@@ -777,11 +752,36 @@ export const thiefEquipment = [
     "50' Rope"
   ],
   [
-    "Sword",
-    "3 Daggers",
-    "Short bow",
-    "Quiver of 20 Arrows",
-    "8 Silver Tipped Arrows",
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "4 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Leather Armor",
+    "Backpack",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
+    "10' Pole"
+  ],
+  [
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "Crossbow (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Reload, Slow, Two-handed)",
+    "Case of 30 Bolts",
+    "Leather Armor",
+    "Backpack",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "Travel rations (1 day)",
+    "Travel rations (1 day)",
+    "50' Rope"
+  ],
+  [
+    "Sword (Damage: 1d8, Qualities: Melee)",
+    "3 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Short bow (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed)",
+    "Quiver of Arrows (d20 usage die)",
+    "Silver Tipped Arrows (d4 usage die)",
     "Leather Armor",
     "Backpack",
     "Waterskin",
