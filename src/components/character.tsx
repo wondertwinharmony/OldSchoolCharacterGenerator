@@ -2,7 +2,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
-import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
@@ -107,7 +114,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           }}
         >
           Traits
-          <FontAwesomeIcon icon="caret-square-up" size="lg" />
+          <FontAwesomeIcon
+            icon={isTraitsVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
         </TraitsHeader>
         {isTraitsVisible && <div>{traits}</div>}
       </TraitsContainer>
@@ -187,7 +197,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Languages
-            <FontAwesomeIcon icon="caret-square-up" size="lg" />
+            <FontAwesomeIcon
+              icon={isLanguagesVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </LanguagesHeader>
           {isLanguagesVisible && <div>{languages}</div>}
         </LanguagesContainer>
@@ -202,7 +215,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Abilities
-            <FontAwesomeIcon icon="caret-square-up" size="lg" />
+            <FontAwesomeIcon
+              icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </AbilitiesHeader>
           {isAbilitiesVisible &&
             characterClasses[classSelection].abilities!.map(ability => (
@@ -220,7 +236,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             ClericTurn
-            <FontAwesomeIcon icon="caret-square-up" size="lg" />
+            <FontAwesomeIcon
+              icon={isClericTurnVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </ClericTurnHeader>
           {isClericTurnVisible && (
             <div>{characterClasses[classSelection].turn}</div>
@@ -237,7 +256,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Spells
-            <FontAwesomeIcon icon="caret-square-up" size="lg" />
+            <FontAwesomeIcon
+              icon={isSpellsVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </SpellsHeader>
           {isSpellsVisible && <div>{spells}</div>}
         </SpellsContainer>
@@ -252,7 +274,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             ThiefSkills
-            <FontAwesomeIcon icon="caret-square-up" size="lg" />
+            <FontAwesomeIcon
+              icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </ThiefSkillsHeader>
           {isThiefSkillsVisible &&
             characterClasses[classSelection].skills!.map(skills => (
@@ -269,7 +294,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           }}
         >
           Equipment
-          <FontAwesomeIcon icon="caret-square-up" size="lg" />
+          <FontAwesomeIcon
+            icon={isEquipmentVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
         </EquipmentHeader>
         {isEquipmentVisible && <div>{equipment}</div>}
       </EquipmentContainer>
