@@ -307,8 +307,7 @@ export const fighterEquipment = [
     "6 Torches",
     "Waterskin",
     "2 Travel rations (1 day)",
-    "50' Rope",
-    "5 Flasks oil"
+    "50' Rope"
   ],
   [
     "Plate Armor (3 slots)",
