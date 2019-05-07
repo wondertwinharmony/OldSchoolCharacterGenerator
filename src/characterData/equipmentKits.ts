@@ -3,7 +3,7 @@ export const clericEquipment = [
     "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross"
   ],
@@ -12,7 +12,7 @@ export const clericEquipment = [
     "Shield",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Wooden Cross"
   ],
@@ -21,7 +21,7 @@ export const clericEquipment = [
     "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross"
   ],
@@ -30,7 +30,7 @@ export const clericEquipment = [
     "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "12 Iron Spikes",
     "Wooden Cross",
@@ -42,7 +42,7 @@ export const clericEquipment = [
     "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "2 Small Sacks"
@@ -53,7 +53,7 @@ export const clericEquipment = [
     "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Wooden Cross",
     "2 Small Sacks"
@@ -64,7 +64,7 @@ export const clericEquipment = [
     "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "2 Small Sacks",
@@ -77,7 +77,7 @@ export const clericEquipment = [
     "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Wooden Cross"
   ],
@@ -88,7 +88,7 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "Small Sack"
@@ -99,7 +99,7 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Silver Cross"
   ],
@@ -107,7 +107,7 @@ export const clericEquipment = [
     "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll"
@@ -119,7 +119,7 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Silver Cross"
   ],
@@ -128,7 +128,7 @@ export const clericEquipment = [
     "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll",
@@ -141,7 +141,7 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Silver Cross",
     "3 Stakes & Mallet",
@@ -152,7 +152,7 @@ export const clericEquipment = [
     "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Wooden Cross",
     "Scroll"
@@ -164,7 +164,7 @@ export const clericEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Silver Cross",
     "Vial Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)",
@@ -180,7 +180,7 @@ export const fighterEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -188,7 +188,7 @@ export const fighterEquipment = [
     "Leather Armor (2 slots)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -197,7 +197,7 @@ export const fighterEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -209,7 +209,7 @@ export const fighterEquipment = [
     "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -220,7 +220,7 @@ export const fighterEquipment = [
     "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -230,7 +230,7 @@ export const fighterEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -240,7 +240,7 @@ export const fighterEquipment = [
     "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -250,7 +250,7 @@ export const fighterEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -259,7 +259,7 @@ export const fighterEquipment = [
     "3 Daggers (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "2 Flasks oil"
   ],
@@ -271,7 +271,7 @@ export const fighterEquipment = [
     "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -282,7 +282,7 @@ export const fighterEquipment = [
     "Quiver of Arrows (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Small Sack"
   ],
@@ -295,7 +295,7 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -306,7 +306,7 @@ export const fighterEquipment = [
     "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -316,7 +316,7 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "2 Small Sacks"
   ],
@@ -329,7 +329,7 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)"
+    "2 Travel rations (1/day)"
   ],
   [
     "Plate Armor (3 slots)",
@@ -340,7 +340,7 @@ export const fighterEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ]
 ];
@@ -350,7 +350,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -358,7 +358,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "2 Flasks oil",
     "50' Rope"
   ],
@@ -367,14 +367,14 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "Vial of Holy Water"
   ],
@@ -382,7 +382,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "5 Flasks of oil",
     "Silver Mirror",
@@ -392,7 +392,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
@@ -403,7 +403,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole",
     "Vial of Holy Water"
   ],
@@ -411,7 +411,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope",
     "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
   ],
@@ -420,7 +420,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -428,14 +428,14 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "10' Pole"
   ],
@@ -444,7 +444,7 @@ export const magicUserEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "50' Rope"
   ],
@@ -453,7 +453,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "10' Pole"
   ],
@@ -462,7 +462,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "50' Rope"
   ],
@@ -471,7 +471,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "10' Pole"
   ],
@@ -480,7 +480,7 @@ export const magicUserEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "Scroll",
     "50' Rope"
   ]
@@ -493,7 +493,7 @@ export const thiefEquipment = [
     "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -501,7 +501,7 @@ export const thiefEquipment = [
     "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -512,7 +512,7 @@ export const thiefEquipment = [
     "Pouch With Sling Bullets (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -521,7 +521,7 @@ export const thiefEquipment = [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -531,7 +531,7 @@ export const thiefEquipment = [
     "Case With Bolts (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -541,7 +541,7 @@ export const thiefEquipment = [
     "Case of 30 Bolts",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -553,7 +553,7 @@ export const thiefEquipment = [
     "Quiver of Arrows (d20 usage die)",
     "6 Torches",
     "Waterskin",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -563,7 +563,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -575,7 +575,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -587,7 +587,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -596,7 +596,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -608,7 +608,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -620,7 +620,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -633,7 +633,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ],
   [
@@ -644,7 +644,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "50' Rope"
   ],
   [
@@ -658,7 +658,7 @@ export const thiefEquipment = [
     "Waterskin",
     "Lantern",
     "4 Flasks oil",
-    "2 Travel rations (1 day)",
+    "2 Travel rations (1/day)",
     "10' Pole"
   ]
 ];
