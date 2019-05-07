@@ -32,20 +32,11 @@ interface Props {
 
 /**
  * @todo
- * calculate ac based on starting equipment
- *
- * @todo
- * weapons need their information next to them in the
- * equipment kits (use list in old school essentials),
- * armor needs base ac listed as well,
- * holy water listed as well
- *
- * @todo
- * possible icons to use:
- * caret-down, caret-up
- *
- * @todo
- * random name above race
+ * for scroll items -> RANDOMLY determine a 1st level cleric
+ * spell for clerics with scrolls, for wizards maybe randomize
+ * a higher level spell. "Nothing more entertaining than
+ * giving a 1st level magic user a scroll of disintegrate
+ * or fireball"
  *
  * @todo
  * include language abilities @see getLanguages for wording
