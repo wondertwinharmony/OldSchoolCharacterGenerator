@@ -1,3 +1,5 @@
+import { thiefEquipment } from "../equipmentKits";
+
 export const thief = {
   name: "Thief",
   requirements: "None",
@@ -14,7 +16,7 @@ export const thief = {
     breath: 16,
     magic: 15
   },
-  equipment: "see Thief equipment",
+  equipment: thiefEquipment,
   abilities: [
     "Back-stab: When attacking an unaware opponent from behind, a thief receives a +4 bonus to hit and doubles any damage dealt.",
     "Combat: Because of their need of stealth and free movement, thieves cannot wear armour heavier than leather and cannot use shields. They can use any weapon.",
