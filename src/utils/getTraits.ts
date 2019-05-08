@@ -13,6 +13,21 @@ export const getTraits = (intScore: number, languages: string) => {
     let languageDescriptor = '';
     let languageCount = languages.split(',').length;
 
+    /**
+     * 
+     ** INT modifier - language ability - (bonus languages)
+        * 3     unable to read or write, broken speech (0)
+        * 4-5   unable to read or write                (0)
+        * 6-8   can write simple words                 (0)
+        * 9-12  can read and write native languages    (0)
+        * 13-15 can read and write native languages    (1)
+        * 16-17 can read and write native languages    (2)
+        * 18    can read and write native languages    (3)
+        * 
+        * The following checks the intScore, then references the table above
+        * to determine level of compotency/fluency.
+     */
+
     if(intScore <= 3) {
         languageDescriptor = 'unable to read or write, and has broken, ';
     }
