@@ -127,6 +127,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isTraitsVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{margin: '0 0.5rem'}}
           />
         </TraitsHeader>
         {isTraitsVisible && <div>{traits}</div>}
@@ -210,6 +211,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isLanguagesVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{margin: '0 0.5rem'}}
             />
           </LanguagesHeader>
           {isLanguagesVisible && <Language>{languages}</Language>}
@@ -228,6 +230,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{margin: '0 0.5rem'}}
             />
           </AbilitiesHeader>
           {isAbilitiesVisible && (
@@ -248,6 +251,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{margin: '0 0.5rem'}}
             />
           </ClericTurnHeader>
           {isClericTurnVisible && (
@@ -268,6 +272,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isSpellsVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{margin: '0 0.5rem'}}
             />
           </SpellsHeader>
           {isSpellsVisible && <Spell dangerouslySetInnerHTML={createMarkup(spells.join())}/>}
@@ -308,6 +313,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{margin: '0 0.5rem'}}
           />
         </EquipmentHeader>
         {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
@@ -324,6 +330,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{margin: '0 0.5rem'}}
           />
         </WeaponQualitiesHeader>
         {isWeaponQualitiesVisible && (<WeaponQualities dangerouslySetInnerHTML={createMarkup(weaponQualities)}/>)}
@@ -335,20 +342,26 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 const CharacterName = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 2rem;
 `;
 
 const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 1.5rem;
 `;
 
 const TraitsContainer = styled.div`
   border-bottom: 1px solid black;
+  padding: 0.5rem;
 `;
 
 const TraitsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const AbilityScoresGrid = styled.div`
@@ -395,6 +408,8 @@ const LanguagesContainer = styled.div``;
 const LanguagesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Language = styled.div`
@@ -409,6 +424,8 @@ const AbilitiesContainer = styled.div``;
 const AbilitiesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Ability = styled.div`
@@ -417,11 +434,15 @@ const Ability = styled.div`
   white-space: pre-line;
 `;
 
-const ClericTurnContainer = styled.div``;
+const ClericTurnContainer = styled.div`
+  padding: 0.5rem;
+`;
 
 const ClericTurnHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const SpellsContainer = styled.div``;
@@ -429,6 +450,8 @@ const SpellsContainer = styled.div``;
 const SpellsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Spell = styled.div`
@@ -451,6 +474,8 @@ const ThiefSkillsContainer = styled.div`
 const ThiefSkillsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const ThiefSkill = styled.div`
@@ -463,6 +488,8 @@ const EquipmentContainer = styled.div``;
 const EquipmentHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Equipment = styled.div`
@@ -477,6 +504,8 @@ const WeaponQualitiesContainer = styled.div``;
 const WeaponQualitiesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const WeaponQualities = styled.div`
