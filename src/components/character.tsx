@@ -277,10 +277,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
       {/* Thief Skills */}
       {characterClasses[classSelection].skills && (
-        <ThiefSkillsContainer>
+        <React.Fragment>
           <ThiefSkillsHeader
-            onClick={() => {
-              setIsThiefSkillsVisible(!isThiefSkillsVisible);
+          onClick={() => {
+            setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
             ThiefSkills
@@ -289,12 +289,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </ThiefSkillsHeader>
-          {isThiefSkillsVisible && (
-            <ThiefSkill>
-              {characterClasses[classSelection].skills!.join("\n")}
-            </ThiefSkill>
-          )}
-        </ThiefSkillsContainer>
+          <ThiefSkillsContainer>
+            {isThiefSkillsVisible && (
+              <ThiefSkill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].skills!.join("\n"))}/>
+            )}
+          </ThiefSkillsContainer>
+        </React.Fragment>
       )}
 
       {/* Equipment */}
@@ -443,7 +443,10 @@ const KnaveAddendum = styled.div`
   white-space: pre-line;
 `;
 
-const ThiefSkillsContainer = styled.div``;
+const ThiefSkillsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const ThiefSkillsHeader = styled.div`
   display: flex;
@@ -451,10 +454,8 @@ const ThiefSkillsHeader = styled.div`
 `;
 
 const ThiefSkill = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
   padding: 0.5rem;
+  white-space: pre-line;
 `;
 
 const EquipmentContainer = styled.div``;
