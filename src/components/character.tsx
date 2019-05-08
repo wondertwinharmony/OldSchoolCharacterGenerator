@@ -1,7 +1,8 @@
-// import { sampleSize } from "lodash";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
+import { weaponQualities } from "../characterData/weaponQualities";
 import {
   CHA,
   CON,
@@ -12,15 +13,15 @@ import {
 } from "../constants/abilityScoreConstants";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
+import { getCharacterName } from "../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
+import { getEquipment } from "../utils/getEquipment";
+import { getEquipmentSlots } from "../utils/getEquipmentSlots";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
-import { getEquipment } from "../utils/getEquipment";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
-import { getCharacterName } from "../utils/getCharacterName";
-import { weaponQualities } from "../characterData/weaponQualities";
 
 interface Props {
   abilityScores: number[];
@@ -31,20 +32,11 @@ interface Props {
 
 /**
  * @todo
- * calculate ac based on starting equipment
- *
- * @todo
- * weapons need their information next to them in the
- * equipment kits (use list in old school essentials),
- * armor needs base ac listed as well,
- * holy water listed as well
- *
- * @todo
- * possible icons to use:
- * caret-down, caret-up
- *
- * @todo
- * random name above race
+ * for scroll items -> RANDOMLY determine a 1st level cleric
+ * spell for clerics with scrolls, for wizards maybe randomize
+ * a higher level spell. "Nothing more entertaining than
+ * giving a 1st level magic user a scroll of disintegrate
+ * or fireball"
  *
  * @todo
  * include language abilities @see getLanguages for wording
@@ -66,13 +58,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
-  // Armor Class
-  const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX])
-  );
-  useEffect(() => {
-    setArmorClass(armorClass);
-  }, [armorClass]);
   // Languages
   const [languages, setLanguages] = useState(
     getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
@@ -80,26 +65,23 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
-
-  const [equipment] = useState(
-    getEquipment(classSelection)
+  // Equipment
+  const [equipment] = useState(getEquipment(classSelection));
+  // Armor Class
+  const [armorClass, setArmorClass] = useState(
+    getArmorClass(abilityScores[DEX], equipment)
   );
+  useEffect(() => {
+    setArmorClass(armorClass);
+  }, [armorClass]);
+  // Spells
+  const [spells] = useState(getSpells(includeKnaveSpells));
+  // Traits
+  const [traits] = useState(getTraits());
 
-  const [spells] = useState(
-    getSpells(includeKnaveSpells)
-  );
+  const [characterName] = useState(getCharacterName());
 
-  const [traits] = useState(
-    getTraits()
-  )
-
-  const [characterName] = useState(
-    getCharacterName()
-  );
-
-  const [weaponQualityDescriptions] = useState(
-    weaponQualities
-  );
+  const [weaponQualityDescriptions] = useState(weaponQualities);
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -108,9 +90,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
-
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
-  const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(true);
+  const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
+    true
+  );
 
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
@@ -125,7 +108,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   return (
     <div className={className}>
       <CharacterName>{characterName}</CharacterName>
-      <ClassTitle>{characterClasses[classSelection].name} </ClassTitle>
+      <ClassTitle>
+        {`Level 1 ${characterClasses[classSelection].name}`}{" "}
+      </ClassTitle>
       <TraitsContainer>
         <TraitsHeader
           onClick={() => {
@@ -133,7 +118,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           }}
         >
           Traits
-          <div>iconHere</div>
+          <FontAwesomeIcon
+            icon={isTraitsVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
         </TraitsHeader>
         {isTraitsVisible && <div>{traits}</div>}
       </TraitsContainer>
@@ -167,7 +155,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
           <div>{`AC: ${armorClass}`}</div>
           <div>{`${
-            experienceAdjustment === "None" ? "" : `${experienceAdjustment}`
+            experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
           }`}</div>
         </StatsContainer>
         <SavesContainer>
@@ -213,7 +201,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Languages
-            <div>iconHere</div>
+            <FontAwesomeIcon
+              icon={isLanguagesVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </LanguagesHeader>
           {isLanguagesVisible && <Language>{languages}</Language>}
         </LanguagesContainer>
@@ -228,10 +219,16 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Abilities
-            <div>iconHere</div>
+            <FontAwesomeIcon
+              icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </AbilitiesHeader>
-          {isAbilitiesVisible &&
-            (<Ability>{characterClasses[classSelection].abilities!.join('\n\n')}</Ability>)}
+          {isAbilitiesVisible && (
+            <Ability>
+              {characterClasses[classSelection].abilities!.join("\n\n")}
+            </Ability>
+          )}
         </AbilitiesContainer>
       )}
 
@@ -244,7 +241,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             ClericTurn
-            <div>iconHere</div>
+            <FontAwesomeIcon
+              icon={isClericTurnVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </ClericTurnHeader>
           {isClericTurnVisible && (
             <div>{characterClasses[classSelection].turn}</div>
@@ -261,11 +261,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             Spells
-            <div>iconHere</div>
+            <FontAwesomeIcon
+              icon={isSpellsVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </SpellsHeader>
-          {isSpellsVisible && (
-            <div>{spells}</div>
-          )}
+          {isSpellsVisible && <div>{spells}</div>}
         </SpellsContainer>
       )}
 
@@ -278,10 +279,16 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             ThiefSkills
-            <div>iconHere</div>
+            <FontAwesomeIcon
+              icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
           </ThiefSkillsHeader>
-          {isThiefSkillsVisible &&
-            (<ThiefSkill>{characterClasses[classSelection].skills!.join('\n')}</ThiefSkill>)}
+          {isThiefSkillsVisible && (
+            <ThiefSkill>
+              {characterClasses[classSelection].skills!.join("\n")}
+            </ThiefSkill>
+          )}
         </ThiefSkillsContainer>
       )}
 
@@ -292,8 +299,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          Equipment
-          <div>iconHere</div>
+          {`Equipment (${getEquipmentSlots(equipment)} slots)`}
+          <FontAwesomeIcon
+            icon={isEquipmentVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
         </EquipmentHeader>
         {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
       </EquipmentContainer>
@@ -306,9 +316,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           }}
         >
           Weapon Qualities
-          <div>iconHere</div>
+          <FontAwesomeIcon
+            icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
+            size="lg"
+          />
         </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>}
+        {isWeaponQualitiesVisible && (
+          <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>
+        )}
       </WeaponQualitiesContainer>
     </div>
   );
@@ -327,7 +342,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
 const CharacterName = styled.div`
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 `;
 
 const ClassTitle = styled.div`

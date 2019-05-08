@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 import Character from "./components/character";
+import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
@@ -16,12 +17,33 @@ interface ImplProps extends Props {}
 
 /**
  * @todo
- * include "knave spell checkbox input",
- * use a "useState" hook for tracking this
- *
- * @todo
  * prettify display of prime req and exp
  * adjustment bonus in this component
+ *
+ * @todo PERMALINK!
+ * use window.location to grab url, then parse for info
+ * Info needed would be:
+ * - abilityScores
+ * - classSelection
+ * - spell
+ * - equipment
+ * - traits
+ * - name
+ * - languages
+ *
+ * - ac can be recalculated
+ *
+ * Flow would be:
+ * - on Character component display a permalink button
+ *   to save the character information as a long url
+ *   (possibly hash url)
+ *   Clicking on the permalink button will redirect to
+ *   constructed url immediately -> user can now bookmark
+ *   this url to save the character data
+ * - on App component load, use a util to check the url
+ *   for information needed to rehydrate state of a
+ *   character -> see above info needed
+ *   (possibly decrypt hash url to do this)
  */
 
 const AppImpl: React.SFC<ImplProps> = ({ className }) => {
@@ -37,34 +59,34 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   return (
     <div className={className}>
       {!isClassSelected && (
-        <React.Fragment>
-          <AbilityScoresContainer>
-            <AbilityScore>STR</AbilityScore>
-            <AbilityScore>DEX</AbilityScore>
-            <AbilityScore>CON</AbilityScore>
-            <AbilityScore>INT</AbilityScore>
-            <AbilityScore>WIS</AbilityScore>
-            <AbilityScore>CHA</AbilityScore>
-          </AbilityScoresContainer>
-          <AbilityScoresContainer>
-            {abilityScores.map((abilityScore, index) => (
-              <AbilityScore key={index}>{abilityScore}</AbilityScore>
-            ))}
-          </AbilityScoresContainer>
-        </React.Fragment>
+        <GridContainer>
+          <Ability>STR</Ability>
+          <Ability>DEX</Ability>
+          <Ability>CON</Ability>
+          <Ability>INT</Ability>
+          <Ability>WIS</Ability>
+          <Ability>CHA</Ability>
+          {abilityScores.map((abilityScore, index) => (
+            <AbilityScore key={index}>{abilityScore}</AbilityScore>
+          ))}
+        </GridContainer>
       )}
-      <div>
-        <input 
-          type="checkbox"
-          onChange={() => {setIncludeKnaveSpells(!includeKnaveSpells)}}
-        ></input>
-        <label>Include Knave Spells</label>
-      </div>
       {!isClassSelected && (
         <ClassButtonsContainer>
-          {checkContainsDemihumans(classOptions) && "b/x you silly"}
+          <KnaveSpellOptionsContainer
+            onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
+          >
+            <input type="checkbox" checked={includeKnaveSpells} />
+            <KnaveSpellText>Include Knave Spells</KnaveSpellText>
+          </KnaveSpellOptionsContainer>
           {Object.keys(classOptions).map(classOptionKey => (
             <ClassOptionContainer key={classOptionKey}>
+              <XpAdjustmentText>
+                {`XP Adjustment: ${getExperienceAdjustment(
+                  abilityScores,
+                  getClassPrimeRequisites(classOptionKey)
+                )}`}
+              </XpAdjustmentText>
               <ButtonContainer>
                 <ClassButton
                   variant="outline-secondary"
@@ -73,18 +95,15 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                     setClassSelection(classOptionKey);
                   }}
                 >
-                  {classOptions[classOptionKey]}
+                  <ButtonText>{classOptions[classOptionKey]}</ButtonText>
                 </ClassButton>
               </ButtonContainer>
-              <ClassPrimeRequisites>
-                {getClassPrimeRequisites(classOptionKey)}
-                {getExperienceAdjustment(
-                  abilityScores,
-                  getClassPrimeRequisites(classOptionKey)
-                )}
-              </ClassPrimeRequisites>
             </ClassOptionContainer>
           ))}
+          <DemihumansText>
+            {checkContainsDemihumans(classOptions) &&
+              "† Yes, fantastical races are treated as classes! Old-school Dungeons & Dragons is silly like that."}
+          </DemihumansText>
         </ClassButtonsContainer>
       )}
       {isClassSelected && classSelection && (
@@ -98,45 +117,75 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   );
 };
 
-const AbilityScore = styled.div`
-  color: white;
-  font-size: 1rem;
-  background-color: black;
-  border-right: 1px solid white;
-  border-left: 1px solid white;
-  padding: 0.5rem;
-  width: 3rem;
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 0 1rem;
+`;
+
+const Ability = styled.div`
+  font-family: "Sancreek", cursive;
+  font-weight: bold;
+  font-size: 2rem;
   text-align: center;
 `;
 
-const AbilityScoresContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const AbilityScore = styled.div`
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
 `;
 
 const ClassButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  padding: 2rem 3rem;
 `;
 
-const ButtonContainer = styled.div`
-  padding: 0.75rem;
+const KnaveSpellOptionsContainer = styled.div`
+  padding: 0 1rem;
+  display: inline;
 `;
 
-const ClassOptionContainer = styled.div``;
+const KnaveSpellText = styled.label`
+  padding-left: 0.5rem;
+`;
+
+const ButtonContainer = styled.div``;
+
+const ClassOptionContainer = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const XpAdjustmentText = styled.div`
+  font-weight: bold;
+`;
 
 const ClassButton = styled(Button)``;
 
-const ClassPrimeRequisites = styled.div``;
+const ButtonText = styled.div`
+  color: black;
+  font-weight: bold;
+  font-size: 1.5rem;
+`;
+
+const DemihumansText = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 const StyledApp = styled(AppImpl)`
   font-family: "Roboto Mono", monospace;
+  background-image: url(${parchment});
   .btn {
     width: 100%;
   }
-  /* display: flex;
-  justify-content: center; */
 `;
 
 export default StyledApp;

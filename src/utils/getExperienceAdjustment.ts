@@ -16,7 +16,7 @@ const getStandardExperienceAdjustment = (abilityScore: number) => {
   if (abilityScore >= 13 && abilityScore <= 15) return "+5% XP";
   if (abilityScore >= 6 && abilityScore <= 8) return "-10% XP";
   if (abilityScore >= 3 && abilityScore <= 5) return "-20% XP";
-  return "None";
+  return "+0% XP";
 };
 
 /**
@@ -28,7 +28,7 @@ export const getExperienceAdjustment = (
   abilityScores: number[],
   classPrimeRequisites: string
 ) => {
-  let experienceAdjustment = "None";
+  let experienceAdjustment = "+0% XP";
 
   if (classPrimeRequisites === "STR") {
     experienceAdjustment = getStandardExperienceAdjustment(abilityScores[STR]);
