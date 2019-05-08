@@ -18,7 +18,6 @@ export const elf = {
   },
   equipment: magicUserEquipment,
   abilities: [
-    "<strong>Prime Requisites:</strong> An elf must have at least 13 in both prime requisites in order to get the +5% bonus to experience. An elf with an INT of at least 16 and a STR of at least 13 receives a +10% XP bonus.",
     "<strong>Detect Secret Doors:</strong> Elves have keen eyes that allow them, when actively searching, to detect hidden and secret doors with a 2-in-6 chance (see <i>Searching in B/X Essentials: Core Rules</i>).",
     "<strong>Immunity to Ghoul Paralysis:</strong> Elves are completely unaffected by the paralysis ghouls can inflict.",
     "<strong>Infravision:</strong> Elves have infravision to 60’ (see <i>Light, Vision, and Visibility in B/X Essentials: Core Rules</i>).",

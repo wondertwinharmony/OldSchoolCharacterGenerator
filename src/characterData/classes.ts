@@ -1,3 +1,4 @@
+import { bard } from "./classes/bard";
 import { cleric } from "./classes/cleric";
 import { drow } from "./classes/drow";
 import { dwarf } from "./classes/dwarf";
@@ -43,6 +44,7 @@ export const characterClasses: { [key: string]: characterClass } = {
   fighter,
   magicUser,
   thief,
+  bard,
   drow,
   dwarf,
   elf,

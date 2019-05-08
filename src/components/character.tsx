@@ -34,13 +34,12 @@ interface Props {
 }
 
 /**
- * @todo
+ * @todo (WIP data entry)
  * add Drow class
- * add Bard class
+ * magic ability stuff cleanup (same goes for magic-users and clerics)
  *
- * @todo
- * remove prime requisites from abilities sections of classes
- * objects
+ * add Bard class
+ * needs special equipment handling
  *
  * @todo <strong> tag equipment except for (parens content)
  *
@@ -80,7 +79,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   }, [armorClass]);
 
   // Spells
-  const [spells] = useState(getSpells(includeKnaveSpells));
+  const [spells] = useState(getSpells(includeKnaveSpells, classSelection));
 
   // Traits
   const [traits] = useState(getTraits());
