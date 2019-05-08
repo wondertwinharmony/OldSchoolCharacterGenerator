@@ -26,15 +26,12 @@ export const getTraits = (intScore: number, languages: string) => {
         languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
     }
     if(intScore > 12 && intScore <= 15){
-        console.log(languageCount, " ", languages);
         languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
     }
     if(intScore > 15 && intScore <= 17){
-        console.log(languageCount, " ", languages);
         languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
     }
     if(intScore === 18){
-        console.log(languageCount, " ", languages);
         languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
     }
     
