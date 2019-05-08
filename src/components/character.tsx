@@ -83,7 +83,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [spells] = useState(getSpells(includeKnaveSpells));
 
   // Traits
-  const [traits] = useState(getTraits());
+  const [traits] = useState(getTraits(abilityScores[INT], languages));
 
   //Character Name
   const [characterName] = useState(getCharacterName());
