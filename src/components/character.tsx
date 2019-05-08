@@ -26,6 +26,7 @@ import { getTraits } from "../utils/getTraits";
 import { createMarkup } from "../utils/createMarkup";
 import { checkSpell } from "../utils/checkSpell";
 import { knaveSpellAddendum } from "../characterData/spells";
+import TurnUndeadTable from "../static/TurnUndeadTable.png";
 
 interface Props {
   abilityScores: number[];
@@ -247,7 +248,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsClericTurnVisible(!isClericTurnVisible);
             }}
           >
-            ClericTurn
+            Turning the Dead
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
               size="lg"
@@ -256,7 +257,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </ClericTurnHeader>
           {isClericTurnVisible && (
             <div>{characterClasses[classSelection].turn}</div>
-          )}
+            )}
+          {isClericTurnVisible && (
+            <ClericTurnTable/>
+            )}
         </ClericTurnContainer>
       )}
 
@@ -435,7 +439,17 @@ const Ability = styled.div`
 `;
 
 const ClericTurnContainer = styled.div`
+  display: block;
+  text-align: center;
   padding: 0.5rem;
+`;
+
+const ClericTurnTable = styled.div`
+  height: 9.75rem;
+  background-image: url(${TurnUndeadTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24rem 8rem;
 `;
 
 const ClericTurnHeader = styled.div`
