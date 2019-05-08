@@ -76,7 +76,11 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           <KnaveSpellOptionsContainer
             onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
           >
-            <input type="checkbox" checked={includeKnaveSpells} />
+            <input
+              type="checkbox"
+              onChange={() => {}}
+              checked={includeKnaveSpells}
+            />
             <KnaveSpellText>Include Knave Spells</KnaveSpellText>
           </KnaveSpellOptionsContainer>
           {Object.keys(classOptions).map(classOptionKey => (

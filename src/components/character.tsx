@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
+import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-
 import {
   CHA,
   CON,
@@ -12,6 +12,8 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
+import { checkSpell } from "../utils/checkSpell";
+import { createMarkup } from "../utils/createMarkup";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
 import { getCharacterName } from "../utils/getCharacterName";
@@ -23,9 +25,6 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
-import { createMarkup } from "../utils/createMarkup";
-import { checkSpell } from "../utils/checkSpell";
-import { knaveSpellAddendum } from "../characterData/spells";
 
 interface Props {
   abilityScores: number[];
@@ -45,6 +44,10 @@ interface Props {
  * @todo
  * include language abilities @see getLanguages for wording
  * of language abilities (ie "unable to read or write")
+ *
+ * @todo
+ * add Drow class
+ * add Bard class
  */
 
 interface ImplProps extends Props {}
@@ -231,7 +234,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             />
           </AbilitiesHeader>
           {isAbilitiesVisible && (
-            <Ability dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].abilities!.join("\n\n"))}/>
+            <Ability
+              dangerouslySetInnerHTML={createMarkup(
+                characterClasses[classSelection].abilities!.join("\n\n")
+              )}
+            />
           )}
         </AbilitiesContainer>
       )}
@@ -270,8 +277,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </SpellsHeader>
-          {isSpellsVisible && <Spell dangerouslySetInnerHTML={createMarkup(spells.join())}/>}
-          {isSpellsVisible && checkSpell(spells.join()) && <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}/>}
+          {isSpellsVisible && (
+            <Spell dangerouslySetInnerHTML={createMarkup(spells.join())} />
+          )}
+          {isSpellsVisible && checkSpell(spells.join()) && (
+            <KnaveAddendum
+              dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
+            />
+          )}
         </SpellsContainer>
       )}
 
@@ -279,8 +292,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       {characterClasses[classSelection].skills && (
         <React.Fragment>
           <ThiefSkillsHeader
-          onClick={() => {
-            setIsThiefSkillsVisible(!isThiefSkillsVisible);
+            onClick={() => {
+              setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
             ThiefSkills
@@ -291,7 +304,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </ThiefSkillsHeader>
           <ThiefSkillsContainer>
             {isThiefSkillsVisible && (
-              <ThiefSkill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].skills!.join("\n"))}/>
+              <ThiefSkill
+                dangerouslySetInnerHTML={createMarkup(
+                  characterClasses[classSelection].skills!.join("\n")
+                )}
+              />
             )}
           </ThiefSkillsContainer>
         </React.Fragment>
@@ -310,7 +327,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             size="lg"
           />
         </EquipmentHeader>
-        {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
+        {isEquipmentVisible && (
+          <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
+        )}
       </EquipmentContainer>
 
       {/* Weapon Quality Descriptions */}
@@ -326,7 +345,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             size="lg"
           />
         </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && (<WeaponQualities dangerouslySetInnerHTML={createMarkup(weaponQualities)}/>)}
+        {isWeaponQualitiesVisible && (
+          <WeaponQualities
+            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+          />
+        )}
       </WeaponQualitiesContainer>
     </div>
   );
@@ -466,10 +489,9 @@ const EquipmentHeader = styled.div`
 `;
 
 const Equipment = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
   padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const WeaponQualitiesContainer = styled.div``;
@@ -480,9 +502,9 @@ const WeaponQualitiesHeader = styled.div`
 `;
 
 const WeaponQualities = styled.div`
-    padding: 0.5rem;
-    display: block;
-    white-space: pre-line;
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`

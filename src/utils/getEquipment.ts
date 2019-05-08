@@ -17,8 +17,9 @@ export const getEquipment = (classOptionKey: string) => {
     characterClasses[classOptionKey].equipment,
     1
   )[0];
-  const characterStartingWealthString = `• ${roller
-    .roll("3d6*10")
+  // Starting wealth is 3d6x2 gp
+  const characterStartingWealthString = `•${roller
+    .roll("3d6*2")
     .result.toString()} gp`;
 
   characterEquipment.push(
