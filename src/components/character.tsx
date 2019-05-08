@@ -43,10 +43,7 @@ interface Props {
  * giving a 1st level magic user a scroll of disintegrate
  * or fireball"
  *
- * @todo
- * include language abilities @see getLanguages for wording
- * of language abilities (ie "unable to read or write")
- */
+*/
 
 interface ImplProps extends Props {}
 
