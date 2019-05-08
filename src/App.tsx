@@ -16,10 +16,6 @@ interface Props {
 interface ImplProps extends Props {}
 
 /**
- * @todo
- * prettify display of prime req and exp
- * adjustment bonus in this component
- *
  * @todo PERMALINK!
  * use window.location to grab url, then parse for info
  * Info needed would be:

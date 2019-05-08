@@ -8,7 +8,7 @@ export const cleric = {
   maximumLevel: "14",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any blunt weapons",
-  languages: ["Alignment language", "Common"],
+  languages: ["Alignment", "Common"],
   saves: {
     poison: 11,
     wands: 12,

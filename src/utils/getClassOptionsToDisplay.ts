@@ -18,8 +18,11 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
 
   // if CON >= 9 add Dwarf to list of possible classes
   if (abilityScores[CON] >= 9) classOptions.dwarf = characterClasses.dwarf.name;
-  // if INT >= 9 add Elf to list of possible classes
-  if (abilityScores[INT] >= 9) classOptions.elf = characterClasses.elf.name;
+  // if INT >= 9 add Drow and Elf to list of possible classes
+  if (abilityScores[INT] >= 9) {
+    classOptions.drow = characterClasses.drow.name;
+    classOptions.elf = characterClasses.elf.name;
+  }
   // if CON >= 9 && DEX >= 9 add Halfling to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfling = characterClasses.halfling.name;

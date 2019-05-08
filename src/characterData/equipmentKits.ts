@@ -7,110 +7,110 @@ import {
  * @todo <strong> tag all of the items (except for the parens content)
  */
 export const clericEquipment = [
-  // [
-  //   "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Wooden Cross"
-  // ],
-  // [
-  //   "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
-  //   "Shield",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Wooden Cross"
-  // ],
-  // [
-  //   "Leather Armor (2 slots)",
-  //   "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Wooden Cross"
-  // ],
-  // [
-  //   "Leather Armor (2 slots)",
-  //   "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "12 Iron Spikes",
-  //   "Wooden Cross",
-  //   "3 Stakes & Mallet",
-  //   "Steel Mirror"
-  // ],
-  // [
-  //   "Chain Armor (2 slots)",
-  //   "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Wooden Cross",
-  //   "2 Small Sacks"
-  // ],
-  // [
-  //   "Chain Armor (2 slots)",
-  //   "Shield",
-  //   "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Wooden Cross",
-  //   "2 Small Sacks"
-  // ],
-  // [
-  //   "Chain Armor (2 slots)",
-  //   "Shield",
-  //   "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Wooden Cross",
-  //   "2 Small Sacks",
-  //   "3 Stakes & Mallet",
-  //   "Steel Mirror"
-  // ],
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Shield",
-  //   "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Wooden Cross"
-  // ],
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Shield",
-  //   "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Wooden Cross",
-  //   "Small Sack"
-  // ],
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Silver Cross"
-  // ],
+  [
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Wooden Cross"
+  ],
+  [
+    "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
+    "Shield",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Wooden Cross"
+  ],
+  [
+    "Leather Armor (2 slots)",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Wooden Cross"
+  ],
+  [
+    "Leather Armor (2 slots)",
+    "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "12 Iron Spikes",
+    "Wooden Cross",
+    "3 Stakes & Mallet",
+    "Steel Mirror"
+  ],
+  [
+    "Chain Armor (2 slots)",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Wooden Cross",
+    "2 Small Sacks"
+  ],
+  [
+    "Chain Armor (2 slots)",
+    "Shield",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Wooden Cross",
+    "2 Small Sacks"
+  ],
+  [
+    "Chain Armor (2 slots)",
+    "Shield",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Wooden Cross",
+    "2 Small Sacks",
+    "3 Stakes & Mallet",
+    "Steel Mirror"
+  ],
+  [
+    "Plate Armor (3 slots)",
+    "Shield",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Wooden Cross"
+  ],
+  [
+    "Plate Armor (3 slots)",
+    "Shield",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Wooden Cross",
+    "Small Sack"
+  ],
+  [
+    "Plate Armor (3 slots)",
+    "Quarter-Staff (Damage: 1d4, Qualities: Blunt, Melee, Slow, Two-handed)",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Silver Cross"
+  ],
   [
     "Cudgel (Damage: 1d4, Qualities: Blunt, Melee)",
     "6 Torches",
@@ -120,17 +120,17 @@ export const clericEquipment = [
     "Wooden Cross",
     `${getDivineScrollSpell()}`
   ],
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Shield",
-  //   "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Silver Cross"
-  // ],
+  [
+    "Plate Armor (3 slots)",
+    "Shield",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Silver Cross"
+  ],
   [
     "Leather Armor (2 slots)",
     "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
@@ -142,19 +142,19 @@ export const clericEquipment = [
     `${getDivineScrollSpell()}`,
     "2 Flasks oil"
   ],
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Shield",
-  //   "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Silver Cross",
-  //   "3 Stakes & Mallet",
-  //   "Steel Mirror"
-  // ],
+  [
+    "Plate Armor (3 slots)",
+    "Shield",
+    "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Silver Cross",
+    "3 Stakes & Mallet",
+    "Steel Mirror"
+  ],
   [
     "Chain Armor (2 slots)",
     "War Hammer (Damage: 1d6, Qualities: Blunt, Melee, 3 slots)",
@@ -164,22 +164,22 @@ export const clericEquipment = [
     "10' Pole",
     "Wooden Cross",
     `${getDivineScrollSpell()}`
+  ],
+  [
+    "Plate Armor (3 slots)",
+    "Shield",
+    "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Silver Cross",
+    "Vial Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)",
+    "12 Iron Spikes",
+    "3 Stakes & Mallet",
+    "Small Sack"
   ]
-  // [
-  //   "Plate Armor (3 slots)",
-  //   "Shield",
-  //   "Mace (Damage: 1d6, Qualities: Blunt, Melee, 2 slots)",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Silver Cross",
-  //   "Vial Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)",
-  //   "12 Iron Spikes",
-  //   "3 Stakes & Mallet",
-  //   "Small Sack"
-  // ]
 ];
 
 export const fighterEquipment = [
@@ -354,38 +354,38 @@ export const fighterEquipment = [
 ];
 
 export const magicUserEquipment = [
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "2 Flasks oil",
-  //   "50' Rope"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
-  // ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "10' Pole"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "2 Flasks oil",
+    "50' Rope"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "10' Pole"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
+  ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",
@@ -396,49 +396,49 @@ export const magicUserEquipment = [
     "Silver Mirror",
     `${getMagicUserScrollSpell()}`
   ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole",
-  //   "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "6 Torches",
-  //   "Waterskin",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope",
-  //   "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "10' Pole"
-  // ],
-  // [
-  //   "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
-  //   "Waterskin",
-  //   "Lantern",
-  //   "4 Flasks oil",
-  //   "2 Travel rations (1/day)",
-  //   "50' Rope"
-  // ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "10' Pole",
+    "Vial of Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "6 Torches",
+    "Waterskin",
+    "2 Travel rations (1/day)",
+    "50' Rope",
+    "2 Vials Holy Water (Damage: 1d8, Qualities: Missile (5’-10’ / 11’-30’ / 31’-50’), Splash weapon)"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "10' Pole"
+  ],
+  [
+    "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
+    "Waterskin",
+    "Lantern",
+    "4 Flasks oil",
+    "2 Travel rations (1/day)",
+    "50' Rope"
+  ],
   [
     "Dagger (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "6 Torches",

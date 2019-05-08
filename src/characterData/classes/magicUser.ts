@@ -8,7 +8,7 @@ export const magicUser = {
   maximumLevel: "14",
   allowedArmor: "None",
   allowedWeapons: "Dagger only",
-  languages: ["Alignment language", "Common"],
+  languages: ["Alignment", "Common"],
   saves: {
     poison: 13,
     wands: 14,

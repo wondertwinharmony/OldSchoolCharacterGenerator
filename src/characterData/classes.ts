@@ -1,4 +1,5 @@
 import { cleric } from "./classes/cleric";
+import { drow } from "./classes/drow";
 import { dwarf } from "./classes/dwarf";
 import { elf } from "./classes/elf";
 import { fighter } from "./classes/fighter";
@@ -42,6 +43,7 @@ export const characterClasses: { [key: string]: characterClass } = {
   fighter,
   magicUser,
   thief,
+  drow,
   dwarf,
   elf,
   halfling

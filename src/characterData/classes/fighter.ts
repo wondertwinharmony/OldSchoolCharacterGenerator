@@ -8,7 +8,7 @@ export const fighter = {
   maximumLevel: "14",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
-  languages: ["Alignment language", "Common"],
+  languages: ["Alignment", "Common"],
   saves: {
     poison: 12,
     wands: 13,

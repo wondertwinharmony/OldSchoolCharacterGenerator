@@ -35,19 +35,16 @@ interface Props {
 
 /**
  * @todo
- * for scroll items -> RANDOMLY determine a 1st level cleric
- * spell for clerics with scrolls, for wizards maybe randomize
- * a higher level spell. "Nothing more entertaining than
- * giving a 1st level magic user a scroll of disintegrate
- * or fireball"
- *
- * @todo
- * include language abilities @see getLanguages for wording
- * of language abilities (ie "unable to read or write")
- *
- * @todo
  * add Drow class
  * add Bard class
+ *
+ * @todo
+ * remove prime requisites from abilities sections of classes
+ * objects
+ *
+ * @todo <strong> tag equipment except for (parens content)
+ *
+ * @todo PERMALINKING!
  */
 
 interface ImplProps extends Props {}

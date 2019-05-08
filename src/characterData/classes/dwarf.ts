@@ -8,14 +8,7 @@ export const dwarf = {
   maximumLevel: "12",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Small or normal sized (see below)",
-  languages: [
-    "Alignment language",
-    "Common",
-    "Dwarvish",
-    "Gnome",
-    "Goblin",
-    "Kobold"
-  ],
+  languages: ["Alignment", "Common", "Dwarvish", "Gnome", "Goblin", "Kobold"],
   saves: {
     poison: 10,
     wands: 11,
