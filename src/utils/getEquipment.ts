@@ -17,7 +17,7 @@ export const getEquipment = (classOptionKey: string) => {
     characterClasses[classOptionKey].equipment,
     1
   )[0];
-  const characterStartingWealthString = `•${roller
+  const characterStartingWealthString = `• ${roller
     .roll("3d6*10")
     .result.toString()} gp`;
 
@@ -27,7 +27,7 @@ export const getEquipment = (classOptionKey: string) => {
     characterRandomItems
   );
 
-  const characterEquipmentString = characterEquipment.flat().join("\n\n•");
+  const characterEquipmentString = characterEquipment.flat().join("\n\n• ");
   /**
    * If class is a dwarf or halfling, and equipment
    * contains a two-handed sword or long bow, we have
