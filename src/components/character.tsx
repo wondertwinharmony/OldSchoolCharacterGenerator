@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
 import { weaponQualities } from "../characterData/weaponQualities";
+
 import {
   CHA,
   CON,
@@ -22,6 +23,9 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
+import { createMarkup } from "../utils/createMarkup";
+import { checkSpell } from "../utils/checkSpell";
+import { knaveSpellAddendum } from "../characterData/spells";
 
 interface Props {
   abilityScores: number[];
@@ -74,14 +78,15 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setArmorClass(armorClass);
   }, [armorClass]);
+
   // Spells
   const [spells] = useState(getSpells(includeKnaveSpells));
+
   // Traits
   const [traits] = useState(getTraits());
 
+  //Character Name
   const [characterName] = useState(getCharacterName());
-
-  const [weaponQualityDescriptions] = useState(weaponQualities);
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -105,6 +110,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const intMod = getAbilityScoreModifier(abilityScores[INT]);
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
+
   return (
     <div className={className}>
       <CharacterName>{characterName}</CharacterName>
@@ -225,9 +231,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             />
           </AbilitiesHeader>
           {isAbilitiesVisible && (
-            <Ability>
-              {characterClasses[classSelection].abilities!.join("\n\n")}
-            </Ability>
+            <Ability dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].abilities!.join("\n\n"))}/>
           )}
         </AbilitiesContainer>
       )}
@@ -266,16 +270,17 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </SpellsHeader>
-          {isSpellsVisible && <div>{spells}</div>}
+          {isSpellsVisible && <Spell dangerouslySetInnerHTML={createMarkup(spells.join())}/>}
+          {isSpellsVisible && checkSpell(spells.join()) && <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}/>}
         </SpellsContainer>
       )}
 
       {/* Thief Skills */}
       {characterClasses[classSelection].skills && (
-        <ThiefSkillsContainer>
+        <React.Fragment>
           <ThiefSkillsHeader
-            onClick={() => {
-              setIsThiefSkillsVisible(!isThiefSkillsVisible);
+          onClick={() => {
+            setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
             ThiefSkills
@@ -284,12 +289,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               size="lg"
             />
           </ThiefSkillsHeader>
-          {isThiefSkillsVisible && (
-            <ThiefSkill>
-              {characterClasses[classSelection].skills!.join("\n")}
-            </ThiefSkill>
-          )}
-        </ThiefSkillsContainer>
+          <ThiefSkillsContainer>
+            {isThiefSkillsVisible && (
+              <ThiefSkill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].skills!.join("\n"))}/>
+            )}
+          </ThiefSkillsContainer>
+        </React.Fragment>
       )}
 
       {/* Equipment */}
@@ -321,24 +326,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             size="lg"
           />
         </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && (
-          <WeaponQualities>{weaponQualityDescriptions}</WeaponQualities>
-        )}
+        {isWeaponQualitiesVisible && (<WeaponQualities dangerouslySetInnerHTML={createMarkup(weaponQualities)}/>)}
       </WeaponQualitiesContainer>
     </div>
   );
 };
-
-/*          {isThiefSkillsVisible &&
-            characterClasses[classSelection].skills!.map((skills, index) => (
-              <div key={index}>{skills}</div>
-            ))}
-
-            {isAbilitiesVisible &&
-            characterClasses[classSelection].abilities!.map((ability, index) => (
-              <div key={index}>{ability}</div>
-            ))}
-*/
 
 const CharacterName = styled.div`
   display: flex;
@@ -420,10 +412,9 @@ const AbilitiesHeader = styled.div`
 `;
 
 const Ability = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
   padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const ClericTurnContainer = styled.div``;
@@ -440,7 +431,22 @@ const SpellsHeader = styled.div`
   justify-content: center;
 `;
 
-const ThiefSkillsContainer = styled.div``;
+const Spell = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
+`;
+
+const KnaveAddendum = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
+`;
+
+const ThiefSkillsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const ThiefSkillsHeader = styled.div`
   display: flex;
@@ -448,10 +454,8 @@ const ThiefSkillsHeader = styled.div`
 `;
 
 const ThiefSkill = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
   padding: 0.5rem;
+  white-space: pre-line;
 `;
 
 const EquipmentContainer = styled.div``;
@@ -476,10 +480,9 @@ const WeaponQualitiesHeader = styled.div`
 `;
 
 const WeaponQualities = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
-  padding: 0.5rem;
+    padding: 0.5rem;
+    display: block;
+    white-space: pre-line;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`
