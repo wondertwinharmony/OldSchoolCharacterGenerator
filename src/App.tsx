@@ -21,7 +21,12 @@ interface ImplProps extends Props {}
  * 
  * @todo add final util to properly utilize Knave's max
  * equipment determined by CON score. Ideas to accomplish:
- * 1 - pass character CON score, 2 - remove items from end of
+ * 
+ * HOUSE RULE: base 10 equipment slots + any POSITIVE CON mod
+ * (do not remove negative). ALSO, add a note that each slot
+ * is equal to 160 gp
+ * 
+ * 1 - pass character CON score FOR MODIFIER, 2 - remove items from end of
  * array until equal to CON score 3 - refill with random items
  * until hit CON score 4 - ALL equipment will need to be stored as
  * part of permalinking
