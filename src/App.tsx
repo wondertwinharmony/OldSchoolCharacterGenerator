@@ -16,7 +16,10 @@ interface Props {
 interface ImplProps extends Props {}
 
 /**
- * @todo PERMALINK!
+ * @todo background image shouldn't shrink with tabs ->
+ * apply to root element?
+ *
+ * @todo PERMALINKING!
  * use window.location to grab url, then parse for info
  * Info needed would be:
  * - abilityScores

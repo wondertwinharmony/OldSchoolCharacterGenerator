@@ -4,14 +4,7 @@ import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -33,15 +26,6 @@ interface Props {
   classSelection: string;
   includeKnaveSpells: boolean;
 }
-
-/**
- *
- * add Bard class
- *
- * @todo background image shouldn't shrink with tabs -> apply to root element?
- *
- * @todo PERMALINKING!
- */
 
 interface ImplProps extends Props {}
 
