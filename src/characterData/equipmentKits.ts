@@ -564,8 +564,6 @@ export const bardEquipment = [
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
     "<strong>Case of 30 Bolts</strong>",
     "<strong>Silver Tipped Bolts</strong> (d4 usage die)",
-    "<strong>Lantern</strong>",
-    "<strong>4 Oil Flasks</strong>",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
   [
@@ -592,8 +590,6 @@ export const bardEquipment = [
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
     "<strong>Case of 30 Bolts</strong>",
     "<strong>Silver Tipped Bolts</strong> (d4 usage die)",
-    "<strong>Lantern</strong>",
-    "<strong>4 Oil Flasks</strong>",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
   [
@@ -634,8 +630,6 @@ export const bardEquipment = [
     "<strong>Short Bow</strong> (Damage: 1d6, Qualities: Missile (5’-50’ / 51’-100’ / 101’-150’), Two-handed, 2 slots)",
     "<strong>Quiver of Arrows</strong> (d20 usage die)",
     "<strong>Silver Tipped Arrows</strong> (d4 usage die)",
-    "<strong>Lantern</strong>",
-    "<strong>4 Oil Flasks</strong>",
     "<strong>2 Travel rations</strong> (1/day)"
   ]
 ];
