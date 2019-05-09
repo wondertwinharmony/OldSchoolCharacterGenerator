@@ -1,5 +1,5 @@
 import { sampleSize } from "lodash";
-import { knaveSpells, spells } from "../characterData/spells";
+import { knaveSpells, readMagicSpell, spells } from "../characterData/spells";
 
 const LIGHT_SPELL_INDEX = 4;
 
@@ -27,8 +27,24 @@ export const getSpells = (
   if (includeKnaveSpells) {
     let allSpells = [];
     allSpells.push(spells, knaveSpells);
+
+    /**
+     * If class is magic-user or elf (therefore Arcane spell caster
+     * and rely on a spellbook for casting), award them the Read Magic
+     * spell at level one as well.
+     */
+    if (classSelection === "magicUser" || classSelection === "elf") {
+      let randomSpell = sampleSize(allSpells.flat(), 1);
+      randomSpell.push(readMagicSpell);
+      return randomSpell;
+    }
     return sampleSize(allSpells.flat(), 1);
   }
 
+  if (classSelection === "magicUser" || classSelection === "elf") {
+    let randomSpell = sampleSize(spells, 1);
+    randomSpell.push(readMagicSpell);
+    return randomSpell;
+  }
   return sampleSize(spells, 1);
 };

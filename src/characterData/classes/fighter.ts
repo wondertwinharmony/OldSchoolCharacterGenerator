@@ -16,5 +16,8 @@ export const fighter = {
     breath: 15,
     magic: 16
   },
-  equipment: fighterEquipment
+  equipment: fighterEquipment,
+  abilities: [
+    "<strong>Combat:</strong> Fighters can use all forms of weapons and armor."
+  ]
 };

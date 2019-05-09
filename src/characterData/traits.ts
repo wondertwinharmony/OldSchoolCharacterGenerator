@@ -3,9 +3,9 @@
 // "A {background}. Wears {clothing} clothes, and has {speech} speech.\n"
 // "Has a {physique} physique, a {face} face, {skin} skin and {hair} hair.\n"
 // "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
-// "Favours {alignment}.")
+// "Favors {alignment}.")
 
-export const traits = { 
+export const traits = {
   physique: [
     "athletic",
     "brawny",
@@ -196,7 +196,6 @@ export const traits = {
     "butcher",
     "burglar",
     "charlatan",
-    "cleric",
     "cook",
     "cultist",
     "gambler",
@@ -258,4 +257,4 @@ export const traits = {
     "chaos",
     "chaos"
   ]
-}
+};

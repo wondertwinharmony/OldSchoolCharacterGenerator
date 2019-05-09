@@ -15,6 +15,9 @@ export const spells = [
   "<strong>Ventriloquism</strong>\n<strong>Duration:</strong> 2 turns\n<strong>Range:</strong> 60’\n\nThe caster may make his or her voice appear to come from any location or source (e.g. a statue or animal) within the spell’s range."
 ];
 
+export const readMagicSpell =
+"<strong>Read Magic</strong>\n<strong>Duration: 1 turn</strong>\n<strong>Range: The caster</strong>\n\nBy means of <i>read magic</i>, the caster can decipher magical inscriptions or runes, as follows:\n\n<div style='padding: 0 1.5rem'>• <strong>Scrolls:</strong> The magical script of a scroll of arcane spells can be understood. The caster is then able to activate the scroll at any time in the future.\n\n• <strong>Spell books:</strong> A spell book written by another arcane spell caster can be deciphered.\n\n• <strong>Inscriptions:</strong> Runes or magical words inscribed on an object or surface can be understood.\n\n• <strong>Reading again:</strong> Once the caster has read a magical inscription using <i>read magic</i>, he or she is thereafter able to read that particular writing without recourse to the use of this spell."
+
 /**
  * Include knave spells WITH rules
  */

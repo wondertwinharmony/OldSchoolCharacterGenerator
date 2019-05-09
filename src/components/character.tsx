@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { characterClasses } from "../characterData/classes";
+import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
 import {
@@ -35,14 +35,10 @@ interface Props {
 }
 
 /**
- * @todo (WIP data entry)
- * add Drow class
- * magic ability stuff cleanup (same goes for magic-users and clerics)
  *
  * add Bard class
- * needs special equipment handling
  *
- * @todo <strong> tag equipment except for (parens content)
+ * @todo background image shouldn't shrink with tabs -> apply to root element?
  *
  * @todo PERMALINKING!
  */
@@ -167,31 +163,31 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </StatsContainer>
         <SavesContainer>
           <Save>
-            Death Ray or Poison
+            {saves.poison}
             <SaveScore>
               {characterClasses[classSelection].saves.poison}
             </SaveScore>
           </Save>
           <Save>
-            Magic Wands
+            {saves.wands}
             <SaveScore>
               {characterClasses[classSelection].saves.wands}
             </SaveScore>
           </Save>
           <Save>
-            Paralysis or Turn to Stone
+            {saves.stone}
             <SaveScore>
               {characterClasses[classSelection].saves.stone}
             </SaveScore>
           </Save>
           <Save>
-            Dragon Breath
+            {saves.breath}
             <SaveScore>
               {characterClasses[classSelection].saves.breath}
             </SaveScore>
           </Save>
           <Save>
-            Rods, Staves, or Spells
+            {saves.magic}
             <SaveScore>
               {characterClasses[classSelection].saves.magic}
             </SaveScore>
@@ -281,9 +277,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             />
           </SpellsHeader>
           {isSpellsVisible && (
-            <Spell dangerouslySetInnerHTML={createMarkup(spells.join())} />
+            <Spell
+              dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+            />
           )}
-          {isSpellsVisible && checkSpell(spells.join()) && (
+          {isSpellsVisible && checkSpell(spells) && (
             <KnaveAddendum
               dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
             />
@@ -299,7 +297,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
-            ThiefSkills
+            Thief Skills
             <FontAwesomeIcon
               icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
               size="lg"

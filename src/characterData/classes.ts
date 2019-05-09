@@ -12,11 +12,11 @@ import { thief } from "./classes/thief";
  * Saves
  */
 export const saves = {
-  poison: "Death Ray or Poison",
-  wands: "Magical Wands",
-  stone: "Paralysis or Turn to Stone",
-  breath: "Dragon Breath",
-  magic: "Rods, Staves, or Spells"
+  poison: "Death/Poison",
+  wands: "Wands",
+  stone: "Paralysis/Petrify",
+  breath: "Breath Attacks",
+  magic: "Spells/Rods/Staves"
 };
 
 export interface characterClass {
