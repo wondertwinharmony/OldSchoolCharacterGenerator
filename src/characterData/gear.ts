@@ -17,7 +17,7 @@ export const gear = [
   "<strong>Net</strong>",
   "<strong>Tongs</strong>",
   "<strong>Lockpicks</strong>",
-  "<strong>Metal file</strong>",
+  "<strong>Metal File</strong>",
   "<strong>Nails</strong>",
   "<strong>Pulleys</strong>",
   "<strong>Candles, 5</strong>",
@@ -50,7 +50,14 @@ export const gear = [
   "<strong>Whistle</strong>",
   "<strong>Instrument</strong>",
   "<strong>Quill & Ink</strong>",
-  "<strong>Small Bell</strong>"
+  "<strong>Small Bell</strong>",
+  "<strong>Waterskin</strong>",
+  "strong>3 Stakes and Mallet</strong>",
+  "<strong>50' Rope</strong>",
+  "<strong>10' Pole</strong>",
+  "<strong>6 Torches</strong>",
+  "<strong>Small Sack</strong> (holds 1 slot)",
+  "<strong>Wolfsbane</strong> (d4 usage die)"
 ];
 
 export const instruments = [

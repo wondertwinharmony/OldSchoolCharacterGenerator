@@ -16,10 +16,6 @@ interface Props {
 interface ImplProps extends Props {}
 
 /**
- * @todo
- * remove torches or rope or pole (should be one for
- * each class) -> replace with random gear item
- *
  * @todo background image shouldn't shrink with tabs ->
  * apply to root element?
  *

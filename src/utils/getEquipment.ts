@@ -13,7 +13,7 @@ import { getRandomInstrument } from "./getRandomInstrument";
 export const getEquipment = (classOptionKey: string) => {
   const roller = new Roll();
   let characterEquipment = [];
-  let characterRandomItems = sampleSize(gear, 3);
+  let characterRandomItems = sampleSize(gear, 5);
 
   /**
    * Check if random items contains an instrument,
