@@ -1,6 +1,6 @@
 export const gear = [
-  "<strong>Air bladder</strong>",
-  "<strong>Bear trap</strong>",
+  "<strong>Air Bladder</strong>",
+  "<strong>Bear Trap</strong>",
   "<strong>Shovel</strong>",
   "<strong>Bellows</strong>",
   "<strong>Grease</strong>",
@@ -25,9 +25,8 @@ export const gear = [
   "<strong>Chalk, 10</strong>",
   "<strong>Crowbar</strong>",
   "<strong>Tinderbox</strong>",
-  "<strong>Grappling hook</strong>",
+  "<strong>Grappling Hook</strong>",
   "<strong>Hammer</strong>",
-  "<strong>Lantern</strong>",
   "<strong>Padlock</strong>",
   "<strong>Manacles</strong>",
   "<strong>Mirror</strong>",
@@ -40,18 +39,18 @@ export const gear = [
   "<strong>Bottle</strong>",
   "<strong>Soap</strong>",
   "<strong>Spyglass</strong>",
-  "<strong>Tar pot</strong>",
+  "<strong>Tar Pot</strong>",
   "<strong>300' Twine</strong>",
-  "<strong>Fake jewels</strong>",
-  "<strong>Blank book</strong>",
-  "<strong>Card deck</strong>",
-  "<strong>Dice set</strong>",
-  "<strong>Cook pots</strong>",
-  "<strong>Face paint</strong>",
+  "<strong>Fake Jewels</strong>",
+  "<strong>Blank Book</strong>",
+  "<strong>Card Deck</strong>",
+  "<strong>Dice Set</strong>",
+  "<strong>Cook Pots</strong>",
+  "<strong>Face Paint</strong>",
   "<strong>Whistle</strong>",
   "<strong>Instrument</strong>",
   "<strong>Quill & Ink</strong>",
-  "<strong>Small bell</strong>"
+  "<strong>Small Bell</strong>"
 ];
 
 export const instruments = [
