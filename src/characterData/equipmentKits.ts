@@ -1,7 +1,4 @@
-import {
-  getDivineScrollSpell,
-  getMagicUserScrollSpell
-} from "../utils/getRandomSpellScroll";
+import { getDivineScrollSpell, getMagicUserScrollSpell } from "../utils/getRandomSpellScroll";
 
 export const clericEquipment = [
   [

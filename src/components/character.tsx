@@ -4,14 +4,7 @@ import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -56,12 +49,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(
-    getEquipment(classSelection, abilityScores[CON])
-  );
+  const [equipment] = useState(getEquipment(classSelection, abilityScores[CON]));
+
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX], equipment)
+    getArmorClass(abilityScores[DEX], equipment.characterEquipmentString)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -314,7 +306,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          {`Equipment (${abilityScores[CON] > 10 ? abilityScores[CON] : 10}/${
+          {`Equipment (${equipment.slotsToFill}/${
             abilityScores[CON] > 10 ? abilityScores[CON] : 10
           } slots)`}
           <FontAwesomeIcon
@@ -324,7 +316,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         </EquipmentHeader>
         {isEquipmentVisible && (
-          <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
+          <Equipment
+            dangerouslySetInnerHTML={createMarkup(
+              equipment.characterEquipmentString
+            )}
+          />
         )}
         {isEquipmentVisible && (
           <GoldText>

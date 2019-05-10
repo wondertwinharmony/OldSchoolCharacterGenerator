@@ -1,4 +1,4 @@
-import { sampleSize } from "lodash";
+import { random, sampleSize } from "lodash";
 import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
 import { gear } from "../characterData/gear";
@@ -24,7 +24,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * If CON score > 10 set available equipment slots to CON score,
    * otherwise, set available slots 10.
    */
-  const slots = conScore > 10 ? conScore : 10;
+  const slotsToFill = conScore <= 10 ? 10 : random(10, conScore);
 
   // Get starting equipment kit based on class.
   const characterEquipmentKit = sampleSize(
@@ -67,7 +67,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    */
   let characterRandomItems = sampleSize(
     gear,
-    slots - equipmentCountBeforeRandomItems
+    slotsToFill - equipmentCountBeforeRandomItems
   );
 
   characterEquipment.push(characterRandomItems);
@@ -91,15 +91,13 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * to re-determine equipment. Dwarves and halflings
    * cannot use these weapons due to their size.
    */
-  console.log(characterEquipmentString);
   if (
     (classOptionKey === "halfling" || classOptionKey === "dwarf") &&
     (characterEquipmentString.includes("Two-Handed Sword") ||
       characterEquipmentString.includes("Long Bow"))
   ) {
-    // characterEquipmentString = "";
     return getEquipment(classOptionKey, conScore);
   }
 
-  return characterEquipmentString;
+  return { characterEquipmentString, slotsToFill };
 };
