@@ -22,7 +22,7 @@ export const getArmorClass = (dexScore: number, equipment: string) => {
    */
   let baseArmorClass = 10;
   const leather = equipment.includes("Leather Armor");
-  const chain = equipment.includes("Chain Armor");
+  const chain = equipment.includes("Chainmail");
   const plate = equipment.includes("Plate Armor");
   const shield = equipment.includes("Shield");
 

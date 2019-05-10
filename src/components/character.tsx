@@ -1,17 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { characterClasses } from "../characterData/classes";
+import { characterClasses, saves } from "../characterData/classes";
+import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import TurnUndeadTable from "../static/TurnUndeadTable.png";
+import { checkSpell } from "../utils/checkSpell";
+import { createMarkup } from "../utils/createMarkup";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../utils/getArmorClass";
 import { getCharacterName } from "../utils/getCharacterName";
@@ -23,9 +19,6 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
-import { createMarkup } from "../utils/createMarkup";
-import { checkSpell } from "../utils/checkSpell";
-import { knaveSpellAddendum } from "../characterData/spells";
 
 interface Props {
   abilityScores: number[];
@@ -33,19 +26,6 @@ interface Props {
   classSelection: string;
   includeKnaveSpells: boolean;
 }
-
-/**
- * @todo
- * for scroll items -> RANDOMLY determine a 1st level cleric
- * spell for clerics with scrolls, for wizards maybe randomize
- * a higher level spell. "Nothing more entertaining than
- * giving a 1st level magic user a scroll of disintegrate
- * or fireball"
- *
- * @todo
- * include language abilities @see getLanguages for wording
- * of language abilities (ie "unable to read or write")
- */
 
 interface ImplProps extends Props {}
 
@@ -80,10 +60,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   }, [armorClass]);
 
   // Spells
-  const [spells] = useState(getSpells(includeKnaveSpells));
+  const [spells] = useState(getSpells(includeKnaveSpells, classSelection));
 
   // Traits
-  const [traits] = useState(getTraits());
+  const [traits] = useState(getTraits(abilityScores[INT], languages));
 
   //Character Name
   const [characterName] = useState(getCharacterName());
@@ -127,6 +107,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isTraitsVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{ margin: "0 0.5rem" }}
           />
         </TraitsHeader>
         {isTraitsVisible && <div>{traits}</div>}
@@ -166,31 +147,31 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </StatsContainer>
         <SavesContainer>
           <Save>
-            Death Ray or Poison
+            {saves.poison}
             <SaveScore>
               {characterClasses[classSelection].saves.poison}
             </SaveScore>
           </Save>
           <Save>
-            Magic Wands
+            {saves.wands}
             <SaveScore>
               {characterClasses[classSelection].saves.wands}
             </SaveScore>
           </Save>
           <Save>
-            Paralysis or Turn to Stone
+            {saves.stone}
             <SaveScore>
               {characterClasses[classSelection].saves.stone}
             </SaveScore>
           </Save>
           <Save>
-            Dragon Breath
+            {saves.breath}
             <SaveScore>
               {characterClasses[classSelection].saves.breath}
             </SaveScore>
           </Save>
           <Save>
-            Rods, Staves, or Spells
+            {saves.magic}
             <SaveScore>
               {characterClasses[classSelection].saves.magic}
             </SaveScore>
@@ -210,6 +191,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isLanguagesVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{ margin: "0 0.5rem" }}
             />
           </LanguagesHeader>
           {isLanguagesVisible && <Language>{languages}</Language>}
@@ -228,10 +210,15 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{ margin: "0 0.5rem" }}
             />
           </AbilitiesHeader>
           {isAbilitiesVisible && (
-            <Ability dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].abilities!.join("\n\n"))}/>
+            <Ability
+              dangerouslySetInnerHTML={createMarkup(
+                characterClasses[classSelection].abilities!.join("\n\n")
+              )}
+            />
           )}
         </AbilitiesContainer>
       )}
@@ -244,15 +231,17 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsClericTurnVisible(!isClericTurnVisible);
             }}
           >
-            ClericTurn
+            Turning the Dead
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{ margin: "0 0.5rem" }}
             />
           </ClericTurnHeader>
           {isClericTurnVisible && (
             <div>{characterClasses[classSelection].turn}</div>
           )}
+          {isClericTurnVisible && <ClericTurnTable />}
         </ClericTurnContainer>
       )}
 
@@ -268,10 +257,19 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <FontAwesomeIcon
               icon={isSpellsVisible ? "caret-up" : "caret-down"}
               size="lg"
+              style={{ margin: "0 0.5rem" }}
             />
           </SpellsHeader>
-          {isSpellsVisible && <Spell dangerouslySetInnerHTML={createMarkup(spells.join())}/>}
-          {isSpellsVisible && checkSpell(spells.join()) && <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}/>}
+          {isSpellsVisible && (
+            <Spell
+              dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+            />
+          )}
+          {isSpellsVisible && checkSpell(spells) && (
+            <KnaveAddendum
+              dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
+            />
+          )}
         </SpellsContainer>
       )}
 
@@ -279,11 +277,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       {characterClasses[classSelection].skills && (
         <React.Fragment>
           <ThiefSkillsHeader
-          onClick={() => {
-            setIsThiefSkillsVisible(!isThiefSkillsVisible);
+            onClick={() => {
+              setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
-            ThiefSkills
+            Thief Skills
             <FontAwesomeIcon
               icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
               size="lg"
@@ -291,7 +289,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </ThiefSkillsHeader>
           <ThiefSkillsContainer>
             {isThiefSkillsVisible && (
-              <ThiefSkill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection].skills!.join("\n"))}/>
+              <ThiefSkill
+                dangerouslySetInnerHTML={createMarkup(
+                  characterClasses[classSelection].skills!.join("\n")
+                )}
+              />
             )}
           </ThiefSkillsContainer>
         </React.Fragment>
@@ -308,9 +310,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{ margin: "0 0.5rem" }}
           />
         </EquipmentHeader>
-        {isEquipmentVisible && <Equipment>{equipment}</Equipment>}
+        {isEquipmentVisible && (
+          <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
+        )}
       </EquipmentContainer>
 
       {/* Weapon Quality Descriptions */}
@@ -324,9 +329,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
             size="lg"
+            style={{ margin: "0 0.5rem" }}
           />
         </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && (<WeaponQualities dangerouslySetInnerHTML={createMarkup(weaponQualities)}/>)}
+        {isWeaponQualitiesVisible && (
+          <WeaponQualities
+            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+          />
+        )}
       </WeaponQualitiesContainer>
     </div>
   );
@@ -335,20 +345,26 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 const CharacterName = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 2rem;
 `;
 
 const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 1.5rem;
 `;
 
 const TraitsContainer = styled.div`
   border-bottom: 1px solid black;
+  padding: 0.5rem;
 `;
 
 const TraitsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const AbilityScoresGrid = styled.div`
@@ -395,6 +411,8 @@ const LanguagesContainer = styled.div``;
 const LanguagesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Language = styled.div`
@@ -409,6 +427,8 @@ const AbilitiesContainer = styled.div``;
 const AbilitiesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Ability = styled.div`
@@ -417,11 +437,25 @@ const Ability = styled.div`
   white-space: pre-line;
 `;
 
-const ClericTurnContainer = styled.div``;
+const ClericTurnContainer = styled.div`
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+`;
+
+const ClericTurnTable = styled.div`
+  height: 9.75rem;
+  background-image: url(${TurnUndeadTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24rem 8rem;
+`;
 
 const ClericTurnHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const SpellsContainer = styled.div``;
@@ -429,6 +463,8 @@ const SpellsContainer = styled.div``;
 const SpellsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Spell = styled.div`
@@ -451,6 +487,8 @@ const ThiefSkillsContainer = styled.div`
 const ThiefSkillsHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const ThiefSkill = styled.div`
@@ -463,13 +501,14 @@ const EquipmentContainer = styled.div``;
 const EquipmentHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const Equipment = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
   padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const WeaponQualitiesContainer = styled.div``;
@@ -477,12 +516,14 @@ const WeaponQualitiesContainer = styled.div``;
 const WeaponQualitiesHeader = styled.div`
   display: flex;
   justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
 `;
 
 const WeaponQualities = styled.div`
-    padding: 0.5rem;
-    display: block;
-    white-space: pre-line;
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`

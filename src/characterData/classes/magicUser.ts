@@ -8,7 +8,7 @@ export const magicUser = {
   maximumLevel: "14",
   allowedArmor: "None",
   allowedWeapons: "Dagger only",
-  languages: ["Alignment language", "Common"],
+  languages: ["Alignment", "Common"],
   saves: {
     poison: 13,
     wands: 14,
@@ -18,9 +18,8 @@ export const magicUser = {
   },
   equipment: magicUserEquipment,
   abilities: [
-    "<strong>Combat:</strong> Magic-users may only use daggers and are unable to use shields or wear any kind of armour. For this reason, magic-users are weak at low levels and, in an adventuring group, should be protected.",
-    "<strong>Magical Research:</strong> A magic-user of any level may spend time and money to research new spells to add to his or her spell book. When a magic-user reaches 9th level, he or she is also able to create magic items and research other magical effects. <i>These rules are detailed in the Magic section of B/X Essentials: Core Rules.</i>",
-    "<strong>Read Magic:</strong> By means of read magic, the caster can decipher magical inscriptions or runes.\n\n<div style='padding: 0 1.5rem'>• The magical script of a scroll of arcane spells can be understood. The caster is then able to activate the scroll at any time in the future.\n\n• A spell book written by another arcane spell caster can be deciphered.\n\n• Runes or magical words inscribed on an object or surface can be understood.</div>\nOnce the caster has read a magical inscription using read magic, he or she is thereafter able to read that particular writing without recourse to the use of this spell."
+    "<strong>Combat:</strong> Magic-users may only use daggers and are unable to use shields or wear any kind of armor. This makes them very vulnerable in combat.",
+    "<strong>Arcane Magic:</strong> See <i>Magic, p42</i> for full details on arcane magic.\n\n<div style='padding: 0 1.5rem'><strong>Magical Research:</strong> A magic-user of any level may spend time and money to research new spells to add to his or her spell book. When a magic-user reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell Casting:</strong> Magic-users carry spell books containing the formulae for arcane spells. A 1st level magic-user has one spell in his or her spell book. The list of spells available to magic-users is found on <i>p45</i>.\n\n<strong>Using Magic Items:</strong> As spell casters, magic-users are able to use magic scrolls of spells on their spell list. There are also items (e.g. magic wands) that may only be used by arcane spell casters (including magic-users).</div>"
   ],
   spells: "see MagicUser spells"
 };
