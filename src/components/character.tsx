@@ -20,7 +20,6 @@ import { getArmorClass } from "../utils/getArmorClass";
 import { getCharacterName } from "../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
 import { getEquipment } from "../utils/getEquipment";
-import { getEquipmentSlots } from "../utils/getEquipmentSlots";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
@@ -35,6 +34,12 @@ interface Props {
 }
 
 interface ImplProps extends Props {}
+
+/**
+ * @todo
+ * wtf is up with equipment slots
+ *
+ */
 
 const CharacterImpl: React.SFC<ImplProps> = ({
   abilityScores,
@@ -315,9 +320,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          {`Equipment (${getEquipmentSlots(
-            equipment.split("\n\n• ").slice(0)
-          )}/${getEquipmentSlots(equipment.split("\n\n• ").slice(0))} slots)`}
+          {`Equipment (${abilityScores[CON] > 10 ? abilityScores[CON] : 10}/${
+            abilityScores[CON] > 10 ? abilityScores[CON] : 10
+          } slots)`}
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
