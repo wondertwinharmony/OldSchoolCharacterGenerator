@@ -2,6 +2,7 @@ import { sampleSize } from "lodash";
 import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
 import { gear } from "../characterData/gear";
+import { getRandomInstrument } from "./getRandomInstrument";
 
 /**
  * Utility function to determine equipment and starting gold for a character.
@@ -12,20 +13,42 @@ import { gear } from "../characterData/gear";
 export const getEquipment = (classOptionKey: string) => {
   const roller = new Roll();
   let characterEquipment = [];
-  const characterRandomItems = sampleSize(gear, 2);
+  let characterRandomItems = sampleSize(gear, 5);
+
+  /**
+   * Check if random items contains an instrument,
+   * if it does we replace it with a random instrument
+   * from the instrument list.
+   */
+  const indexOfItemToReplace = characterRandomItems.findIndex(
+    item => item === "<strong>Instrument</strong>"
+  );
+  if (indexOfItemToReplace !== -1) {
+    characterRandomItems[indexOfItemToReplace] = getRandomInstrument();
+  }
+
   let characterEquipmentKit = sampleSize(
     characterClasses[classOptionKey].equipment,
     1
   )[0];
-  const characterStartingWealthString = `• ${roller
-    .roll("3d6*10")
-    .result.toString()} gp`;
+  // Starting wealth is 3d6x2 gp
+  const characterStartingWealthString = `• <strong>${roller
+    .roll("3d6*2")
+    .result.toString()} gp</strong>`;
 
   characterEquipment.push(
     characterStartingWealthString,
     characterEquipmentKit,
     characterRandomItems
   );
+
+  /**
+   * If class is a bard, make sure they have a random
+   * instrument.
+   */
+  if (classOptionKey === "bard") {
+    characterEquipment.push(getRandomInstrument());
+  }
 
   const characterEquipmentString = characterEquipment.flat().join("\n\n• ");
   /**

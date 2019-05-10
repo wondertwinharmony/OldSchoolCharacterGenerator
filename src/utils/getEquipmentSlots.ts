@@ -29,7 +29,7 @@ export const getEquipmentSlots = (equipment: string) => {
   let slotCount = equipment.split("\n\n").length;
 
   /**
-   * Leather armor and chain armor only add +1 to count,
+   * Leather armor and chainmail only add +1 to count,
    * because we assume they are already counted once in
    * equipment string length above. Plate armor we only
    * add +2 to count for same reason.
@@ -39,7 +39,7 @@ export const getEquipmentSlots = (equipment: string) => {
    */
   // Armor
   if (equipment.includes("Leather Armor")) slotCount = slotCount + 1;
-  if (equipment.includes("Chain Armor")) slotCount = slotCount + 1;
+  if (equipment.includes("Chainmail")) slotCount = slotCount + 1;
   if (equipment.includes("Plate Armor")) slotCount = slotCount + 2;
 
   // 2 slot weapons
