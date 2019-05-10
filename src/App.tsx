@@ -123,6 +123,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0 0.25rem;
   padding: 0 1rem;
 `;
 
