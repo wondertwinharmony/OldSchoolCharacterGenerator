@@ -4,7 +4,14 @@ import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -321,8 +328,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
         )}
         <GoldText>
-          † 160 gp can be contained in 1 slot, provided you have a container
-          for it.
+          † 160 gp can be contained in 1 slot, provided you have a container for
+          it.
         </GoldText>
       </EquipmentContainer>
 
