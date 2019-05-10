@@ -6,5 +6,9 @@ import { firstNames, surnames } from "../characterData/names";
  * and returns results in a string.
  */
 export const getCharacterName = () => {
-    return sampleSize(firstNames, 1).toString() + ' ' + sampleSize(surnames, 1).toString();
-}
+  return (
+    sampleSize(firstNames, 1).toString() +
+    " " +
+    sampleSize(surnames, 1).toString()
+  );
+};
