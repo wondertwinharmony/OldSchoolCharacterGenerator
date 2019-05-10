@@ -35,12 +35,6 @@ interface Props {
 
 interface ImplProps extends Props {}
 
-/**
- * @todo
- * wtf is up with equipment slots
- *
- */
-
 const CharacterImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
