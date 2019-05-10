@@ -327,10 +327,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         {isEquipmentVisible && (
           <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
         )}
-        <GoldText>
-          † 160 gp can be contained in 1 slot, provided you have a container for
-          it.
-        </GoldText>
+        {isEquipmentVisible && (
+          <GoldText>
+            † 160 gp can be contained in 1 slot, provided you have a container
+            for it.
+          </GoldText>
+        )}
       </EquipmentContainer>
 
       {/* Weapon Quality Descriptions */}
