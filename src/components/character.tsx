@@ -50,7 +50,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(getEquipment(classSelection));
+  const [equipment] = useState(
+    getEquipment(classSelection, abilityScores[CON])
+  );
   // Armor Class
   const [armorClass, setArmorClass] = useState(
     getArmorClass(abilityScores[DEX], equipment)
@@ -306,7 +308,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          {`Equipment (${getEquipmentSlots(equipment)} slots)`}
+          {`Equipment (${getEquipmentSlots(
+            equipment.split("\n\n• ").slice(0)
+          )}/${getEquipmentSlots(equipment.split("\n\n• ").slice(0))} slots)`}
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
@@ -316,6 +320,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         {isEquipmentVisible && (
           <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
         )}
+        <GoldText>
+          † 160 gp can be contained in 1 slot, provided you have a container
+          for it.
+        </GoldText>
       </EquipmentContainer>
 
       {/* Weapon Quality Descriptions */}
@@ -509,6 +517,13 @@ const Equipment = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+const GoldText = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const WeaponQualitiesContainer = styled.div``;

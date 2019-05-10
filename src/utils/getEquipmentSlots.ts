@@ -2,8 +2,9 @@
  * Utility function to determine equipment slots for
  * starting characters.
  *
- * We house-rule 18 slots of inventory for each
- * character.
+ * We house rule CON score worth of item slots
+ * for each character, or 10 if CON score is less
+ * than 10.
  *
  * Armor takes up more slots:
  * Leather: 2 slots
@@ -25,8 +26,9 @@
  * War Hammer: 3 slots
  * Two-Handed Sword: 3 slots
  */
-export const getEquipmentSlots = (equipment: string) => {
-  let slotCount = equipment.split("\n\n").length;
+export const getEquipmentSlots = (equipment: string[]) => {
+  let slotCount = equipment.length;
+  const equipmentString = equipment.join('')
 
   /**
    * Leather armor and chainmail only add +1 to count,
@@ -38,25 +40,25 @@ export const getEquipmentSlots = (equipment: string) => {
    * since they have all been counted once already.
    */
   // Armor
-  if (equipment.includes("Leather Armor")) slotCount = slotCount + 1;
-  if (equipment.includes("Chainmail")) slotCount = slotCount + 1;
-  if (equipment.includes("Plate Armor")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Leather Armor")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Chainmail")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Plate Armor")) slotCount = slotCount + 2;
 
   // 2 slot weapons
-  if (equipment.includes("Hand Axe")) slotCount = slotCount + 1;
-  if (equipment.includes("Mace")) slotCount = slotCount + 1;
-  if (equipment.includes("Morning Star")) slotCount = slotCount + 1;
-  if (equipment.includes("Short Bow")) slotCount = slotCount + 1;
-  if (equipment.includes("Spear")) slotCount = slotCount + 1;
-  if (equipment.includes("Sword")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Hand Axe")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Mace")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Morning Star")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Short Bow")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Spear")) slotCount = slotCount + 1;
+  if (equipmentString.includes("Sword")) slotCount = slotCount + 1;
 
   // 3 slot weapons
-  if (equipment.includes("Battle Axe")) slotCount = slotCount + 2;
-  if (equipment.includes("Crossbow")) slotCount = slotCount + 2;
-  if (equipment.includes("Halberd")) slotCount = slotCount + 2;
-  if (equipment.includes("Long Bow")) slotCount = slotCount + 2;
-  if (equipment.includes("War Hammer")) slotCount = slotCount + 2;
-  if (equipment.includes("Two-Handed Sword")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Battle Axe")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Crossbow")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Halberd")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Long Bow")) slotCount = slotCount + 2;
+  if (equipmentString.includes("War Hammer")) slotCount = slotCount + 2;
+  if (equipmentString.includes("Two-Handed Sword")) slotCount = slotCount + 2;
 
-  return `${slotCount}/18`;
+  return slotCount
 };
