@@ -13,7 +13,6 @@ import { getArmorClass } from "../utils/getArmorClass";
 import { getCharacterName } from "../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../utils/getClassPrimeRequisites";
 import { getEquipment } from "../utils/getEquipment";
-import { getEquipmentSlots } from "../utils/getEquipmentSlots";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
@@ -50,10 +49,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(getEquipment(classSelection));
+  const [equipment] = useState(getEquipment(classSelection, abilityScores[CON]));
+
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX], equipment)
+    getArmorClass(abilityScores[DEX], equipment.characterEquipmentString)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -306,7 +306,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
-          {`Equipment (${getEquipmentSlots(equipment)} slots)`}
+          {`Equipment (${equipment.slotsToFill}/${
+            abilityScores[CON] > 10 ? abilityScores[CON] : 10
+          } slots)`}
           <FontAwesomeIcon
             icon={isEquipmentVisible ? "caret-up" : "caret-down"}
             size="lg"
@@ -314,7 +316,17 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         </EquipmentHeader>
         {isEquipmentVisible && (
-          <Equipment dangerouslySetInnerHTML={createMarkup(equipment)} />
+          <Equipment
+            dangerouslySetInnerHTML={createMarkup(
+              equipment.characterEquipmentString
+            )}
+          />
+        )}
+        {isEquipmentVisible && (
+          <GoldText>
+            † 160 gp can be contained in 1 slot, provided you have a container
+            for it.
+          </GoldText>
         )}
       </EquipmentContainer>
 
@@ -509,6 +521,13 @@ const Equipment = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+const GoldText = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const WeaponQualitiesContainer = styled.div``;
