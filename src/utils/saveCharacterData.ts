@@ -40,7 +40,7 @@ export const saveCharacterData = (name: string, classSelection: string, traits: 
         spells = characterSpells.join('#');
     }
 
-    let permalink = baseURL.concat('&',
+    let permalink = baseURL.concat(
         replaceSpaces(name),'$',
         replaceSpaces(classSelection),'$',
         replaceSpaces(traits), '$',
@@ -49,7 +49,7 @@ export const saveCharacterData = (name: string, classSelection: string, traits: 
         replaceSpaces(languages),'$',
         replaceSpaces(spells), '$',
         replaceSpaces(equipment), '$',
-        equipmentSlots.toString(), '&'
+        equipmentSlots.toString()
         );
 
     window.location.href = encodeURI(permalink);
