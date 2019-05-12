@@ -4,6 +4,7 @@ import { drow } from "./classes/drow";
 import { dwarf } from "./classes/dwarf";
 import { elf } from "./classes/elf";
 import { fighter } from "./classes/fighter";
+import { halfElf } from "./classes/halfElf";
 import { halfling } from "./classes/halfling";
 import { magicUser } from "./classes/magicUser";
 import { thief } from "./classes/thief";
@@ -21,9 +22,11 @@ export const saves = {
 
 export interface characterClass {
   name: string;
+  icon?: JSX.Element;
   requirements: string;
   primeRequisite: string;
   hitDice: string;
+  xpToSecondLevel?: string;
   maximumLevel: string;
   allowedArmor: string;
   allowedWeapons: string;
@@ -31,6 +34,7 @@ export interface characterClass {
   saves: { [key: string]: number };
   equipment: string[][];
   abilities?: string[];
+  abilitiesSummary: string;
   spells?: string;
   turn?: string;
   skills?: string[];
@@ -48,5 +52,6 @@ export const characterClasses: { [key: string]: characterClass } = {
   drow,
   dwarf,
   elf,
-  halfling
+  halfling,
+  halfElf
 };

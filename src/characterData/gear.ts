@@ -92,6 +92,8 @@ export const instruments = [
   "<strong>Lyre</strong>",
   "<strong>Mandolin</strong>",
   "<strong>Maracas</strong>",
+  "<strong>Ocarina</strong>",
+  "<strong>Pan Flute</strong>",
   "<strong>Psaltery</strong>",
   "<strong>Sacbut</strong>",
   "<strong>Serpent</strong>",

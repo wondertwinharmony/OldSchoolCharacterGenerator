@@ -1,5 +1,5 @@
 import { characterClasses } from "../characterData/classes";
-import { CON, DEX, INT } from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT } from "../constants/abilityScoreConstants";
 
 /**
  * Utility for getting what classes are available to choose
@@ -36,6 +36,9 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   // if CON >= 9 && DEX >= 9 add Halfling to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfling = characterClasses.halfling.name;
+  // if Dex >= 9 && INt >= 9 add Halfling to list of possible classes
+  if (abilityScores[CHA] >= 9 && abilityScores[CON] >= 9)
+    classOptions.halfElf = characterClasses.halfElf.name;
 
   return classOptions;
 };
