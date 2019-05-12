@@ -8,6 +8,7 @@ export const bard = {
   requirements: "Minimum DEX 9, minimum INT 9",
   primeRequisite: "CHA and WIS",
   hitDice: "1d6",
+  xpToSecondLevel: "2,000 XP",
   maximumLevel: "14",
   allowedArmor: "Leather, chainmail, no shields",
   allowedWeapons: "Missile weapons, one-handed melee weapons",

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { FaDiceD20 } from "react-icons/fa";
 import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
-import { MdChatBubbleOutline, MdStar } from "react-icons/md";
+import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
@@ -99,8 +99,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   /**
    * ICON NOTES:
    *
-   * traits: MdLibraryBooks, MdBookmarkBorder, GiScrollUnfurled
-   * languages: MdChatBubbleOutline
+   * traits: GiScrollUnfurled
+   * languages: MdChatBubble
    * abilities: MdStar
    * turning the dead: GiChewedSkull
    * @todo Possibly add different spell icons
@@ -212,7 +212,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             }}
           >
             <HeaderIcon>
-              <MdChatBubbleOutline />
+              <MdChatBubble />
             </HeaderIcon>
             Languages
             <FontAwesomeIcon

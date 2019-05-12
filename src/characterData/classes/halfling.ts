@@ -8,6 +8,7 @@ export const halfling = {
   requirements: "Minimum CON and DEX 9",
   primeRequisite: "DEX and STR",
   hitDice: "1d6",
+  xpToSecondLevel: "2,000 XP",
   maximumLevel: "8",
   allowedArmor: "Any appropriate to size, including shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",

@@ -8,6 +8,7 @@ export const fighter = {
   requirements: "None",
   primeRequisite: "STR",
   hitDice: "1d8",
+  xpToSecondLevel: "2,000 XP",
   maximumLevel: "14",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",

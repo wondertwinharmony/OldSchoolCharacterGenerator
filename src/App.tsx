@@ -134,10 +134,14 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
       <CreatorsContainer>
         <FaDungeon />
         <CreatorText>
-          Created by 
-          <CreatorName href="https://github.com/amenotu" target='_blank'>Kristine Yabut</CreatorName> 
-          and 
-          <CreatorName href="https://github.com/gschrock" target='_blank'>Gabriel Schrock</CreatorName>
+          Created by
+          <CreatorName href="https://github.com/amenotu" target="_blank">
+            Kristine Yabut
+          </CreatorName>
+          and
+          <CreatorName href="https://github.com/gschrock" target="_blank">
+            Gabriel Schrock
+          </CreatorName>
         </CreatorText>
         <FaDungeon />
       </CreatorsContainer>
@@ -229,7 +233,7 @@ const CreatorText = styled.div`
 const CreatorName = styled.a`
   color: black;
   padding: 0 0.25rem;
-`
+`;
 
 const StyledApp = styled(AppImpl)`
   font-family: "Roboto Mono", monospace;

@@ -8,6 +8,7 @@ export const thief = {
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
+  xpToSecondLevel: "1,200 XP",
   maximumLevel: "14",
   allowedArmor: "Leather armor, no shields",
   allowedWeapons: "Any",

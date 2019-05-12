@@ -24,7 +24,12 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
       }}
       style={{ border: `${isSummaryVisible ? "1px dashed black" : ""}` }}
     >
-      <div style={{ display: 'flex', padding: `${isSummaryVisible ? "0.25rem" : ""}` }}>
+      <div
+        style={{
+          display: "flex",
+          padding: `${isSummaryVisible ? "0.25rem" : ""}`
+        }}
+      >
         <FaInfo size={"1.25em"} style={{ marginRight: "0.5rem" }} />
         {!isSummaryVisible && "Show Class Info"}
         {isSummaryVisible && "Hide Class Info"}
@@ -42,6 +47,13 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
             dangerouslySetInnerHTML={createMarkup(
               `<strong>Requisite:</strong> ${
                 characterClasses[classOption].primeRequisite
+              }`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>XP to 2nd Level:</strong> ${
+                characterClasses[classOption].xpToSecondLevel
               }`
             )}
           />
