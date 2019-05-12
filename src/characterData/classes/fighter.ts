@@ -1,7 +1,10 @@
+import React from "react";
+import { GiSwordsEmblem } from "react-icons/gi";
 import { fighterEquipment } from "../equipmentKits";
 
 export const fighter = {
   name: "Fighter",
+  icon: React.createElement(GiSwordsEmblem, {}),
   requirements: "None",
   primeRequisite: "STR",
   hitDice: "1d8",
@@ -19,5 +22,6 @@ export const fighter = {
   equipment: fighterEquipment,
   abilities: [
     "<strong>Combat:</strong> Fighters can use all forms of weapons and armor."
-  ]
+  ],
+  abilitiesSummary: "None"
 };

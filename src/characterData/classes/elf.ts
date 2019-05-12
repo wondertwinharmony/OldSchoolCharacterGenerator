@@ -1,7 +1,10 @@
+import React from "react";
+import { GiElfEar } from "react-icons/gi";
 import { magicUserEquipment } from "../equipmentKits";
 
 export const elf = {
   name: "Elf",
+  icon: React.createElement(GiElfEar, {}),
   requirements: "Minimum INT 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",
@@ -25,5 +28,7 @@ export const elf = {
     "<strong>Infravision:</strong> Elves have infravision to 60’ (see <i>Light, Vision, and Visibility in B/X Essentials: Core Rules</i>).",
     "<strong>Listening at Doors:</strong> Elves have a 2-in-6 chance of hearing noises (see <i>Doors, B/X Essentials: Core Rules</i>)."
   ],
+  abilitiesSummary:
+    "Arcane Magic, Detect Secret Doors, Immunity to Ghoul Paralysis, Infravision, Listening at Doors",
   spells: "see MagicUser spells"
 };

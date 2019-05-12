@@ -1,4 +1,6 @@
-export const weaponQualities = `<strong>Blunt:</strong> May be used by clerics.  
+export const weaponQualitiesAndDualWield = `<strong>Dual Wielding:</strong> Any class may fight with a weapon in each hand. You can make one extra attack each round with the second weapon held in your off hand. When fighting in this way you suffer a –4 attack penalty with your off hand attack.</strong>
+
+<strong>Blunt:</strong> May be used by clerics.  
 
 <strong>Brace:</strong> When braced against the ground, doubles damage against charging monsters.
 

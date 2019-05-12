@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
+import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "styled-components";
+import { characterClasses } from "./characterData/classes";
 import Character from "./components/character";
+import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getAbilityScores } from "./utils/getAbilityScores";
@@ -71,43 +74,54 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
         </GridContainer>
       )}
       {!isClassSelected && (
-        <ClassButtonsContainer>
-          <KnaveSpellOptionsContainer
-            onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
-          >
-            <input
-              type="checkbox"
-              onChange={() => {}}
-              checked={includeKnaveSpells}
-            />
-            <KnaveSpellText>Include Knave Spells</KnaveSpellText>
-          </KnaveSpellOptionsContainer>
-          {Object.keys(classOptions).map(classOptionKey => (
-            <ClassOptionContainer key={classOptionKey}>
-              <XpAdjustmentText>
-                {`XP Adjustment: ${getExperienceAdjustment(
-                  abilityScores,
-                  getClassPrimeRequisites(classOptionKey)
-                )}`}
-              </XpAdjustmentText>
-              <ButtonContainer>
-                <ClassButton
-                  variant="outline-secondary"
-                  onClick={() => {
-                    setIsClassSelected(true);
-                    setClassSelection(classOptionKey);
-                  }}
-                >
-                  <ButtonText>{classOptions[classOptionKey]}</ButtonText>
-                </ClassButton>
-              </ButtonContainer>
-            </ClassOptionContainer>
-          ))}
-          <DemihumansText>
-            {checkContainsDemihumans(classOptions) &&
-              "† Yes, fantastical races are treated as classes! Old-school Dungeons & Dragons is silly like that."}
-          </DemihumansText>
-        </ClassButtonsContainer>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <ClassButtonsContainer>
+            <KnaveSpellOptionsContainer
+              onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
+            >
+              {includeKnaveSpells ? (
+                <MdCheckBox size="1.5em" />
+              ) : (
+                <MdCheckBoxOutlineBlank size="1.5em" />
+              )}
+              <KnaveSpellText>Include Knave Spells</KnaveSpellText>
+            </KnaveSpellOptionsContainer>
+            {Object.keys(classOptions).map(classOptionKey => (
+              <ClassOptionContainer key={classOptionKey}>
+                <XpAdjustmentText>
+                  {`XP Adjustment: ${getExperienceAdjustment(
+                    abilityScores,
+                    getClassPrimeRequisites(classOptionKey)
+                  )}`}
+                </XpAdjustmentText>
+                <ButtonContainer>
+                  <ClassButton
+                    variant="outline-secondary"
+                    onClick={() => {
+                      setIsClassSelected(true);
+                      setClassSelection(classOptionKey);
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "2.5em",
+                        color: "black"
+                      }}
+                    >
+                      {characterClasses[classOptionKey].icon}
+                    </div>
+                    <ButtonText>{classOptions[classOptionKey]}</ButtonText>
+                  </ClassButton>
+                </ButtonContainer>
+                <CharacterSummary classOption={classOptionKey} />
+              </ClassOptionContainer>
+            ))}
+            <DemihumansText>
+              {checkContainsDemihumans(classOptions) &&
+                "† Yes, fantastical races are treated as classes! Old-school Dungeons & Dragons is silly like that."}
+            </DemihumansText>
+          </ClassButtonsContainer>
+        </div>
       )}
       {isClassSelected && classSelection && (
         <Character
@@ -123,8 +137,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0 0.25rem;
-  padding: 0 1rem;
+  grid-gap: 0 0.5rem;
 `;
 
 const Ability = styled.div`
@@ -144,19 +157,26 @@ const AbilityScore = styled.div`
 const ClassButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 400px;
   padding: 2rem 3rem;
+`;
+
+const ClassButton = styled(Button)`
+  height: "4rem";
 `;
 
 const KnaveSpellOptionsContainer = styled.div`
   padding: 0 1rem;
-  display: inline;
+  display: flex;
 `;
 
 const KnaveSpellText = styled.label`
   padding-left: 0.5rem;
 `;
 
-const ButtonContainer = styled.div``;
+const ButtonContainer = styled.div`
+  width: 275px;
+`;
 
 const ClassOptionContainer = styled.div`
   padding: 1rem;
@@ -168,8 +188,6 @@ const ClassOptionContainer = styled.div`
 const XpAdjustmentText = styled.div`
   font-weight: bold;
 `;
-
-const ClassButton = styled(Button)``;
 
 const ButtonText = styled.div`
   color: black;
@@ -187,6 +205,7 @@ const DemihumansText = styled.div`
 const StyledApp = styled(AppImpl)`
   font-family: "Roboto Mono", monospace;
   background-image: url(${parchment});
+  height: -webkit-fill-available;
   .btn {
     width: 100%;
   }

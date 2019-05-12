@@ -21,6 +21,7 @@ export const saves = {
 
 export interface characterClass {
   name: string;
+  icon?: JSX.Element;
   requirements: string;
   primeRequisite: string;
   hitDice: string;
@@ -31,10 +32,21 @@ export interface characterClass {
   saves: { [key: string]: number };
   equipment: string[][];
   abilities?: string[];
+  abilitiesSummary: string;
   spells?: string;
   turn?: string;
   skills?: string[];
 }
+
+// cleric icons: GiSpikedMace
+// fighter icons: GiSwordsEmblem
+// magicUser icons: GiSpellBook
+// thief icons: GiDominoMask
+//    bard icons: GiMusicSpell
+// drow icons: GiMaskedSpider
+// dwarf icons: GiDwarfHelmet
+// elf icons: GiElfEar
+// halfling icons: GiHobbitDwelling
 
 /**
  * Character Classes

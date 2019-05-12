@@ -3,8 +3,15 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
-import { weaponQualities } from "../characterData/weaponQualities";
-import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -49,7 +56,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(getEquipment(classSelection, abilityScores[CON]));
+  const [equipment] = useState(
+    getEquipment(classSelection, abilityScores[CON])
+  );
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
@@ -337,7 +346,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
           }}
         >
-          Weapon Qualities
+          <WeaponQualitiesHeaderText>
+            <div>Dual Wielding &</div>
+            <div>Weapon Qualities</div>
+          </WeaponQualitiesHeaderText>
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
             size="lg"
@@ -346,7 +358,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </WeaponQualitiesHeader>
         {isWeaponQualitiesVisible && (
           <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+            dangerouslySetInnerHTML={createMarkup(weaponQualitiesAndDualWield)}
           />
         )}
       </WeaponQualitiesContainer>
@@ -381,8 +393,9 @@ const TraitsHeader = styled.div`
 
 const AbilityScoresGrid = styled.div`
   display: grid;
-  grid-template-columns: 125px 125px 125px;
+  grid-template-columns: 120px 120px 120px;
   justify-content: center;
+  padding: 0 0.25rem;
 `;
 
 const SavesAndStatsGrid = styled.div`
@@ -534,9 +547,14 @@ const WeaponQualitiesContainer = styled.div``;
 
 const WeaponQualitiesHeader = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
   font-family: "Sancreek", cursive;
   font-size: 1.5rem;
+`;
+
+const WeaponQualitiesHeaderText = styled.div`
+  text-align: center;
 `;
 
 const WeaponQualities = styled.div`
