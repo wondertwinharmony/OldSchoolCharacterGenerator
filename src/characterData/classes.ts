@@ -38,16 +38,6 @@ export interface characterClass {
   skills?: string[];
 }
 
-// cleric icons: GiSpikedMace
-// fighter icons: GiSwordsEmblem
-// magicUser icons: GiSpellBook
-// thief icons: GiDominoMask
-//    bard icons: GiMusicSpell
-// drow icons: GiMaskedSpider
-// dwarf icons: GiDwarfHelmet
-// elf icons: GiElfEar
-// halfling icons: GiHobbitDwelling
-
 /**
  * Character Classes
  */
