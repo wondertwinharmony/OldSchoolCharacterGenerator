@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { FaDiceD20 } from "react-icons/fa";
 import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
 import { MdChatBubbleOutline, MdStar } from "react-icons/md";
-import { FaDiceD20 } from "react-icons/fa";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
@@ -450,7 +450,7 @@ const AbilityScoresGrid = styled.div`
 const SavesAndStatsGrid = styled.div`
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
   justify-content: center;
 `;
 
@@ -473,9 +473,10 @@ const SaveScore = styled.div`
 
 const StatsContainer = styled.div`
   display: grid;
-  justify-content: center;
+  justify-content: flex-end;
   align-content: baseline;
   grid-gap: 0.25rem;
+  padding-right: 1rem;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
