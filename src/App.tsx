@@ -31,10 +31,14 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
 
-  if(window.location.href !== 'http://localhost:3000/') {
+  const envUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/"
+      : "http://oldschoolknave.surge.sh";
+  if (window.location.href !== envUrl) {
     const savedData = getSavedCharacterData(window.location.href);
 
-    if(savedData){
+    if (savedData) {
       return (
         <div className={className}>
           <Character
