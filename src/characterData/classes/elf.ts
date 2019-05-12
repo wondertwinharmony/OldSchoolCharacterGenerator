@@ -1,10 +1,10 @@
 import React from "react";
-import { GiElfEar } from "react-icons/gi";
+import { GiElfHelmet } from "react-icons/gi";
 import { magicUserEquipment } from "../equipmentKits";
 
 export const elf = {
   name: "Elf",
-  icon: React.createElement(GiElfEar, {}),
+  icon: React.createElement(GiElfHelmet, {}),
   requirements: "Minimum INT 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",

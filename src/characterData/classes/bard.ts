@@ -1,10 +1,10 @@
 import React from "react";
-import { GiPanFlute } from "react-icons/gi";
+import { GiLyre } from "react-icons/gi";
 import { bardEquipment } from "../equipmentKits";
 
 export const bard = {
   name: "Bard",
-  icon: React.createElement(GiPanFlute, {}),
+  icon: React.createElement(GiLyre, {}),
   requirements: "Minimum DEX 9, minimum INT 9",
   primeRequisite: "CHA and WIS",
   hitDice: "1d6",

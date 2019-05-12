@@ -1,17 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { GiChewedSkull, GiCometSpark, GiDiceTwentyFacesTwenty, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
+import { MdChatBubbleOutline, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -100,18 +95,37 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
 
+  /**
+   * ICON NOTES:
+   *
+   * traits: MdLibraryBooks, MdBookmarkBorder, GiScrollUnfurled
+   * languages: MdChatBubbleOutline
+   * abilities: MdStar
+   * turning the dead: GiChewedSkull
+   * @todo Possibly add different spell icons
+   * as more spellcaster classes are added
+   * spells: GiCometSpark
+   * thief skills: GiLockPicking
+   * equipment: GiKnapsack
+   * dual wielding and weapon qualities: GiDiceTwentyFacesTwenty
+   */
+
   return (
     <div className={className}>
       <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
-        {`Level 1 ${characterClasses[classSelection].name}`}{" "}
+        {`Level 1 ${characterClasses[classSelection].name}`}
       </ClassTitle>
+      <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
       <TraitsContainer>
         <TraitsHeader
           onClick={() => {
             setIsTraitsVisible(!isTraitsVisible);
           }}
         >
+          <HeaderIcon>
+            <GiScrollUnfurled />
+          </HeaderIcon>
           Traits
           <FontAwesomeIcon
             icon={isTraitsVisible ? "caret-up" : "caret-down"}
@@ -196,6 +210,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsLanguagesVisible(!isLanguagesVisible);
             }}
           >
+            <HeaderIcon>
+              <MdChatBubbleOutline />
+            </HeaderIcon>
             Languages
             <FontAwesomeIcon
               icon={isLanguagesVisible ? "caret-up" : "caret-down"}
@@ -215,6 +232,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsAbilitiesVisible(!isAbilitiesVisible);
             }}
           >
+            <HeaderIcon>
+              <MdStar />
+            </HeaderIcon>
             Abilities
             <FontAwesomeIcon
               icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
@@ -240,6 +260,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsClericTurnVisible(!isClericTurnVisible);
             }}
           >
+            <HeaderIcon>
+              <GiChewedSkull />
+            </HeaderIcon>
             Turning the Dead
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
@@ -262,6 +285,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsSpellsVisible(!isSpellsVisible);
             }}
           >
+            <HeaderIcon>
+              <GiCometSpark />
+            </HeaderIcon>
             Spells
             <FontAwesomeIcon
               icon={isSpellsVisible ? "caret-up" : "caret-down"}
@@ -290,6 +316,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
+            <HeaderIcon>
+              <GiLockPicking />
+            </HeaderIcon>
             Thief Skills
             <FontAwesomeIcon
               icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
@@ -315,6 +344,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
+          <HeaderIcon>
+            <GiKnapsack />
+          </HeaderIcon>
           {`Equipment (${equipment.slotsToFill}/${
             abilityScores[CON] > 10 ? abilityScores[CON] : 10
           } slots)`}
@@ -347,7 +379,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           }}
         >
           <WeaponQualitiesHeaderText>
-            <div>Dual Wielding &</div>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <GiDiceTwentyFacesTwenty />
+              </HeaderIcon>
+              Dual Wielding &
+            </div>
             <div>Weapon Qualities</div>
           </WeaponQualitiesHeaderText>
           <FontAwesomeIcon
@@ -377,6 +414,17 @@ const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
+`;
+
+const ClassIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+  opacity: 0.5;
+`;
+
+const HeaderIcon = styled.div`
+  margin: 0 0.5rem;
 `;
 
 const TraitsContainer = styled.div`
