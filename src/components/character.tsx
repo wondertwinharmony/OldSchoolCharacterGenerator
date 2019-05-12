@@ -84,7 +84,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
     true
   );
-  // const [isSaveButtonVisible, setIsSaveButtonVisible] = useState(true);
 
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
@@ -99,7 +98,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
-      {!savedCharacterData ? <SaveButton
+      {!savedCharacterData ? <PermalinkButtonContainer><PermalinkButton
+        style={{width: '275px'}}
+        variant="outline-secondary"
         onClick={()=> {
           saveCharacterData(
             characterName, 
@@ -112,7 +113,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             equipment.characterEquipmentString,
             equipment.slotsToFill);
         }}
-      >Save Character</SaveButton> : (
+      >Permalink</PermalinkButton></PermalinkButtonContainer> : (
       <SaveMessageContainer>
         <SaveHeader>
         <FontAwesomeIcon 
@@ -421,7 +422,15 @@ const SaveMessageContainer = styled.div`
     animation-timing-function: ease-in-out;
 `;
 
-const SaveButton = styled(Button)``;
+const PermalinkButton = styled(Button)`
+  color: black;
+`;
+
+const PermalinkButtonContainer = styled.div`
+  justify-content: center;
+  display: flex;
+  padding: 1rem 0 0.5rem 0;
+`;
 
 const CharacterName = styled.div`
   display: flex;
