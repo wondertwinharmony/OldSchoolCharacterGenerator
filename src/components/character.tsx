@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
@@ -18,12 +19,15 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
+import { saveCharacterData } from "../utils/saveCharacterData";
+import { SavedCharacterData } from "../utils/getSavedCharacterData";
 
 interface Props {
   abilityScores: number[];
   className?: string;
   classSelection: string;
   includeKnaveSpells: boolean;
+  savedCharacterData?: SavedCharacterData;
 }
 
 interface ImplProps extends Props {}
@@ -32,24 +36,25 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
-  includeKnaveSpells
+  includeKnaveSpells,
+  savedCharacterData
 }) => {
   // Hit Points
-  const [hitPoints, setHitPoints] = useState(
+  const [hitPoints, setHitPoints] = useState((savedCharacterData && savedCharacterData.hitPoints) ||
     getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
   );
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
   // Languages
-  const [languages, setLanguages] = useState(
+  const [languages, setLanguages] = useState(savedCharacterData ? ((savedCharacterData && savedCharacterData.languages)) :
     getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
   );
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(getEquipment(classSelection, abilityScores[CON]));
+  const [equipment] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.equipment) : getEquipment(classSelection, abilityScores[CON]));
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
@@ -59,14 +64,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setArmorClass(armorClass);
   }, [armorClass]);
 
-  // Spells
-  const [spells] = useState(getSpells(includeKnaveSpells, classSelection));
+  // Spells 
+  const [spells] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.spells) : getSpells(includeKnaveSpells, classSelection));
 
   // Traits
-  const [traits] = useState(getTraits(abilityScores[INT], languages));
+  const [traits] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.traits) : getTraits(abilityScores[INT], languages));
 
   //Character Name
-  const [characterName] = useState(getCharacterName());
+  const [characterName] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.name) : getCharacterName());
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -94,6 +99,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   return (
     <div className={className}>
       <CharacterName>{characterName}</CharacterName>
+      <SaveButton
+        onClick={()=> {
+          saveCharacterData(characterName, classSelection, traits, abilityScores, hitPoints, languages, spells, equipment.characterEquipmentString, equipment.slotsToFill);
+        }}
+      >Save Character</SaveButton>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}{" "}
       </ClassTitle>
@@ -353,6 +363,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     </div>
   );
 };
+
+const SaveButton = styled(Button)``;
 
 const CharacterName = styled.div`
   display: flex;

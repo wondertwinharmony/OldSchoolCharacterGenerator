@@ -8,6 +8,7 @@ import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
+import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
 interface Props {
   className?: string;
@@ -55,6 +56,24 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   }, [abilityScores]);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
+
+  if(window.location.href !== 'http://localhost:3000/') {
+    const savedData = getSavedCharacterData(window.location.href);
+
+    if(savedData){
+      return (
+        <div className={className}>
+          <Character
+            classSelection={savedData && savedData.class}
+            abilityScores={savedData && savedData.abilityScores}
+            includeKnaveSpells={false}
+            savedCharacterData={savedData}
+          />
+        </div>
+      );
+    }
+  }
+
   return (
     <div className={className}>
       {!isClassSelected && (
@@ -114,6 +133,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           classSelection={classSelection}
           abilityScores={abilityScores}
           includeKnaveSpells={includeKnaveSpells}
+          savedCharacterData={undefined}
         />
       )}
     </div>
