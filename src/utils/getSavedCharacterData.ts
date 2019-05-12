@@ -8,7 +8,11 @@ export interface SavedCharacterData {
     spells: string[],
     equipment: { characterEquipmentString: string, slotsToFill: number }
 };
-
+/**
+ * Utility function that extract data from a URL.
+ * Returns an object with character data needed to rehydrate a page.
+ * @param  {string} url
+ */
 export const getSavedCharacterData = (url: string) => {
     const decodedURI = decodeURI(url).match(/(?<=&).*?(?=&)/gm);
     let savedCharacterData = {
