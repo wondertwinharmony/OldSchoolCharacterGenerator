@@ -119,7 +119,6 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           classSelection={classSelection}
           abilityScores={abilityScores}
           includeKnaveSpells={includeKnaveSpells}
-          savedCharacterData={undefined}
         />
       )}
       <CreatorsContainer>
