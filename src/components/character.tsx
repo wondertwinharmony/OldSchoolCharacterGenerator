@@ -84,6 +84,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
     true
   );
+  // const [isSaveButtonVisible, setIsSaveButtonVisible] = useState(true);
 
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
@@ -98,30 +99,38 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
-      <CharacterName>{characterName}</CharacterName>
-      <SaveButton
+      {!savedCharacterData ? <SaveButton
         onClick={()=> {
-          saveCharacterData(characterName, classSelection, traits, abilityScores, hitPoints, languages, spells, equipment.characterEquipmentString, equipment.slotsToFill);
+          saveCharacterData(
+            characterName, 
+            classSelection,
+            traits,
+            abilityScores,
+            hitPoints,
+            languages,
+            spells,
+            equipment.characterEquipmentString,
+            equipment.slotsToFill);
         }}
-      >Save Character</SaveButton>
+      >Save Character</SaveButton> : (
+      <SaveMessageContainer>
+        <SaveHeader>
+        <FontAwesomeIcon 
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}/>
+        IMPORTANT
+        <FontAwesomeIcon 
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}/>
+        </SaveHeader>
+        <SaveMessage dangerouslySetInnerHTML={createMarkup('<strong>Bookmark this page. Save the results!\n</strong>')}/>
+      </SaveMessageContainer>)}
+      <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}{" "}
       </ClassTitle>
-      <TraitsContainer>
-        <TraitsHeader
-          onClick={() => {
-            setIsTraitsVisible(!isTraitsVisible);
-          }}
-        >
-          Traits
-          <FontAwesomeIcon
-            icon={isTraitsVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </TraitsHeader>
-        {isTraitsVisible && <div>{traits}</div>}
-      </TraitsContainer>
 
       {/* Ability Scores */}
       <AbilityScoresGrid>
@@ -188,6 +197,23 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </Save>
         </SavesContainer>
       </SavesAndStatsGrid>
+
+      {/* Traits */}
+      <TraitsContainer>
+        <TraitsHeader
+          onClick={() => {
+            setIsTraitsVisible(!isTraitsVisible);
+          }}
+        >
+          Traits
+          <FontAwesomeIcon
+            icon={isTraitsVisible ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </TraitsHeader>
+        {isTraitsVisible && <div>{traits}</div>}
+      </TraitsContainer>
 
       {/* Languages */}
       {characterClasses[classSelection].languages && (
@@ -364,6 +390,37 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   );
 };
 
+const SaveMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  white-space: pre-line;
+`;
+
+const SaveHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 2rem;
+`;
+
+const SaveMessageContainer = styled.div`
+  @keyframes fadeOut {
+    0% {opacity: 1; height: 73px}
+    25% {opacity: 0.75; height: 73x}
+    50% {opacity: 0.5; height: 73px}
+    75% {opacity: 0.25; height: 73px}
+    95% {opacity: 0; height: 73px}
+    100% {opacity: 0; height: 0px}
+  }
+  -webkit-animation: fadeOut 8s;
+    animation: fadeOut 8s;
+  -webkit-animation-fill-mode:forwards; 
+    animation-fill-mode:forwards;
+  -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+`;
+
 const SaveButton = styled(Button)``;
 
 const CharacterName = styled.div`
@@ -377,10 +434,10 @@ const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
+  border-bottom:1px solid black;
 `;
 
 const TraitsContainer = styled.div`
-  border-bottom: 1px solid black;
   padding: 0.5rem;
 `;
 

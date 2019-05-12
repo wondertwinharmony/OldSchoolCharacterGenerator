@@ -35,7 +35,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
   // Starting wealth is 3d6x2 gp
   const characterStartingWealthString = `• <strong>${roller
     .roll("3d6*2")
-    .result.toString()} gp in Coin Purse</strong> †`;
+    .result.toString()} gp in Coin Purse</strong><sup>†</sup>`;
 
   // Include starting wealth and kit
   characterEquipment.push(characterStartingWealthString, characterEquipmentKit);
