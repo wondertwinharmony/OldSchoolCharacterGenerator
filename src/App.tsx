@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { FaDungeon } from "react-icons/fa";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses } from "./characterData/classes";
@@ -130,6 +131,16 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           includeKnaveSpells={includeKnaveSpells}
         />
       )}
+      <CreatorsContainer>
+        <FaDungeon />
+        <CreatorText>
+          Created by 
+          <CreatorName href="https://github.com/amenotu" target='_blank'>Kristine Yabut</CreatorName> 
+          and 
+          <CreatorName href="https://github.com/gschrock" target='_blank'>Gabriel Schrock</CreatorName>
+        </CreatorText>
+        <FaDungeon />
+      </CreatorsContainer>
     </div>
   );
 };
@@ -201,6 +212,24 @@ const DemihumansText = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
+const CreatorsContainer = styled.div`
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+`;
+
+const CreatorText = styled.div`
+  padding: 0 0.25rem;
+  font-size: 0.5rem;
+`;
+
+const CreatorName = styled.a`
+  color: black;
+  padding: 0 0.25rem;
+`
 
 const StyledApp = styled(AppImpl)`
   font-family: "Roboto Mono", monospace;

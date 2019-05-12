@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { GiChewedSkull, GiCometSpark, GiDiceTwentyFacesTwenty, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
+import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
 import { MdChatBubbleOutline, MdStar } from "react-icons/md";
+import { FaDiceD20 } from "react-icons/fa";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
@@ -107,7 +108,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
    * spells: GiCometSpark
    * thief skills: GiLockPicking
    * equipment: GiKnapsack
-   * dual wielding and weapon qualities: GiDiceTwentyFacesTwenty
+   * dual wielding and weapon qualities: FaDiceD20
    */
 
   return (
@@ -381,7 +382,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <WeaponQualitiesHeaderText>
             <div style={{ display: "flex" }}>
               <HeaderIcon>
-                <GiDiceTwentyFacesTwenty />
+                <FaDiceD20 />
               </HeaderIcon>
               Dual Wielding &
             </div>
