@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { FaDiceD20 } from "react-icons/fa";
+import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
+import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
-import { weaponQualities } from "../characterData/weaponQualities";
+import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
 import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
@@ -96,6 +99,21 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
 
+  /**
+   * ICON NOTES:
+   *
+   * traits: GiScrollUnfurled
+   * languages: MdChatBubble
+   * abilities: MdStar
+   * turning the dead: GiChewedSkull
+   * @todo Possibly add different spell icons
+   * as more spellcaster classes are added
+   * spells: GiCometSpark
+   * thief skills: GiLockPicking
+   * equipment: GiKnapsack
+   * dual wielding and weapon qualities: FaDiceD20
+   */
+
   return (
     <div className={className}>
       {!savedCharacterData ? <PermalinkButtonContainer><PermalinkButton
@@ -130,68 +148,70 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       </SaveMessageContainer>)}
       <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
-        {`Level 1 ${characterClasses[classSelection].name}`}{" "}
+        {`Level 1 ${characterClasses[classSelection].name}`}
       </ClassTitle>
+      <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
 
       {/* Ability Scores */}
       <AbilityScoresGrid>
-        <div>{`STR: ${abilityScores[STR]} ${
+        <div dangerouslySetInnerHTML={createMarkup(`<strong>STR:</strong> ${abilityScores[STR]} ${
           strMod === "None" ? "" : `(${strMod})`
-        }`}</div>
-        <div>{`DEX: ${abilityScores[DEX]} ${
-          dexMod === "None" ? "" : `(${dexMod})`
-        }`}</div>
-        <div>{`CON: ${abilityScores[CON]} ${
-          conMod === "None" ? "" : `(${conMod})`
-        }`}</div>
-        <div>{`INT: ${abilityScores[INT]} ${
-          intMod === "None" ? "" : `(${intMod})`
-        }`}</div>
-        <div>{`WIS: ${abilityScores[WIS]} ${
-          wisMod === "None" ? "" : `(${wisMod})`
-        }`}</div>
-        <div>{`CHA: ${abilityScores[CHA]} ${
-          chaMod === "None" ? "" : `(${chaMod})`
-        }`}</div>
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>DEX:</strong> ${abilityScores[DEX]} ${
+          strMod === "None" ? "" : `(${dexMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>CON</strong> ${abilityScores[CON]} ${
+          strMod === "None" ? "" : `(${conMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>INT:</strong> ${abilityScores[INT]} ${
+          strMod === "None" ? "" : `(${intMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>WIS:</strong> ${abilityScores[WIS]} ${
+          strMod === "None" ? "" : `(${wisMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>CHA:</strong> ${abilityScores[CHA]} ${
+          strMod === "None" ? "" : `(${chaMod})`
+        }`)}></div>
       </AbilityScoresGrid>
 
       {/* Saves and Stats */}
       <SavesAndStatsGrid>
         <StatsContainer>
-          <div>{`HP: ${hitPoints}`}</div>
-          <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
-          <div>{`AC: ${armorClass}`}</div>
-          <div>{`${
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>HP:</strong> ${hitPoints}`)}></div>
+          {/* <div>{`HP: ${hitPoints}`}</div> */}
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`)}></div>
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>AC:</strong> ${armorClass}`)}></div>
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>${
             experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
-          }`}</div>
+          }</strong>`)}></div>
         </StatsContainer>
         <SavesContainer>
           <Save>
-            {saves.poison}
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.poison}</strong>`)}></div>
             <SaveScore>
               {characterClasses[classSelection].saves.poison}
             </SaveScore>
           </Save>
           <Save>
-            {saves.wands}
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.wands}</strong>`)}></div>
             <SaveScore>
               {characterClasses[classSelection].saves.wands}
             </SaveScore>
           </Save>
           <Save>
-            {saves.stone}
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.stone}</strong>`)}></div>
             <SaveScore>
               {characterClasses[classSelection].saves.stone}
             </SaveScore>
           </Save>
           <Save>
-            {saves.breath}
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.breath}</strong>`)}></div>
             <SaveScore>
               {characterClasses[classSelection].saves.breath}
             </SaveScore>
           </Save>
           <Save>
-            {saves.magic}
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.magic}</strong>`)}></div>
             <SaveScore>
               {characterClasses[classSelection].saves.magic}
             </SaveScore>
@@ -206,6 +226,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsTraitsVisible(!isTraitsVisible);
           }}
         >
+          <HeaderIcon>
+            <GiScrollUnfurled />
+          </HeaderIcon>
           Traits
           <FontAwesomeIcon
             icon={isTraitsVisible ? "caret-up" : "caret-down"}
@@ -224,6 +247,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsLanguagesVisible(!isLanguagesVisible);
             }}
           >
+            <HeaderIcon>
+              <MdChatBubble />
+            </HeaderIcon>
             Languages
             <FontAwesomeIcon
               icon={isLanguagesVisible ? "caret-up" : "caret-down"}
@@ -243,6 +269,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsAbilitiesVisible(!isAbilitiesVisible);
             }}
           >
+            <HeaderIcon>
+              <MdStar />
+            </HeaderIcon>
             Abilities
             <FontAwesomeIcon
               icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
@@ -268,6 +297,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsClericTurnVisible(!isClericTurnVisible);
             }}
           >
+            <HeaderIcon>
+              <GiChewedSkull />
+            </HeaderIcon>
             Turning the Dead
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
@@ -290,6 +322,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsSpellsVisible(!isSpellsVisible);
             }}
           >
+            <HeaderIcon>
+              <GiCometSpark />
+            </HeaderIcon>
             Spells
             <FontAwesomeIcon
               icon={isSpellsVisible ? "caret-up" : "caret-down"}
@@ -318,6 +353,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
           >
+            <HeaderIcon>
+              <GiLockPicking />
+            </HeaderIcon>
             Thief Skills
             <FontAwesomeIcon
               icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
@@ -343,6 +381,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsEquipmentVisible(!isEquipmentVisible);
           }}
         >
+          <HeaderIcon>
+            <GiKnapsack />
+          </HeaderIcon>
           {`Equipment (${equipment.slotsToFill}/${
             abilityScores[CON] > 10 ? abilityScores[CON] : 10
           } slots)`}
@@ -374,7 +415,15 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
           }}
         >
-          Weapon Qualities
+          <WeaponQualitiesHeaderText>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <FaDiceD20 />
+              </HeaderIcon>
+              Dual Wielding &
+            </div>
+            <div>Weapon Qualities</div>
+          </WeaponQualitiesHeaderText>
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
             size="lg"
@@ -383,7 +432,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </WeaponQualitiesHeader>
         {isWeaponQualitiesVisible && (
           <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+            dangerouslySetInnerHTML={createMarkup(weaponQualitiesAndDualWield)}
           />
         )}
       </WeaponQualitiesContainer>
@@ -446,6 +495,18 @@ const ClassTitle = styled.div`
   border-bottom:1px solid black;
 `;
 
+const ClassIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+  opacity: 0.5;
+  padding: 0.5rem 0;
+`;
+
+const HeaderIcon = styled.div`
+  margin: 0 0.5rem;
+`;
+
 const TraitsContainer = styled.div`
   padding: 0.5rem;
 `;
@@ -459,14 +520,15 @@ const TraitsHeader = styled.div`
 
 const AbilityScoresGrid = styled.div`
   display: grid;
-  grid-template-columns: 125px 125px 125px;
+  grid-template-columns: 120px 120px 120px;
   justify-content: center;
+  padding: 0 0.25rem;
 `;
 
 const SavesAndStatsGrid = styled.div`
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
   justify-content: center;
 `;
 
@@ -489,9 +551,10 @@ const SaveScore = styled.div`
 
 const StatsContainer = styled.div`
   display: grid;
-  justify-content: center;
+  justify-content: flex-end;
   align-content: baseline;
   grid-gap: 0.25rem;
+  padding-right: 1rem;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
@@ -612,9 +675,14 @@ const WeaponQualitiesContainer = styled.div``;
 
 const WeaponQualitiesHeader = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
   font-family: "Sancreek", cursive;
   font-size: 1.5rem;
+`;
+
+const WeaponQualitiesHeaderText = styled.div`
+  text-align: center;
 `;
 
 const WeaponQualities = styled.div`

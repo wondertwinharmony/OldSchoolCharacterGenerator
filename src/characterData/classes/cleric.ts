@@ -1,10 +1,14 @@
+import React from "react";
+import { GiSpikedMace } from "react-icons/gi";
 import { clericEquipment } from "../equipmentKits";
 
 export const cleric = {
   name: "Cleric",
+  icon: React.createElement(GiSpikedMace, {}),
   requirements: "None",
   primeRequisite: "WIS",
   hitDice: "1d6",
+  xpToSecondLevel: "1,500 XP",
   maximumLevel: "14",
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any blunt weapons",
@@ -19,9 +23,10 @@ export const cleric = {
   equipment: clericEquipment,
   abilities: [
     "<strong>Combat:</strong> Strict holy doctrine prevents clerics’ use of weapons that have a sharp, cutting edge or stabbing point. Weapons usable by clerics are noted in the equipment list.",
-    "<strong>Divine Magic:</strong> See <i>Magic, p42</i> for full details on divine magic.\n\n<div style='padding: 0 1.5rem'><strong>Holy symbol:</strong> A cleric must carry a holy symbol (see <i>Equipment, p24</i>).\n\n<strong>Deity disfavor:</strong> Clerics must be faithful to the tenets of their alignment, clergy, and religion. Clerics who fall from favor with their deity may incur penalties.\n\n<strong>Magical research:</strong> A cleric of any level may spend time and money to research new spells associated with his or her deity. When a cleric reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell casting:</strong> Once a cleric has proven his or her faith (from 2nd level), the character may pray to receive spells. The power and number of spells available to a cleric are determined by the character’s experience level. The list of spells available to clerics is found on <i>p45</i>.\n\n<strong>Using magic items:</strong> As spell casters, clerics can use magic scrolls of spells on their spell list. There are also items (e.g. some staves) that may only be used by divine spell casters (including clerics).</div>",
+    "<strong>Divine Magic:</strong> See <i>Magic in Core Rules, p42</i> for full details on divine magic.\n\n<div style='padding: 0 1.5rem'><strong>Holy symbol:</strong> A cleric must carry a holy symbol (see <i>Equipment, p24</i>).\n\n<strong>Deity disfavor:</strong> Clerics must be faithful to the tenets of their alignment, clergy, and religion. Clerics who fall from favor with their deity may incur penalties.\n\n<strong>Magical research:</strong> A cleric of any level may spend time and money to research new spells associated with his or her deity. When a cleric reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell casting:</strong> Once a cleric has proven his or her faith (from 2nd level), the character may pray to receive spells. The power and number of spells available to a cleric are determined by the character’s experience level. The list of spells available to clerics is found on <i>p45</i>.\n\n<strong>Using magic items:</strong> As spell casters, clerics can use magic scrolls of spells on their spell list. There are also items (e.g. some staves) that may only be used by divine spell casters (including clerics)</div>.",
     "<strong>Turning the Undead:</strong> Clerics can invoke the power of their deity to repel undead monsters encountered. To turn the undead, the player rolls 2d6. The referee then consults the table opposite, comparing the roll against the Hit Dice of the undead monsters targeted.\n\n<strong>Successful Turning</strong>\n  If the turning attempt succeeds, the player must roll 2d6 to determine the number of HD of undead monsters affected.\n\n  <div style='padding: 0 1.5rem'>• <strong>Minimum effect:</strong> At least one undead creature will always be turned or destroyed on a successful turning.\n\n• <strong>Turned undead:</strong> Will leave the area, if possible, and will not harm or make contact with the cleric.\n\n• <strong>Destroyed undead (result of D):</strong> Are instantly and permanently annihilated.\n\n• <strong>Mixed groups:</strong> If turn undead is used against a mixed group of undead monsters of different types, those with the lowest HD are affected first.</div>  "
   ],
+  abilitiesSummary: "Divine Magic (2nd level), Turning the Undead",
   turn:
     "* 2 HD monsters with a special ability (i.e. with an asterisk next to their HD rating, in the monster description)."
 };
