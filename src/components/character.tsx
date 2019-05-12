@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 import { FaDiceD20 } from "react-icons/fa";
 import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
@@ -21,12 +22,15 @@ import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
+import { saveCharacterData } from "../utils/saveCharacterData";
+import { SavedCharacterData } from "../utils/getSavedCharacterData";
 
 interface Props {
   abilityScores: number[];
   className?: string;
   classSelection: string;
   includeKnaveSpells: boolean;
+  savedCharacterData?: SavedCharacterData;
 }
 
 interface ImplProps extends Props {}
@@ -35,26 +39,25 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
-  includeKnaveSpells
+  includeKnaveSpells,
+  savedCharacterData
 }) => {
   // Hit Points
-  const [hitPoints, setHitPoints] = useState(
+  const [hitPoints, setHitPoints] = useState((savedCharacterData && savedCharacterData.hitPoints) ||
     getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
   );
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
   // Languages
-  const [languages, setLanguages] = useState(
+  const [languages, setLanguages] = useState(savedCharacterData ? ((savedCharacterData && savedCharacterData.languages)) :
     getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
   );
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(
-    getEquipment(classSelection, abilityScores[CON])
-  );
+  const [equipment] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.equipment) : getEquipment(classSelection, abilityScores[CON]));
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
@@ -64,14 +67,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setArmorClass(armorClass);
   }, [armorClass]);
 
-  // Spells
-  const [spells] = useState(getSpells(includeKnaveSpells, classSelection));
+  // Spells 
+  const [spells] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.spells) : getSpells(includeKnaveSpells, classSelection));
 
   // Traits
-  const [traits] = useState(getTraits(abilityScores[INT], languages));
+  const [traits] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.traits) : getTraits(abilityScores[INT], languages));
 
   //Character Name
-  const [characterName] = useState(getCharacterName());
+  const [characterName] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.name) : getCharacterName());
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -113,11 +116,110 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
+      {!savedCharacterData ? <PermalinkButtonContainer><PermalinkButton
+        style={{width: '275px'}}
+        variant="outline-secondary"
+        onClick={()=> {
+          saveCharacterData(
+            characterName, 
+            classSelection,
+            traits,
+            abilityScores,
+            hitPoints,
+            languages,
+            spells,
+            equipment.characterEquipmentString,
+            equipment.slotsToFill);
+        }}
+      >Permalink</PermalinkButton></PermalinkButtonContainer> : (
+      <SaveMessageContainer>
+        <SaveHeader>
+        <FontAwesomeIcon 
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}/>
+        IMPORTANT
+        <FontAwesomeIcon 
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}/>
+        </SaveHeader>
+        <SaveMessage dangerouslySetInnerHTML={createMarkup('<strong>Bookmark this page. Save the results!\n</strong>')}/>
+      </SaveMessageContainer>)}
       <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}
       </ClassTitle>
       <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
+
+      {/* Ability Scores */}
+      <AbilityScoresGrid>
+        <div dangerouslySetInnerHTML={createMarkup(`<strong>STR:</strong> ${abilityScores[STR]} ${
+          strMod === "None" ? "" : `(${strMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>DEX:</strong> ${abilityScores[DEX]} ${
+          strMod === "None" ? "" : `(${dexMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>CON</strong> ${abilityScores[CON]} ${
+          strMod === "None" ? "" : `(${conMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>INT:</strong> ${abilityScores[INT]} ${
+          strMod === "None" ? "" : `(${intMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>WIS:</strong> ${abilityScores[WIS]} ${
+          strMod === "None" ? "" : `(${wisMod})`
+        }`)}></div>
+                <div dangerouslySetInnerHTML={createMarkup(`<strong>CHA:</strong> ${abilityScores[CHA]} ${
+          strMod === "None" ? "" : `(${chaMod})`
+        }`)}></div>
+      </AbilityScoresGrid>
+
+      {/* Saves and Stats */}
+      <SavesAndStatsGrid>
+        <StatsContainer>
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>HP:</strong> ${hitPoints}`)}></div>
+          {/* <div>{`HP: ${hitPoints}`}</div> */}
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`)}></div>
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>AC:</strong> ${armorClass}`)}></div>
+          <div dangerouslySetInnerHTML={createMarkup(`<strong>${
+            experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
+          }</strong>`)}></div>
+        </StatsContainer>
+        <SavesContainer>
+          <Save>
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.poison}</strong>`)}></div>
+            <SaveScore>
+              {characterClasses[classSelection].saves.poison}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.wands}</strong>`)}></div>
+            <SaveScore>
+              {characterClasses[classSelection].saves.wands}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.stone}</strong>`)}></div>
+            <SaveScore>
+              {characterClasses[classSelection].saves.stone}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.breath}</strong>`)}></div>
+            <SaveScore>
+              {characterClasses[classSelection].saves.breath}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.magic}</strong>`)}></div>
+            <SaveScore>
+              {characterClasses[classSelection].saves.magic}
+            </SaveScore>
+          </Save>
+        </SavesContainer>
+      </SavesAndStatsGrid>
+
+      {/* Traits */}
       <TraitsContainer>
         <TraitsHeader
           onClick={() => {
@@ -136,72 +238,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </TraitsHeader>
         {isTraitsVisible && <div>{traits}</div>}
       </TraitsContainer>
-
-      {/* Ability Scores */}
-      <AbilityScoresGrid>
-        <div>{`STR: ${abilityScores[STR]} ${
-          strMod === "None" ? "" : `(${strMod})`
-        }`}</div>
-        <div>{`DEX: ${abilityScores[DEX]} ${
-          dexMod === "None" ? "" : `(${dexMod})`
-        }`}</div>
-        <div>{`CON: ${abilityScores[CON]} ${
-          conMod === "None" ? "" : `(${conMod})`
-        }`}</div>
-        <div>{`INT: ${abilityScores[INT]} ${
-          intMod === "None" ? "" : `(${intMod})`
-        }`}</div>
-        <div>{`WIS: ${abilityScores[WIS]} ${
-          wisMod === "None" ? "" : `(${wisMod})`
-        }`}</div>
-        <div>{`CHA: ${abilityScores[CHA]} ${
-          chaMod === "None" ? "" : `(${chaMod})`
-        }`}</div>
-      </AbilityScoresGrid>
-
-      {/* Saves and Stats */}
-      <SavesAndStatsGrid>
-        <StatsContainer>
-          <div>{`HP: ${hitPoints}`}</div>
-          <div>{`HD: ${characterClasses[classSelection].hitDice}`}</div>
-          <div>{`AC: ${armorClass}`}</div>
-          <div>{`${
-            experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
-          }`}</div>
-        </StatsContainer>
-        <SavesContainer>
-          <Save>
-            {saves.poison}
-            <SaveScore>
-              {characterClasses[classSelection].saves.poison}
-            </SaveScore>
-          </Save>
-          <Save>
-            {saves.wands}
-            <SaveScore>
-              {characterClasses[classSelection].saves.wands}
-            </SaveScore>
-          </Save>
-          <Save>
-            {saves.stone}
-            <SaveScore>
-              {characterClasses[classSelection].saves.stone}
-            </SaveScore>
-          </Save>
-          <Save>
-            {saves.breath}
-            <SaveScore>
-              {characterClasses[classSelection].saves.breath}
-            </SaveScore>
-          </Save>
-          <Save>
-            {saves.magic}
-            <SaveScore>
-              {characterClasses[classSelection].saves.magic}
-            </SaveScore>
-          </Save>
-        </SavesContainer>
-      </SavesAndStatsGrid>
 
       {/* Languages */}
       {characterClasses[classSelection].languages && (
@@ -404,6 +440,47 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   );
 };
 
+const SaveMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  white-space: pre-line;
+`;
+
+const SaveHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 2rem;
+`;
+
+const SaveMessageContainer = styled.div`
+  @keyframes fadeOut {
+    0% {opacity: 1; height: 73px}
+    25% {opacity: 0.75; height: 73x}
+    50% {opacity: 0.5; height: 73px}
+    75% {opacity: 0.25; height: 73px}
+    95% {opacity: 0; height: 73px}
+    100% {opacity: 0; height: 0px}
+  }
+  -webkit-animation: fadeOut 8s;
+    animation: fadeOut 8s;
+  -webkit-animation-fill-mode:forwards; 
+    animation-fill-mode:forwards;
+  -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+`;
+
+const PermalinkButton = styled(Button)`
+  color: black;
+`;
+
+const PermalinkButtonContainer = styled.div`
+  justify-content: center;
+  display: flex;
+  padding: 1rem 0 0.5rem 0;
+`;
+
 const CharacterName = styled.div`
   display: flex;
   justify-content: center;
@@ -415,6 +492,7 @@ const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
+  border-bottom:1px solid black;
 `;
 
 const ClassIcon = styled.div`
@@ -422,6 +500,7 @@ const ClassIcon = styled.div`
   justify-content: center;
   font-size: 5rem;
   opacity: 0.5;
+  padding: 0.5rem 0;
 `;
 
 const HeaderIcon = styled.div`
@@ -429,7 +508,6 @@ const HeaderIcon = styled.div`
 `;
 
 const TraitsContainer = styled.div`
-  border-bottom: 1px solid black;
   padding: 0.5rem;
 `;
 
