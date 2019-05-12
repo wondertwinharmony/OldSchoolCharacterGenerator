@@ -5,8 +5,8 @@
       uses this to handle routing (which we need for permalinking).
       @see https://surge.sh/help/adding-a-200-page-for-client-side-routing
 
-      The get our create react app build to recognize this file, we modify
-      our package.json build to be:
+      To get our create react app build to recognize this file, we modify
+      our package.json build script to be:
         "scripts": {
         ...,
         "build": "react-scripts build && cp build/index.html build/200.html",
