@@ -84,7 +84,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
     characterRandomItems[indexOfItemToReplace] = getRandomInstrument();
   }
 
-  characterEquipmentString = characterEquipment.flat().join("\n\n• ");
+  characterEquipmentString = characterEquipment.flat().join("<br><br>• ");
   /**
    * If class is a dwarf or halfling, and equipment
    * contains a two-handed sword or long bow, we have
