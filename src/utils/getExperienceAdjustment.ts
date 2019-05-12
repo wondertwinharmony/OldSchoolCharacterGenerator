@@ -52,9 +52,9 @@ export const getExperienceAdjustment = (
    * experience adjustment.
    */
 
-  // If class prime requisites match that of a elf...
-  // Prime Requisites: An elf must have at least 13 in both prime requisites in order to get
-  // the +5% bonus to experience. An elf with an INT of at least 16 and a STR of at least 13
+  // If class prime requisites match that of a elf or half-elf...
+  // Prime Requisites: An elf (or half-elf) must have at least 13 in both prime requisites in order
+  // to get the +5% bonus to experience. An elf with an INT of at least 16 and a STR of at least 13
   // receives a +10% XP bonus.
   if (classPrimeRequisites === "INT and STR") {
     if (abilityScores[INT] >= 13 && abilityScores[STR] >= 13)
