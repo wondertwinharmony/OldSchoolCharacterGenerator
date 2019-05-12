@@ -12,42 +12,13 @@ import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
+import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
 interface Props {
   className?: string;
 }
 
 interface ImplProps extends Props {}
-
-/**
- * @todo background image shouldn't shrink with tabs ->
- * apply to root element?
- *
- * @todo PERMALINKING!
- * use window.location to grab url, then parse for info
- * Info needed would be:
- * - abilityScores
- * - classSelection
- * - spell
- * - equipment
- * - traits
- * - name
- * - languages
- *
- * - ac can be recalculated
- *
- * Flow would be:
- * - on Character component display a permalink button
- *   to save the character information as a long url
- *   (possibly hash url)
- *   Clicking on the permalink button will redirect to
- *   constructed url immediately -> user can now bookmark
- *   this url to save the character data
- * - on App component load, use a util to check the url
- *   for information needed to rehydrate state of a
- *   character -> see above info needed
- *   (possibly decrypt hash url to do this)
- */
 
 const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   const [abilityScores, setAbilityScores] = useState(getAbilityScores);
@@ -59,6 +30,24 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   }, [abilityScores]);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
+
+  if(window.location.href !== 'http://localhost:3000/') {
+    const savedData = getSavedCharacterData(window.location.href);
+
+    if(savedData){
+      return (
+        <div className={className}>
+          <Character
+            classSelection={savedData && savedData.class}
+            abilityScores={savedData && savedData.abilityScores}
+            includeKnaveSpells={false}
+            savedCharacterData={savedData}
+          />
+        </div>
+      );
+    }
+  }
+
   return (
     <div className={className}>
       {!isClassSelected && (
@@ -129,6 +118,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           classSelection={classSelection}
           abilityScores={abilityScores}
           includeKnaveSpells={includeKnaveSpells}
+          savedCharacterData={undefined}
         />
       )}
       <CreatorsContainer>
