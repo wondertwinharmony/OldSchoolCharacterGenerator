@@ -30,9 +30,10 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   }, [abilityScores]);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
+  const homeURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/': 'http://oldschoolknave.surge.sh/';
 
-  if(window.location.href !== 'http://localhost:3000/') {
-    const savedData = getSavedCharacterData(window.location.href);
+  if(window.location.href !== homeURL) {
+    const savedData = getSavedCharacterData(window.location.href, homeURL);
 
     if(savedData){
       return (
@@ -118,7 +119,6 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
           classSelection={classSelection}
           abilityScores={abilityScores}
           includeKnaveSpells={includeKnaveSpells}
-          savedCharacterData={undefined}
         />
       )}
       <CreatorsContainer>
