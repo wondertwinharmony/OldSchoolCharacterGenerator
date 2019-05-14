@@ -2,13 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FaDiceD20 } from "react-icons/fa";
-import { GiChewedSkull, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled } from "react-icons/gi";
+import {
+  GiChewedSkull,
+  GiCometSpark,
+  GiKnapsack,
+  GiLockPicking,
+  GiScrollUnfurled
+} from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
-import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -20,10 +33,10 @@ import { getEquipment } from "../utils/getEquipment";
 import { getExperienceAdjustment } from "../utils/getExperienceAdjustment";
 import { getHitPoints } from "../utils/getHitPoints";
 import { getLanguages } from "../utils/getLanguages";
+import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
 import { saveCharacterData } from "../utils/saveCharacterData";
-import { SavedCharacterData } from "../utils/getSavedCharacterData";
 
 interface Props {
   abilityScores: number[];
@@ -43,21 +56,31 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   savedCharacterData
 }) => {
   // Hit Points
-  const [hitPoints, setHitPoints] = useState((savedCharacterData && savedCharacterData.hitPoints) ||
-    getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
+  const [hitPoints, setHitPoints] = useState(
+    (savedCharacterData && savedCharacterData.hitPoints) ||
+      getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
   );
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
   // Languages
-  const [languages, setLanguages] = useState(savedCharacterData ? ((savedCharacterData && savedCharacterData.languages)) :
-    getLanguages(characterClasses[classSelection].languages, abilityScores[INT])
+  const [languages, setLanguages] = useState(
+    savedCharacterData
+      ? savedCharacterData && savedCharacterData.languages
+      : getLanguages(
+          characterClasses[classSelection].languages,
+          abilityScores[INT]
+        )
   );
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
   // Equipment
-  const [equipment] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.equipment) : getEquipment(classSelection, abilityScores[CON]));
+  const [equipment] = useState(
+    savedCharacterData
+      ? savedCharacterData && savedCharacterData.equipment
+      : getEquipment(classSelection, abilityScores[CON])
+  );
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
@@ -67,14 +90,26 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setArmorClass(armorClass);
   }, [armorClass]);
 
-  // Spells 
-  const [spells] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.spells) : getSpells(includeKnaveSpells, classSelection));
+  // Spells
+  const [spells] = useState(
+    savedCharacterData
+      ? savedCharacterData && savedCharacterData.spells
+      : getSpells(includeKnaveSpells, classSelection)
+  );
 
   // Traits
-  const [traits] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.traits) : getTraits(abilityScores[INT], languages));
+  const [traits] = useState(
+    savedCharacterData
+      ? savedCharacterData && savedCharacterData.traits
+      : getTraits(abilityScores[INT], languages)
+  );
 
   //Character Name
-  const [characterName] = useState(savedCharacterData ? (savedCharacterData && savedCharacterData.name) : getCharacterName());
+  const [characterName] = useState(
+    savedCharacterData
+      ? savedCharacterData && savedCharacterData.name
+      : getCharacterName()
+  );
 
   // Character Section Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
@@ -116,36 +151,51 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
-      {!savedCharacterData ? <PermalinkButtonContainer><PermalinkButton
-        style={{width: '275px'}}
-        variant="outline-secondary"
-        onClick={()=> {
-          saveCharacterData(
-            characterName, 
-            classSelection,
-            traits,
-            abilityScores,
-            hitPoints,
-            languages,
-            spells,
-            equipment.characterEquipmentString,
-            equipment.slotsToFill);
-        }}
-      >Permalink</PermalinkButton></PermalinkButtonContainer> : (
-      <SaveMessageContainer>
-        <SaveHeader>
-        <FontAwesomeIcon 
-          icon={"exclamation-triangle"}
-          size="sm"
-          style={{ margin: "0.5rem" }}/>
-        IMPORTANT
-        <FontAwesomeIcon 
-          icon={"exclamation-triangle"}
-          size="sm"
-          style={{ margin: "0.5rem" }}/>
-        </SaveHeader>
-        <SaveMessage dangerouslySetInnerHTML={createMarkup('<strong>Bookmark this page. Save the results!\n</strong>')}/>
-      </SaveMessageContainer>)}
+      {!savedCharacterData ? (
+        <PermalinkButtonContainer>
+          <PermalinkButton
+            style={{ width: "275px" }}
+            variant="outline-secondary"
+            onClick={() => {
+              saveCharacterData(
+                characterName,
+                classSelection,
+                traits,
+                abilityScores,
+                hitPoints,
+                languages,
+                spells,
+                equipment.characterEquipmentString,
+                equipment.slotsToFill
+              );
+            }}
+          >
+            Permalink
+          </PermalinkButton>
+          <div>(or refresh to roll a new character)</div>
+        </PermalinkButtonContainer>
+      ) : (
+        <SaveMessageContainer>
+          <SaveHeader>
+            <FontAwesomeIcon
+              icon={"exclamation-triangle"}
+              size="sm"
+              style={{ margin: "0.5rem" }}
+            />
+            IMPORTANT
+            <FontAwesomeIcon
+              icon={"exclamation-triangle"}
+              size="sm"
+              style={{ margin: "0.5rem" }}
+            />
+          </SaveHeader>
+          <SaveMessage
+            dangerouslySetInnerHTML={createMarkup(
+              "<strong>Bookmark this page. Save the results!\n</strong>"
+            )}
+          />
+        </SaveMessageContainer>
+      )}
       <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}
@@ -154,64 +204,126 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
       {/* Ability Scores */}
       <AbilityScoresGrid>
-        <div dangerouslySetInnerHTML={createMarkup(`<strong>STR:</strong> ${abilityScores[STR]} ${
-          strMod === "None" ? "" : `(${strMod})`
-        }`)}></div>
-                <div dangerouslySetInnerHTML={createMarkup(`<strong>DEX:</strong> ${abilityScores[DEX]} ${
-          dexMod === "None" ? "" : `(${dexMod})`
-        }`)}></div>
-                <div dangerouslySetInnerHTML={createMarkup(`<strong>CON</strong> ${abilityScores[CON]} ${
-          conMod === "None" ? "" : `(${conMod})`
-        }`)}></div>
-                <div dangerouslySetInnerHTML={createMarkup(`<strong>INT:</strong> ${abilityScores[INT]} ${
-          intMod === "None" ? "" : `(${intMod})`
-        }`)}></div>
-                <div dangerouslySetInnerHTML={createMarkup(`<strong>WIS:</strong> ${abilityScores[WIS]} ${
-          wisMod === "None" ? "" : `(${wisMod})`
-        }`)}></div>
-                <div dangerouslySetInnerHTML={createMarkup(`<strong>CHA:</strong> ${abilityScores[CHA]} ${
-          chaMod === "None" ? "" : `(${chaMod})`
-        }`)}></div>
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>STR:</strong> ${abilityScores[STR]} ${
+              strMod === "None" ? "" : `(${strMod})`
+            }`
+          )}
+        />
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>DEX:</strong> ${abilityScores[DEX]} ${
+              dexMod === "None" ? "" : `(${dexMod})`
+            }`
+          )}
+        />
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>CON</strong> ${abilityScores[CON]} ${
+              conMod === "None" ? "" : `(${conMod})`
+            }`
+          )}
+        />
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>INT:</strong> ${abilityScores[INT]} ${
+              intMod === "None" ? "" : `(${intMod})`
+            }`
+          )}
+        />
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>WIS:</strong> ${abilityScores[WIS]} ${
+              wisMod === "None" ? "" : `(${wisMod})`
+            }`
+          )}
+        />
+        <div
+          dangerouslySetInnerHTML={createMarkup(
+            `<strong>CHA:</strong> ${abilityScores[CHA]} ${
+              chaMod === "None" ? "" : `(${chaMod})`
+            }`
+          )}
+        />
       </AbilityScoresGrid>
 
       {/* Saves and Stats */}
       <SavesAndStatsGrid>
         <StatsContainer>
-          <div dangerouslySetInnerHTML={createMarkup(`<strong>HP:</strong> ${hitPoints}`)}></div>
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>HP:</strong> ${hitPoints}`
+            )}
+          />
           {/* <div>{`HP: ${hitPoints}`}</div> */}
-          <div dangerouslySetInnerHTML={createMarkup(`<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`)}></div>
-          <div dangerouslySetInnerHTML={createMarkup(`<strong>AC:</strong> ${armorClass}`)}></div>
-          <div dangerouslySetInnerHTML={createMarkup(`<strong>${
-            experienceAdjustment === "+0% XP" ? "" : `${experienceAdjustment}`
-          }</strong>`)}></div>
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>AC:</strong> ${armorClass}`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>${
+                experienceAdjustment === "+0% XP"
+                  ? ""
+                  : `${experienceAdjustment}`
+              }</strong>`
+            )}
+          />
         </StatsContainer>
         <SavesContainer>
           <Save>
-            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.poison}</strong>`)}></div>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.poison}</strong>`
+              )}
+            />
             <SaveScore>
               {characterClasses[classSelection].saves.poison}
             </SaveScore>
           </Save>
           <Save>
-            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.wands}</strong>`)}></div>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.wands}</strong>`
+              )}
+            />
             <SaveScore>
               {characterClasses[classSelection].saves.wands}
             </SaveScore>
           </Save>
           <Save>
-            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.stone}</strong>`)}></div>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.stone}</strong>`
+              )}
+            />
             <SaveScore>
               {characterClasses[classSelection].saves.stone}
             </SaveScore>
           </Save>
           <Save>
-            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.breath}</strong>`)}></div>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.breath}</strong>`
+              )}
+            />
             <SaveScore>
               {characterClasses[classSelection].saves.breath}
             </SaveScore>
           </Save>
           <Save>
-            <div dangerouslySetInnerHTML={createMarkup(`<strong>${saves.magic}</strong>`)}></div>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.magic}</strong>`
+              )}
+            />
             <SaveScore>
               {characterClasses[classSelection].saves.magic}
             </SaveScore>
@@ -456,19 +568,37 @@ const SaveHeader = styled.div`
 
 const SaveMessageContainer = styled.div`
   @keyframes fadeOut {
-    0% {opacity: 1; height: 73px}
-    25% {opacity: 0.75; height: 73x}
-    50% {opacity: 0.5; height: 73px}
-    75% {opacity: 0.25; height: 73px}
-    95% {opacity: 0; height: 73px}
-    100% {opacity: 0; height: 0px}
+    0% {
+      opacity: 1;
+      height: 73px;
+    }
+    25% {
+      opacity: 0.75;
+      height: 73x;
+    }
+    50% {
+      opacity: 0.5;
+      height: 73px;
+    }
+    75% {
+      opacity: 0.25;
+      height: 73px;
+    }
+    95% {
+      opacity: 0;
+      height: 73px;
+    }
+    100% {
+      opacity: 0;
+      height: 0px;
+    }
   }
   -webkit-animation: fadeOut 8s;
-    animation: fadeOut 8s;
-  -webkit-animation-fill-mode:forwards; 
-    animation-fill-mode:forwards;
+  animation: fadeOut 8s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
 `;
 
 const PermalinkButton = styled(Button)`
@@ -478,6 +608,8 @@ const PermalinkButton = styled(Button)`
 const PermalinkButtonContainer = styled.div`
   justify-content: center;
   display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 1rem 0 0.5rem 0;
 `;
 
@@ -492,7 +624,7 @@ const ClassTitle = styled.div`
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
 `;
 
 const ClassIcon = styled.div`
