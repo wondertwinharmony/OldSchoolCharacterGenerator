@@ -158,19 +158,19 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           strMod === "None" ? "" : `(${strMod})`
         }`)}></div>
                 <div dangerouslySetInnerHTML={createMarkup(`<strong>DEX:</strong> ${abilityScores[DEX]} ${
-          strMod === "None" ? "" : `(${dexMod})`
+          dexMod === "None" ? "" : `(${dexMod})`
         }`)}></div>
                 <div dangerouslySetInnerHTML={createMarkup(`<strong>CON</strong> ${abilityScores[CON]} ${
-          strMod === "None" ? "" : `(${conMod})`
+          conMod === "None" ? "" : `(${conMod})`
         }`)}></div>
                 <div dangerouslySetInnerHTML={createMarkup(`<strong>INT:</strong> ${abilityScores[INT]} ${
-          strMod === "None" ? "" : `(${intMod})`
+          intMod === "None" ? "" : `(${intMod})`
         }`)}></div>
                 <div dangerouslySetInnerHTML={createMarkup(`<strong>WIS:</strong> ${abilityScores[WIS]} ${
-          strMod === "None" ? "" : `(${wisMod})`
+          wisMod === "None" ? "" : `(${wisMod})`
         }`)}></div>
                 <div dangerouslySetInnerHTML={createMarkup(`<strong>CHA:</strong> ${abilityScores[CHA]} ${
-          strMod === "None" ? "" : `(${chaMod})`
+          chaMod === "None" ? "" : `(${chaMod})`
         }`)}></div>
       </AbilityScoresGrid>
 

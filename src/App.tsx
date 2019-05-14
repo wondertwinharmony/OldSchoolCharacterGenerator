@@ -30,7 +30,8 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   }, [abilityScores]);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
-  const homeURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/': 'http://oldschoolknave.surge.sh/';
+  //currently only checking if it's https in production
+  const homeURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/': 'https://oldschoolknave.surge.sh/';
 
   if(window.location.href !== homeURL) {
     const savedData = getSavedCharacterData(window.location.href, homeURL);
