@@ -35,7 +35,6 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * svirfneblin: war pick
  *
  *  Advanced rules for poisons, combat options, and more.
- *
  */
 interface Props {
   className?: string;
