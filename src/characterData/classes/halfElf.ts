@@ -3,7 +3,7 @@ import { GiZeusSword } from "react-icons/gi";
 import { fighterEquipment } from "../equipmentKits";
 
 export const halfElf = {
-  name: "Half Elf",
+  name: "Half-Elf",
   icon: React.createElement(GiZeusSword, {}),
   requirements: "Minimum CHA and CON 9",
   primeRequisite: "INT and STR",
