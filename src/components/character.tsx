@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import { FaDiceD20 } from "react-icons/fa";
+import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
   GiChewedSkull,
+  GiCoins,
   GiCometSpark,
   GiKnapsack,
   GiLockPicking,
@@ -12,6 +13,7 @@ import {
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
+import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
 import {
@@ -122,6 +124,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
     true
   );
+  const [
+    isGainingXPAndCarousingVisible,
+    setIsGainingXPAndCarousingVisible
+  ] = useState(true);
 
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
@@ -514,8 +520,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         )}
         {isEquipmentVisible && (
           <GoldText>
-            † 160 gp can be contained in 1 slot, provided you have a container
-            for it.
+            † 160 coins can be contained in 1 slot, provided you have a
+            container for them.
           </GoldText>
         )}
       </EquipmentContainer>
@@ -532,7 +538,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               <HeaderIcon>
                 <FaDiceD20 />
               </HeaderIcon>
-              Dual Wielding &
+              Dual Wielding
+              <HeaderIcon>
+                <FaDAndD />
+              </HeaderIcon>
             </div>
             <div>Weapon Qualities</div>
           </WeaponQualitiesHeaderText>
@@ -548,6 +557,38 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         )}
       </WeaponQualitiesContainer>
+
+      {/* Gaining XP & Carousing Description */}
+      <GainingXPAndCarousingContainer>
+        <GainingXPAndCarousingHeader
+          onClick={() => {
+            setIsGainingXPAndCarousingVisible(!isGainingXPAndCarousingVisible);
+          }}
+        >
+          <GainingXPAndCarousingHeaderText>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <GiCoins />
+              </HeaderIcon>
+              Gaining XP
+              <HeaderIcon>
+                <FaDAndD />
+              </HeaderIcon>
+            </div>
+            Carousing
+          </GainingXPAndCarousingHeaderText>
+          <FontAwesomeIcon
+            icon={isGainingXPAndCarousingVisible ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </GainingXPAndCarousingHeader>
+        {isGainingXPAndCarousingVisible && (
+          <GainingXPAndCarousing
+            dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
+          />
+        )}
+      </GainingXPAndCarousingContainer>
     </div>
   );
 };
@@ -801,6 +842,26 @@ const GoldText = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+`;
+
+const GainingXPAndCarousingContainer = styled.div``;
+
+const GainingXPAndCarousingHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const GainingXPAndCarousingHeaderText = styled.div`
+  text-align: center;
+`;
+
+const GainingXPAndCarousing = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const WeaponQualitiesContainer = styled.div``;
