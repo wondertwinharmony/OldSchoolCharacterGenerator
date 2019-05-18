@@ -14,6 +14,29 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
+/**
+ * @todo
+ * Advanced Fantasy Old School Rules:
+ *
+ *  8/9 new human classes remain (icons):
+ * acrobat: body balance
+ * assassin: daggers
+ * barbarian: barbarian, biceps, ancient sword, brutal helm
+ * druid: wizard staff
+ * illusionist: pointy hat
+ * knight: visored helm
+ * paladin: templar shield
+ * ranger: compass, arrow cluster, high shot
+ *
+ *  4/6 new demihuman race-classes remain (icons):
+ * duergar: dwarf face, heavy helm
+ * gnome: wizard face
+ * half-orc: orc head
+ * svirfneblin: war pick
+ *
+ *  Advanced rules for poisons, combat options, and more.
+ *
+ */
 interface Props {
   className?: string;
 }
@@ -31,12 +54,15 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
   //currently only checking if it's https in production
-  const homeURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/': 'https://oldschoolknave.surge.sh/';
+  const homeURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000/"
+      : "https://oldschoolknave.surge.sh/";
 
-  if(window.location.href !== homeURL) {
+  if (window.location.href !== homeURL) {
     const savedData = getSavedCharacterData(window.location.href, homeURL);
 
-    if(savedData){
+    if (savedData) {
       return (
         <div className={className}>
           <Character
