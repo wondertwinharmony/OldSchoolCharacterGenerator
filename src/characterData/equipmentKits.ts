@@ -377,7 +377,7 @@ export const thiefEquipment = [
   [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)",
     "<strong>Thieves' Tools</strong>"
   ],
@@ -420,7 +420,7 @@ export const thiefEquipment = [
   [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>Silver Tipped Bolts</strong> (d4 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
@@ -444,7 +444,7 @@ export const thiefEquipment = [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Sword</strong> (Damage: 1d8, Qualities: Melee, 2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
   [
@@ -527,7 +527,7 @@ export const drowEquipment = [
     "<strong>Dagger</strong> (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "<strong>Dagger</strong> (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)",
     `${getDivineScrollSpell()}`
   ],
@@ -542,7 +542,7 @@ export const drowEquipment = [
     "<strong>Wooden Holy Symbol</strong>",
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)",
     `${getDivineScrollSpell()}`
   ],
@@ -615,7 +615,7 @@ export const bardEquipment = [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Dagger</strong> (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
   [
@@ -634,7 +634,7 @@ export const bardEquipment = [
   [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>Silver Tipped Bolts</strong> (d4 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
@@ -653,7 +653,7 @@ export const bardEquipment = [
   [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>Silver Tipped Bolts</strong> (d4 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
@@ -676,7 +676,7 @@ export const bardEquipment = [
     "<strong>Leather Armor</strong> (2 slots)",
     "<strong>Dagger</strong> (Damage: 1d4, Qualities: Melee, Missile (5’-10’ / 11’-20’ / 21’-30’))",
     "<strong>Crossbow</strong> (Damage: 1d6, Qualities: Missile (5’-80’ / 81’-160’ / 161’-240’), Slow, Two-handed, 3 slots)",
-    "<strong>Case of 30 Bolts</strong>",
+    "<strong>Case of Bolts</strong> (d20 usage die)",
     "<strong>2 Travel rations</strong> (1/day)"
   ],
   [

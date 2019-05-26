@@ -24,6 +24,7 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
+import coinConversions from "../static/coinConversions.png";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -584,9 +585,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         </GainingXPAndCarousingHeader>
         {isGainingXPAndCarousingVisible && (
-          <GainingXPAndCarousing
-            dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
-          />
+          <React.Fragment>
+            <GainingXPAndCarousing
+              dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
+            />
+            <CoinConversionsTable />
+          </React.Fragment>
         )}
       </GainingXPAndCarousingContainer>
     </div>
@@ -844,6 +848,26 @@ const GoldText = styled.div`
   flex-direction: column;
 `;
 
+const WeaponQualitiesContainer = styled.div``;
+
+const WeaponQualitiesHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const WeaponQualitiesHeaderText = styled.div`
+  text-align: center;
+`;
+
+const WeaponQualities = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
+`;
+
 const GainingXPAndCarousingContainer = styled.div``;
 
 const GainingXPAndCarousingHeader = styled.div`
@@ -864,24 +888,12 @@ const GainingXPAndCarousing = styled.div`
   white-space: pre-line;
 `;
 
-const WeaponQualitiesContainer = styled.div``;
-
-const WeaponQualitiesHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const WeaponQualitiesHeaderText = styled.div`
-  text-align: center;
-`;
-
-const WeaponQualities = styled.div`
-  padding: 0.5rem;
-  display: block;
-  white-space: pre-line;
+const CoinConversionsTable = styled.div`
+  height: 9.75rem;
+  background-image: url(${coinConversions});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24rem 8rem;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`

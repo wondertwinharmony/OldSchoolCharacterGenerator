@@ -34,7 +34,7 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * half-orc: orc head
  * svirfneblin: war pick
  *
- *  Advanced rules for poisons, combat options, and more.
+ * Advanced rules for poisons, combat options, and more.
  */
 interface Props {
   className?: string;
