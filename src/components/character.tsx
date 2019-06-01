@@ -8,14 +8,16 @@ import {
   GiCometSpark,
   GiKnapsack,
   GiLockPicking,
-  GiScrollUnfurled
+  GiScrollUnfurled,
+  GiSpiralBottle
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
+import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { knaveSpellAddendum } from "../characterData/spells";
-import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
+import { weaponQualities } from "../characterData/weaponQualities";
 import {
   CHA,
   CON,
@@ -122,6 +124,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
+  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(true);
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
     true
   );
@@ -527,6 +530,34 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         )}
       </EquipmentContainer>
 
+      {/* Combat Actions */}
+      <CombatActionsContainer>
+        <CombatActionsHeader
+          onClick={() => {
+            setIsCombatActionsVisible(!isCombatActionsVisible);
+          }}
+        >
+          <CombatActionsHeaderText>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <FaDiceD20 />
+              </HeaderIcon>
+              Combat Actions
+            </div>
+          </CombatActionsHeaderText>
+          <FontAwesomeIcon
+            icon={isCombatActionsVisible ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </CombatActionsHeader>
+        {isCombatActionsVisible && (
+          <CombatActions
+            dangerouslySetInnerHTML={createMarkup(combatActions)}
+          />
+        )}
+      </CombatActionsContainer>
+
       {/* Weapon Quality Descriptions */}
       <WeaponQualitiesContainer>
         <WeaponQualitiesHeader
@@ -537,14 +568,15 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <WeaponQualitiesHeaderText>
             <div style={{ display: "flex" }}>
               <HeaderIcon>
-                <FaDiceD20 />
+                <GiSpiralBottle />
               </HeaderIcon>
-              Dual Wielding
+              Item
               <HeaderIcon>
                 <FaDAndD />
               </HeaderIcon>
+              Weapon
             </div>
-            <div>Weapon Qualities</div>
+            <div>Qualities</div>
           </WeaponQualitiesHeaderText>
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
@@ -554,7 +586,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </WeaponQualitiesHeader>
         {isWeaponQualitiesVisible && (
           <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualitiesAndDualWield)}
+            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
           />
         )}
       </WeaponQualitiesContainer>
@@ -846,6 +878,26 @@ const GoldText = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+`;
+
+const CombatActionsContainer = styled.div``;
+
+const CombatActionsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const CombatActionsHeaderText = styled.div`
+  text-align: center;
+`;
+
+const CombatActions = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
 `;
 
 const WeaponQualitiesContainer = styled.div``;
