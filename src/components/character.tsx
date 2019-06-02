@@ -2,15 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
-import {
-  GiChewedSkull,
-  GiCoins,
-  GiCometSpark,
-  GiKnapsack,
-  GiLockPicking,
-  GiScrollUnfurled,
-  GiSpiralBottle
-} from "react-icons/gi";
+import { GiChewedSkull, GiCoins, GiCometSpark, GiKnapsack, GiLockPicking, GiScrollUnfurled, GiSpiralBottle } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
@@ -18,14 +10,7 @@ import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 import coinConversions from "../static/coinConversions.png";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
@@ -63,7 +48,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
-      getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
+      getHitPoints(
+        characterClasses[classSelection].hitDice,
+        abilityScores[CON],
+        classSelection
+      )
   );
   useEffect(() => {
     setHitPoints(hitPoints);
@@ -74,7 +63,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       ? savedCharacterData && savedCharacterData.languages
       : getLanguages(
           characterClasses[classSelection].languages,
-          abilityScores[INT]
+          abilityScores[INT],
+          classSelection
         )
   );
   useEffect(() => {
@@ -89,7 +79,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX], equipment.characterEquipmentString)
+    getArmorClass(
+      abilityScores[DEX],
+      equipment.characterEquipmentString,
+      classSelection
+    )
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -106,14 +100,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [traits] = useState(
     savedCharacterData
       ? savedCharacterData && savedCharacterData.traits
-      : getTraits(abilityScores[INT], languages)
+      : getTraits(abilityScores[INT], languages, classSelection)
   );
 
   //Character Name
   const [characterName] = useState(
     savedCharacterData
       ? savedCharacterData && savedCharacterData.name
-      : getCharacterName()
+      : getCharacterName(classSelection)
   );
 
   // Character Section Visibility

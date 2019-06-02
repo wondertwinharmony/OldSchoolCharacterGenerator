@@ -32,6 +32,18 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
     1
   )[0];
 
+  /**
+   * Crab-Men have unique starting equipment requirements due
+   * to their social status. If class is a Crab-Man, give them
+   * no starting equipment!
+   */
+  if (classOptionKey === "crabMan") {
+    return {
+      characterEquipmentString: "• <strong>None</strong>",
+      slotsToFill: 0
+    };
+  }
+
   // Starting wealth is 3d6x2 gp
   const characterStartingWealthString = `• <strong>${roller
     .roll("3d6*2")
