@@ -21,9 +21,12 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
    * score requirements will appear after the standard four
    * above.
    */
-  // if Dex >= 9 && INt >= 9 add Halfling to list of possible classes
+  // if Dex >= 9 && INt >= 9 add Bard to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[INT] >= 9)
     classOptions.bard = characterClasses.bard.name;
+  // if STR >= 9 && CON >= 9 add Crab-Person to list of possible classes
+  if (abilityScores[STR] >= 9 && abilityScores[CON] >= 9)
+    classOptions.crabPerson = characterClasses.crabPerson.name;
   // if INT >= 9 add Drow to list of possible classes (done separatenly
   // from Elf so they appear in desired order)
   if (abilityScores[INT] >= 9) classOptions.drow = characterClasses.drow.name;
@@ -39,9 +42,6 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   // if Dex >= 9 && INT >= 9 add Half-elf to list of possible classes
   if (abilityScores[CHA] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfElf = characterClasses.halfElf.name;
-  // if STR >= 9 && CON >= 9 add Crab-Man to list of possible classes
-  if (abilityScores[STR] >= 9 && abilityScores[CON] >= 9)
-    classOptions.crabMan = characterClasses.crabMan.name;
 
   return classOptions;
 };

@@ -41,9 +41,9 @@ export const getHitPoints = (
   if (hitPoints < 1) return 1;
 
   /**
-   * Crab-Men have an extra hit point.
+   * Crab-People have an extra hit point.
    */
-  if (classOptionKey === "crabMan") {
+  if (classOptionKey === "crabPerson") {
     return hitPoints + 1;
   }
   return hitPoints;

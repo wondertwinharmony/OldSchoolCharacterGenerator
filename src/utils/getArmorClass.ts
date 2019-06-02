@@ -14,10 +14,10 @@ export const getArmorClass = (
   classOptionKey: string
 ) => {
   /**
-   * Crab-Men have an absurd starting AC due to their natural
+   * Crab-People have an absurd starting AC due to their natural
    * armor, so return that here now.
    */
-  if (classOptionKey === "crabMan") return 16;
+  if (classOptionKey === "crabPerson") return 16;
   /**
    * Determine if character has any of the following types
    * of armor and use that as the base AC, otherwise base

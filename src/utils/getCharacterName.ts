@@ -1,5 +1,5 @@
 import { sampleSize } from "lodash";
-import { crabManName, firstNames, surnames } from "../characterData/names";
+import { crabPersonName, firstNames, surnames } from "../characterData/names";
 
 /**
  * Utility function that random generates a character's name,
@@ -7,11 +7,11 @@ import { crabManName, firstNames, surnames } from "../characterData/names";
  */
 export const getCharacterName = (classOptionKey: string) => {
   /**
-   * Crab-Men have a different culture and so their names
+   * Crab-People have a different culture and so their names
    * are drawn from a list created for Yoon-Suin.
    */
-  if (classOptionKey === "crabMan")
-    return sampleSize(crabManName, 1).toString();
+  if (classOptionKey === "crabPerson")
+    return sampleSize(crabPersonName, 1).toString();
 
   return (
     sampleSize(firstNames, 1).toString() +

@@ -1,6 +1,6 @@
 import { bard } from "./classes/bard";
 import { cleric } from "./classes/cleric";
-import { crabMan } from "./classes/crabMan";
+import { crabPerson } from "./classes/crabPerson";
 import { drow } from "./classes/drow";
 import { dwarf } from "./classes/dwarf";
 import { elf } from "./classes/elf";
@@ -55,5 +55,5 @@ export const characterClasses: { [key: string]: characterClass } = {
   elf,
   halfling,
   halfElf,
-  crabMan
+  crabPerson
 };

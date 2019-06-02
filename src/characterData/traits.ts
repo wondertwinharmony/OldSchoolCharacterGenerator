@@ -259,7 +259,7 @@ export const traits = {
   ]
 };
 
-// Crab-Men Traits are different from other classes since they are
+// Crab-People Traits are different from other classes since they are
 // so radically different from other classes in appearance and social
 // status.
 // ("Traits\n"
@@ -268,7 +268,7 @@ export const traits = {
 // "Has a {physique} physique, a {face} face, and a {skin -> shell} shell.\n"
 // "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
 // "Favors {alignment}.")
-export const crabManTraits = {
+export const crabPersonTraits = {
   physique: [
     "athletic",
     "brawny",
@@ -374,7 +374,19 @@ export const crabManTraits = {
     "whiny"
   ],
 
-  background: ["gladiator", "slave"],
+  background: [
+    "gladiator",
+    "slave",
+    "servant",
+    "laborer",
+    "ditcher",
+    "beggar",
+    "scullion",
+    "gravedigger",
+    "bodyguard",
+    "fisher",
+    "pearl diver"
+  ],
 
   misfortunes: [
     "abandoned",

@@ -33,11 +33,11 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
   )[0];
 
   /**
-   * Crab-Men have unique starting equipment requirements due
-   * to their social status. If class is a Crab-Man, give them
+   * Crab-People have unique starting equipment requirements due
+   * to their social status. If class is a Crab-Person, give them
    * no starting equipment!
    */
-  if (classOptionKey === "crabMan") {
+  if (classOptionKey === "crabPerson") {
     return {
       characterEquipmentString: "• <strong>None</strong>",
       slotsToFill: 0

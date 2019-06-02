@@ -25,9 +25,9 @@ export const getLanguages = (
 ) => {
   let bonusLanguageCount = 0;
   /**
-   * Crab-Men do not get bonus languages.
+   * Crab-People do not get bonus languages.
    */
-  if (classOptionKey === "crabMan") return classLanguages.join("");
+  if (classOptionKey === "crabPerson") return classLanguages.join("");
 
   if (intScore >= 13 && intScore <= 15) bonusLanguageCount = 1;
   if (intScore >= 16 && intScore <= 17) bonusLanguageCount = 2;

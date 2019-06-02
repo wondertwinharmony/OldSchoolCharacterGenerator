@@ -1,5 +1,5 @@
 import { sampleSize } from "lodash";
-import { crabManTraits, traits } from "../characterData/traits";
+import { crabPersonTraits, traits } from "../characterData/traits";
 
 /**
  * Utility function that produces a string describing a generated character's traits.
@@ -15,32 +15,35 @@ export const getTraits = (
   classOptionKey: string
 ) => {
   /**
-   * Crab-Men Traits are different from other classes since they are
+   * Crab-People Traits are different from other classes since they are
    * so radically different from other classes in appearance and social
    * status.
    */
-  if (classOptionKey === "crabMan") {
-    let crabManTraitsString = `A ${sampleSize(
-      crabManTraits.background,
+  if (classOptionKey === "crabPerson") {
+    let crabPersonTraitsString = `A ${sampleSize(
+      crabPersonTraits.background,
       1
-    )}. Wears ${sampleSize(crabManTraits.rags, 1)} rags.\n Has a ${sampleSize(
-      crabManTraits.physique,
+    )}. Wears ${sampleSize(
+      crabPersonTraits.rags,
+      1
+    )} rags.\n Has a ${sampleSize(
+      crabPersonTraits.physique,
       1
     )} physique, a ${sampleSize(
-      crabManTraits.face,
+      crabPersonTraits.face,
       1
     )} face, and a ${sampleSize(
-      crabManTraits.shell,
+      crabPersonTraits.shell,
       1
-    )} shell.\n Is ${sampleSize(crabManTraits.virtues, 1)}, but ${sampleSize(
-      crabManTraits.vices,
+    )} shell.\n Is ${sampleSize(crabPersonTraits.virtues, 1)}, but ${sampleSize(
+      crabPersonTraits.vices,
       1
     )}. Has been ${sampleSize(
-      crabManTraits.misfortunes,
+      crabPersonTraits.misfortunes,
       1
-    )} in the past.\n Favors ${sampleSize(crabManTraits.alignment, 1)}.`;
+    )} in the past.\n Favors ${sampleSize(crabPersonTraits.alignment, 1)}.`;
 
-    return crabManTraitsString;
+    return crabPersonTraitsString;
   }
 
   let languageDescriptor = "";
