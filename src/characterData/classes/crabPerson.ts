@@ -23,12 +23,13 @@ export const crabPerson = {
   },
   equipment: [["None"]],
   abilities: [
+    "<strong>Amphibious:</strong> Crab-people can breathe both air and water.",
     "<strong>Combat:</strong> A crab-person's only attack is with their claws. Crab-people are so strong and their claws so powerful that each successful hit causes <i>double</i> damage: roll to hit as normal and then roll 1d8x2 to determine HP loss.",
-    "<strong>Natural Armor:</strong> Crab-people have a natural AC of 16 from their tough shells. This improves to 17 at level 3, 18 at level 5, 19 at level 7, and 20 at level 9.",
+    "<strong>Cannot Manipulate Items Requiring Fingers:</strong> Crab-people cannot manipulate magic items, or indeed do anything requiring fingers, and cannot learn how to read or write. They cannot wield weapons.",
     "<strong>Cannot Speak Human Languages:</strong> Crab-people cannot speak human languages, though they can understand what they are told and communicate with clicks and gestures to some degree.",
-    "<strong>No Starting Wealth or Equipment:</strong> Crab-people begin the game with no wealth or equipment whatsoever due to their extremely low rank in society.",
-    "<strong>Cannot Manipulate Items Requiring Fingers:</strong> Crab-people cannot manipulate magic items, or indeed do anything requiring fingers, and cannot learn how to read or write. They cannot wield weapons."
+    "<strong>Natural Armor:</strong> Crab-people have a natural AC of 16 from their tough shells. This improves to 17 at level 3, 18 at level 5, 19 at level 7, and 20 at level 9.",
+    "<strong>No Starting Wealth or Equipment:</strong> Crab-people begin the game with no wealth or equipment whatsoever due to their extremely low rank in society."
   ],
   abilitiesSummary:
-    "Powerful Claws, Natural Armor, Cannot Speak Human Languages, Cannot Read or Write, No Starting Wealth or Equipment, Cannot Manipulate Items Requiring Fingers"
+    "Amphibious, Powerful Claws, Natural Armor, Cannot Speak Human Languages, Cannot Read or Write, No Starting Wealth or Equipment, Cannot Manipulate Items Requiring Fingers"
 };
