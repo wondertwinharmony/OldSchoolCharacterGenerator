@@ -1,4 +1,4 @@
-export const gainingXPAndCarousing = `<strong>XP Awards:</strong> All characters who return from an adventure alive receive experience points (XP). XP is gained from three sources: treasure recovered, monsters defeated, and successful trips to the Barrowmoore (+50 xp for each trip, with DM discretion).</strong>
+export const gainingXPAndCarousing = `<strong>XP Awards:</strong> All characters who return from an adventure alive receive experience points (XP). XP is gained from three sources: treasure recovered, monsters defeated, and successful trips to the Barrowmoor (+500 XP for starting the session and ending the session with the same character). At the end of a session all XP earned from treasure recovered and monsters defeated is combined for the group, doubled, and divided by the number of characters.
 
 <strong>Treasure:</strong>
 <div style='padding: 0 1.5rem'>

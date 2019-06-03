@@ -8,14 +8,16 @@ import {
   GiCometSpark,
   GiKnapsack,
   GiLockPicking,
-  GiScrollUnfurled
+  GiScrollUnfurled,
+  GiSpiralBottle
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
+import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { knaveSpellAddendum } from "../characterData/spells";
-import { weaponQualitiesAndDualWield } from "../characterData/weaponQualities";
+import { weaponQualities } from "../characterData/weaponQualities";
 import {
   CHA,
   CON,
@@ -24,6 +26,7 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
+import coinConversions from "../static/coinConversions.png";
 import TurnUndeadTable from "../static/TurnUndeadTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
@@ -121,6 +124,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
+  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(true);
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
     true
   );
@@ -526,6 +530,34 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         )}
       </EquipmentContainer>
 
+      {/* Combat Actions */}
+      <CombatActionsContainer>
+        <CombatActionsHeader
+          onClick={() => {
+            setIsCombatActionsVisible(!isCombatActionsVisible);
+          }}
+        >
+          <CombatActionsHeaderText>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <FaDiceD20 />
+              </HeaderIcon>
+              Combat Actions
+            </div>
+          </CombatActionsHeaderText>
+          <FontAwesomeIcon
+            icon={isCombatActionsVisible ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </CombatActionsHeader>
+        {isCombatActionsVisible && (
+          <CombatActions
+            dangerouslySetInnerHTML={createMarkup(combatActions)}
+          />
+        )}
+      </CombatActionsContainer>
+
       {/* Weapon Quality Descriptions */}
       <WeaponQualitiesContainer>
         <WeaponQualitiesHeader
@@ -536,14 +568,15 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           <WeaponQualitiesHeaderText>
             <div style={{ display: "flex" }}>
               <HeaderIcon>
-                <FaDiceD20 />
+                <GiSpiralBottle />
               </HeaderIcon>
-              Dual Wielding
+              Item
               <HeaderIcon>
                 <FaDAndD />
               </HeaderIcon>
+              Weapon
             </div>
-            <div>Weapon Qualities</div>
+            <div>Qualities</div>
           </WeaponQualitiesHeaderText>
           <FontAwesomeIcon
             icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
@@ -553,7 +586,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </WeaponQualitiesHeader>
         {isWeaponQualitiesVisible && (
           <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualitiesAndDualWield)}
+            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
           />
         )}
       </WeaponQualitiesContainer>
@@ -584,9 +617,12 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         </GainingXPAndCarousingHeader>
         {isGainingXPAndCarousingVisible && (
-          <GainingXPAndCarousing
-            dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
-          />
+          <React.Fragment>
+            <GainingXPAndCarousing
+              dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
+            />
+            <CoinConversionsTable />
+          </React.Fragment>
         )}
       </GainingXPAndCarousingContainer>
     </div>
@@ -844,9 +880,9 @@ const GoldText = styled.div`
   flex-direction: column;
 `;
 
-const GainingXPAndCarousingContainer = styled.div``;
+const CombatActionsContainer = styled.div``;
 
-const GainingXPAndCarousingHeader = styled.div`
+const CombatActionsHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -854,11 +890,11 @@ const GainingXPAndCarousingHeader = styled.div`
   font-size: 1.5rem;
 `;
 
-const GainingXPAndCarousingHeaderText = styled.div`
+const CombatActionsHeaderText = styled.div`
   text-align: center;
 `;
 
-const GainingXPAndCarousing = styled.div`
+const CombatActions = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
@@ -882,6 +918,34 @@ const WeaponQualities = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+const GainingXPAndCarousingContainer = styled.div``;
+
+const GainingXPAndCarousingHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const GainingXPAndCarousingHeaderText = styled.div`
+  text-align: center;
+`;
+
+const GainingXPAndCarousing = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
+`;
+
+const CoinConversionsTable = styled.div`
+  height: 9.75rem;
+  background-image: url(${coinConversions});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24rem 8rem;
 `;
 
 const StyledCharacter = styled(CharacterImpl)`
