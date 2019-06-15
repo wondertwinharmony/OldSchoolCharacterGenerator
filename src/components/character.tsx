@@ -63,7 +63,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
-      getHitPoints(characterClasses[classSelection].hitDice, abilityScores[CON])
+      getHitPoints(
+        characterClasses[classSelection].hitDice,
+        abilityScores[CON],
+        classSelection
+      )
   );
   useEffect(() => {
     setHitPoints(hitPoints);
@@ -74,7 +78,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       ? savedCharacterData && savedCharacterData.languages
       : getLanguages(
           characterClasses[classSelection].languages,
-          abilityScores[INT]
+          abilityScores[INT],
+          classSelection
         )
   );
   useEffect(() => {
@@ -89,7 +94,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX], equipment.characterEquipmentString)
+    getArmorClass(
+      abilityScores[DEX],
+      equipment.characterEquipmentString,
+      classSelection
+    )
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -106,14 +115,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [traits] = useState(
     savedCharacterData
       ? savedCharacterData && savedCharacterData.traits
-      : getTraits(abilityScores[INT], languages)
+      : getTraits(abilityScores[INT], languages, classSelection)
   );
 
   //Character Name
   const [characterName] = useState(
     savedCharacterData
       ? savedCharacterData && savedCharacterData.name
-      : getCharacterName()
+      : getCharacterName(classSelection)
   );
 
   // Character Section Visibility

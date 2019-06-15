@@ -18,8 +18,17 @@ import { settingLanguages } from "../characterData/settingLanguages";
  * @param intScore
  */
 
-export const getLanguages = (classLanguages: string[], intScore: number) => {
+export const getLanguages = (
+  classLanguages: string[],
+  intScore: number,
+  classOptionKey: string
+) => {
   let bonusLanguageCount = 0;
+  /**
+   * Crab-People do not get bonus languages.
+   */
+  if (classOptionKey === "crabPerson") return classLanguages.join("");
+
   if (intScore >= 13 && intScore <= 15) bonusLanguageCount = 1;
   if (intScore >= 16 && intScore <= 17) bonusLanguageCount = 2;
   if (intScore === 18) bonusLanguageCount = 3;
