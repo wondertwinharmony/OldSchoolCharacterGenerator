@@ -8,7 +8,16 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  *
  * @param dexScore
  */
-export const getArmorClass = (dexScore: number, equipment: string) => {
+export const getArmorClass = (
+  dexScore: number,
+  equipment: string,
+  classOptionKey: string
+) => {
+  /**
+   * Crab-People have an absurd starting AC due to their natural
+   * armor, so return that here now.
+   */
+  if (classOptionKey === "crabPerson") return 16;
   /**
    * Determine if character has any of the following types
    * of armor and use that as the base AC, otherwise base

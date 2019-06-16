@@ -35,17 +35,6 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * svirfneblin: war pick
  *
  * Advanced rules for poisons, combat options, and more.
- * 
- * - [ ] Create Combat Actions rules ref section
- *  - move + move, move + attack, move + spell, move + interact
- * - [ ] Change dual wield rules to match OSE rules
- * - [ ] Include parry rules
- * - [ ] Include charging attack rules
- * - [ ] Allow wizards to use staves as well (add to starting kit)
- * - [ ] For classes that have prime req of STR or DEX, show in
- *       - class info dropdown that they can dual wield
- * - [ ] DEPLOY, then add crab-man class
- * - [ ] Add crab-man class - icon: GiCrabClaw
  */
 interface Props {
   className?: string;

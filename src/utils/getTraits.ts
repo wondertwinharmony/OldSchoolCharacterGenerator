@@ -1,5 +1,5 @@
 import { sampleSize } from "lodash";
-import { traits } from "../characterData/traits";
+import { crabPersonTraits, traits } from "../characterData/traits";
 
 /**
  * Utility function that produces a string describing a generated character's traits.
@@ -9,7 +9,43 @@ import { traits } from "../characterData/traits";
  * @param  {number} intScore
  * @param  {string} languages
  */
-export const getTraits = (intScore: number, languages: string) => {
+export const getTraits = (
+  intScore: number,
+  languages: string,
+  classOptionKey: string
+) => {
+  /**
+   * Crab-People Traits are different from other classes since they are
+   * so radically different from other classes in appearance and social
+   * status.
+   */
+  if (classOptionKey === "crabPerson") {
+    let crabPersonTraitsString = `A ${sampleSize(
+      crabPersonTraits.background,
+      1
+    )}. Wears ${sampleSize(
+      crabPersonTraits.rags,
+      1
+    )} rags.\n Has a ${sampleSize(
+      crabPersonTraits.physique,
+      1
+    )} physique, a ${sampleSize(
+      crabPersonTraits.face,
+      1
+    )} face, and a ${sampleSize(
+      crabPersonTraits.shell,
+      1
+    )} shell.\n Is ${sampleSize(crabPersonTraits.virtues, 1)}, but ${sampleSize(
+      crabPersonTraits.vices,
+      1
+    )}. Has been ${sampleSize(
+      crabPersonTraits.misfortunes,
+      1
+    )} in the past.\n Favors ${sampleSize(crabPersonTraits.alignment, 1)}.`;
+
+    return crabPersonTraitsString;
+  }
+
   let languageDescriptor = "";
   let languageCount = languages.split(",").length;
 
