@@ -30,6 +30,6 @@ export const wildMagicUser = {
   abilitiesSummary: "Arcane Magic, Spell Level Variability, Wild Surges",
   spells: "see MagicUser spells",
   wildMagicUserMagicSurges: [
-    "<strong>Handling Wild Surges:</strong> Wild surge occurrence is determined by rolling 1d6 on the Wild Magic-User Chance of Wild Surge table. The DM will roll to determine the result of a wild surge. It is possible to not know the immediate consequences of a wild surge."
+    "<strong>Handling Wild Surges:</strong> Wild surge occurrence is determined by rolling 1d6 on the above table. The DM will roll to determine the consequences of a wild surge. It is possible to not know the immediate consequences of a wild surge."
   ]
 };

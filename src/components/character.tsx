@@ -2,34 +2,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
-import {
-  GiBrain,
-  GiChewedSkull,
-  GiCoins,
-  GiCometSpark,
-  GiKnapsack,
-  GiLaserSparks,
-  GiLockPicking,
-  GiScrollUnfurled,
-  GiSpiralBottle
-} from "react-icons/gi";
+import { GiBrain, GiChewedSkull, GiCoins, GiCometSpark, GiKnapsack, GiLaserSparks, GiLockPicking, GiScrollUnfurled, GiSpiralBottle, GiSwordwoman } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
 import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
+import { retainers } from "../characterData/retainers";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import charismaAdjustmentTable from "../static/charismaAdjustmentTable.png";
 import coinConversions from "../static/coinConversions.png";
-import TurnUndeadTable from "../static/TurnUndeadTable.png";
+import psionicistSkillsChanceOfSuccess from "../static/psionicistSkillsTable.png";
+import thiefSkillsChanceOfSuccess from "../static/thiefSkillsChanceOfSuccess.png";
+import turningTableResults from "../static/turningTableResults.png";
+import turnUndeadTable from "../static/turnUndeadTable.png";
+import wildMagicUserWildSurgesTable from "../static/wildMagicUserWildSurgesTable.png";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
@@ -142,15 +131,17 @@ const CharacterImpl: React.SFC<ImplProps> = ({
     setIsWildMagicUserMagicSurgesVisible
   ] = useState(true);
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
-  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(true);
+  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(false);
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
-    true
+    false
   );
+  const [isRetainersVisible, setIsRetainersVisible] = useState(false);
   const [
     isGainingXPAndCarousingVisible,
     setIsGainingXPAndCarousingVisible
-  ] = useState(true);
+  ] = useState(false);
 
+  // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
     getClassPrimeRequisites(classSelection)
@@ -161,21 +152,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const intMod = getAbilityScoreModifier(abilityScores[INT]);
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
-
-  /**
-   * ICON NOTES:
-   *
-   * traits: GiScrollUnfurled
-   * languages: MdChatBubble
-   * abilities: MdStar
-   * turning the dead: GiChewedSkull
-   * @todo Possibly add different spell icons
-   * as more spellcaster classes are added
-   * spells: GiCometSpark
-   * thief skills: GiLockPicking
-   * equipment: GiKnapsack
-   * dual wielding and weapon qualities: FaDiceD20
-   */
 
   return (
     <div className={className}>
@@ -440,17 +416,18 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             <HeaderIcon>
               <GiChewedSkull />
             </HeaderIcon>
-            Turning the Dead
+            Turning the Undead
             <FontAwesomeIcon
               icon={isClericTurnVisible ? "caret-up" : "caret-down"}
               size="lg"
               style={{ margin: "0 0.5rem" }}
             />
           </ClericTurnHeader>
+          {isClericTurnVisible && <ClericTurnTable />}
           {isClericTurnVisible && (
             <div>{characterClasses[classSelection].turn}</div>
           )}
-          {isClericTurnVisible && <ClericTurnTable />}
+          {isClericTurnVisible && <ClericTurnResultsTable />}
         </ClericTurnContainer>
       )}
 
@@ -503,8 +480,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             />
           </SkillsHeader>
           <SkillsContainer>
+            {isThiefSkillsVisible && <ThiefSkillsChanceOfSuccessTable />}
             {isThiefSkillsVisible && (
-              <ThiefSkill
+              <Skill
                 dangerouslySetInnerHTML={createMarkup(
                   characterClasses[classSelection].thiefSkills!.join("\n")
                 )}
@@ -533,7 +511,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </SkillsHeader>
           <SkillsContainer>
             {isPsionicistSkillsVisible && (
-              <ThiefSkill
+              <PsionicistSkillsChanceOfSuccessTable />
+            )}
+            {isPsionicistSkillsVisible && (
+              <Skill
                 dangerouslySetInnerHTML={createMarkup(
                   characterClasses[classSelection].psionicistSkills!.join("\n")
                 )}
@@ -566,7 +547,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           </SkillsHeader>
           <SkillsContainer>
             {isWildMagicUserMagicSurgesVisible && (
-              <ThiefSkill
+              <WildMagicUserWildSurgesTable />
+            )}
+            {isWildMagicUserMagicSurgesVisible && (
+              <Skill
                 dangerouslySetInnerHTML={createMarkup(
                   characterClasses[
                     classSelection
@@ -672,6 +656,33 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           />
         )}
       </WeaponQualitiesContainer>
+
+      {/* Retainers */}
+      <RetainersContainer>
+        <RetainersHeader
+          onClick={() => {
+            setIsRetainersVisible(!isRetainersVisible);
+          }}
+        >
+          <RetainersHeaderText>
+            <div style={{ display: "flex" }}>
+              <HeaderIcon>
+                <GiSwordwoman />
+              </HeaderIcon>
+              Retainers
+            </div>
+          </RetainersHeaderText>
+          <FontAwesomeIcon
+            icon={isRetainersVisible ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </RetainersHeader>
+        {isRetainersVisible && <CharismaAdjustmentsTable />}
+        {isRetainersVisible && (
+          <Retainers dangerouslySetInnerHTML={createMarkup(retainers)} />
+        )}
+      </RetainersContainer>
 
       {/* Gaining XP & Carousing Description */}
       <GainingXPAndCarousingContainer>
@@ -888,11 +899,19 @@ const ClericTurnContainer = styled.div`
 `;
 
 const ClericTurnTable = styled.div`
-  height: 9.75rem;
-  background-image: url(${TurnUndeadTable});
+  height: 26.75rem;
+  background-image: url(${turnUndeadTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 24rem 8rem;
+  background-size: 23rem 27rem;
+`;
+
+const ClericTurnResultsTable = styled.div`
+  height: 17.75rem;
+  background-image: url(${turningTableResults});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24rem 14rem;
 `;
 
 const ClericTurnHeader = styled.div`
@@ -924,8 +943,9 @@ const KnaveAddendum = styled.div`
 `;
 
 const SkillsContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
 `;
 
 const SkillsHeader = styled.div`
@@ -935,9 +955,33 @@ const SkillsHeader = styled.div`
   font-size: 1.5rem;
 `;
 
-const ThiefSkill = styled.div`
+const Skill = styled.div`
   padding: 0.5rem;
   white-space: pre-line;
+`;
+
+const ThiefSkillsChanceOfSuccessTable = styled.div`
+  height: 34.75rem;
+  background-image: url(${thiefSkillsChanceOfSuccess});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25rem 33rem;
+`;
+
+const PsionicistSkillsChanceOfSuccessTable = styled.div`
+  height: 34.75rem;
+  background-image: url(${psionicistSkillsChanceOfSuccess});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 13rem 33rem;
+`;
+
+const WildMagicUserWildSurgesTable = styled.div`
+  height: 34.75rem;
+  background-image: url(${wildMagicUserWildSurgesTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 13rem 33rem;
 `;
 
 const EquipmentContainer = styled.div``;
@@ -997,6 +1041,34 @@ const WeaponQualitiesHeaderText = styled.div`
 `;
 
 const WeaponQualities = styled.div`
+  padding: 0.5rem;
+  display: block;
+  white-space: pre-line;
+`;
+
+const RetainersContainer = styled.div``;
+
+const RetainersHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const RetainersHeaderText = styled.div`
+  text-align: center;
+`;
+
+const CharismaAdjustmentsTable = styled.div`
+  height: 15.75rem;
+  background-image: url(${charismaAdjustmentTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20rem 14rem;
+`;
+
+const Retainers = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
