@@ -35,7 +35,6 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * svirfneblin: war pick
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
- * - Add custom psionicist class from OD&D magazine, GiPsychicWaves
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool
  *  - Consider simple random spellbook generator for Illusionist and Magic-User
