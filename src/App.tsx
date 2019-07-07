@@ -34,6 +34,9 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * half-orc: orc head
  * svirfneblin: war pick
  *
+ * - Add custom kobold class, GiFoxHead (like an infravision halfling)
+ * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
+ *
  * Advanced rules for poisons, combat options, and more.
  */
 interface Props {
