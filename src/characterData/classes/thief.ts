@@ -12,7 +12,7 @@ export const thief = {
   maximumLevel: "14",
   allowedArmor: "Leather armor, no shields",
   allowedWeapons: "Any",
-  languages: ["Alignment", "Common"],
+  languages: ["Alignment", "Common", "Thieves' Cant"],
   saves: {
     poison: 13,
     wands: 14,
@@ -28,7 +28,7 @@ export const thief = {
   ],
   abilitiesSummary:
     "Back-stab, Thief Skills (climb sheer surfaces, find or remove traps, hear noise, hide in shadows, move silently, open locks, pick pockets)",
-  skills: [
+  thiefSkills: [
     "<strong>Climb Sheer Surface:</strong> 87%",
     "<strong>Find or Remove Traps:</strong> 10%",
     "<strong>Hear Noise:</strong> 1-2",

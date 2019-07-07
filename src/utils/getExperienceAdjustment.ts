@@ -1,4 +1,4 @@
-import { DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import { CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
 
 /**
  * Helper for getting standard experience adjustments
@@ -35,6 +35,9 @@ export const getExperienceAdjustment = (
   }
   if (classPrimeRequisites === "DEX") {
     experienceAdjustment = getStandardExperienceAdjustment(abilityScores[DEX]);
+  }
+  if (classPrimeRequisites === "CON") {
+    experienceAdjustment = getStandardExperienceAdjustment(abilityScores[CON]);
   }
   if (classPrimeRequisites === "INT") {
     experienceAdjustment = getStandardExperienceAdjustment(abilityScores[INT]);

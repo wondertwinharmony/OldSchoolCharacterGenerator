@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
+  GiBrain,
   GiChewedSkull,
   GiCoins,
   GiCometSpark,
   GiKnapsack,
+  GiLaserSparks,
   GiLockPicking,
   GiScrollUnfurled,
   GiSpiralBottle
@@ -132,6 +134,13 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
+  const [isPsionicistSkillsVisible, setIsPsionicistSkillsVisible] = useState(
+    true
+  );
+  const [
+    isWildMagicUserMagicSurgesVisible,
+    setIsWildMagicUserMagicSurgesVisible
+  ] = useState(true);
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
   const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(true);
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
@@ -477,9 +486,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       )}
 
       {/* Thief Skills */}
-      {characterClasses[classSelection].skills && (
+      {characterClasses[classSelection].thiefSkills && (
         <React.Fragment>
-          <ThiefSkillsHeader
+          <SkillsHeader
             onClick={() => {
               setIsThiefSkillsVisible(!isThiefSkillsVisible);
             }}
@@ -492,16 +501,80 @@ const CharacterImpl: React.SFC<ImplProps> = ({
               icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
               size="lg"
             />
-          </ThiefSkillsHeader>
-          <ThiefSkillsContainer>
+          </SkillsHeader>
+          <SkillsContainer>
             {isThiefSkillsVisible && (
               <ThiefSkill
                 dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].skills!.join("\n")
+                  characterClasses[classSelection].thiefSkills!.join("\n")
                 )}
               />
             )}
-          </ThiefSkillsContainer>
+          </SkillsContainer>
+        </React.Fragment>
+      )}
+
+      {/* Psionicist Skills */}
+      {characterClasses[classSelection].psionicistSkills && (
+        <React.Fragment>
+          <SkillsHeader
+            onClick={() => {
+              setIsPsionicistSkillsVisible(!isPsionicistSkillsVisible);
+            }}
+          >
+            <HeaderIcon>
+              <GiBrain />
+            </HeaderIcon>
+            Psionicist Skills
+            <FontAwesomeIcon
+              icon={isPsionicistSkillsVisible ? "caret-up" : "caret-down"}
+              size="lg"
+            />
+          </SkillsHeader>
+          <SkillsContainer>
+            {isPsionicistSkillsVisible && (
+              <ThiefSkill
+                dangerouslySetInnerHTML={createMarkup(
+                  characterClasses[classSelection].psionicistSkills!.join("\n")
+                )}
+              />
+            )}
+          </SkillsContainer>
+        </React.Fragment>
+      )}
+
+      {/* Wild Magic-User Wild Surges */}
+      {characterClasses[classSelection].wildMagicUserMagicSurges && (
+        <React.Fragment>
+          <SkillsHeader
+            onClick={() => {
+              setIsWildMagicUserMagicSurgesVisible(
+                !isWildMagicUserMagicSurgesVisible
+              );
+            }}
+          >
+            <HeaderIcon>
+              <GiLaserSparks />
+            </HeaderIcon>
+            Wild Surges
+            <FontAwesomeIcon
+              icon={
+                isWildMagicUserMagicSurgesVisible ? "caret-up" : "caret-down"
+              }
+              size="lg"
+            />
+          </SkillsHeader>
+          <SkillsContainer>
+            {isWildMagicUserMagicSurgesVisible && (
+              <ThiefSkill
+                dangerouslySetInnerHTML={createMarkup(
+                  characterClasses[
+                    classSelection
+                  ].wildMagicUserMagicSurges!.join("\n")
+                )}
+              />
+            )}
+          </SkillsContainer>
         </React.Fragment>
       )}
 
@@ -850,12 +923,12 @@ const KnaveAddendum = styled.div`
   white-space: pre-line;
 `;
 
-const ThiefSkillsContainer = styled.div`
+const SkillsContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const ThiefSkillsHeader = styled.div`
+const SkillsHeader = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Sancreek", cursive;

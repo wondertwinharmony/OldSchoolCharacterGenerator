@@ -34,6 +34,15 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * half-orc: orc head
  * svirfneblin: war pick
  *
+ * - Add custom kobold class, GiFoxHead (like an infravision halfling)
+ * - Add custom psionicist class from OD&D magazine, GiPsychicWaves
+ * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
+ * - Create own random treasure app tool
+ *  - Consider simple random spellbook generator for Illusionist and Magic-User
+ *  - Consider making Courtney Campbell's Traps and Treasures
+ *    - excellent treasure tables rollable
+ * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
+ *
  * Advanced rules for poisons, combat options, and more.
  */
 interface Props {
