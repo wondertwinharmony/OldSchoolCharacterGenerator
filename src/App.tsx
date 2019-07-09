@@ -34,6 +34,8 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * half-orc: orc head
  * svirfneblin: war pick
  *
+ * - BARD NEEDS getExperienceAdjustment added for CHA + WIS
+ *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool
