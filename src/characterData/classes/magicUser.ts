@@ -11,7 +11,7 @@ export const magicUser = {
   xpToSecondLevel: "2,500 XP",
   maximumLevel: "14",
   allowedArmor: "None",
-  allowedWeapons: "Dagger only",
+  allowedWeapons: "Daggers and staves only",
   languages: ["Alignment", "Common"],
   saves: {
     poison: 13,

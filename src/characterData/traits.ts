@@ -258,3 +258,178 @@ export const traits = {
     "chaos"
   ]
 };
+
+// Crab-People Traits are different from other classes since they are
+// so radically different from other classes in appearance and social
+// status.
+// ("Traits\n"
+// "--------------------------------------------------\n"
+// "A {background}. Wears {clothing -> rags} rags.\n"
+// "Has a {physique} physique, a {face} face, and a {skin -> shell} shell.\n"
+// "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
+// "Favors {alignment}.")
+export const crabPersonTraits = {
+  physique: [
+    "athletic",
+    "brawny",
+    "gaunt",
+    "hulking",
+    "lanky",
+    "ripped",
+    "rugged",
+    "short",
+    "stout",
+    "tiny",
+    "towering"
+  ],
+
+  face: [
+    "blunt",
+    "elongated",
+    "broken",
+    "impish",
+    "narrow",
+    "round",
+    "sunken",
+    "sharp",
+    "square",
+    "wide"
+  ],
+
+  shell: [
+    "barnacled",
+    "crusted",
+    "battle scarred",
+    "dark",
+    "blue",
+    "pale",
+    "perfect",
+    "pierced",
+    "reeking",
+    "rough",
+    "smooth",
+    "war painted",
+    "weathered",
+    "bumpy",
+    "jagged",
+    "cleft",
+    "cracked"
+  ],
+
+  rags: [
+    "bloody",
+    "filthy",
+    "stained",
+    "frayed",
+    "oversized",
+    "patched",
+    "rancid",
+    "torn",
+    "undersized"
+  ],
+
+  virtues: [
+    "ambitious",
+    "cautious",
+    "courageous",
+    "courteous",
+    "curious",
+    "disciplined",
+    "focused",
+    "generous",
+    "gregarious",
+    "honest",
+    "honorable",
+    "humble",
+    "idealistic",
+    "just",
+    "loyal",
+    "merciful",
+    "righteous",
+    "serene",
+    "stoic",
+    "tolerant"
+  ],
+
+  vices: [
+    "aggressive",
+    "arrogant",
+    "bitter",
+    "cowardly",
+    "cruel",
+    "deceitful",
+    "flippant",
+    "gluttonous",
+    "greedy",
+    "irascible",
+    "lazy",
+    "nervous",
+    "prejudiced",
+    "reckless",
+    "rude",
+    "suspicious",
+    "vain",
+    "vengeful",
+    "wasteful",
+    "whiny"
+  ],
+
+  background: [
+    "gladiator",
+    "slave",
+    "servant",
+    "laborer",
+    "ditcher",
+    "beggar",
+    "scullion",
+    "gravedigger",
+    "bodyguard",
+    "fisher",
+    "pearl diver"
+  ],
+
+  misfortunes: [
+    "abandoned",
+    "addicted",
+    "blackmailed",
+    "condemned",
+    "cursed",
+    "defrauded",
+    "demoted",
+    "discredited",
+    "disowned",
+    "exiled",
+    "framed",
+    "haunted",
+    "kidnapped",
+    "mutilated",
+    "pursued",
+    "rejected",
+    "replaced",
+    "robbed",
+    "suspected"
+  ],
+
+  alignment: [
+    "law",
+    "law",
+    "law",
+    "law",
+    "law",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "neutrality",
+    "chaos",
+    "chaos",
+    "chaos",
+    "chaos",
+    "chaos"
+  ]
+};

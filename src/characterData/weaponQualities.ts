@@ -1,4 +1,4 @@
-export const weaponQualitiesAndDualWield = `<strong>Dual Wielding:</strong> Any class may fight with a weapon in each hand. You can make one extra attack each round with the second weapon held in your off hand. When fighting in this way you suffer a –4 attack penalty with your off hand attack.</strong>
+export const weaponQualities = `<strong>Usage Die:</strong> Consumables such as a quiver of arrows, case of bolts etc. have an assigned size of die (d4, d6, d8 etc.). Each time you would use this type of consumable, roll the assigned size of die. If it comes up 3 or higher you get the use successfully. If it comes up 1 or 2 you get the use successfully, but next time you use the next smaller die size (d20 -> d12 -> d10 -> d8 -> d6 -> d4). Rolling a 1 or 2 on a d4 means you get a successful use but subsequently run out of that consumable item.
 
 <strong>Blunt:</strong> May be used by clerics.  
 

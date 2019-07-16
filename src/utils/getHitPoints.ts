@@ -10,11 +10,15 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  * 1 or 2 is rolled, before applying CON
  * modifier, re-roll.
  */
-export const getHitPoints = (hitDice: string, conScore: number) => {
+export const getHitPoints = (
+  hitDice: string,
+  conScore: number,
+  classOptionKey: string
+) => {
   const roller = new Roll();
   const hitPointsRoll = roller.roll(hitDice).result;
 
-  if (hitPointsRoll <= 2) getHitPoints(hitDice, conScore);
+  if (hitPointsRoll <= 2) getHitPoints(hitDice, conScore, classOptionKey);
 
   /**
    * Since getAbilityScoreModifier returns a string for display,
@@ -35,5 +39,12 @@ export const getHitPoints = (hitDice: string, conScore: number) => {
    * case make sure we always return at least 1 HP.
    */
   if (hitPoints < 1) return 1;
+
+  /**
+   * Crab-People have an extra hit point.
+   */
+  if (classOptionKey === "crabPerson") {
+    return hitPoints + 1;
+  }
   return hitPoints;
 };
