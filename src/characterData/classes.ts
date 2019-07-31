@@ -41,6 +41,10 @@ export interface characterClass {
   spells?: string;
   turn?: string;
   thiefSkills?: string[];
+  acrobatSkills?: string[];
+  assassinSkills?: string[];
+  barbarianSkills?: string[];
+  halfOrcThiefSkills?: string[];
   psionicistSkills?: string[];
   wildMagicUserMagicSurges?: string[];
 }

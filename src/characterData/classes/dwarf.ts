@@ -14,11 +14,11 @@ export const dwarf = {
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: ["Alignment", "Common", "Dwarvish", "Gnome", "Goblin", "Kobold"],
   saves: {
-    poison: 10,
-    wands: 11,
-    stone: 12,
+    poison: 8,
+    wands: 9,
+    stone: 10,
     breath: 13,
-    magic: 14
+    magic: 12
   },
   equipment: fighterEquipment,
   abilities: [

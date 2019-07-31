@@ -27,7 +27,7 @@ export const elf = {
     "<strong>Detect Secret Doors:</strong> Elves have keen eyes that allow them, when actively searching, to detect hidden and secret doors with a 2-in-6 chance (see <i>Dungeon Adventuring in Core Rules</i>).",
     "<strong>Immunity to Ghoul Paralysis:</strong> Elves are completely unaffected by the paralysis ghouls can inflict.",
     "<strong>Infravision:</strong> Elves have infravision to 60’ (see <i>Hazards and Challenges: Darkness in Core Rules</i>).",
-    "<strong>Listening at Doors:</strong> Elves have a 2-in-6 chance of hearing noises (see <i>Doors, B/X Essentials: Core Rules</i>)."
+    "<strong>Listening at Doors:</strong> Elves have a 2-in-6 chance of hearing noises (see <i>Dungeon Adventuring in Core Rules</i>)."
   ],
   abilitiesSummary:
     "Arcane Magic, Detect Secret Doors, Immunity to Ghoul Paralysis, Infravision, Listening at Doors",

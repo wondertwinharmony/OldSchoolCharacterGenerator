@@ -19,29 +19,45 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * Advanced Fantasy Old School Rules:
  *
  *  8/9 new human classes remain (icons):
- * acrobat: body balance
- * assassin: daggers
- * barbarian: barbarian, biceps, ancient sword, brutal helm
- * druid: wizard staff
- * illusionist: pointy hat
- * knight: visored helm
- * paladin: templar shield
- * ranger: compass, arrow cluster, high shot
+ * - [x] acrobat: body balance
+ * - [] needs acrobat equipment (many pole weapons)
+ * - [] needs acrobat skills icon:
+ * - [x] assassin: daggers
+ * - [] needs assassin equipment (include poisons)
+ * - [] needs assassin skills icon: bloody sword
+ * - [x] barbarian: hunting horn, totem, brutal helm, barbarian, biceps, ancient sword
+ * - [] needs barbarian skills icon: snake totem
+ * - [] needs barbarian equipment (maybe give totemic/tribal items)
+ * - [x] druid: wizard staff
+ * - [] needs druid equipment (wooden shields, holy symbol)
+ * - [x] illusionist: pointy hat
+ * - [] needs illusionist/gnome equipment (include illusionist scrolls)
+ * - [x] knight: visored helm
+ * - [] needs knight equipment (no leather armor, no missile weapons)
+ * - [x] paladin: templar shield
+ * - [] needs paladin equipment (holy symbol)
+ * - [x] ranger: compass, arrow cluster, high shot
+ * - [] needs ranger equipment (more long bows)
+ * - [] needs tracking table icon: paw print
  *
  *  4/6 new demihuman race-classes remain (icons):
- * duergar: dwarf face, heavy helm
- * gnome: wizard face
- * half-orc: orc head
- * svirfneblin: war pick
+ * - [x] duergar: heavy helm, dwarf face
+ * - [] needs same equipment check as dwarves
+ * - [x] gnome: wizard face
+ * - [] needs illusionist/gnome equipment (include illusionist scrolls and burrowing mammal pets)
+ * - [x] half-orc: orc head
+ * - [] needs half-orc equipment
+ * - [x] svirfneblin: war pick
+ * - [] needs same equipment check as dwarves
  *
- * - BARD NEEDS getExperienceAdjustment added for CHA + WIS
+ * - [] FIX 18 ability scores not displaying 15% XP bonus
+ * - [] BARD NEEDS getExperienceAdjustment added for CHA + WIS
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool
  *  - Consider simple random spellbook generator for Illusionist and Magic-User
- *  - Consider making Courtney Campbell's Traps and Treasures
- *    - excellent treasure tables rollable
+ *  - Consider making Traps and Treasures tables rollable
  * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
  *
  * Advanced rules for poisons, combat options, and more.
