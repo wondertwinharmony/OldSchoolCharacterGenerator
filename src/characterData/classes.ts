@@ -1,14 +1,26 @@
+import { acrobat } from "./classes/acrobat";
+import { assassin } from "./classes/assassin";
+import { barbarian } from "./classes/barbarian";
 import { bard } from "./classes/bard";
 import { cleric } from "./classes/cleric";
 import { crabPerson } from "./classes/crabPerson";
 import { drow } from "./classes/drow";
+import { druid } from "./classes/druid";
+import { duergar } from "./classes/duergar";
 import { dwarf } from "./classes/dwarf";
 import { elf } from "./classes/elf";
 import { fighter } from "./classes/fighter";
+import { gnome } from "./classes/gnome";
 import { halfElf } from "./classes/halfElf";
 import { halfling } from "./classes/halfling";
+import { halfOrc } from "./classes/halfOrc";
+import { illusionist } from "./classes/illusionist";
+import { knight } from "./classes/knight";
 import { magicUser } from "./classes/magicUser";
+import { paladin } from "./classes/paladin";
 import { psionicist } from "./classes/psionicist";
+import { ranger } from "./classes/ranger";
+import { svirfneblin } from "./classes/svirfneblin";
 import { thief } from "./classes/thief";
 import { wildMagicUser } from "./classes/wildMagicUser";
 
@@ -58,12 +70,24 @@ export const characterClasses: { [key: string]: characterClass } = {
   magicUser,
   wildMagicUser,
   thief,
+  acrobat,
+  assassin,
+  barbarian,
   bard,
   crabPerson,
   drow,
+  druid,
+  duergar,
   dwarf,
   elf,
-  halfling,
+  gnome,
   halfElf,
-  psionicist
+  halfling,
+  halfOrc,
+  illusionist,
+  knight,
+  paladin,
+  psionicist,
+  ranger,
+  svirfneblin
 };
