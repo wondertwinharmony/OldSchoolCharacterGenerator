@@ -12,7 +12,7 @@ export const thief = {
   maximumLevel: "14",
   allowedArmor: "Leather armor, no shields",
   allowedWeapons: "Any",
-  languages: ["Alignment", "Common"],
+  languages: ["Alignment", "Common", "Thieves' Cant"],
   saves: {
     poison: 13,
     wands: 14,
@@ -32,7 +32,7 @@ export const thief = {
    * @see for "Using a Thief Skill" homebrew rule
    * http://doomslakers.blogspot.com/2019/01/once-again-with-thieves.html
    */
-  skills: [
+  thiefSkills: [
     "<strong>Climb Sheer Surface (CS), Find or Remove Traps (TR), Hear Noise (HN), Hide in Shadows (HS), Move Silently (MS), Open Locks (OL), Pick Pockets (PP)</strong>\n",
     "<strong>Using a Thief Skill:</strong> The DM will roll skill dice and the thief player will roll an ability check (d20 + DEX modifier) simultaneously. If the skill roll is successful, the thief has perfectly executed their subtle craft and cannot fail. Otherwise the ability check result is used to determine success or failure. <i>Thieves are exceptional at these skills. Other classes may attempt these skills with only an ability check and usually disadvantage (DM discretion).</i>"
   ]

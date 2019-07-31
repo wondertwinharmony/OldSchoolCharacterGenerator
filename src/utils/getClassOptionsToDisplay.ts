@@ -39,9 +39,15 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   // if CON >= 9 && DEX >= 9 add Halfling to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfling = characterClasses.halfling.name;
-  // if Dex >= 9 && INT >= 9 add Half-elf to list of possible classes
+  // if DEX >= 9 && INT >= 9 add Half-elf to list of possible classes
   if (abilityScores[CHA] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfElf = characterClasses.halfElf.name;
+  // if CON >= 9 add Psionicist to list of possible classes
+  if (abilityScores[CON] >= 9)
+    classOptions.psionicist = characterClasses.psionicist.name;
+  // if INT >= 9 add Psionicist to list of possible classes
+  if (abilityScores[INT] >= 9)
+    classOptions.wildMagicUser = characterClasses.wildMagicUser.name;
 
   return classOptions;
 };
