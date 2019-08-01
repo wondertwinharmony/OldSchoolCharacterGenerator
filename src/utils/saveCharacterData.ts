@@ -34,9 +34,10 @@
  */
 export const saveCharacterData = (name: string, classSelection: string, traits: string, abilityScores: number[], hitPoints: number, languages: string, characterSpells: string[], equipment: string, equipmentSlots: number) => {
     let baseURL = window.location.href;
+    const usersOfMagic = ['elf', 'magicUser', 'drow', 'gnome', 'wildMagicUser','illusionist'];
     let spells = '';
 
-    if(classSelection === 'magicUser' || classSelection === 'elf'|| classSelection === 'drow') {
+    if(usersOfMagic.includes(classSelection)) {
         spells = characterSpells.join('#');
     }
 
