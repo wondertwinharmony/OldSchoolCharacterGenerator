@@ -8,7 +8,9 @@ import { fighter } from "./classes/fighter";
 import { halfElf } from "./classes/halfElf";
 import { halfling } from "./classes/halfling";
 import { magicUser } from "./classes/magicUser";
+import { psionicist } from "./classes/psionicist";
 import { thief } from "./classes/thief";
+import { wildMagicUser } from "./classes/wildMagicUser";
 
 /**
  * Saves
@@ -38,7 +40,9 @@ export interface characterClass {
   abilitiesSummary: string;
   spells?: string;
   turn?: string;
-  skills?: string[];
+  thiefSkills?: string[];
+  psionicistSkills?: string[];
+  wildMagicUserMagicSurges?: string[];
 }
 
 /**
@@ -48,12 +52,14 @@ export const characterClasses: { [key: string]: characterClass } = {
   cleric,
   fighter,
   magicUser,
+  wildMagicUser,
   thief,
   bard,
+  crabPerson,
   drow,
   dwarf,
   elf,
   halfling,
   halfElf,
-  crabPerson
+  psionicist
 };
