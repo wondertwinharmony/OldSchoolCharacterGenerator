@@ -22,6 +22,7 @@ export const druid = {
   },
   equipment: druidEquipment,
   abilities: [
+    "<strong>Alignment:</strong> Druids regard the ways of the natural world as the ideal state of things. They see the concepts of Law and Chaos as extremes that are both equally against nature. Thus, druids must be neutral in alignment.",
     "<strong>Charm Immunity:</strong> Druids of 7th level and above are immune to the charms of fairies and Sylvan creatures (e.g. dryads, nixies).",
     "<strong>Combat:</strong> The holy doctrine of the druids stipulates that they may not use metal armour or shields (wooden shields may be purchased at the normal price). Their choice of weapons is limited to clubs, daggers, slings, spears, and staves.",
     "<strong>Divine Magic:</strong> See <i>Magic in Core Rules, p42</i> for full details on divine magic.\n\n<div style='padding: 0 1.5rem'><strong>Holy symbol:</strong> A druid must carry a holy symbol: e.g. a sprig of mistletoe which the character must harvest.\n\n<strong>Deity disfavor:</strong> A druid must be faithful to the tenets of their alignment and religion. A druid who falls from favor with their deity may incur penalties.\n\n<strong>Magical research:</strong> A druid of any level may spend time and money on magical research. This allows them to create new spells or other magical effects associated with their deity. When a druid reaches 9th level, they are also able to create magic items.\n\n<strong>Spell casting:</strong> A druid may pray to receive spells from nature. The power and number of spells available to a druid are determined by the character’s experience level. The list of spells available to druids is found in <i>Druid and Illusionist Spells</i>.\n\n<strong>Using magic items:</strong> As spell casters, dru- ids can use magic scrolls of spells on their spell list. They can also use items that may only be used by divine spell casters (e.g. some staves). Druids may not use magical books or tomes.</div>",
@@ -33,5 +34,5 @@ export const druid = {
     "<strong>Sylvan Languages:</strong> At each level above 2nd, a druid learns to speak a language used by creatures of Sylvan forests (e.g. dryads, green dragons, pixies, treants)."
   ],
   abilitiesSummary:
-    "Charm Immunity, Divine Magic, Energy Resistance, Plant and Animal Identification, Pass Without Trace, Path-Finding, Shape Change, Sylvan Languages"
+    "Alignment (neutral), Charm Immunity, Divine Magic, Energy Resistance, Plant and Animal Identification, Pass Without Trace, Path-Finding, Shape Change, Sylvan Languages"
 };

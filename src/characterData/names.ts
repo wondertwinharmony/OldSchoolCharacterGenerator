@@ -1,4 +1,4 @@
-export const firstNames = ["Beavis", "Gambrinus", "Rendlesham", "Abigayl", "Aebria", "Aeobreia", "Breia", "Aedria", "Aodreia", "Dreia", "Aeliya", "Aliya",
+export const firstNames = ["Dinkle", "Wyeth", "Beavis", "Gambrinus", "Rendlesham", "Abigayl", "Aebria", "Aeobreia", "Breia", "Aedria", "Aodreia", "Dreia", "Aeliya", "Aliya",
                "Aella", "Aemilya", "Aemma", "Aemy", "Amy", "Ami", "Aeria", "Arya", "Aeva",
                "Aevelyn", "Evylann", "Alaexa", "Alyxa", "Alina", "Aelina", "Aelinea", "Allisann", "Allysann",
                "Alyce", "Alys", "Alysea", "Alyssia", "Aelyssa", "Amelya", "Maelya", "Andreya", "Aendrea",
@@ -171,7 +171,7 @@ export const firstNames = ["Beavis", "Gambrinus", "Rendlesham", "Abigayl", "Aebr
                "Iagos", "Tagos", "Tilo", "Tiloros", "Tomo", "Tommos", "Uenio", "Unnos", "Victoran",
                "Tornos", "Vincenso", "Vincenzo", "Vinnos"]
 
-export const surnames = ["Bright", "Brown", "Browne", "Brushfire", "Camp", "Campman", "Canyon", "Cricketts", "Crickets",
+export const surnames = ["Dinklage", "Bright", "Brown", "Browne", "Brushfire", "Camp", "Campman", "Canyon", "Cricketts", "Crickets",
             "Dunes", "Doons", "Doones", "Dunne", "Dunneman", "Flats", "Fox", "Foxx", "Gold",
             "Golden", "Grey", "Gray", "Gulch", "Gully", "Hardy", "Hills", "Hill", "Hopper",
             "Hunter", "Huntsman", "March", "Marcher", "Moon", "Redmoon", "Palmer", "Palms", "Peartree",

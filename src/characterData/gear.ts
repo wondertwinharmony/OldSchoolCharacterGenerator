@@ -77,6 +77,7 @@ export const gear = [
 ];
 
 export const instruments = [
+  "<strong>Air Horn</strong>",
   "<strong>Bagpipe</strong>",
   "<strong>Bladder Pipe</strong>",
   "<strong>Castanets</strong>",
@@ -100,5 +101,6 @@ export const instruments = [
   "<strong>Shofar</strong>",
   "<strong>Sitar</strong>",
   "<strong>Viol</strong>",
+  "<strong>Vuvuzela</strong>",
   "<strong>Zink</strong>"
 ];

@@ -1,4 +1,11 @@
-import { CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 
 /**
  * Helper for getting standard experience adjustments
@@ -23,10 +30,12 @@ const getStandardExperienceAdjustment = (abilityScore: number) => {
  * Utility for getting experience reward adjustments.
  * @param abilityScores
  * @param classPrimeRequisites
+ * @param classSelection
  */
 export const getExperienceAdjustment = (
   abilityScores: number[],
-  classPrimeRequisites: string
+  classPrimeRequisites: string,
+  classSelection: string
 ) => {
   let experienceAdjustment = "+0% XP";
 
@@ -45,34 +54,93 @@ export const getExperienceAdjustment = (
   if (classPrimeRequisites === "WIS") {
     experienceAdjustment = getStandardExperienceAdjustment(abilityScores[WIS]);
   }
+  if (classPrimeRequisites === "CHA") {
+    experienceAdjustment = getStandardExperienceAdjustment(abilityScores[CHA]);
+  }
 
-  /**
-   * For now we do not need to check race (or class), but in future
-   * we may need to if we add more races/classes. For now assume that
-   * checking classPrimeRequisite string is enough, but if we
-   * need to check race (or class) in future we'll have to pass
-   * classOptionKey to this util as well to lookup the new race/class'
-   * experience adjustment.
-   */
+  // Prime Requisites Example: An elf must have at
+  // least 13 in both prime requisites in order to get the +5%
+  // bonus to experience. An elf with an INT of at least 16 and a
+  // STR of at least 13 receives a +10% XP bonus.
 
-  // If class prime requisites match that of a elf or half-elf...
-  // Prime Requisites: An elf (or half-elf) must have at least 13 in both prime requisites in order
-  // to get the +5% bonus to experience. An elf with an INT of at least 16 and a STR of at least 13
-  // receives a +10% XP bonus.
-  if (classPrimeRequisites === "INT and STR") {
+  // Barbarian
+  if (
+    classSelection === "barbarian" &&
+    classPrimeRequisites === "CON and STR"
+  ) {
+    if (abilityScores[CON] >= 13 || abilityScores[STR] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[CON] >= 16 && abilityScores[STR] >= 16)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Drow
+  if (classSelection === "drow" && classPrimeRequisites === "STR and WIS") {
+    if (abilityScores[STR] >= 13 && abilityScores[WIS] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[STR] >= 13 && abilityScores[WIS] >= 16)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Elf
+  if (classSelection === "elf" && classPrimeRequisites === "INT and STR") {
     if (abilityScores[INT] >= 13 && abilityScores[STR] >= 13)
       experienceAdjustment = "+5% XP";
     if (abilityScores[INT] >= 16 && abilityScores[STR] >= 13)
       experienceAdjustment = "+10% XP";
   }
-  // If class prime requisites match that of a halfling...
-  // Prime Requisites: A halfling must have at least 13 in one or the other prime requisite
-  // in order to get a +5% to experience. The character must have a STR and DEX of 13 or higher
-  // to get a +10% bonus.
-  if (classPrimeRequisites === "DEX and STR") {
+
+  // Gnome
+  if (classSelection === "gnome" && classPrimeRequisites === "DEX and INT") {
+    if (abilityScores[DEX] >= 13 && abilityScores[INT] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[DEX] >= 13 && abilityScores[INT] >= 16)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Half-Elf
+  if (classSelection === "halfElf" && classPrimeRequisites === "INT and STR") {
+    if (abilityScores[INT] >= 13 && abilityScores[STR] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (
+      (abilityScores[INT] >= 16 && abilityScores[STR] >= 13) ||
+      (abilityScores[INT] >= 13 && abilityScores[STR] >= 16)
+    )
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Halfling
+  if (classSelection === "halfling" && classPrimeRequisites === "DEX and STR") {
     if (abilityScores[DEX] >= 13 || abilityScores[STR] >= 13)
       experienceAdjustment = "+5% XP";
     if (abilityScores[DEX] >= 13 && abilityScores[STR] >= 13)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Half-Orc
+  if (classSelection === "halfOrc" && classPrimeRequisites === "DEX and STR") {
+    if (abilityScores[DEX] >= 13 && abilityScores[STR] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[DEX] >= 16 && abilityScores[STR] >= 16)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Paladin
+  if (classSelection === "paladin" && classPrimeRequisites === "STR and WIS") {
+    if (abilityScores[STR] >= 13 || abilityScores[WIS] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[STR] >= 16 && abilityScores[WIS] >= 16)
+      experienceAdjustment = "+10% XP";
+  }
+
+  // Svirfneblin
+  if (
+    classSelection === "svirfneblin" &&
+    classPrimeRequisites === "DEX and INT"
+  ) {
+    if (abilityScores[DEX] >= 13 && abilityScores[INT] >= 13)
+      experienceAdjustment = "+5% XP";
+    if (abilityScores[DEX] >= 13 && abilityScores[INT] >= 16)
       experienceAdjustment = "+10% XP";
   }
 

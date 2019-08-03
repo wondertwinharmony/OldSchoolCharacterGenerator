@@ -50,7 +50,10 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] svirfneblin: war pick
  * - [] needs same equipment check as dwarves
  *
- * - [] FIX 18 ability scores not displaying 15% XP bonus
+ * - [x] FIGHTER NEEDS weapon specialization rules
+ * - [x] capitalize psionicst skills
+ * - [] Fix wild magic-user spell level variability
+ * - [] Add level one illusionist spells and some high level scrolls
  * - [] BARD NEEDS getExperienceAdjustment added for CHA + WIS
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
@@ -134,7 +137,8 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                 <XpAdjustmentText>
                   {`XP Adjustment: ${getExperienceAdjustment(
                     abilityScores,
-                    getClassPrimeRequisites(classOptionKey)
+                    getClassPrimeRequisites(classOptionKey),
+                    classOptionKey
                   )}`}
                 </XpAdjustmentText>
                 <ButtonContainer>

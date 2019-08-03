@@ -6,7 +6,7 @@ export const bard = {
   name: "Bard",
   icon: React.createElement(GiLyre, {}),
   requirements: "Minimum DEX 9 and INT 9",
-  primeRequisite: "CHA and WIS",
+  primeRequisite: "CHA",
   hitDice: "1d6",
   xpToSecondLevel: "2,000 XP",
   maximumLevel: "14",

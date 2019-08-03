@@ -2,7 +2,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
-import { GiBrain, GiChewedSkull, GiCoins, GiCometSpark, GiKnapsack, GiLaserSparks, GiLockPicking, GiScrollUnfurled, GiSpiralBottle, GiSwordwoman } from "react-icons/gi";
+import {
+  GiBrain,
+  GiChewedSkull,
+  GiCoins,
+  GiCometSpark,
+  GiKnapsack,
+  GiLaserSparks,
+  GiLockPicking,
+  GiScrollUnfurled,
+  GiSpiralBottle,
+  GiSwordwoman
+} from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses, saves } from "../characterData/classes";
@@ -11,7 +22,14 @@ import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { retainers } from "../characterData/retainers";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import {
+  CHA,
+  CON,
+  DEX,
+  INT,
+  STR,
+  WIS
+} from "../constants/abilityScoreConstants";
 import charismaAdjustmentTable from "../static/charismaAdjustmentTable.png";
 import coinConversions from "../static/coinConversions.png";
 import psionicistSkillsChanceOfSuccess from "../static/psionicistSkillsTable.png";
@@ -144,7 +162,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
     abilityScores,
-    getClassPrimeRequisites(classSelection)
+    getClassPrimeRequisites(classSelection),
+    classSelection
   );
   const strMod = getAbilityScoreModifier(abilityScores[STR]);
   const dexMod = getAbilityScoreModifier(abilityScores[DEX]);
