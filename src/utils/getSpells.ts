@@ -31,7 +31,8 @@ export const getSpells = (
 
   /**
    * Illusionists and gnomes get a random spell from the
-   * illusionist spell list and the read magic spell.
+   * illusionist spell list and the read magic spell. They
+   * do NOT get a chance for a knave spell.
    */
   if (classSelection === "illusionist" || classSelection === "gnome") {
     let randomSpell = sampleSize(illusionistSpells, 1);

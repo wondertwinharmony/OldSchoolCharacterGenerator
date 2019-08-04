@@ -3,6 +3,7 @@ import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
 import { gear } from "../characterData/gear";
 import { getEquipmentSlots } from "./getEquipmentSlots";
+import { getRandomBurrowingMammal } from "./getRandomBurrowingMammal";
 import { getRandomInstrument } from "./getRandomInstrument";
 
 /**
@@ -53,11 +54,24 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
   characterEquipment.push(characterStartingWealthString, characterEquipmentKit);
 
   /**
+   * For classes with uniquely generated random items we can
+   * add them here (e.g. bard below).
+   */
+
+  /**
    * If class is a bard, make sure they have a random
    * instrument.
    */
   if (classOptionKey === "bard") {
     characterEquipment.push(getRandomInstrument());
+  }
+
+  /**
+   * If class is a gnome, have random chance of burrowing
+   * mammal as pet. (50% chance)
+   */
+  if (classOptionKey === "gnome" && random(1, 2) > 1) {
+    characterEquipment.push(getRandomBurrowingMammal());
   }
 
   // Determine how many equipment slots are currently occupied
@@ -98,13 +112,16 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
 
   characterEquipmentString = characterEquipment.flat().join("<br><br>• ");
   /**
-   * If class is a dwarf or halfling, and equipment
+   * If class is a dwarf, halfling, etc. and equipment
    * contains a two-handed sword or long bow, we have
-   * to re-determine equipment. Dwarves and halflings
+   * to re-determine equipment. These classes
    * cannot use these weapons due to their size.
    */
   if (
-    (classOptionKey === "halfling" || classOptionKey === "dwarf") &&
+    (classOptionKey === "halfling" ||
+      classOptionKey === "dwarf" ||
+      classOptionKey === "duergar" ||
+      classOptionKey === "svirfneblin") &&
     (characterEquipmentString.includes("Two-Handed Sword") ||
       characterEquipmentString.includes("Long Bow"))
   ) {

@@ -23,6 +23,7 @@
  * Crossbow: 3 slots
  * Halberd: 3 slots
  * Long Bow: 3 slots
+ * Polearm: 3 slots
  * War Hammer: 3 slots
  * Two-Handed Sword: 3 slots
  */
@@ -72,6 +73,8 @@ export const getEquipmentSlots = (equipment: string[]) => {
   if (equipmentString.includes("<strong>Crossbow</strong>"))
     slotCount = slotCount + 2;
   if (equipmentString.includes("<strong>Halberd</strong>"))
+    slotCount = slotCount + 2;
+  if (equipmentString.includes("<strong>Polearm</strong>"))
     slotCount = slotCount + 2;
   if (equipmentString.includes("<strong>Long Bow</strong>"))
     slotCount = slotCount + 2;

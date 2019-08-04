@@ -104,3 +104,16 @@ export const instruments = [
   "<strong>Vuvuzela</strong>",
   "<strong>Zink</strong>"
 ];
+
+export const burrowingMammals = [
+  "<strong>Praire Dog</strong>",
+  "<strong>Gopher</strong>",
+  "<strong>Badger</strong>",
+  "<strong>Skunk</strong>",
+  "<strong>Armadillo</strong>",
+  "<strong>Wombat</strong>",
+  "<strong>Aardvark</strong>",
+  "<strong>Mongoose</strong>",
+  "<strong>Groundhog</strong>",
+  "<strong>Mole</strong>"
+];

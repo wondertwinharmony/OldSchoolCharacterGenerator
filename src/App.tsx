@@ -20,40 +20,46 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  *
  *  8/9 new human classes remain (icons):
  * - [x] acrobat: body balance
- * - [] needs acrobat equipment (many pole weapons)
+ * - [x] needs acrobat equipment (many pole weapons)
  * - [x] needs acrobat skills icon: GiAcrobatic
  * - [x] assassin: daggers
- * - [] needs assassin equipment (include poisons)
+ * - [] needs assassin equipment (include named poisons (type I, II, etc. and page
+ * - reference to poisons rules))
  * - [x] needs assassin skills icon: bloody sword
  * - [x] barbarian: hunting horn, totem, brutal helm, barbarian, biceps, ancient sword
  * - [x] needs barbarian skills icon: snake totem
- * - [] needs barbarian equipment (maybe give totemic/tribal items)
+ * - [] needs barbarian equipment (maybe give totemic/tribal items?)
+ * - [x] bard
+ * - [x] needs some random scrolls from druid spell list in equipment
  * - [x] druid: wizard staff
  * - [] needs druid equipment (wooden shields, holy symbol)
+ * - [] spell scrolls for druid spells
  * - [x] illusionist: pointy hat
- * - [] needs illusionist/gnome equipment (include illusionist scrolls)
+ * - [] needs illusionist equipment (just like magic user but include illusionist scrolls)
+ * - [] illusionist equipment, some need a quartz (10gp)
  * - [x] knight: visored helm
  * - [] needs knight equipment (no leather armor, no missile weapons)
  * - [x] paladin: templar shield
  * - [] needs paladin equipment (holy symbol)
  * - [x] ranger: compass, arrow cluster, high shot
  * - [] needs ranger equipment (more long bows)
- * - [] needs tracking table icon: paw print
+ * - [x] needs tracking table icon: paw print
  *
  *  4/6 new demihuman race-classes remain (icons):
  * - [x] duergar: heavy helm, dwarf face
- * - [] needs same equipment check as dwarves
+ * - [x] needs same equipment check as dwarves
  * - [x] gnome: wizard face
- * - [] needs illusionist/gnome equipment (include illusionist scrolls and burrowing mammal pets)
+ * - [] needs illusionist/gnome equipment (include illusionist scrolls)
+ * - [x] needs random burrowing mammal pets (resolve like bard instruments)
  * - [x] half-orc: orc head
  * - [] needs half-orc equipment
  * - [x] svirfneblin: war pick
- * - [] needs same equipment check as dwarves
+ * - [x] needs same equipment check as dwarves
  *
  * - [x] FIGHTER NEEDS weapon specialization rules
  * - [x] capitalize psionicst skills
  * - [] Fix wild magic-user spell level variability
- * - [] Add level one illusionist spells and some high level scrolls
+ * - [x] Add level one illusionist spells and some high level scrolls
  * - [x] BARD NEEDS getExperienceAdjustment added for CHA
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
