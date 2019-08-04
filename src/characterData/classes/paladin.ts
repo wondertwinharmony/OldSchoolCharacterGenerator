@@ -33,6 +33,6 @@ export const paladin = {
   ],
   abilitiesSummary:
     "Alignment (lawful required), Divine Magic (9th level), Holy Resistance, Laying on Hands, Turning the Undead (3rd level), Vow of Humility, Warhorse",
-  turn:
+  paladinTurn:
     "* 2 HD monsters with a special ability (i.e. with an asterisk next to their HD rating, in the monster description)."
 };

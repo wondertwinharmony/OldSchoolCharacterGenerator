@@ -34,7 +34,7 @@ export const halfOrc = {
    * @see for "Using a Thief Skill" homebrew rule
    * http://doomslakers.blogspot.com/2019/01/once-again-with-thieves.html
    */
-  halfOrcThiefSkills: [
+  halfOrcSkills: [
     "<strong>Hide in Shadows (HS), Move Silently (MS), Pick Pockets (PP)</strong>\n",
     "<strong>Using a Thief Skill:</strong> The DM will roll skill dice and the thief player will roll an ability check (d20 + DEX modifier) simultaneously. If the skill roll is successful, the half-orc has perfectly executed their subtle craft and cannot fail. Otherwise the ability check result is used to determine success or failure. <i>Half-orcs are exceptional at these skills. Other classes may attempt these skills with only an ability check and usually disadvantage (DM discretion).</i>"
   ]

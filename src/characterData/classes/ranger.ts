@@ -32,5 +32,7 @@ export const ranger = {
     "<strong>Tracking:</strong> Rangers can track in both outdoor and indoor environments. This skill improves as the character gains levels (see the tracking table). Success is modified by the factors listed along with the table. The tracking skill may be used as follows:\n\n<div style='padding: 0 1.5rem'>• <strong>Follow tracks indoors:</strong> Only possible when the ranger observed the creature to be tracked in the location where the tracking begins, at most 3 turns ago.\n\n• <strong>Follow tracks outdoors:</strong> Can be attempted whenever tracks are discovered.\n\n• <strong>Identify tracks:</strong> The ranger can identify the tracks of woodland creatures, their number, direction and speed of travel, and the time since the tracks were made. Rangers of 7th level or higher are also able to identify the tracks of non-woodland creatures.</div>"
   ],
   abilitiesSummary:
-    "Alignment (non-chaotic required), Awareness, Divine Magic (8th level), Pursuit, Limited Possessions, Stealth, Tracking"
+    "Alignment (non-chaotic required), Awareness, Divine Magic (8th level), Pursuit, Limited Possessions, Stealth, Tracking",
+  rangerTracking:
+    "<strong>Tracking Modifiers:</strong> The basic chance of success may be modified at the referee’s discretion"
 };

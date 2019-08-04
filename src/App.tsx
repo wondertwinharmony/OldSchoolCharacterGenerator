@@ -21,12 +21,12 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  *  8/9 new human classes remain (icons):
  * - [x] acrobat: body balance
  * - [] needs acrobat equipment (many pole weapons)
- * - [] needs acrobat skills icon:
+ * - [x] needs acrobat skills icon: GiAcrobatic
  * - [x] assassin: daggers
  * - [] needs assassin equipment (include poisons)
- * - [] needs assassin skills icon: bloody sword
+ * - [x] needs assassin skills icon: bloody sword
  * - [x] barbarian: hunting horn, totem, brutal helm, barbarian, biceps, ancient sword
- * - [] needs barbarian skills icon: snake totem
+ * - [x] needs barbarian skills icon: snake totem
  * - [] needs barbarian equipment (maybe give totemic/tribal items)
  * - [x] druid: wizard staff
  * - [] needs druid equipment (wooden shields, holy symbol)
@@ -54,7 +54,7 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] capitalize psionicst skills
  * - [] Fix wild magic-user spell level variability
  * - [] Add level one illusionist spells and some high level scrolls
- * - [] BARD NEEDS getExperienceAdjustment added for CHA + WIS
+ * - [x] BARD NEEDS getExperienceAdjustment added for CHA
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/

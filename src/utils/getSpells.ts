@@ -1,5 +1,10 @@
 import { sampleSize } from "lodash";
-import { knaveSpells, readMagicSpell, spells } from "../characterData/spells";
+import {
+  illusionistSpells,
+  knaveSpells,
+  readMagicSpell,
+  spells
+} from "../characterData/spells";
 
 const LIGHT_SPELL_INDEX = 4;
 
@@ -18,12 +23,26 @@ export const getSpells = (
   /**
    * The Drow (and other classes in future) may have
    * access to either pre-determined starting spells
-   * or other spell lists (e.g. Illusionist, Druid).
+   * or other spell lists (e.g. Illusionist).
    * Determine those special cases here.
    */
   if (classSelection === "drow")
     return spells.slice(LIGHT_SPELL_INDEX, LIGHT_SPELL_INDEX + 1);
 
+  /**
+   * Illusionists and gnomes get a random spell from the
+   * illusionist spell list and the read magic spell.
+   */
+  if (classSelection === "illusionist" || classSelection === "gnome") {
+    let randomSpell = sampleSize(illusionistSpells, 1);
+    randomSpell.push(readMagicSpell);
+    return randomSpell;
+  }
+
+  /**
+   * Only magic-users, wild magic-users, and elves have
+   * opportunity to receive a knave spell at level one.
+   */
   if (includeKnaveSpells) {
     let allSpells = [];
     allSpells.push(spells, knaveSpells);
@@ -32,8 +51,14 @@ export const getSpells = (
      * If class is magic-user or elf (therefore Arcane spell caster
      * and rely on a spellbook for casting), award them the Read Magic
      * spell at level one as well.
+     *
+     * Now includes wild magic-user.
      */
-    if (classSelection === "magicUser" || classSelection === "elf") {
+    if (
+      classSelection === "magicUser" ||
+      classSelection === "wildMagicUser" ||
+      classSelection === "elf"
+    ) {
       let randomSpell = sampleSize(allSpells.flat(), 1);
       randomSpell.push(readMagicSpell);
       return randomSpell;
@@ -41,10 +66,18 @@ export const getSpells = (
     return sampleSize(allSpells.flat(), 1);
   }
 
-  if (classSelection === "magicUser" || classSelection === "elf") {
+  if (
+    classSelection === "magicUser" ||
+    classSelection === "wildMagicUser" ||
+    classSelection === "elf"
+  ) {
     let randomSpell = sampleSize(spells, 1);
     randomSpell.push(readMagicSpell);
     return randomSpell;
   }
+
+  /**
+   * Defaulting to one random spell here no matter what.
+   */
   return sampleSize(spells, 1);
 };
