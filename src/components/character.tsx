@@ -1218,7 +1218,7 @@ const AcrobatSkillsChanceOfSuccessTable = styled.div`
   background-image: url(${acrobatSkillsTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25rem 33rem;
+  background-size: 22rem 33rem;
 `;
 
 const AssassinSkillsChanceOfSuccessTable = styled.div`
@@ -1226,7 +1226,7 @@ const AssassinSkillsChanceOfSuccessTable = styled.div`
   background-image: url(${assassinSkillsTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25rem 33rem;
+  background-size: 22rem 33rem;
 `;
 
 const BarbarianSkillsChanceOfSuccessTable = styled.div`
@@ -1234,23 +1234,23 @@ const BarbarianSkillsChanceOfSuccessTable = styled.div`
   background-image: url(${barbarianSkillsTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25rem 33rem;
+  background-size: 22rem 33rem;
 `;
 
 const HalfOrcSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
+  height: 21.75rem;
   background-image: url(${halfOrcSkillsTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25rem 33rem;
+  background-size: 22rem 22rem;
 `;
 
 const RangerTrackingChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
+  height: 24.75rem;
   background-image: url(${rangerTrackingTable});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25rem 33rem;
+  background-size: 20rem 25rem;
 `;
 
 const PsionicistSkillsChanceOfSuccessTable = styled.div`

@@ -58,7 +58,7 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] svirfneblin: war pick
  * - [x] needs same equipment check as dwarves
  *
- * - [] Check alignment -> paladin, druid, and ranger
+ * - [x] Check alignment -> paladin, druid, and ranger
  * - [x] War Hammer -> Warhammer
  * - [x] FIGHTER NEEDS weapon specialization rules
  * - [x] capitalize psionicst skills
