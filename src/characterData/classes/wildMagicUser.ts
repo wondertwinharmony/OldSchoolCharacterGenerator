@@ -1,6 +1,6 @@
 import React from "react";
 import { GiRadialBalance } from "react-icons/gi";
-import { magicUserEquipment } from "../equipmentKits";
+import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
 
 export const wildMagicUser = {
   name: "Wild Magic-User",

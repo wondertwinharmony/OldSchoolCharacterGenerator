@@ -1,6 +1,6 @@
 import React from "react";
 import { GiPointyHat } from "react-icons/gi";
-import { illusionistEquipment } from "../equipmentKits";
+import { illusionistEquipment } from "../equipmentKits/illusionistEquipment";
 
 export const illusionist = {
   name: "Illusionist",

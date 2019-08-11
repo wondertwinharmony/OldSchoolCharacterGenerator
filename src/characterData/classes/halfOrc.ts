@@ -1,6 +1,6 @@
 import React from "react";
 import { GiOrcHead } from "react-icons/gi";
-import { halfOrcEquipment } from "../equipmentKits";
+import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
 
 export const halfOrc = {
   name: "Half-Orc",

@@ -171,7 +171,7 @@ export const firstNames = ["Dinkle", "Wyeth", "Beavis", "Gambrinus", "Rendlesham
                "Iagos", "Tagos", "Tilo", "Tiloros", "Tomo", "Tommos", "Uenio", "Unnos", "Victoran",
                "Tornos", "Vincenso", "Vincenzo", "Vinnos"]
 
-export const surnames = ["Dinklage", "Bright", "Brown", "Browne", "Brushfire", "Camp", "Campman", "Canyon", "Cricketts", "Crickets",
+export const surnames = ["Brandshaft", "Dinklage", "Bright", "Brown", "Browne", "Brushfire", "Camp", "Campman", "Canyon", "Cricketts", "Crickets",
             "Dunes", "Doons", "Doones", "Dunne", "Dunneman", "Flats", "Fox", "Foxx", "Gold",
             "Golden", "Grey", "Gray", "Gulch", "Gully", "Hardy", "Hills", "Hill", "Hopper",
             "Hunter", "Huntsman", "March", "Marcher", "Moon", "Redmoon", "Palmer", "Palms", "Peartree",

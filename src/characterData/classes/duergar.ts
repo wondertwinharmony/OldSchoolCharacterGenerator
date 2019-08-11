@@ -1,6 +1,6 @@
 import React from "react";
 import { GiHeavyHelm } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits";
+import { fighterEquipment } from "../equipmentKits/fighterEquipment";
 
 export const duergar = {
   name: "Duergar",

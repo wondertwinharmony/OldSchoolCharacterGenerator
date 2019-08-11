@@ -1,6 +1,6 @@
 import React from "react";
 import { GiLyre } from "react-icons/gi";
-import { bardEquipment } from "../equipmentKits";
+import { bardEquipment } from "../equipmentKits/bardEquipment";
 
 export const bard = {
   name: "Bard",

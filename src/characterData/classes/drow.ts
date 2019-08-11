@@ -1,6 +1,6 @@
 import React from "react";
 import { GiMaskedSpider } from "react-icons/gi";
-import { drowEquipment } from "../equipmentKits";
+import { drowEquipment } from "../equipmentKits/drowEquipment";
 
 export const drow = {
   name: "Drow",

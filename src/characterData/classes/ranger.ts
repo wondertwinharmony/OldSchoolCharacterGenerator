@@ -1,6 +1,6 @@
 import React from "react";
 import { GiCompass } from "react-icons/gi";
-import { rangerEquipment } from "../equipmentKits";
+import { rangerEquipment } from "../equipmentKits/rangerEquipment";
 
 export const ranger = {
   name: "Ranger",

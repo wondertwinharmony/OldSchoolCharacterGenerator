@@ -1,6 +1,6 @@
 import React from "react";
 import { GiSpikedMace } from "react-icons/gi";
-import { clericEquipment } from "../equipmentKits";
+import { clericEquipment } from "../equipmentKits/clericEquipment";
 
 export const cleric = {
   name: "Cleric",

@@ -101,10 +101,15 @@ export const getTraits = (
   )} hair.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
     traits.vices,
     1
-  )}. Has been ${sampleSize(
-    traits.misfortunes,
-    1
-  )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
+  )}. Has been ${sampleSize(traits.misfortunes, 1)} in the past.\n Favors ${
+    classOptionKey === "paladin"
+      ? "law"
+      : classOptionKey === "druid"
+      ? "neutrality"
+      : classOptionKey === "ranger"
+      ? sampleSize(["law", "neutrality"], 1)
+      : sampleSize(traits.alignment, 1)
+  }.`;
 
   return traitsString;
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { GiWizardFace } from "react-icons/gi";
-import { gnomeEquipment } from "../equipmentKits";
+import { gnomeEquipment } from "../equipmentKits/gnomeEquipment";
 
 export const gnome = {
   name: "Gnome",

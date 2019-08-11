@@ -1,6 +1,6 @@
 import React from "react";
 import { GiWizardStaff } from "react-icons/gi";
-import { druidEquipment } from "../equipmentKits";
+import { druidEquipment } from "../equipmentKits/druidEquipment";
 
 export const druid = {
   name: "Druid",

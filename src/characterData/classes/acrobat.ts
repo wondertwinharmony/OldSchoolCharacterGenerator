@@ -1,6 +1,6 @@
 import React from "react";
 import { GiBodyBalance } from "react-icons/gi";
-import { acrobatEquipment } from "../equipmentKits";
+import { acrobatEquipment } from "../equipmentKits/acrobatEquipment";
 
 export const acrobat = {
   name: "Acrobat",

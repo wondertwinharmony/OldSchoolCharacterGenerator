@@ -46,13 +46,15 @@ export const getEquipmentSlots = (equipment: string[]) => {
   // Armor
   if (equipmentString.includes("<strong>Leather Armor</strong>"))
     slotCount = slotCount + 1;
-  if (equipmentString.includes("<strong>Chainmail</strong>"))
+  if (equipmentString.includes("<strong>Chainmail Armor</strong>"))
     slotCount = slotCount + 1;
   if (equipmentString.includes("<strong>Plate Armor</strong>"))
     slotCount = slotCount + 2;
 
   // 2 slot weapons
   if (equipmentString.includes("<strong>Hand Axe</strong>"))
+    slotCount = slotCount + 1;
+  if (equipmentString.includes("<strong>Flail</strong>"))
     slotCount = slotCount + 1;
   if (equipmentString.includes("<strong>Mace</strong>"))
     slotCount = slotCount + 1;
@@ -78,7 +80,7 @@ export const getEquipmentSlots = (equipment: string[]) => {
     slotCount = slotCount + 2;
   if (equipmentString.includes("<strong>Long Bow</strong>"))
     slotCount = slotCount + 2;
-  if (equipmentString.includes("<strong>War Hammer</strong>"))
+  if (equipmentString.includes("<strong>Warhammer</strong>"))
     slotCount = slotCount + 2;
   if (equipmentString.includes("<strong>Two-Handed Sword</strong>"))
     slotCount = slotCount + 2;

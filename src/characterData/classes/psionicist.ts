@@ -1,6 +1,6 @@
 import React from "react";
 import { GiPsychicWaves } from "react-icons/gi";
-import { psionicistEquipment } from "../equipmentKits";
+import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
 
 export const psionicist = {
   name: "Psionicist",

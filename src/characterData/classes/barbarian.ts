@@ -1,6 +1,6 @@
 import React from "react";
 import { GiHuntingHorn } from "react-icons/gi";
-import { barbarianEquipment } from "../equipmentKits";
+import { barbarianEquipment } from "../equipmentKits/barbarianEquipment";
 
 export const barbarian = {
   name: "Barbarian",

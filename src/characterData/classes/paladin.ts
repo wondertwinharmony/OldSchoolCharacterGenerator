@@ -1,6 +1,6 @@
 import React from "react";
 import { GiTemplarShield } from "react-icons/gi";
-import { paladinEquipment } from "../equipmentKits";
+import { paladinEquipment } from "../equipmentKits/paladinEquipment";
 
 export const paladin = {
   name: "Paladin",

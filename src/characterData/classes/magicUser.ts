@@ -1,6 +1,6 @@
 import React from "react";
 import { GiSpellBook } from "react-icons/gi";
-import { magicUserEquipment } from "../equipmentKits";
+import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
 
 export const magicUser = {
   name: "Magic-User",
