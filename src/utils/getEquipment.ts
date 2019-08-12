@@ -5,6 +5,7 @@ import { gear } from "../characterData/gear";
 import { getEquipmentSlots } from "./getEquipmentSlots";
 import { getRandomBurrowingMammal } from "./getRandomBurrowingMammal";
 import { getRandomInstrument } from "./getRandomInstrument";
+import { getRandomPoison } from "./getRandomPoison";
 
 /**
  * Utility function to determine equipment and starting gold for a character.
@@ -64,6 +65,14 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    */
   if (classOptionKey === "bard") {
     characterEquipment.push(getRandomInstrument());
+  }
+
+  /**
+   * If class is a assassin, make sure they have a random
+   * poison.
+   */
+  if (classOptionKey === "assassin") {
+    characterEquipment.push(getRandomPoison());
   }
 
   /**

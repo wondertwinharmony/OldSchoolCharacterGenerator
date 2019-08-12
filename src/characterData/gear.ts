@@ -117,3 +117,12 @@ export const burrowingMammals = [
   "<strong>Groundhog</strong>",
   "<strong>Mole</strong>"
 ];
+
+export const poisons = [
+  "<strong>Vial of Killer Bee Venom</strong> (Type I bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Rockfish Poison</strong> (Type I bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Pit Viper Venom</strong> (Type II bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Giant Scorpion Poison</strong> (Type II bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Purple Worm Poison</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Wyvern Venom</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)"
+];
