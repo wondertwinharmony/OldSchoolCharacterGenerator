@@ -67,26 +67,30 @@ export const getTraits = (
   if (intScore <= 3) {
     languageDescriptor = "unable to read or write, and has broken, ";
   }
-  if (intScore > 3 && intScore <= 5) {
+  if ((intScore > 3 && intScore <= 5) || classOptionKey === "barbarian") {
     languageDescriptor = "unable to read or write, and has ";
   }
-  if (intScore > 5 && intScore <= 8) {
+  if (intScore > 5 && intScore <= 8 && classOptionKey !== "barbarian") {
     languageDescriptor = "only able to write simple words, and has ";
   }
-  if (intScore > 8 && intScore <= 12) {
+  if (intScore > 8 && intScore <= 12 && classOptionKey !== "barbarian") {
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
-  if (intScore > 12 && intScore <= 15) {
+  if (intScore > 12 && intScore <= 15 && classOptionKey !== "barbarian") {
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
-  if (intScore > 15 && intScore <= 17) {
+  if (intScore > 15 && intScore <= 17 && classOptionKey !== "barbarian") {
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
-  if (intScore === 18) {
+  if (intScore === 18 && classOptionKey !== "barbarian") {
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
 
-  let traitsString = `A ${sampleSize(traits.background, 1)}. Wears ${sampleSize(
+  let traitsString = `A ${
+    classOptionKey === "barbarian"
+      ? sampleSize(traits.barbarianBackground, 1)
+      : sampleSize(traits.background, 1)
+  }. Wears ${sampleSize(
     traits.clothing,
     1
   )} clothes, ${languageDescriptor} ${sampleSize(

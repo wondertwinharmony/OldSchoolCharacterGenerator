@@ -20,13 +20,14 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] needs acrobat equipment (many pole weapons)
  * - [x] needs acrobat skills icon: GiAcrobatic
  * - [x] assassin: daggers
- * - [] needs assassin equipment (include named poisons (type I, II, etc. and page
+ * - [x] needs assassin equipment (include named poisons (type I, II, etc. and page
  * - reference to poisons rules))
  * - [x] needs assassin skills icon: bloody sword
  * - [x] barbarian: hunting horn, totem, brutal helm, barbarian, biceps, ancient sword
  * - [x] needs barbarian skills icon: snake totem
  * - [x] needs barbarian equipment (maybe give totemic/tribal items?)
  * - [x] barbarian needs long bows, warhammer
+ * - [x] barbarian traits
  * - [x] bard
  * - [x] needs some random scrolls from druid spell list in equipment
  * - [x] druid: wizard staff

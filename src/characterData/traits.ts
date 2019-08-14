@@ -190,6 +190,16 @@ export const traits = {
     "whispery"
   ],
 
+  barbarianBackground: [
+    "hunter",
+    "gladiator",
+    "freed slave",
+    "mercenary",
+    "cannibal",
+    "outlander",
+    "hermit"
+  ],
+
   background: [
     "alchemist",
     "animal trainer",
