@@ -15,9 +15,6 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
 /**
- * @todo
- * Advanced Fantasy Old School Rules:
- *
  *  8/9 new human classes remain (icons):
  * - [x] acrobat: body balance
  * - [x] needs acrobat equipment (many pole weapons)
@@ -62,7 +59,7 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] War Hammer -> Warhammer
  * - [x] FIGHTER NEEDS weapon specialization rules
  * - [x] capitalize psionicst skills
- * - [] Fix wild magic-user spell level variability
+ * - [x] Fix wild magic-user spell level variability
  * - [x] Add level one illusionist spells and some high level scrolls
  * - [x] BARD NEEDS getExperienceAdjustment added for CHA
  * - [] Update weapons and armor OSE pages to include slots instead of

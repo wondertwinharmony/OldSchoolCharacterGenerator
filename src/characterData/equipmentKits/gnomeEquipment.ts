@@ -1,7 +1,7 @@
 import { getIllusionistScrollSpell } from "../../utils/getRandomSpellScroll";
 
 /**
- * Gnome equipment kits cannot be higher than 9 slots.
+ * Gnome equipment kits cannot be higher than 8 slots.
  * 8 + 50% chance of pet burrowing mammal + starting gold = 10
  */
 export const gnomeEquipment = [
