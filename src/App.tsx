@@ -56,6 +56,7 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] svirfneblin: war pick
  * - [x] needs same equipment check as dwarves
  *
+ * - [] Into the Odd, Silent Titans character generation goodies
  * - [x] Check alignment -> paladin, druid, and ranger
  * - [x] War Hammer -> Warhammer
  * - [x] FIGHTER NEEDS weapon specialization rules
@@ -65,7 +66,6 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] BARD NEEDS getExperienceAdjustment added for CHA
  * - [] Update weapons and armor OSE pages to include slots instead of
  * - weight in coins (which is awkward), Make this the new "purchase sheet",
- * - combine with other various items in Knave. Club/Cudgel, Flail/Mace/Morning Star, Halberd/Polearm
  * - [] Add store items once pdf is created so images can be simply inserted into app as a reference
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?

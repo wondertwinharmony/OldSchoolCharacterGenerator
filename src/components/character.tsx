@@ -13,6 +13,7 @@ import {
   GiLaserSparks,
   GiLockPicking,
   GiPawPrint,
+  GiPriceTag,
   GiScrollUnfurled,
   GiSnakeTotem,
   GiSpiralBottle,
@@ -62,6 +63,7 @@ import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
 import { saveCharacterData } from "../utils/saveCharacterData";
+import StyledItemsForPurchase from "./itemsForPurchase";
 
 interface Props {
   abilityScores: number[];
@@ -170,6 +172,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
   const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(false);
   const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
+    false
+  );
+  const [isItemsForPurchaseVisible, setIsItemsForPurchaseVisible] = useState(
     false
   );
   const [isRetainersVisible, setIsRetainersVisible] = useState(false);
@@ -873,6 +878,28 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         )}
       </WeaponQualitiesContainer>
 
+      {/* Items for Purchase */}
+      <ItemsForPurchaseHeader
+        onClick={() => {
+          setIsItemsForPurchaseVisible(!isItemsForPurchaseVisible);
+        }}
+      >
+        <ItemsForPurchaseHeaderText>
+          <div style={{ display: "flex" }}>
+            <HeaderIcon>
+              <GiPriceTag />
+            </HeaderIcon>
+            Items For Purchase
+          </div>
+        </ItemsForPurchaseHeaderText>
+        <FontAwesomeIcon
+          icon={isItemsForPurchaseVisible ? "caret-up" : "caret-down"}
+          size="lg"
+          style={{ margin: "0 0.5rem" }}
+        />
+      </ItemsForPurchaseHeader>
+      {isItemsForPurchaseVisible && <StyledItemsForPurchase />}
+
       {/* Retainers */}
       <RetainersContainer>
         <RetainersHeader
@@ -1329,6 +1356,20 @@ const WeaponQualities = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+// const ItemsForPurchaseContainer = styled.div``;
+
+const ItemsForPurchaseHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sancreek", cursive;
+  font-size: 1.5rem;
+`;
+
+const ItemsForPurchaseHeaderText = styled.div`
+  text-align: center;
 `;
 
 const RetainersContainer = styled.div``;
