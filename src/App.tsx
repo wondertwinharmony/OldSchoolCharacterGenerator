@@ -56,7 +56,9 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] svirfneblin: war pick
  * - [x] needs same equipment check as dwarves
  *
- * - [] Into the Odd, Silent Titans character generation goodies
+ * - [] Illusionist wild magic user spells not saving again
+ * - [] New feature - always display all classes available, but gray out selection
+ *      when requisites not met
  * - [x] Check alignment -> paladin, druid, and ranger
  * - [x] War Hammer -> Warhammer
  * - [x] FIGHTER NEEDS weapon specialization rules
@@ -64,9 +66,9 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  * - [x] Fix wild magic-user spell level variability
  * - [x] Add level one illusionist spells and some high level scrolls
  * - [x] BARD NEEDS getExperienceAdjustment added for CHA
- * - [] Update weapons and armor OSE pages to include slots instead of
+ * - [x] Update weapons and armor OSE pages to include slots instead of
  * - weight in coins (which is awkward), Make this the new "purchase sheet",
- * - [] Add store items once pdf is created so images can be simply inserted into app as a reference
+ * - [x] Add store items once pdf is created so images can be simply inserted into app as a reference
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
