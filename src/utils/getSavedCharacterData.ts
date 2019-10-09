@@ -13,8 +13,10 @@ export interface SavedCharacterData {
  * Returns an object with character data needed to rehydrate a page.
  * @param  {string} url
  */
-export const getSavedCharacterData = (url: string, home: string) => {
-    const decodedURI = decodeURI(url).replace(home, '');
+export const getSavedCharacterData = (url: string, home: string, route: string) => {
+    const decodedURI = decodeURI(url).replace(home, '').replace(route, '');
+
+    // console.log("FROM getSavedCharacterData: ", decodedURI, "\nURL: ", url, "\nhome: ", home)
 
     let savedCharacterData = {
         name: '',
@@ -27,7 +29,10 @@ export const getSavedCharacterData = (url: string, home: string) => {
         equipment: { characterEquipmentString: '', slotsToFill: 0 }
     };
 
-    let rawCharacterData = decodedURI.split('$');
+    // let rawCharacterData = decodedURI.split('$');
+    let rawCharacterData = decodedURI.split('&');
+
+    // console.log("RAW CHARACTER DATA: ", rawCharacterData);
     let abilityScores = rawCharacterData[3].split(',');
 
     savedCharacterData.name = rawCharacterData[0].replace('-', ' ');
