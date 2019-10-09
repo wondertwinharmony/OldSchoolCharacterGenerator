@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses } from "./characterData/classes";
-import Character from "./components/character";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
-import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
-import { getSavedCharacterData } from "./utils/getSavedCharacterData";
+import { useHistory } from "react-router-dom";
 
 /**
  * @todo
@@ -48,43 +46,21 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  */
 interface Props {
   className?: string;
+  abilityScores: number[];
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({ className }) => {
-  const [abilityScores, setAbilityScores] = useState(getAbilityScores);
-  const [isClassSelected, setIsClassSelected] = useState(false);
-  const [classSelection, setClassSelection] = useState("");
+const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores }) => {
+  let history = useHistory();
+  const [isClassSelected] = useState(false);
   const [includeKnaveSpells, setIncludeKnaveSpells] = useState(false);
-  useEffect(() => {
-    setAbilityScores(abilityScores);
-  }, [abilityScores]);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
-  //currently only checking if it's https in production
-  const homeURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/"
-      : "https://oldschoolknave.surge.sh/";
 
-  if (window.location.href !== homeURL) {
-    const savedData = getSavedCharacterData(window.location.href, homeURL);
-
-    if (savedData) {
-      return (
-        <div className={className}>
-          <Character
-            classSelection={savedData && savedData.class}
-            abilityScores={savedData && savedData.abilityScores}
-            includeKnaveSpells={false}
-            savedCharacterData={savedData}
-          />
-        </div>
-      );
-    }
-  }
-
+  // console.log("Location: ", getLocation, "\nhist: ", history, "\nparams: ", params);
+  console.log("\nhist: ", history);
+  console.log("abilityScores: ", abilityScores);
   return (
     <div className={className}>
       {!isClassSelected && (
@@ -125,8 +101,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
-                      setIsClassSelected(true);
-                      setClassSelection(classOptionKey);
+                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`);
                     }}
                   >
                     <div
@@ -149,13 +124,6 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
             </DemihumansText>
           </ClassButtonsContainer>
         </div>
-      )}
-      {isClassSelected && classSelection && (
-        <Character
-          classSelection={classSelection}
-          abilityScores={abilityScores}
-          includeKnaveSpells={includeKnaveSpells}
-        />
       )}
       <CreatorsContainer>
         <FaDungeon />
