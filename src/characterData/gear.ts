@@ -77,6 +77,7 @@ export const gear = [
 ];
 
 export const instruments = [
+  "<strong>Air Horn</strong>",
   "<strong>Bagpipe</strong>",
   "<strong>Bladder Pipe</strong>",
   "<strong>Castanets</strong>",
@@ -100,5 +101,28 @@ export const instruments = [
   "<strong>Shofar</strong>",
   "<strong>Sitar</strong>",
   "<strong>Viol</strong>",
+  "<strong>Vuvuzela</strong>",
   "<strong>Zink</strong>"
+];
+
+export const burrowingMammals = [
+  "<strong>Praire Dog</strong>",
+  "<strong>Gopher</strong>",
+  "<strong>Badger</strong>",
+  "<strong>Skunk</strong>",
+  "<strong>Armadillo</strong>",
+  "<strong>Wombat</strong>",
+  "<strong>Aardvark</strong>",
+  "<strong>Mongoose</strong>",
+  "<strong>Groundhog</strong>",
+  "<strong>Mole</strong>"
+];
+
+export const poisons = [
+  "<strong>Vial of Killer Bee Venom</strong> (Type I bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Rockfish Poison</strong> (Type I bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Pit Viper Venom</strong> (Type II bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Giant Scorpion Poison</strong> (Type II bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Purple Worm Poison</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
+  "<strong>Vial of Wyvern Venom</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)"
 ];
