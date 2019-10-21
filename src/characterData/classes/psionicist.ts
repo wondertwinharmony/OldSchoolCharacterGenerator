@@ -1,6 +1,6 @@
 import React from "react";
 import { GiPsychicWaves } from "react-icons/gi";
-import { psionicistEquipment } from "../equipmentKits";
+import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
 
 export const psionicist = {
   name: "Psionicist",
@@ -28,7 +28,7 @@ export const psionicist = {
     "<strong>Psionicist Skills:</strong> Psionicists can use the following skills, which improve as the character gains levels. Note that dice rolls for extra-sensory perception are made by the referee, because a psionicist is not always aware that he or she has failed to detect danger!\n\n<div style='padding: 0 1.5rem'><strong>Extra-Sensory Perception:</strong> Constantly active danger sense that alerts the psionicist when trouble is near.\n\n<strong>Telepathy:</strong> Reading minds at a distance and communicating with others via thought.\n\n<strong>Telekinesis:</strong> Manipulation and moving of objects by thought alone. Examples could include moving a coin across a table, moving a key under a door, throwing a rock across a room, or drawing a sword from its sheath into a hand.</div>"
   ],
   abilitiesSummary:
-    "Psionicist Skills (extra-sensory perception, telepathy, telekinesis), biofeedback (5th level), mind over matter (12th level)",
+    "Psionicist Skills (extra-sensory perception, telepathy, telekinesis), Biofeedback (5th level), Mind Over Matter (12th level)",
   /**
    * @see for "Using a Thief Skill" homebrew rule
    * http://doomslakers.blogspot.com/2019/01/once-again-with-thieves.html

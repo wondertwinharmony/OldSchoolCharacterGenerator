@@ -1,6 +1,6 @@
 import React from "react";
 import { GiHobbitDwelling } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits";
+import { fighterEquipment } from "../equipmentKits/fighterEquipment";
 
 export const halfling = {
   name: "Halfling",
