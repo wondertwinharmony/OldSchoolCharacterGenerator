@@ -10,18 +10,18 @@
 
 
  /**
-  * Helper function that takes a string, then removes white spaces and replaces them with '-'
+  * Helper function that takes a string, then removes white spaces and replaces them with '_'
   * @param  {string} stringToProcess
   */
  const replaceSpaces = (stringToProcess: string) => {
-    let processedString = stringToProcess.trimStart().replace(/[\s]+/g, '-');
+    let processedString = stringToProcess.trimStart().replace(/[\s]+/g, '_');
     return processedString;
 }
 
 
 /**
  * Utility function that takes various pieces of information and places it in the URL, creating a permalink. 
- * Reassigns the href to the permalink.
+ * Returns a string.
  * @param  {string} name
  * @param  {string} classSelection
  * @param  {string} traits
@@ -31,9 +31,20 @@
  * @param  {string[]} characterSpells
  * @param  {string} equipment
  * @param  {number} equipmentSlots
+ * @param  {boolean} knave
  */
-export const saveCharacterData = (name: string, classSelection: string, traits: string, abilityScores: number[], hitPoints: number, languages: string, characterSpells: string[], equipment: string, equipmentSlots: number) => {
-    let baseURL = window.location.href;
+export const saveCharacterData = (name: string, 
+                                  classSelection: string, 
+                                  traits: string, 
+                                  abilityScores: number[], 
+                                  hitPoints: number, 
+                                  languages: string, 
+                                  characterSpells: string[], 
+                                  equipment: string, 
+                                  equipmentSlots: number, 
+                                  knave: boolean) => {
+
+    const characterData ='';
     const usersOfMagic = ['elf', 'magicUser', 'drow', 'gnome', 'wildMagicUser','illusionist'];
     let spells = '';
 
@@ -41,17 +52,18 @@ export const saveCharacterData = (name: string, classSelection: string, traits: 
         spells = characterSpells.join('#');
     }
 
-    let permalink = baseURL.concat(
-        replaceSpaces(name),'$',
-        replaceSpaces(classSelection),'$',
-        replaceSpaces(traits), '$',
-        replaceSpaces(abilityScores.toString()),'$',
-        hitPoints.toString(),'$',
-        replaceSpaces(languages),'$',
-        replaceSpaces(spells), '$',
-        replaceSpaces(equipment), '$',
-        equipmentSlots.toString()
+    let permalink = characterData.concat(
+        replaceSpaces(name),'&',
+        replaceSpaces(classSelection),'&',
+        replaceSpaces(traits), '&',
+        replaceSpaces(abilityScores.toString()),'&',
+        hitPoints.toString(),'&',
+        replaceSpaces(languages),'&',
+        replaceSpaces(spells), '&',
+        replaceSpaces(equipment), '&',
+        equipmentSlots.toString(), '&',
+        knave.toString()
         );
 
-    window.location.href = encodeURI(permalink);
+        return permalink;
 }

@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses } from "./characterData/classes";
-import Character from "./components/character";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
-import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
-import { getSavedCharacterData } from "./utils/getSavedCharacterData";
+import { useHistory } from "react-router-dom";
 
 /**
  *  8/9 new human classes remain (icons):
@@ -81,45 +79,21 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
  */
 interface Props {
   className?: string;
+  abilityScores: number[];
+  isKnaveSpellsIncluded: boolean;
+  setKnaveSpells: (params: boolean) => void;
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({ className }) => {
-  const [abilityScores, setAbilityScores] = useState(getAbilityScores);
-  const [isClassSelected, setIsClassSelected] = useState(false);
-  const [classSelection, setClassSelection] = useState("");
-  const [includeKnaveSpells, setIncludeKnaveSpells] = useState(false);
-  useEffect(() => {
-    setAbilityScores(abilityScores);
-  }, [abilityScores]);
+const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, setKnaveSpells, isKnaveSpellsIncluded }) => {
+  let history = useHistory();
+  const [isClassSelected] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
-  //currently only checking if it's https in production
-  const homeURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/"
-      : "https://oldschoolknave.surge.sh/";
-
-  if (window.location.href !== homeURL) {
-    const savedData = getSavedCharacterData(window.location.href, homeURL);
-
-    if (savedData) {
-      return (
-        <div className={className}>
-          <Character
-            classSelection={savedData && savedData.class}
-            abilityScores={savedData && savedData.abilityScores}
-            includeKnaveSpells={false}
-            savedCharacterData={savedData}
-          />
-        </div>
-      );
-    }
-  }
 
   return (
-    <div className={className}>
+    <div className={className} >
       {!isClassSelected && (
         <GridContainer>
           <Ability>STR</Ability>
@@ -137,9 +111,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ClassButtonsContainer>
             <KnaveSpellOptionsContainer
-              onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
+              onClick={() => setKnaveSpells(!isKnaveSpellsIncluded)}
             >
-              {includeKnaveSpells ? (
+              {isKnaveSpellsIncluded ? (
                 <MdCheckBox size="1.5em" />
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
@@ -159,8 +133,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
-                      setIsClassSelected(true);
-                      setClassSelection(classOptionKey);
+                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${isKnaveSpellsIncluded}`);
                     }}
                   >
                     <div
@@ -183,13 +156,6 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
             </DemihumansText>
           </ClassButtonsContainer>
         </div>
-      )}
-      {isClassSelected && classSelection && (
-        <Character
-          classSelection={classSelection}
-          abilityScores={abilityScores}
-          includeKnaveSpells={includeKnaveSpells}
-        />
       )}
       <CreatorsContainer>
         <FaDungeon />
