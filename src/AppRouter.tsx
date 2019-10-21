@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch, RouteComponentProps } from "react-router-dom";
 import StyledApp from "./App";
 import StyledCreatedCharacter from "./components/createdCharacter";
@@ -9,7 +9,11 @@ import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
 export default function App() {
     const [abilityScores] = useState(getAbilityScores);
-    // const [includeKnaveSpells] = useState(false);
+    const [isKnaveSpellsIncluded, setKnaveSpells] = useState(false);
+
+    useEffect(() => {
+      setKnaveSpells(isKnaveSpellsIncluded);
+    }, [isKnaveSpellsIncluded]);
 
     type TParams = { character: string,
                      saved: string
@@ -17,7 +21,6 @@ export default function App() {
     }
 
     function CharacterSheet({ match }: RouteComponentProps<TParams>) {
-        console.log("Match params: ", match.params);
 
         if(match.params.saved){
             const homeURL =
@@ -26,8 +29,7 @@ export default function App() {
                 : "https://oldschoolknave.surge.sh/";
             let baseURL = window.location.href;
             let savedData = getSavedCharacterData(baseURL, homeURL, "savedCharacter/1&");
-            // console.log("Data from Saved: ", savedData);
-            
+            //TO-DO: ADD KNAVE SPELLS BOOLEAN TO DATA THAT GETS SAVED WHEN PERMALINKED
             return (
                 <StyledCreatedCharacter
                   classSelection={savedData && savedData.class}
@@ -40,10 +42,9 @@ export default function App() {
 
         let generatedCharacterData = match.params.character.split('&');
         let characterClass = generatedCharacterData[0].toLowerCase();
-        // console.log("Data extracted from params: ", generatedCharacterData);
         let abilityStringScoreArr = generatedCharacterData[1].split(',');
-        // console.log("knave: ", generatedCharacterData[2]==="true");
-
+        let knave = generatedCharacterData[2] === 'true';
+        
         let hyphenatedCharacters = ['magic-user', 'crab-person', 'half-elf', 'wild magic-user'];
 
         if(hyphenatedCharacters.includes(characterClass)){
@@ -56,12 +57,10 @@ export default function App() {
             <StyledCreatedCharacter
                 classSelection={characterClass}
                 abilityScores={abilityStringScoreArr.map(item => parseInt(item))}
-                includeKnaveSpells={generatedCharacterData[2]==="true"}
+                includeKnaveSpells={knave}
             />
         )
       }
-
-      console.log("abilityScores: ", abilityScores, " ");
 
     return (
       <Router basename="/">
@@ -69,7 +68,7 @@ export default function App() {
               renders the first one that matches the current URL. */}
           <Switch>
             <Route exact path="/">
-              <StyledApp abilityScores={abilityScores}/>
+              <StyledApp abilityScores={abilityScores} setKnaveSpells={setKnaveSpells} isKnaveSpellsIncluded={isKnaveSpellsIncluded}/>
             </Route>
             <Route path="/savedCharacter/:saved/" component={CharacterSheet}></Route>
             <Route path="/generatedCharacter/:character/" component={CharacterSheet}></Route>

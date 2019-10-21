@@ -47,22 +47,20 @@ import { useHistory } from "react-router-dom";
 interface Props {
   className?: string;
   abilityScores: number[];
+  isKnaveSpellsIncluded: boolean;
+  setKnaveSpells: (params: boolean) => void;
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores }) => {
+const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, setKnaveSpells, isKnaveSpellsIncluded }) => {
   let history = useHistory();
   const [isClassSelected] = useState(false);
-  const [includeKnaveSpells, setIncludeKnaveSpells] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
 
-  // console.log("Location: ", getLocation, "\nhist: ", history, "\nparams: ", params);
-  console.log("\nhist: ", history);
-  console.log("abilityScores: ", abilityScores);
   return (
-    <div className={className}>
+    <div className={className} >
       {!isClassSelected && (
         <GridContainer>
           <Ability>STR</Ability>
@@ -80,9 +78,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores }) => {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ClassButtonsContainer>
             <KnaveSpellOptionsContainer
-              onClick={() => setIncludeKnaveSpells(!includeKnaveSpells)}
+              onClick={() => setKnaveSpells(!isKnaveSpellsIncluded)}
             >
-              {includeKnaveSpells ? (
+              {isKnaveSpellsIncluded ? (
                 <MdCheckBox size="1.5em" />
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
@@ -101,7 +99,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores }) => {
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
-                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`);
+                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${isKnaveSpellsIncluded}`);
                     }}
                   >
                     <div
