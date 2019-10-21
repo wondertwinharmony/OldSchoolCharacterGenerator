@@ -90,7 +90,7 @@ export const knaveSpells = [
   "<strong>Pull:</strong> An object of any size is pulled directly towards you with the strength of L men for one round.<sup>†</sup>",
   "<strong>Push:</strong> An object of any size is pushed directly away from you with the strength of L men for one round.<sup>†</sup>",
   "<strong>Raise Dead:</strong> L skeletons rise from the ground to serve you. They are incredibly stupid and can only obey simple orders.<sup>†</sup>",
-  "<strong>Raise Spirit: The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
+  "<strong>Raise Spirit:</strong> The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
   "<strong>Read Mind:</strong> You can hear the surface thoughts of nearby creatures.<sup>†</sup>",
   "<strong>Repel:</strong> L+1 objects are strongly magnetically repelled from each other if they come within 10 feet.<sup>†</sup>",
   "<strong>Scry:</strong> You can see through the eyes of a creature you touched earlier today.<sup>†</sup>",

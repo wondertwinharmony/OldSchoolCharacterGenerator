@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch, RouteComponentProps } from "react-router-dom";
 import StyledApp from "./App";
-import StyledCreatedCharacter from "./components/createdCharacter";
+import StyledCreatedCharacter from "./components/character";
 import { toCamelCase } from "./utils/convertToCamelCase";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { getSavedCharacterData } from "./utils/getSavedCharacterData";
@@ -29,12 +29,12 @@ export default function App() {
                 : "https://oldschoolknave.surge.sh/";
             let baseURL = window.location.href;
             let savedData = getSavedCharacterData(baseURL, homeURL, "savedCharacter/1&");
-            //TO-DO: ADD KNAVE SPELLS BOOLEAN TO DATA THAT GETS SAVED WHEN PERMALINKED
+
             return (
                 <StyledCreatedCharacter
                   classSelection={savedData && savedData.class}
                   abilityScores={savedData && savedData.abilityScores}
-                  includeKnaveSpells={false}
+                  includeKnaveSpells={savedData.knave}
                   savedCharacterData={savedData}
                 />
             )
@@ -50,8 +50,6 @@ export default function App() {
         if(hyphenatedCharacters.includes(characterClass)){
            characterClass = toCamelCase(characterClass);
         }
-
-
 
         return (
             <StyledCreatedCharacter

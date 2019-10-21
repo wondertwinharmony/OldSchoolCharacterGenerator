@@ -33,6 +33,8 @@ import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
 import { saveCharacterData } from "../utils/saveCharacterData";
+import parchment from "../static/parchment.png";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   abilityScores: number[];
@@ -51,6 +53,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   includeKnaveSpells,
   savedCharacterData
 }) => {
+    let history = useHistory();
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
@@ -161,22 +164,23 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             style={{ width: "275px" }}
             variant="outline-secondary"
             onClick={() => {
-              saveCharacterData(
-                characterName,
-                classSelection,
-                traits,
-                abilityScores,
-                hitPoints,
-                languages,
-                spells,
-                equipment.characterEquipmentString,
-                equipment.slotsToFill
-              );
+              let URL = saveCharacterData(characterName,
+                                classSelection,
+                                traits,
+                                abilityScores,
+                                hitPoints,
+                                languages,
+                                spells,
+                                equipment.characterEquipmentString,
+                                equipment.slotsToFill,
+                                includeKnaveSpells
+                              );
+              history.push(`/savedCharacter/1&${URL}`);
             }}
           >
             Permalink
           </PermalinkButton>
-          <div>(or refresh to roll a new character)</div>
+          <div>(or hit back to see other class options for current ability scores)</div>
         </PermalinkButtonContainer>
       ) : (
         <SaveMessageContainer>
@@ -1102,10 +1106,12 @@ const CoinConversionsTable = styled.div`
   background-size: 24rem 8rem;
 `;
 
-const StyledCharacter = styled(CharacterImpl)`
+const StyledCreatedCharacter = styled(CharacterImpl)`
+  font-family: "Roboto Mono", monospace;
+  background-image: url(${parchment});
   justify-content: center;
   display: flex;
   flex-direction: column;
 `;
 
-export default StyledCharacter;
+export default StyledCreatedCharacter;

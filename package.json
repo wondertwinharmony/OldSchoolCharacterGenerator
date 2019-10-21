@@ -7,9 +7,9 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.5",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "@types/dompurify": "0.0.32",
-    "@types/lodash": "^4.14.141",
+    "@types/lodash": "^4.14.144",
     "@types/react-bootstrap": "^0.32.20",
     "@types/react-router-dom": "^5.1.0",
     "@types/roll": "^1.2.0",
@@ -19,7 +19,7 @@
     "i": "^0.3.6",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
-    "npm": "^6.11.3",
+    "npm": "^6.12.0",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
@@ -28,7 +28,7 @@
     "react-scripts": "3.0.0",
     "roll": "^1.2.0",
     "styled-components": "^4.4.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "react-scripts start",
