@@ -36,7 +36,6 @@ export default function App() {
 
         if(match.params.previouslySaved){
           let characterData = getSavedCharacterData(baseURL, homeURL, '');
-          console.log('CHARACTERDATA IN APPROUTER: ', characterData);
 
           return (
             <StyledCreatedCharacter
