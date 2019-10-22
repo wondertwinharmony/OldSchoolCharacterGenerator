@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import styled from "styled-components";
+import { GiRollingDices } from 'react-icons/gi';
 import { characterClasses } from "./characterData/classes";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
@@ -114,6 +115,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, isKnaveSpells
           <ClassButtonsContainer>
             <RerollAbilityScoresContainer onClick={()=> {setAbilityScores(getAbilityScores)}}>
               <RollButton variant="outline-secondary">
+                <RollButtonIcon>
+                  <GiRollingDices/>
+                </RollButtonIcon>
                 <RollButtonText>Reroll Ability Scores</RollButtonText>
               </RollButton>
             </RerollAbilityScoresContainer>
@@ -207,6 +211,14 @@ const RerollAbilityScoresContainer = styled.div`
   flex-direction: column;
   max-width: 400px;
   padding: 2rem 3rem;
+`;
+
+const RollButtonIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+  padding: 0.5rem 0;
+  color: black;
 `;
 
 const RollButtonText = styled.div`
