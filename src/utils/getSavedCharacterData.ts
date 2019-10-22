@@ -16,7 +16,16 @@ export interface SavedCharacterData {
  * @param  {string} router
  */
 export const getSavedCharacterData = (url: string, home: string, route: string) => {
-    const decodedURI = decodeURI(url).replace(home, '').replace(route, '');
+    let decodedURI = '';
+    let rawCharacterData = [];
+
+    if(route){
+        decodedURI = decodeURI(url).replace(home, '').replace(route, '');
+        rawCharacterData = decodedURI.split('&');
+    } else {
+        decodedURI = decodeURI(url).replace(home, '');
+        rawCharacterData = decodedURI.replace(/-/gm, ' ').split('$');
+    }
     
     let savedCharacterData = {
         name: '',
@@ -30,10 +39,9 @@ export const getSavedCharacterData = (url: string, home: string, route: string) 
         knave: false
     };
 
-    let rawCharacterData = decodedURI.split('&');
     let abilityScores = rawCharacterData[3].split(',');
 
-    savedCharacterData.name = rawCharacterData[0].replace('_', ' ');
+    savedCharacterData.name = rawCharacterData[0].replace(/_/gm, ' ');
     savedCharacterData.class = rawCharacterData[1];
     savedCharacterData.traits = rawCharacterData[2].replace(/_/gm, ' ');
     savedCharacterData.abilityScores = abilityScores.map(item => parseInt(item));
