@@ -10,6 +10,7 @@ import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
+import { getAbilityScores } from "./utils/getAbilityScores";
 import { useHistory } from "react-router-dom";
 
 /**
@@ -82,11 +83,12 @@ interface Props {
   abilityScores: number[];
   isKnaveSpellsIncluded: boolean;
   setKnaveSpells: (params: boolean) => void;
+  setAbilityScores: (params:() => number[]) => void;
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, setKnaveSpells, isKnaveSpellsIncluded }) => {
+const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, isKnaveSpellsIncluded, setKnaveSpells, setAbilityScores }) => {
   let history = useHistory();
   const [isClassSelected] = useState(false);
 
@@ -110,6 +112,11 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, setKnaveSpell
       {!isClassSelected && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ClassButtonsContainer>
+            <RerollAbilityScoresContainer onClick={()=> {setAbilityScores(getAbilityScores)}}>
+              <RollButton variant="outline-secondary">
+                <RollButtonText>Reroll Ability Scores</RollButtonText>
+              </RollButton>
+            </RerollAbilityScoresContainer>
             <KnaveSpellOptionsContainer
               onClick={() => setKnaveSpells(!isKnaveSpellsIncluded)}
             >
@@ -193,6 +200,23 @@ const AbilityScore = styled.div`
   font-weight: bold;
   font-size: 3rem;
   text-align: center;
+`;
+
+const RerollAbilityScoresContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding: 2rem 3rem;
+`;
+
+const RollButtonText = styled.div`
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+`;
+
+const RollButton = styled(Button)`
+  height: "4rem";
 `;
 
 const ClassButtonsContainer = styled.div`
