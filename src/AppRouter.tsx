@@ -32,7 +32,6 @@ export default function App() {
       ? "http://localhost:3000/"
       : "https://oldschoolknave.surge.sh/";
       const baseURL = window.location.href;
-      // console.log('MATCH OBJECT FROM APPROUTER: ', match);
 
         if(match.params.previouslySaved){
           let characterData = getSavedCharacterData(baseURL, homeURL, '');
