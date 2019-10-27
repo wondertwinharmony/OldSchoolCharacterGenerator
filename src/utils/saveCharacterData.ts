@@ -14,7 +14,7 @@
   * @param  {string} stringToProcess
   */
  const replaceSpaces = (stringToProcess: string) => {
-    let processedString = stringToProcess.trimStart().replace(/[\s]+/g, '_');
+    let processedString = stringToProcess.replace(/[\s]+/g, '_');
     return processedString;
 }
 
