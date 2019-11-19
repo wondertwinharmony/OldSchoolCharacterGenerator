@@ -25,7 +25,8 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
     halfOrc: characterClasses.halfOrc.name,
     illusionist: characterClasses.illusionist.name,
     magicUser: characterClasses.magicUser.name,
-    thief: characterClasses.thief.name
+    thief: characterClasses.thief.name,
+    ynnianChangeling: characterClasses.ynnianChangeling.name
   };
 
   /**

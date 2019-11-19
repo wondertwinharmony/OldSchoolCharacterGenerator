@@ -23,6 +23,7 @@ import { ranger } from "./classes/ranger";
 import { svirfneblin } from "./classes/svirfneblin";
 import { thief } from "./classes/thief";
 import { wildMagicUser } from "./classes/wildMagicUser";
+import { ynnianChangeling } from "./classes/ynnianChangeling";
 
 /**
  * Saves
@@ -91,5 +92,6 @@ export const characterClasses: { [key: string]: characterClass } = {
   paladin,
   psionicist,
   ranger,
-  svirfneblin
+  svirfneblin,
+  ynnianChangeling
 };
