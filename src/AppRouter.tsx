@@ -64,7 +64,7 @@ export default function App() {
         let abilityStringScoreArr = generatedCharacterData[1].split(',');
         let knave = generatedCharacterData[2] === 'true';
         
-        let hyphenatedCharacters = ['magic-user', 'crab-person', 'half-elf', 'wild magic-user', 'half-orc'];
+        let hyphenatedCharacters = ['magic-user', 'crab-person', 'half-elf', 'wild magic-user', 'half-orc', 'ynnian changeling'];
 
         if(hyphenatedCharacters.includes(characterClass)){
            characterClass = toCamelCase(characterClass);

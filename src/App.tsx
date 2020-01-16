@@ -15,69 +15,17 @@ import { getAbilityScores } from "./utils/getAbilityScores";
 import { useHistory } from "react-router-dom";
 
 /**
- *  8/9 new human classes remain (icons):
- * - [x] acrobat: body balance
- * - [x] needs acrobat equipment (many pole weapons)
- * - [x] needs acrobat skills icon: GiAcrobatic
- * - [x] assassin: daggers
- * - [x] needs assassin equipment (include named poisons (type I, II, etc. and page
- * - reference to poisons rules))
- * - [x] needs assassin skills icon: bloody sword
- * - [x] barbarian: hunting horn, totem, brutal helm, barbarian, biceps, ancient sword
- * - [x] needs barbarian skills icon: snake totem
- * - [x] needs barbarian equipment (maybe give totemic/tribal items?)
- * - [x] barbarian needs long bows, warhammer
- * - [x] barbarian traits
- * - [x] bard
- * - [x] needs some random scrolls from druid spell list in equipment
- * - [x] druid: wizard staff
- * - [x] needs druid equipment (wooden shields, holy symbol)
- * - [x] spell scrolls for druid spells
- * - [x] illusionist: pointy hat
- * - [x] needs illusionist equipment (just like magic user but include illusionist scrolls)
- * - [x] illusionist equipment, some need a quartz (10gp)
- * - [x] illusionist and magic user need some silver daggers
- * - [x] knight: visored helm
- * - [x] needs knight equipment (no leather armor, no missile weapons)
- * - [x] paladin: templar shield
- * - [x] needs paladin equipment (holy symbol)
- * - [x] ranger: compass, arrow cluster, high shot
- * - [x] needs ranger equipment (more long bows)
- * - [x] needs tracking table icon: paw print
- *
- *  4/6 new demihuman race-classes remain (icons):
- * - [x] duergar: heavy helm, dwarf face
- * - [x] needs same equipment check as dwarves
- * - [x] gnome: wizard face
- * - [x] needs gnome equipment (include illusionist scrolls)
- * - [x] needs random burrowing mammal pets (resolve like bard instruments)
- * - [x] half-orc: orc head
- * - [x] needs half-orc equipment
- * - [x] svirfneblin: war pick
- * - [x] needs same equipment check as dwarves
- *
- * - [] Illusionist wild magic user spells not saving again
+ * - [] Consider refactor to leverage app context in future
  * - [] New feature - always display all classes available, but gray out selection
- *      when requisites not met
- * - [x] Check alignment -> paladin, druid, and ranger
- * - [x] War Hammer -> Warhammer
- * - [x] FIGHTER NEEDS weapon specialization rules
- * - [x] capitalize psionicst skills
- * - [x] Fix wild magic-user spell level variability
- * - [x] Add level one illusionist spells and some high level scrolls
- * - [x] BARD NEEDS getExperienceAdjustment added for CHA
- * - [x] Update weapons and armor OSE pages to include slots instead of
- * - weight in coins (which is awkward), Make this the new "purchase sheet",
- * - [x] Add store items once pdf is created so images can be simply inserted into app as a reference
+ *      when requisites not met (maybe highlight requisite as red)
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
- * - Create own random treasure app tool
- *  - Consider simple random spellbook generator for Illusionist and Magic-User
- *  - Consider making Traps and Treasures tables rollable
+ * - Create own random treasure app tool from OSE Treasure book?
+ * - Create own random sentient weapon app tool from OSE Treasure book?
+ * - Consider simple random spellbook generator for Illusionist and Magic-User
+ * - Consider making Traps and Treasures tables rollable
  * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
- *
- * Advanced rules for poisons, combat options, and more.
  */
 interface Props {
   className?: string;
