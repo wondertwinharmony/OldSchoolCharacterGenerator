@@ -64,6 +64,8 @@ import { getTraits } from "../utils/getTraits";
 import parchment from "../static/parchment.png";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./characterSheetComponents/permalink";
+import CharacterNameAndClass from "./characterSheetComponents/characterNameAndClass";
+import ClassIconAndAbilityScores from "./characterSheetComponents/iconAndAbilityScoresGrid";
 
 interface Props {
   abilityScores: number[];
@@ -198,6 +200,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
+
+      {/* Permalink Button and Bookmark Message */}
       <Permalink savedCharacterData={savedCharacterData} 
                  characterName={characterName} 
                  classSelection={classSelection} 
@@ -208,10 +212,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                  spells={spells} 
                  equipment={equipment} 
                  includeKnaveSpells={includeKnaveSpells}/>
-      <CharacterName>{characterName}</CharacterName>
-      <ClassTitle>
-        {`Level 1 ${characterClasses[classSelection].name}`}
-      </ClassTitle>
+
+      {/* Character Name and Class Title Section */}
+      <CharacterNameAndClass characterName={characterName} classSelection={classSelection}/>
+
+      {/* Character Class Icon and Ability Scores Grid Section */}
       <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
 
       {/* Ability Scores */}
@@ -259,6 +264,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
           )}
         />
       </AbilityScoresGrid>
+      <ClassIconAndAbilityScores classSelection={classSelection} 
+                                 abilityScores={abilityScores} 
+                                 strMod={strMod} 
+                                 dexMod={dexMod} 
+                                 conMod={conMod} 
+                                 intMod={intMod} 
+                                 wisMod={wisMod} 
+                                 chaMod={chaMod}/>
 
       {/* Saves and Stats */}
       <SavesAndStatsGrid>
@@ -930,19 +943,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   );
 };
 
-const CharacterName = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 2rem;
-`;
 
-const ClassTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 1.5rem;
-  border-bottom: 1px solid black;
-`;
 
 const ClassIcon = styled.div`
   display: flex;
@@ -950,6 +951,13 @@ const ClassIcon = styled.div`
   font-size: 5rem;
   opacity: 0.5;
   padding: 0.5rem 0;
+`;
+
+const AbilityScoresGrid = styled.div`
+  display: grid;
+  grid-template-columns: 120px 120px 120px;
+  justify-content: center;
+  padding: 0 0.25rem;
 `;
 
 const HeaderIcon = styled.div`
@@ -967,12 +975,7 @@ const TraitsHeader = styled.div`
   font-size: 1.5rem;
 `;
 
-const AbilityScoresGrid = styled.div`
-  display: grid;
-  grid-template-columns: 120px 120px 120px;
-  justify-content: center;
-  padding: 0 0.25rem;
-`;
+
 
 const SavesAndStatsGrid = styled.div`
   padding: 0.5rem;
