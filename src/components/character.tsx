@@ -21,7 +21,7 @@ import {
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
-import { characterClasses, saves } from "../characterData/classes";
+import { characterClasses } from "../characterData/classes";
 import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { retainers } from "../characterData/retainers";
@@ -66,6 +66,7 @@ import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./characterSheetComponents/permalink";
 import CharacterNameAndClass from "./characterSheetComponents/characterNameAndClass";
 import ClassIconAndAbilityScores from "./characterSheetComponents/iconAndAbilityScoresGrid";
+import SavesAndStats from "./characterSheetComponents/savesAndStats";
 
 interface Props {
   abilityScores: number[];
@@ -217,53 +218,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       <CharacterNameAndClass characterName={characterName} classSelection={classSelection}/>
 
       {/* Character Class Icon and Ability Scores Grid Section */}
-      <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
-
-      {/* Ability Scores */}
-      <AbilityScoresGrid>
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>STR:</strong> ${abilityScores[STR]} ${
-              strMod === "None" ? "" : `(${strMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>DEX:</strong> ${abilityScores[DEX]} ${
-              dexMod === "None" ? "" : `(${dexMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>CON</strong> ${abilityScores[CON]} ${
-              conMod === "None" ? "" : `(${conMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>INT:</strong> ${abilityScores[INT]} ${
-              intMod === "None" ? "" : `(${intMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>WIS:</strong> ${abilityScores[WIS]} ${
-              wisMod === "None" ? "" : `(${wisMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>CHA:</strong> ${abilityScores[CHA]} ${
-              chaMod === "None" ? "" : `(${chaMod})`
-            }`
-          )}
-        />
-      </AbilityScoresGrid>
       <ClassIconAndAbilityScores classSelection={classSelection} 
                                  abilityScores={abilityScores} 
                                  strMod={strMod} 
@@ -273,88 +227,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                                  wisMod={wisMod} 
                                  chaMod={chaMod}/>
 
-      {/* Saves and Stats */}
-      <SavesAndStatsGrid>
-        <StatsContainer>
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>HP:</strong> ${hitPoints}`
-            )}
-          />
-          {/* <div>{`HP: ${hitPoints}`}</div> */}
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`
-            )}
-          />
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>AC:</strong> ${armorClass}`
-            )}
-          />
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>${
-                experienceAdjustment === "+0% XP"
-                  ? ""
-                  : `${experienceAdjustment}`
-              }</strong>`
-            )}
-          />
-        </StatsContainer>
-        <SavesContainer>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.poison}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.poison}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.wands}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.wands}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.stone}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.stone}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.breath}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.breath}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.magic}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.magic}
-            </SaveScore>
-          </Save>
-        </SavesContainer>
-      </SavesAndStatsGrid>
+      {/* Saves and Stats Section */}
+      <SavesAndStats hitPoints={hitPoints} 
+                     classSelection={classSelection} 
+                     armorClass={armorClass} 
+                     experienceAdjustment={experienceAdjustment}/>
 
       {/* Traits */}
       <TraitsContainer>
@@ -944,22 +821,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 };
 
 
-
-const ClassIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 5rem;
-  opacity: 0.5;
-  padding: 0.5rem 0;
-`;
-
-const AbilityScoresGrid = styled.div`
-  display: grid;
-  grid-template-columns: 120px 120px 120px;
-  justify-content: center;
-  padding: 0 0.25rem;
-`;
-
 const HeaderIcon = styled.div`
   margin: 0 0.5rem;
 `;
@@ -976,40 +837,6 @@ const TraitsHeader = styled.div`
 `;
 
 
-
-const SavesAndStatsGrid = styled.div`
-  padding: 0.5rem;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  justify-content: center;
-`;
-
-const SavesContainer = styled.div`
-  display: grid;
-  grid-gap: 0.25rem;
-  justify-content: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-`;
-
-const Save = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const SaveScore = styled.div`
-  padding: 0 0.75rem;
-`;
-
-const StatsContainer = styled.div`
-  display: grid;
-  justify-content: flex-end;
-  align-content: baseline;
-  grid-gap: 0.25rem;
-  padding-right: 1rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-`;
 
 const LanguagesContainer = styled.div``;
 
