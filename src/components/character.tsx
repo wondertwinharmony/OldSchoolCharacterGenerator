@@ -67,6 +67,7 @@ import Permalink from "./characterSheetComponents/permalink";
 import CharacterNameAndClass from "./characterSheetComponents/characterNameAndClass";
 import ClassIconAndAbilityScores from "./characterSheetComponents/iconAndAbilityScoresGrid";
 import SavesAndStats from "./characterSheetComponents/savesAndStats";
+import Segment from "./characterSheetComponents/segment";
 
 interface Props {
   abilityScores: number[];
@@ -150,11 +151,11 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       : getCharacterName(classSelection)
   );
 
-  // Character Section Visibility
+  // Character Segment Visibility
   const [isTraitsVisible, setIsTraitsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
   const [isAbilitiesVisible, setIsAbilitiesVisible] = useState(true);
-  const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
+  // const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
   const [isPaladinTurnVisible, setIsPaladinTurnVisible] = useState(true);
   const [isSpellsVisible, setIsSpellsVisible] = useState(true);
   const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
@@ -214,10 +215,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                  equipment={equipment} 
                  includeKnaveSpells={includeKnaveSpells}/>
 
-      {/* Character Name and Class Title Section */}
+      {/* Character Name and Class Title Segment */}
       <CharacterNameAndClass characterName={characterName} classSelection={classSelection}/>
 
-      {/* Character Class Icon and Ability Scores Grid Section */}
+      {/* Character Class Icon and Ability Scores Grid Segment */}
       <ClassIconAndAbilityScores classSelection={classSelection} 
                                  abilityScores={abilityScores} 
                                  strMod={strMod} 
@@ -227,133 +228,57 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                                  wisMod={wisMod} 
                                  chaMod={chaMod}/>
 
-      {/* Saves and Stats Section */}
+      {/* Saves and Stats Segment */}
       <SavesAndStats hitPoints={hitPoints} 
                      classSelection={classSelection} 
                      armorClass={armorClass} 
                      experienceAdjustment={experienceAdjustment}/>
 
-      {/* Traits */}
-      <TraitsContainer>
-        <TraitsHeader
-          onClick={() => {
-            setIsTraitsVisible(!isTraitsVisible);
-          }}
-        >
-          <HeaderIcon>
-            <GiScrollUnfurled />
-          </HeaderIcon>
-          Traits
-          <FontAwesomeIcon
-            icon={isTraitsVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </TraitsHeader>
-        {isTraitsVisible && <div>{traits}</div>}
-      </TraitsContainer>
+      {/* Traits Segment*/}
+      <Segment segmentIcon={<GiScrollUnfurled/>}
+               segmentName={'Traits'}
+               segmentData={traits}
+               collapse={isTraitsVisible}
+               setCollapse={setIsTraitsVisible}
+               />
 
-      {/* Languages */}
-      {characterClasses[classSelection].languages && (
-        <LanguagesContainer>
-          <LanguagesHeader
-            onClick={() => {
-              setIsLanguagesVisible(!isLanguagesVisible);
-            }}
-          >
-            <HeaderIcon>
-              <MdChatBubble />
-            </HeaderIcon>
-            Languages
-            <FontAwesomeIcon
-              icon={isLanguagesVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </LanguagesHeader>
-          {isLanguagesVisible && <Language>{languages}</Language>}
-        </LanguagesContainer>
-      )}
+      {/* Languages Segment*/}
+      <Segment segmentIcon={<MdChatBubble/>}
+               segmentName={'Languages'}
+               segmentData={<Language>{languages}</Language>}
+               collapse={isLanguagesVisible}
+               setCollapse={setIsLanguagesVisible}
+               />
 
-      {/* Abilities */}
-      {characterClasses[classSelection].abilities && (
-        <AbilitiesContainer>
-          <AbilitiesHeader
-            onClick={() => {
-              setIsAbilitiesVisible(!isAbilitiesVisible);
-            }}
-          >
-            <HeaderIcon>
-              <MdStar />
-            </HeaderIcon>
-            Abilities
-            <FontAwesomeIcon
-              icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </AbilitiesHeader>
-          {isAbilitiesVisible && (
-            <Ability
-              dangerouslySetInnerHTML={createMarkup(
-                characterClasses[classSelection].abilities!.join("\n\n")
-              )}
-            />
-          )}
-        </AbilitiesContainer>
-      )}
+      {/* Abilities Segment*/}
+      <Segment segmentIcon={<MdStar/>}
+               segmentName={'Abilities'}
+               segmentData={<Ability
+                dangerouslySetInnerHTML={createMarkup(
+                  characterClasses[classSelection].abilities!.join("\n\n")
+                )}/>}
+               collapse={isAbilitiesVisible}
+               setCollapse={setIsAbilitiesVisible}
+               />
 
-      {/* Cleric Turn Undead */}
-      {characterClasses[classSelection].clericTurn && (
-        <ClericTurnContainer>
-          <ClericTurnHeader
-            onClick={() => {
-              setIsClericTurnVisible(!isClericTurnVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiChewedSkull />
-            </HeaderIcon>
-            Turning the Undead
-            <FontAwesomeIcon
-              icon={isClericTurnVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </ClericTurnHeader>
-          {isClericTurnVisible && <ClericTurnTable />}
-          {isClericTurnVisible && (
-            <div>{characterClasses[classSelection].clericTurn}</div>
-          )}
-          {isClericTurnVisible && <ClericTurnResultsTable />}
-        </ClericTurnContainer>
-      )}
-
-      {/* Paladin Turn Undead */}
-      {characterClasses[classSelection].paladinTurn && (
-        <PaladinTurnContainer>
-          <PaladinTurnHeader
-            onClick={() => {
-              setIsPaladinTurnVisible(!isPaladinTurnVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiChewedSkull />
-            </HeaderIcon>
-            Turning the Undead
-            <FontAwesomeIcon
-              icon={isPaladinTurnVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </PaladinTurnHeader>
-          {isPaladinTurnVisible && <PaladinTurnTable />}
-          {isPaladinTurnVisible && (
-            <div>{characterClasses[classSelection].paladinTurn}</div>
-          )}
-          {isPaladinTurnVisible && <PaladinTurnResultsTable />}
-        </PaladinTurnContainer>
-      )}
+      {/* Turn Undead Segment - Cleric/Paladin */}
+      {(characterClasses[classSelection].paladinTurn || characterClasses[classSelection].clericTurn) && (
+      <Segment segmentIcon={<GiChewedSkull/>}
+               segmentName={'Turning the Undead'}
+               segmentData={<TurnUndeadContainer>
+                  {characterClasses[classSelection].clericTurn ? 
+                    <><ClericTurnTable />
+                      <div>{characterClasses[classSelection].clericTurn}</div>
+                    </> :
+                    <><PaladinTurnTable />
+                      <div>{characterClasses[classSelection].paladinTurn}</div>
+                    </>
+                  }
+                  <ClericTurnResultsTable />
+               </TurnUndeadContainer>}
+               collapse={isPaladinTurnVisible}
+               setCollapse={setIsPaladinTurnVisible}
+               />)}
 
       {/* Spells */}
       {characterClasses[classSelection].spells && (
@@ -825,27 +750,15 @@ const HeaderIcon = styled.div`
   margin: 0 0.5rem;
 `;
 
-const TraitsContainer = styled.div`
-  padding: 0.5rem;
-`;
 
-const TraitsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const LanguagesContainer = styled.div``;
 
-
-
-const LanguagesContainer = styled.div``;
-
-const LanguagesHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const LanguagesHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const Language = styled.div`
   display: flex;
@@ -854,14 +767,14 @@ const Language = styled.div`
   padding: 0.5rem;
 `;
 
-const AbilitiesContainer = styled.div``;
+// const AbilitiesContainer = styled.div``;
 
-const AbilitiesHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const AbilitiesHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const Ability = styled.div`
   padding: 0.5rem;
@@ -869,7 +782,7 @@ const Ability = styled.div`
   white-space: pre-line;
 `;
 
-const ClericTurnContainer = styled.div`
+const TurnUndeadContainer = styled.div`
   display: block;
   text-align: center;
   padding: 0.5rem;
@@ -891,18 +804,18 @@ const ClericTurnResultsTable = styled.div`
   background-size: 24rem 14rem;
 `;
 
-const ClericTurnHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const ClericTurnHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
-const PaladinTurnContainer = styled.div`
-  display: block;
-  text-align: center;
-  padding: 0.5rem;
-`;
+// const PaladinTurnContainer = styled.div`
+//   display: block;
+//   text-align: center;
+//   padding: 0.5rem;
+// `;
 
 const PaladinTurnTable = styled.div`
   height: 26.75rem;
@@ -912,20 +825,20 @@ const PaladinTurnTable = styled.div`
   background-size: 23rem 27rem;
 `;
 
-const PaladinTurnResultsTable = styled.div`
-  height: 17.75rem;
-  background-image: url(${turningTableResults});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 24rem 14rem;
-`;
+// const PaladinTurnResultsTable = styled.div`
+//   height: 17.75rem;
+//   background-image: url(${turningTableResults});
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: 24rem 14rem;
+// `;
 
-const PaladinTurnHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const PaladinTurnHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const SpellsContainer = styled.div``;
 

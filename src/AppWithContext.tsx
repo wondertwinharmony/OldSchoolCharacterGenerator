@@ -19,7 +19,6 @@ export default class AppImpl extends Component {
         this.setState({includeKnaveSpells: isKnaveSpellsIncluded});
     };
 
-
     setAbilityScores = (abilityScores: number[]) => {
         this.setState({abilityScores});
     };
@@ -32,7 +31,7 @@ export default class AppImpl extends Component {
                 includeKnaveSpells: this.state.includeKnaveSpells,
                 savedCharacterData: this.state.savedCharacterData,
                 setKnaveSpells: this.setKnaveSpells,
-                setAbilityScores: this.setAbilityScores,
+                setAbilityScores: this.setAbilityScores
             }}>
                 <AppRouter/>
             </AppContext.Provider>
