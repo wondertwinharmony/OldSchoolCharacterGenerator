@@ -282,33 +282,22 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
       {/* Spells */}
       {characterClasses[classSelection].spells && (
-        <SpellsContainer>
-          <SpellsHeader
-            onClick={() => {
-              setIsSpellsVisible(!isSpellsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiCometSpark />
-            </HeaderIcon>
-            Spells
-            <FontAwesomeIcon
-              icon={isSpellsVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </SpellsHeader>
-          {isSpellsVisible && (
-            <Spell
-              dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-            />
-          )}
-          {isSpellsVisible && checkSpell(spells) && (
-            <KnaveAddendum
-              dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
-            />
-          )}
-        </SpellsContainer>
+      <Segment segmentIcon={<GiCometSpark/>}
+               segmentName={'Spells'}
+               segmentData={<SpellsContainer>
+                  {(characterClasses[classSelection].spells && checkSpell(spells)) ?
+                    <>
+                      <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
+                      <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)} />
+                    </> :
+                    <>
+                      <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
+                    </>
+                  }
+               </SpellsContainer>}
+               collapse={isSpellsVisible}
+               setCollapse={setIsSpellsVisible}
+               />
       )}
 
       {/* Thief Skills */}
@@ -563,39 +552,25 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         </React.Fragment>
       )}
 
-      {/* Equipment */}
-      <EquipmentContainer>
-        <EquipmentHeader
-          onClick={() => {
-            setIsEquipmentVisible(!isEquipmentVisible);
-          }}
-        >
-          <HeaderIcon>
-            <GiKnapsack />
-          </HeaderIcon>
-          {`Equipment (${equipment.slotsToFill}/${
-            abilityScores[CON] > 10 ? abilityScores[CON] : 10
-          } slots)`}
-          <FontAwesomeIcon
-            icon={isEquipmentVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </EquipmentHeader>
-        {isEquipmentVisible && (
-          <Equipment
-            dangerouslySetInnerHTML={createMarkup(
-              equipment.characterEquipmentString
-            )}
-          />
-        )}
-        {isEquipmentVisible && (
-          <GoldText>
-            † 160 coins can be contained in 1 slot, provided you have a
-            container for them.
-          </GoldText>
-        )}
-      </EquipmentContainer>
+      {/* Equipment Segment */}
+      <Segment segmentIcon={<GiKnapsack/>}
+               segmentName={`Equipment (${equipment.slotsToFill}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+                } slots)`}
+               segmentData={<>
+                  <Equipment
+                    dangerouslySetInnerHTML={createMarkup(
+                      equipment.characterEquipmentString
+                    )}
+                  />
+                  <GoldText>
+                    † 160 coins can be contained in 1 slot, provided you have a
+                    container for them.
+                  </GoldText>
+               </>}
+               collapse={isEquipmentVisible}
+               setCollapse={setIsEquipmentVisible}
+               />
 
       {/* Combat Actions */}
       <CombatActionsContainer>
@@ -842,12 +817,12 @@ const PaladinTurnTable = styled.div`
 
 const SpellsContainer = styled.div``;
 
-const SpellsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const SpellsHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const Spell = styled.div`
   padding: 0.5rem;
@@ -943,14 +918,14 @@ const WildMagicUserWildSurgesTable = styled.div`
   background-size: 13rem 33rem;
 `;
 
-const EquipmentContainer = styled.div``;
+// const EquipmentContainer = styled.div``;
 
-const EquipmentHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const EquipmentHeader = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const Equipment = styled.div`
   padding: 0.5rem;
