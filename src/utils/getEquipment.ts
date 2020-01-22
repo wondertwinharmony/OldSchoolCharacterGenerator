@@ -1,7 +1,11 @@
 import { random, sampleSize } from "lodash";
 import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
-import { gear } from "../characterData/gear";
+import {
+  disguiseItems,
+  dungeoneeringEquipment,
+  gear
+} from "../characterData/gear";
 import { getEquipmentSlots } from "./getEquipmentSlots";
 import { getRandomBurrowingMammal } from "./getRandomBurrowingMammal";
 import { getRandomInstrument } from "./getRandomInstrument";
@@ -76,6 +80,14 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
   }
 
   /**
+   * If class is a citizen lich, make sure they have a random
+   * disguise item.
+   */
+  if (classOptionKey === "citizenLich") {
+    characterEquipment.push(sampleSize(disguiseItems, 2));
+  }
+
+  /**
    * If class is a gnome, have random chance of burrowing
    * mammal as pet. (50% chance)
    */
@@ -87,6 +99,22 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
   const equipmentCountBeforeRandomItems = getEquipmentSlots(
     characterEquipment.flat()
   );
+
+  /**
+   * If class is a underworld ranger, fill their remaining slots
+   * with random dungeoneering equipment.
+   */
+  if (classOptionKey === "underworldRanger") {
+    let underworldRangerRandomItems = sampleSize(
+      dungeoneeringEquipment,
+      slotsToFill - equipmentCountBeforeRandomItems
+    );
+
+    characterEquipment.push(underworldRangerRandomItems);
+    characterEquipmentString = characterEquipment.flat().join("<br><br>• ");
+
+    return { characterEquipmentString, slotsToFill };
+  }
 
   /**
    * Determine random items for available slots.

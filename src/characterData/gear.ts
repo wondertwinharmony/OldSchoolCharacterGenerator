@@ -126,3 +126,33 @@ export const poisons = [
   "<strong>Vial of Purple Worm Poison</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
   "<strong>Vial of Wyvern Venom</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)"
 ];
+
+export const disguiseItems = [
+  "<strong>Masquerade Mask</strong>",
+  "<strong>Disguise Kit</strong>",
+  "<strong>Makeup Kit</strong>",
+  "<strong>Black Leather Face Mask</strong>",
+  "<strong>Featureless Gold Face Mask</strong>",
+  "<strong>Featureless Silver Face Mask</strong>",
+  "<strong>Painted Face Mask</strong>",
+  "<strong>Headscarf</strong>"
+];
+
+export const dungeoneeringEquipment = [
+  "<strong>Bear Trap</strong>",
+  "<strong>50' Rope</strong>",
+  "<strong>10' Pole</strong>",
+  "<strong>10' Chain</strong>",
+  "<strong>Chalk, 10</strong>",
+  "<strong>Crowbar</strong>",
+  "<strong>Pulleys</strong>",
+  "<strong>Pick</strong>",
+  "<strong>Shovel</strong>",
+  "<strong>Grappling Hook</strong>",
+  "<strong>Hammer</strong>",
+  "<strong>Small Sack</strong> (holds 1 slot)",
+  "<strong>Oil Flask</strong>",
+  "<strong>Net</strong>",
+  "<strong>Chisel</strong>",
+  "<strong>Drill</strong>"
+];
