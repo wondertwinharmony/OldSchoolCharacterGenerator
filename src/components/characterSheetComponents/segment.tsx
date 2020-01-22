@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
     segmentIcon: any;
-    segmentName: string;
+    segmentName: any;
     segmentData?: any;
     collapse: boolean;
     setCollapse: (param: boolean) => void;
