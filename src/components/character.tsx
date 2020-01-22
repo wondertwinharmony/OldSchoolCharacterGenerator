@@ -239,16 +239,14 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                segmentName={'Traits'}
                segmentData={traits}
                collapse={isTraitsVisible}
-               setCollapse={setIsTraitsVisible}
-               />
+               setCollapse={setIsTraitsVisible}/>
 
       {/* Languages Segment*/}
       <Segment segmentIcon={<MdChatBubble/>}
                segmentName={'Languages'}
                segmentData={<Language>{languages}</Language>}
                collapse={isLanguagesVisible}
-               setCollapse={setIsLanguagesVisible}
-               />
+               setCollapse={setIsLanguagesVisible}/>
 
       {/* Abilities Segment*/}
       <Segment segmentIcon={<MdStar/>}
@@ -258,46 +256,44 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                   characterClasses[classSelection].abilities!.join("\n\n")
                 )}/>}
                collapse={isAbilitiesVisible}
-               setCollapse={setIsAbilitiesVisible}
-               />
+               setCollapse={setIsAbilitiesVisible}/>
 
       {/* Turn Undead Segment - Cleric/Paladin */}
       {(characterClasses[classSelection].paladinTurn || characterClasses[classSelection].clericTurn) && (
-      <Segment segmentIcon={<GiChewedSkull/>}
-               segmentName={'Turning the Undead'}
-               segmentData={<TurnUndeadContainer>
-                  {characterClasses[classSelection].clericTurn ? 
-                    <><ClericTurnTable />
-                      <div>{characterClasses[classSelection].clericTurn}</div>
-                    </> :
-                    <><PaladinTurnTable />
-                      <div>{characterClasses[classSelection].paladinTurn}</div>
-                    </>
-                  }
-                  <ClericTurnResultsTable />
-               </TurnUndeadContainer>}
-               collapse={isPaladinTurnVisible}
-               setCollapse={setIsPaladinTurnVisible}
-               />)}
+        <Segment segmentIcon={<GiChewedSkull/>}
+                segmentName={'Turning the Undead'}
+                segmentData={<TurnUndeadContainer>
+                    {characterClasses[classSelection].clericTurn ? 
+                      <><ClericTurnTable />
+                        <div>{characterClasses[classSelection].clericTurn}</div>
+                      </> :
+                      <><PaladinTurnTable />
+                        <div>{characterClasses[classSelection].paladinTurn}</div>
+                      </>
+                    }
+                    <ClericTurnResultsTable />
+                </TurnUndeadContainer>}
+                collapse={isPaladinTurnVisible}
+                setCollapse={setIsPaladinTurnVisible}/>
+      )}
 
       {/* Spells */}
       {characterClasses[classSelection].spells && (
-      <Segment segmentIcon={<GiCometSpark/>}
-               segmentName={'Spells'}
-               segmentData={<SpellsContainer>
-                  {(characterClasses[classSelection].spells && checkSpell(spells)) ?
-                    <>
-                      <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
-                      <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)} />
-                    </> :
-                    <>
-                      <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
-                    </>
-                  }
-               </SpellsContainer>}
-               collapse={isSpellsVisible}
-               setCollapse={setIsSpellsVisible}
-               />
+        <Segment segmentIcon={<GiCometSpark/>}
+                segmentName={'Spells'}
+                segmentData={<SpellsContainer>
+                    {(characterClasses[classSelection].spells && checkSpell(spells)) ?
+                      <>
+                        <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
+                        <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)} />
+                      </> :
+                      <>
+                        <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
+                      </>
+                    }
+                </SpellsContainer>}
+                collapse={isSpellsVisible}
+                setCollapse={setIsSpellsVisible}/>
       )}
 
       {/* Thief Skills */}
@@ -569,69 +565,36 @@ const CharacterImpl: React.SFC<ImplProps> = ({
                   </GoldText>
                </>}
                collapse={isEquipmentVisible}
-               setCollapse={setIsEquipmentVisible}
-               />
+               setCollapse={setIsEquipmentVisible}/>
 
-      {/* Combat Actions */}
-      <CombatActionsContainer>
-        <CombatActionsHeader
-          onClick={() => {
-            setIsCombatActionsVisible(!isCombatActionsVisible);
-          }}
-        >
-          <CombatActionsHeaderText>
-            <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <FaDiceD20 />
-              </HeaderIcon>
-              Combat Actions
-            </div>
-          </CombatActionsHeaderText>
-          <FontAwesomeIcon
-            icon={isCombatActionsVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </CombatActionsHeader>
-        {isCombatActionsVisible && (
-          <CombatActions
-            dangerouslySetInnerHTML={createMarkup(combatActions)}
-          />
-        )}
-      </CombatActionsContainer>
+      {/* Combat Actions Segment */}
+      <Segment segmentIcon={<FaDiceD20/>}
+               segmentName={'Combat Actions'}
+               segmentData={<>
+                <CombatActions dangerouslySetInnerHTML={createMarkup(combatActions)}/>
+               </>}
+               collapse={isCombatActionsVisible}
+               setCollapse={setIsCombatActionsVisible}/>
 
-      {/* Weapon Quality Descriptions */}
-      <WeaponQualitiesContainer>
-        <WeaponQualitiesHeader
-          onClick={() => {
-            setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
-          }}
-        >
-          <WeaponQualitiesHeaderText>
-            <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <GiSpiralBottle />
-              </HeaderIcon>
-              Item
-              <HeaderIcon>
-                <FaDAndD />
-              </HeaderIcon>
-              Weapon
-            </div>
-            <div>Qualities</div>
-          </WeaponQualitiesHeaderText>
-          <FontAwesomeIcon
-            icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && (
-          <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
-          />
-        )}
-      </WeaponQualitiesContainer>
+      {/* Weapon Quality Descriptions Segment */}
+      <Segment segmentIcon={<GiSpiralBottle/>}
+               segmentName={<WeaponQualitiesHeaderText>
+                  <div style={{ display: "flex" }}>
+                    Item
+                    <HeaderIcon>
+                      <FaDAndD />
+                    </HeaderIcon>
+                    Weapon
+                  </div>
+                  <div>Qualities</div>
+                </WeaponQualitiesHeaderText>}
+               segmentData={<>
+                <WeaponQualities
+                  dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+                />
+               </>}
+               collapse={isWeaponQualitiesVisible}
+               setCollapse={setIsWeaponQualitiesVisible}/>
 
       {/* Items for Purchase */}
       <ItemsForPurchaseHeader
@@ -940,19 +903,19 @@ const GoldText = styled.div`
   flex-direction: column;
 `;
 
-const CombatActionsContainer = styled.div``;
+// const CombatActionsContainer = styled.div``;
 
-const CombatActionsHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const CombatActionsHeader = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
-const CombatActionsHeaderText = styled.div`
-  text-align: center;
-`;
+// const CombatActionsHeaderText = styled.div`
+//   text-align: center;
+// `;
 
 const CombatActions = styled.div`
   padding: 0.5rem;
@@ -960,15 +923,15 @@ const CombatActions = styled.div`
   white-space: pre-line;
 `;
 
-const WeaponQualitiesContainer = styled.div``;
+// const WeaponQualitiesContainer = styled.div``;
 
-const WeaponQualitiesHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
+// const WeaponQualitiesHeader = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-family: "Sancreek", cursive;
+//   font-size: 1.5rem;
+// `;
 
 const WeaponQualitiesHeaderText = styled.div`
   text-align: center;
