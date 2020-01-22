@@ -39,6 +39,8 @@ export const saves = {
 export interface characterClass {
   name: string;
   icon?: JSX.Element;
+  skillsIcon?: JSX.Element;
+  skillsTable?: JSX.Element;
   requirements: string;
   primeRequisite: string;
   hitDice: string;
@@ -62,6 +64,7 @@ export interface characterClass {
   psionicistSkills?: string[];
   rangerTracking?: string;
   wildMagicUserMagicSurges?: string[];
+  [key: string]: any;
 }
 
 /**
