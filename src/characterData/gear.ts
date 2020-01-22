@@ -1,3 +1,5 @@
+import { sampleSize } from "lodash";
+
 export const gear = [
   "<strong>Air Bladder</strong>",
   "<strong>Bear Trap</strong>",
@@ -12,7 +14,7 @@ export const gear = [
   "<strong>Fishing rod</strong>",
   "<strong>Marbles</strong>",
   "<strong>Glue</strong>",
-  "<strong>Pick</strong>",
+  "<strong>Pickaxe</strong>",
   "<strong>Hourglass</strong>",
   "<strong>Net</strong>",
   "<strong>Tongs</strong>",
@@ -55,7 +57,7 @@ export const gear = [
   "<strong>3 Stakes and Mallet</strong>",
   "<strong>50' Rope</strong>",
   "<strong>10' Pole</strong>",
-  "<strong>6 Torches</strong>",
+  "<strong>Torch</strong>",
   "<strong>Small Sack</strong> (holds 1 slot)",
   "<strong>Wolfsbane</strong> (d4 usage die)",
   "<strong>Belladonna</strong> (d4 usage die)",
@@ -128,13 +130,15 @@ export const poisons = [
 ];
 
 export const disguiseItems = [
-  "<strong>Masquerade Mask</strong>",
   "<strong>Disguise Kit</strong>",
   "<strong>Makeup Kit</strong>",
-  "<strong>Black Leather Face Mask</strong>",
-  "<strong>Featureless Gold Face Mask</strong>",
-  "<strong>Featureless Silver Face Mask</strong>",
-  "<strong>Painted Face Mask</strong>",
+  "<strong>Cosmetic Kit</strong>",
+  `<strong>Featureless ${sampleSize([
+    "Gold",
+    "Silver",
+    "Iron",
+    "Copper"
+  ])} Face Mask</strong>`,
   "<strong>Headscarf</strong>"
 ];
 
@@ -146,7 +150,7 @@ export const dungeoneeringEquipment = [
   "<strong>Chalk, 10</strong>",
   "<strong>Crowbar</strong>",
   "<strong>Pulleys</strong>",
-  "<strong>Pick</strong>",
+  "<strong>Pickaxe</strong>",
   "<strong>Shovel</strong>",
   "<strong>Grappling Hook</strong>",
   "<strong>Hammer</strong>",

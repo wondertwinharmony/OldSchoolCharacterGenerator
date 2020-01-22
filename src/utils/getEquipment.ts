@@ -1,15 +1,15 @@
-import { random, sampleSize } from "lodash";
+import { random, sample, sampleSize } from "lodash";
 import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
 import {
+  burrowingMammals,
   disguiseItems,
   dungeoneeringEquipment,
-  gear
+  gear,
+  instruments,
+  poisons
 } from "../characterData/gear";
 import { getEquipmentSlots } from "./getEquipmentSlots";
-import { getRandomBurrowingMammal } from "./getRandomBurrowingMammal";
-import { getRandomInstrument } from "./getRandomInstrument";
-import { getRandomPoison } from "./getRandomPoison";
 
 /**
  * Utility function to determine equipment and starting gold for a character.
@@ -68,7 +68,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * instrument.
    */
   if (classOptionKey === "bard") {
-    characterEquipment.push(getRandomInstrument());
+    characterEquipment.push(`${sample(instruments)} (instrument)`);
   }
 
   /**
@@ -76,7 +76,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * poison.
    */
   if (classOptionKey === "assassin") {
-    characterEquipment.push(getRandomPoison());
+    characterEquipment.push(sample(poisons));
   }
 
   /**
@@ -84,7 +84,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * disguise item.
    */
   if (classOptionKey === "citizenLich") {
-    characterEquipment.push(sampleSize(disguiseItems, 2));
+    characterEquipment.push(sample(disguiseItems));
   }
 
   /**
@@ -92,7 +92,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * mammal as pet. (50% chance)
    */
   if (classOptionKey === "gnome" && random(1, 2) > 1) {
-    characterEquipment.push(getRandomBurrowingMammal());
+    characterEquipment.push(`${sample(burrowingMammals)} (pet)`);
   }
 
   // Determine how many equipment slots are currently occupied
@@ -144,7 +144,9 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
     item => item === "<strong>Instrument</strong>"
   );
   if (indexOfItemToReplace !== -1) {
-    characterRandomItems[indexOfItemToReplace] = getRandomInstrument();
+    characterRandomItems[indexOfItemToReplace] = `${sample(
+      instruments
+    )} (instrument)`;
   }
 
   characterEquipmentString = characterEquipment.flat().join("<br><br>• ");

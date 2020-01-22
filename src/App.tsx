@@ -35,19 +35,13 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * Cleave: When an opponent is slain in combat, the fighter may make an immediate free attack
  * against an adjacent opponent.
  *
- * - [] Consider refactor to leverage app context in future
  * - [] New feature - always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)
- *
- * - Add Operation Unfathomable classes
- * - [x] Citizen Lich, GiDeathNote
- * - [x] Underworld Ranger, GiReticule, GiRayGun
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool from OSE Treasure book?
  * - Create own random sentient weapon app tool from OSE Treasure book?
- * - Consider simple random spellbook generator for Illusionist and Magic-User
  * - Consider making Traps and Treasures tables rollable
  * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
  */
