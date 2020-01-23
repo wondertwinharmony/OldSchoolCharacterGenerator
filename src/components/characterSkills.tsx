@@ -1,27 +1,39 @@
-import React from 'react';
-import styled from 'styled-components';
-import { createMarkup } from '../utils/createMarkup';
-import { characterClasses } from '../characterData/classes';
-import { characterSkillsLookUp } from '../utils/characterSkillsLookUp';
+import React from "react";
+import styled from "styled-components";
+import { characterClasses } from "../characterData/classes";
+import { characterSkillsLookUp } from "../utils/characterSkillsLookUp";
+import { createMarkup } from "../utils/createMarkup";
 
 interface Props {
-    classSelection: string;
-    isSkillVisible: string;
-    skillsTable?: any;
+  classSelection: string;
+  skillsTable?: any;
 }
 
-const CharacterSkills: React.SFC<Props> = ({classSelection, isSkillVisible, skillsTable}) => {
-    const lookup = characterSkillsLookUp(classSelection);
-    
-    return (
-        <SkillsContainer>
-            {isSkillVisible && skillsTable}
-            {isSkillVisible && (classSelection === 'ranger') ? 
-                    <Skill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection][lookup]!)}/> :
-                    <Skill dangerouslySetInnerHTML={createMarkup(characterClasses[classSelection][lookup]!.join("\n"))}/>
-            }
-        </SkillsContainer>
-    )
+/**
+ * Generic component for Character skills including Ranger Tracking and Wild Surges.
+ * It contains any associated Table imgs and the skills string.
+ */
+const CharacterSkills: React.SFC<Props> = ({ classSelection, skillsTable }) => {
+  const skillsString = characterSkillsLookUp(classSelection);
+
+  return (
+    <SkillsContainer>
+      {skillsTable}
+      {skillsTable && classSelection === "ranger" ? (
+        <Skill
+          dangerouslySetInnerHTML={createMarkup(
+            characterClasses[classSelection][skillsString]!
+          )}
+        />
+      ) : (
+        <Skill
+          dangerouslySetInnerHTML={createMarkup(
+            characterClasses[classSelection][skillsString]!.join("\n")
+          )}
+        />
+      )}
+    </SkillsContainer>
+  );
 };
 
 const SkillsContainer = styled.div`
