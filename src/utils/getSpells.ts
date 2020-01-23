@@ -41,22 +41,21 @@ export const getSpells = (
   }
 
   /**
-   * Only magic-users, wild magic-users, and elves have
-   * opportunity to receive a knave spell at level one.
+   * Only magic-users, citizen liches, wild magic-users, and
+   * elves have opportunity to receive a knave spell at level one.
    */
   if (includeKnaveSpells) {
     let allSpells = [];
     allSpells.push(spells, knaveSpells);
 
     /**
-     * If class is magic-user or elf (therefore Arcane spell caster
-     * and rely on a spellbook for casting), award them the Read Magic
-     * spell at level one as well.
-     *
-     * Now includes wild magic-user.
+     * If class is magic-user, citizen lich, wild magic-user, or elf
+     * (therefore Arcane spell caster and rely on a spellbook for
+     * casting), award them the Read Magic spell at level one as well.
      */
     if (
       classSelection === "magicUser" ||
+      classSelection === "citizenLich" ||
       classSelection === "wildMagicUser" ||
       classSelection === "elf"
     ) {
@@ -69,6 +68,7 @@ export const getSpells = (
 
   if (
     classSelection === "magicUser" ||
+    classSelection === "citizenLich" ||
     classSelection === "wildMagicUser" ||
     classSelection === "elf"
   ) {

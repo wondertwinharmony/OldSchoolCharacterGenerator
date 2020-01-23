@@ -26,13 +26,21 @@ export const getHitPoints = (
    * and other strings are converted to numbers for calculating
    * hit points.
    */
-  const hitPoints =
+  let hitPoints =
     hitPointsRoll +
     Number(
       getAbilityScoreModifier(conScore) === "None"
         ? "0"
         : getAbilityScoreModifier(conScore)
     );
+
+  /**
+   * Citizen liches are especially frail, and always start
+   * with exactly 1 HP.
+   */
+  if (classOptionKey === "citizenLich") {
+    hitPoints = 1;
+  }
 
   /**
    * Note: It is possible HP can still be 0, in which

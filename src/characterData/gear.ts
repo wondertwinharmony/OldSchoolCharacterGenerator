@@ -1,3 +1,5 @@
+import { sampleSize } from "lodash";
+
 export const gear = [
   "<strong>Air Bladder</strong>",
   "<strong>Bear Trap</strong>",
@@ -12,7 +14,7 @@ export const gear = [
   "<strong>Fishing rod</strong>",
   "<strong>Marbles</strong>",
   "<strong>Glue</strong>",
-  "<strong>Pick</strong>",
+  "<strong>Pickaxe</strong>",
   "<strong>Hourglass</strong>",
   "<strong>Net</strong>",
   "<strong>Tongs</strong>",
@@ -55,7 +57,7 @@ export const gear = [
   "<strong>3 Stakes and Mallet</strong>",
   "<strong>50' Rope</strong>",
   "<strong>10' Pole</strong>",
-  "<strong>6 Torches</strong>",
+  "<strong>Torch</strong>",
   "<strong>Small Sack</strong> (holds 1 slot)",
   "<strong>Wolfsbane</strong> (d4 usage die)",
   "<strong>Belladonna</strong> (d4 usage die)",
@@ -125,4 +127,36 @@ export const poisons = [
   "<strong>Vial of Giant Scorpion Poison</strong> (Type II bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
   "<strong>Vial of Purple Worm Poison</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)",
   "<strong>Vial of Wyvern Venom</strong> (Type III bloodstream - see <i>Poison in Advanced Fantasy Genre Rules</i>, d4 usage die)"
+];
+
+export const disguiseItems = [
+  "<strong>Disguise Kit</strong>",
+  "<strong>Makeup Kit</strong>",
+  "<strong>Cosmetic Kit</strong>",
+  `<strong>Featureless ${sampleSize([
+    "Gold",
+    "Silver",
+    "Iron",
+    "Copper"
+  ])} Face Mask</strong>`,
+  "<strong>Headscarf</strong>"
+];
+
+export const dungeoneeringEquipment = [
+  "<strong>Bear Trap</strong>",
+  "<strong>50' Rope</strong>",
+  "<strong>10' Pole</strong>",
+  "<strong>10' Chain</strong>",
+  "<strong>Chalk, 10</strong>",
+  "<strong>Crowbar</strong>",
+  "<strong>Pulleys</strong>",
+  "<strong>Pickaxe</strong>",
+  "<strong>Shovel</strong>",
+  "<strong>Grappling Hook</strong>",
+  "<strong>Hammer</strong>",
+  "<strong>Small Sack</strong> (holds 1 slot)",
+  "<strong>Oil Flask</strong>",
+  "<strong>Net</strong>",
+  "<strong>Chisel</strong>",
+  "<strong>Drill</strong>"
 ];

@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
+import { GiRollingDices } from "react-icons/gi";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { GiRollingDices } from 'react-icons/gi';
 import { characterClasses } from "./characterData/classes";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
+import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
-import { getAbilityScores } from "./utils/getAbilityScores";
-import { useHistory } from "react-router-dom";
 
 /**
- * - [] Consider refactor to leverage app context in future
+ * - [] @see https://thac0rpg.blogspot.com/2019/11/the-fight-over-fighters.html
+ * - "I have not tried yet giving Fighters an additional Specialization at 5th
+ * level, and then an extra attack with a Specialized weapon at 10th. The original
+ * BX books talk about giving extra attacks at some point, but it is vague as to
+ * when to do it." OR "Not sure if i said it before, but fighter gets to use a maneuver
+ * on every round a long with their attack. So would you rule that another character
+ * can still trip and make their attack? Or disarm?" OR "I prefer the gambit, wherein
+ * you declare a cool thing which is a bit more exciting than a standard combat action
+ * (usually tied prominently to abusing the environment for extra effects etc) and make
+ * three attack rolls. If all three succeed, you do your cool proposed thing with a perk.
+ * If two rolls succeed, you do your cool proposed thing as stated. If one roll succeeds,
+ * you fail but don't suffer any penalty. If no rolls succeed, your cool proposed thing
+ * happens to yourself, instead of your target. - Gambit sounds interesting, I'd probably
+ * stick to just relevant ability checks though"
+ *
+ * Yeah, it's been discussed here now and then.  I use a Cleave and simplified Specialization
+ * option for fighters:
+ * Cleave: When an opponent is slain in combat, the fighter may make an immediate free attack
+ * against an adjacent opponent.
+ *
  * - [] New feature - always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)
  *
@@ -23,7 +42,6 @@ import { useHistory } from "react-router-dom";
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool from OSE Treasure book?
  * - Create own random sentient weapon app tool from OSE Treasure book?
- * - Consider simple random spellbook generator for Illusionist and Magic-User
  * - Consider making Traps and Treasures tables rollable
  * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
  */
@@ -32,19 +50,25 @@ interface Props {
   abilityScores: number[];
   isKnaveSpellsIncluded: boolean;
   setKnaveSpells: (params: boolean) => void;
-  setAbilityScores: (params:() => number[]) => void;
+  setAbilityScores: (params: () => number[]) => void;
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, isKnaveSpellsIncluded, setKnaveSpells, setAbilityScores }) => {
+const AppImpl: React.SFC<ImplProps> = ({
+  className,
+  abilityScores,
+  isKnaveSpellsIncluded,
+  setKnaveSpells,
+  setAbilityScores
+}) => {
   let history = useHistory();
   const [isClassSelected] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
 
   return (
-    <div className={className} >
+    <div className={className}>
       {!isClassSelected && (
         <GridContainer>
           <Ability>STR</Ability>
@@ -61,10 +85,14 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, isKnaveSpells
       {!isClassSelected && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ClassButtonsContainer>
-            <RerollAbilityScoresContainer onClick={()=> {setAbilityScores(getAbilityScores)}}>
+            <RerollAbilityScoresContainer
+              onClick={() => {
+                setAbilityScores(getAbilityScores);
+              }}
+            >
               <RollButton variant="outline-secondary">
                 <RollButtonIcon>
-                  <GiRollingDices/>
+                  <GiRollingDices />
                 </RollButtonIcon>
                 <RollButtonText>Reroll Ability Scores</RollButtonText>
               </RollButton>
@@ -92,7 +120,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className, abilityScores, isKnaveSpells
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
-                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${isKnaveSpellsIncluded}`);
+                      history.push(
+                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${isKnaveSpellsIncluded}`
+                      );
                     }}
                   >
                     <div

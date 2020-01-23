@@ -62,6 +62,9 @@ export const getExperienceAdjustment = (
   // least 13 in both prime requisites in order to get the +5%
   // bonus to experience. An elf with an INT of at least 16 and a
   // STR of at least 13 receives a +10% XP bonus.
+  //
+  // The following classes have unique prime requisite rules and
+  // unique experience adjustments and need special handling.
 
   // Barbarian
   if (
@@ -72,6 +75,11 @@ export const getExperienceAdjustment = (
       experienceAdjustment = "+5% XP";
     if (abilityScores[CON] >= 16 && abilityScores[STR] >= 16)
       experienceAdjustment = "+10% XP";
+  }
+
+  // Citizen Lich
+  if (classSelection === "citizenLich" && classPrimeRequisites === "INT") {
+    if (abilityScores[INT] >= 13) experienceAdjustment = "+5% XP";
   }
 
   // Drow
@@ -142,6 +150,11 @@ export const getExperienceAdjustment = (
       experienceAdjustment = "+5% XP";
     if (abilityScores[DEX] >= 13 && abilityScores[INT] >= 16)
       experienceAdjustment = "+10% XP";
+  }
+
+  // Underworld Ranger
+  if (classSelection === "underworldRanger" && classPrimeRequisites === "CON") {
+    if (abilityScores[CON] >= 13) experienceAdjustment = "+5% XP";
   }
 
   return experienceAdjustment;
