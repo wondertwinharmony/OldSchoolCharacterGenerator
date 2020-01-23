@@ -1,10 +1,13 @@
 import React from "react";
-import { GiPsychicWaves } from "react-icons/gi";
+import { GiPsychicWaves, GiBrain } from "react-icons/gi";
 import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
+import psionicistSkillsTable from "../../static/psionicistSkillsTable.png";
 
 export const psionicist = {
   name: "Psionicist",
   icon: React.createElement(GiPsychicWaves, {}),
+  skillsIcon: React.createElement(GiBrain, {}),
+  skillsTable: React.createElement('img', {src: psionicistSkillsTable, style: {width: '13rem', height: '33rem'}}),
   requirements: "Minimum CON 9",
   primeRequisite: "CON",
   hitDice: "1d6",

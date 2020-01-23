@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,21 +8,9 @@ import {
 import StyledApp from "./App";
 import StyledCreatedCharacter from "./components/character";
 import { toCamelCase } from "./utils/convertToCamelCase";
-import { getAbilityScores } from "./utils/getAbilityScores";
 import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
-export default function App() {
-  const [abilityScores, setAbilityScores] = useState(getAbilityScores);
-  const [isKnaveSpellsIncluded, setKnaveSpells] = useState(false);
-
-  useEffect(() => {
-    setKnaveSpells(isKnaveSpellsIncluded);
-  }, [isKnaveSpellsIncluded]);
-
-  useEffect(() => {
-    setAbilityScores(abilityScores);
-  }, [abilityScores]);
-
+export default function AppRouter() {
   type TParams = { character: string; saved: string; previouslySaved: string };
 
   function CharacterSheet({ match }: RouteComponentProps<TParams>) {
@@ -32,19 +20,29 @@ export default function App() {
         : "https://oldschoolknave.surge.sh/";
     const baseURL = window.location.href;
 
-    if (match.params.previouslySaved) {
-      let characterData = getSavedCharacterData(baseURL, homeURL, "");
+    /**
+     * This checks for legacy permalinks/saved characters prior to
+     * last update, due to how the link was built -- note the empty string
+     * compared to "savedCharacter/1&".
+     * Previously, there were no routes hence the empty string.
+     */
+    // if(match.params.previouslySaved){
+    //   let characterData = getSavedCharacterData(baseURL, homeURL, '');
 
-      return (
-        <StyledCreatedCharacter
-          classSelection={characterData && characterData.class}
-          abilityScores={characterData && characterData.abilityScores}
-          includeKnaveSpells={characterData.knave}
-          savedCharacterData={characterData}
-        />
-      );
-    }
+    //   return (
+    //     <StyledCreatedCharacter
+    //     classSelection={characterData && characterData.class}
+    //     abilityScores={characterData && characterData.abilityScores}
+    //     includeKnaveSpells={characterData.knave}
+    //     savedCharacterData={characterData}
+    //   />
+    //   )
+    // }
 
+    /**
+     * This checks for the route when a character is saved using the
+     * permalink feature -- note "savedCharacter/1&".
+     */
     if (match.params.saved) {
       let savedData = getSavedCharacterData(
         baseURL,
@@ -82,6 +80,9 @@ export default function App() {
       characterClass = toCamelCase(characterClass);
     }
 
+    /**
+     * Otherwise, the return will render the selected character class.
+     */
     return (
       <StyledCreatedCharacter
         classSelection={characterClass}
@@ -97,12 +98,7 @@ export default function App() {
               renders the first one that matches the current URL. */}
       <Switch>
         <Route exact path="/">
-          <StyledApp
-            abilityScores={abilityScores}
-            setKnaveSpells={setKnaveSpells}
-            isKnaveSpellsIncluded={isKnaveSpellsIncluded}
-            setAbilityScores={setAbilityScores}
-          />
+          <StyledApp />
         </Route>
         <Route
           path="/savedCharacter/:saved/"
