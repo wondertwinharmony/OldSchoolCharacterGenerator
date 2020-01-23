@@ -1,38 +1,55 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import styled from "styled-components";
+import { CharacterSheetSegments } from "../../constants/characterSheetSegments";
 
 interface Props {
-    segmentIcon: any;
-    segmentName: any;
-    segmentData?: any;
-    collapse: boolean;
-    setCollapse: (param: boolean) => void;
+  segmentIcon: any;
+  segmentDisplayName: any;
+  segmentName?: string;
+  segmentData?: any;
+  collapse: CharacterSheetSegments;
+  setCollapse: (value: () => CharacterSheetSegments) => void;
 }
 
-const Segment: React.SFC<Props> = ({ segmentIcon, segmentName, segmentData, collapse, setCollapse }) => {
-    
-    return (
-        <>
-            <SegmentContainer>
-                <SegmentHeader
-                    onClick={() => {
-                        setCollapse(!collapse);
-                    }}>
-                    <HeaderIcon>
-                        {segmentIcon}
-                    </HeaderIcon>
-                    {segmentName}
-                    <FontAwesomeIcon
-                        icon={collapse ? "caret-up" : "caret-down"}
-                        size="lg"
-                        style={{ margin: "0 0.5rem" }}
-                    />
-                </SegmentHeader>
-                {collapse && <div>{segmentData}</div>}
-            </SegmentContainer>
-        </>
-    )
+/**
+ *  Generic Character Sheet component for collapsable segments.
+ */
+const Segment: React.SFC<Props> = ({
+  segmentIcon,
+  segmentDisplayName,
+  segmentName,
+  segmentData,
+  collapse,
+  setCollapse
+}) => {
+  const segmentLookup = segmentName
+    ? `is${segmentName}Visible`
+    : `is${segmentDisplayName}Visible`;
+
+  return (
+    <>
+      <SegmentContainer>
+        <SegmentHeader
+          onClick={() => {
+            const segmentNewState = {
+              [segmentLookup]: !collapse[segmentLookup]
+            };
+            setCollapse(() => ({ ...collapse, ...segmentNewState }));
+          }}
+        >
+          <HeaderIcon>{segmentIcon}</HeaderIcon>
+          {segmentDisplayName}
+          <FontAwesomeIcon
+            icon={collapse[segmentLookup] ? "caret-up" : "caret-down"}
+            size="lg"
+            style={{ margin: "0 0.5rem" }}
+          />
+        </SegmentHeader>
+        {collapse[segmentLookup] && <div>{segmentData}</div>}
+      </SegmentContainer>
+    </>
+  );
 };
 
 const HeaderIcon = styled.div`

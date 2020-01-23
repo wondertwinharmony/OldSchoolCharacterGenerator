@@ -8,7 +8,7 @@ import {
   GiPriceTag,
   GiScrollUnfurled,
   GiSpiralBottle,
-  GiSwordwoman,
+  GiSwordwoman
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
@@ -26,11 +26,17 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
+import {
+  characterSheetSegments,
+  CharacterSheetSegments
+} from "../constants/characterSheetSegments";
 import charismaAdjustmentTable from "../static/charismaAdjustmentTable.png";
 import coinConversions from "../static/coinConversions.png";
 import paladinTurningTable from "../static/paladinTurningTable.png";
+import parchment from "../static/parchment.png";
 import turningTableResults from "../static/turningTableResults.png";
 import turnUndeadTable from "../static/turnUndeadTable.png";
+import { characterSkillsLookUp } from "../utils/characterSkillsLookUp";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
@@ -44,16 +50,11 @@ import { getLanguages } from "../utils/getLanguages";
 import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
-import parchment from "../static/parchment.png";
-import StyledItemsForPurchase from "./itemsForPurchase";
+import CharacterDetails from "./characterDetails";
 import Permalink from "./characterSheetComponents/permalink";
-import CharacterNameAndClass from "./characterSheetComponents/characterNameAndClass";
-import ClassIconAndAbilityScores from "./characterSheetComponents/iconAndAbilityScoresGrid";
-import SavesAndStats from "./characterSheetComponents/savesAndStats";
 import Segment from "./characterSheetComponents/segment";
-import { characterSkillsLookUp } from "../utils/characterSkillsLookUp";
 import CharacterSkills from "./characterSkills";
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import StyledItemsForPurchase from "./itemsForPurchase";
 
 interface Props {
   abilityScores: number[];
@@ -138,24 +139,9 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   );
 
   // Character Segment Visibility
-  const [isTraitsVisible, setIsTraitsVisible] = useState(true);
-  const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
-  const [isAbilitiesVisible, setIsAbilitiesVisible] = useState(true);
-  const [isPaladinTurnVisible, setIsPaladinTurnVisible] = useState(true);
-  const [isSpellsVisible, setIsSpellsVisible] = useState(true);
-  const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
-  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(false);
-  const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
-    false
-  );
-  const [isItemsForPurchaseVisible, setIsItemsForPurchaseVisible] = useState(
-    false
-  );
-  const [isRetainersVisible, setIsRetainersVisible] = useState(false);
-  const [
-    isGainingXPAndCarousingVisible,
-    setIsGainingXPAndCarousingVisible
-  ] = useState(false);
+  const [segmentVisibility, setSegmentVisibility] = useState<
+    CharacterSheetSegments
+  >(characterSheetSegments);
 
   // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
@@ -172,203 +158,279 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
-
       {/* Permalink Button and Bookmark Message */}
-      <Permalink savedCharacterData={savedCharacterData} 
-                 characterName={characterName} 
-                 classSelection={classSelection} 
-                 traits={traits} 
-                 abilityScores={abilityScores} 
-                 hitPoints={hitPoints} 
-                 languages={languages} 
-                 spells={spells} 
-                 equipment={equipment} 
-                 includeKnaveSpells={includeKnaveSpells}/>
+      <Permalink
+        savedCharacterData={savedCharacterData}
+        characterName={characterName}
+        classSelection={classSelection}
+        traits={traits}
+        abilityScores={abilityScores}
+        hitPoints={hitPoints}
+        languages={languages}
+        spells={spells}
+        equipment={equipment}
+        includeKnaveSpells={includeKnaveSpells}
+      />
 
-      {/* Character Name and Class Title Segment */}
-      <CharacterNameAndClass characterName={characterName} classSelection={classSelection}/>
-
-      {/* Character Class Icon and Ability Scores Grid Segment */}
-      <ClassIconAndAbilityScores classSelection={classSelection} 
-                                 abilityScores={abilityScores} 
-                                 strMod={strMod} 
-                                 dexMod={dexMod} 
-                                 conMod={conMod} 
-                                 intMod={intMod} 
-                                 wisMod={wisMod} 
-                                 chaMod={chaMod}/>
-
-      {/* Saves and Stats Segment */}
-      <SavesAndStats hitPoints={hitPoints} 
-                     classSelection={classSelection} 
-                     armorClass={armorClass} 
-                     experienceAdjustment={experienceAdjustment}/>
+      {/**
+       * Character Details Section -
+       * Name/Class Title/Character Class Icon/Ability Scores Grid/Saves/Stats
+       */}
+      <CharacterDetails
+        characterName={characterName}
+        classSelection={classSelection}
+        abilityScores={abilityScores}
+        strMod={strMod}
+        dexMod={dexMod}
+        conMod={conMod}
+        intMod={intMod}
+        wisMod={wisMod}
+        chaMod={chaMod}
+        hitPoints={hitPoints}
+        armorClass={armorClass}
+        experienceAdjustment={experienceAdjustment}
+      />
 
       {/* Traits Segment*/}
-      <Segment segmentIcon={<GiScrollUnfurled/>}
-               segmentName={'Traits'}
-               segmentData={traits}
-               collapse={isTraitsVisible}
-               setCollapse={setIsTraitsVisible}/>
+      <Segment
+        segmentIcon={<GiScrollUnfurled />}
+        segmentDisplayName={"Traits"}
+        segmentData={<TraitsContainer>{traits}</TraitsContainer>}
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Languages Segment*/}
-      <Segment segmentIcon={<MdChatBubble/>}
-               segmentName={'Languages'}
-               segmentData={<Language>{languages}</Language>}
-               collapse={isLanguagesVisible}
-               setCollapse={setIsLanguagesVisible}/>
+      <Segment
+        segmentIcon={<MdChatBubble />}
+        segmentDisplayName={"Languages"}
+        segmentData={<Language>{languages}</Language>}
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Abilities Segment*/}
-      <Segment segmentIcon={<MdStar/>}
-               segmentName={'Abilities'}
-               segmentData={<Ability
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].abilities!.join("\n\n")
-                )}/>}
-               collapse={isAbilitiesVisible}
-               setCollapse={setIsAbilitiesVisible}/>
+      <Segment
+        segmentIcon={<MdStar />}
+        segmentDisplayName={"Abilities"}
+        segmentData={
+          <Ability
+            dangerouslySetInnerHTML={createMarkup(
+              characterClasses[classSelection].abilities!.join("\n\n")
+            )}
+          />
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Turn Undead Segment - Cleric/Paladin */}
-      {(characterClasses[classSelection].paladinTurn || characterClasses[classSelection].clericTurn) && (
-        <Segment segmentIcon={<GiChewedSkull/>}
-                segmentName={'Turning the Undead'}
-                segmentData={<TurnUndeadContainer>
-                    {characterClasses[classSelection].clericTurn ? 
-                      <><ClericTurnTable />
-                        <div>{characterClasses[classSelection].clericTurn}</div>
-                      </> :
-                      <><PaladinTurnTable />
-                        <div>{characterClasses[classSelection].paladinTurn}</div>
-                      </>
-                    }
-                    <ClericTurnResultsTable />
-                </TurnUndeadContainer>}
-                collapse={isPaladinTurnVisible}
-                setCollapse={setIsPaladinTurnVisible}/>
+      {(characterClasses[classSelection].paladinTurn ||
+        characterClasses[classSelection].clericTurn) && (
+        <Segment
+          segmentIcon={<GiChewedSkull />}
+          segmentName={"TurnUndeadTable"}
+          segmentDisplayName={"Turning the Undead"}
+          segmentData={
+            <TurnUndeadContainer>
+              {characterClasses[classSelection].clericTurn ? (
+                <>
+                  <ClericTurnTable />
+                  <div>{characterClasses[classSelection].clericTurn}</div>
+                </>
+              ) : (
+                <>
+                  <PaladinTurnTable />
+                  <div>{characterClasses[classSelection].paladinTurn}</div>
+                </>
+              )}
+              <ClericTurnResultsTable />
+            </TurnUndeadContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
       )}
 
-      {/* Spells */}
+      {/* Spells Segment */}
       {characterClasses[classSelection].spells && (
-        <Segment segmentIcon={<GiCometSpark/>}
-                segmentName={'Spells'}
-                segmentData={<SpellsContainer>
-                    {(characterClasses[classSelection].spells && checkSpell(spells)) ?
-                      <>
-                        <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
-                        <KnaveAddendum dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)} />
-                      </> :
-                      <>
-                        <Spell dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))} />
-                      </>
-                    }
-                </SpellsContainer>}
-                collapse={isSpellsVisible}
-                setCollapse={setIsSpellsVisible}/>
+        <Segment
+          segmentIcon={<GiCometSpark />}
+          segmentDisplayName={"Spells"}
+          segmentData={
+            <SpellsContainer>
+              {characterClasses[classSelection].spells && checkSpell(spells) ? (
+                <>
+                  <Spell
+                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+                  />
+                  <KnaveAddendum
+                    dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
+                  />
+                </>
+              ) : (
+                <>
+                  <Spell
+                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+                  />
+                </>
+              )}
+            </SpellsContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
       )}
 
       {/* Character Skills Segment */}
-      {characterClasses[classSelection][characterSkillsLookUp(classSelection)] && (
-        <Segment segmentIcon={characterClasses[classSelection].skillsIcon}
-                segmentName={((classSelection !== 'ranger') ? ((classSelection !== 'wildMagicUser') ? `${characterClasses[classSelection].name} Skills` : 'Wild Surges') : 'Ranger Tracking')}
-                segmentData={
-                  <CharacterSkills classSelection={classSelection}
-                                    skillsTable={characterClasses[classSelection].skillsTable}
-                                    isSkillVisible={`is${capitalizeFirstLetter(characterSkillsLookUp(classSelection))}Visible`}/>
-                }
-                collapse={isSpellsVisible}
-                setCollapse={setIsSpellsVisible}/>
-        )
-      }
+      {characterClasses[classSelection][
+        characterSkillsLookUp(classSelection)
+      ] && (
+        <Segment
+          segmentIcon={characterClasses[classSelection].skillsIcon}
+          segmentName={"Skills"}
+          segmentDisplayName={
+            classSelection !== "ranger"
+              ? classSelection !== "wildMagicUser"
+                ? `${characterClasses[classSelection].name} Skills`
+                : "Wild Surges"
+              : "Ranger Tracking"
+          }
+          segmentData={
+            <CharacterSkills
+              classSelection={classSelection}
+              skillsTable={characterClasses[classSelection].skillsTable}
+            />
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
+      )}
 
       {/* Equipment Segment */}
-      <Segment segmentIcon={<GiKnapsack/>}
-               segmentName={`Equipment (${equipment.slotsToFill}/${
-                abilityScores[CON] > 10 ? abilityScores[CON] : 10
-                } slots)`}
-               segmentData={<>
-                  <Equipment
-                    dangerouslySetInnerHTML={createMarkup(
-                      equipment.characterEquipmentString
-                    )}
-                  />
-                  <GoldText>
-                    † 160 coins can be contained in 1 slot, provided you have a
-                    container for them.
-                  </GoldText>
-               </>}
-               collapse={isEquipmentVisible}
-               setCollapse={setIsEquipmentVisible}/>
+      <Segment
+        segmentIcon={<GiKnapsack />}
+        segmentName={"Equipment"}
+        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
+          abilityScores[CON] > 10 ? abilityScores[CON] : 10
+        } slots)`}
+        segmentData={
+          <>
+            <Equipment
+              dangerouslySetInnerHTML={createMarkup(
+                equipment.characterEquipmentString
+              )}
+            />
+            <GoldText>
+              † 160 coins can be contained in 1 slot, provided you have a
+              container for them.
+            </GoldText>
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Combat Actions Segment */}
-      <Segment segmentIcon={<FaDiceD20/>}
-               segmentName={'Combat Actions'}
-               segmentData={<>
-                <CombatActions dangerouslySetInnerHTML={createMarkup(combatActions)}/>
-               </>}
-               collapse={isCombatActionsVisible}
-               setCollapse={setIsCombatActionsVisible}/>
+      <Segment
+        segmentIcon={<FaDiceD20 />}
+        segmentName={"CombatActions"}
+        segmentDisplayName={"Combat Actions"}
+        segmentData={
+          <>
+            <CombatActions
+              dangerouslySetInnerHTML={createMarkup(combatActions)}
+            />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Weapon Quality Descriptions Segment */}
-      <Segment segmentIcon={<GiSpiralBottle/>}
-               segmentName={<WeaponQualitiesHeaderText>
-                  <div style={{ display: "flex" }}>
-                    Item
-                    <HeaderIcon>
-                      <FaDAndD />
-                    </HeaderIcon>
-                    Weapon
-                  </div>
-                  <div>Qualities</div>
-                </WeaponQualitiesHeaderText>}
-               segmentData={<>
-                <WeaponQualities
-                  dangerouslySetInnerHTML={createMarkup(weaponQualities)}
-                />
-               </>}
-               collapse={isWeaponQualitiesVisible}
-               setCollapse={setIsWeaponQualitiesVisible}/>
+      <Segment
+        segmentIcon={<GiSpiralBottle />}
+        segmentName={"WeaponQualities"}
+        segmentDisplayName={
+          <WeaponQualitiesHeaderText>
+            <div style={{ display: "flex" }}>
+              Item
+              <HeaderIcon>
+                <FaDAndD />
+              </HeaderIcon>
+              Weapon
+            </div>
+            <div>Qualities</div>
+          </WeaponQualitiesHeaderText>
+        }
+        segmentData={
+          <>
+            <WeaponQualities
+              dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+            />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Items for Purchase Segment */}
-      <Segment segmentIcon={<GiPriceTag/>}
-               segmentName={'Items For Purchase'}
-               segmentData={<>
-                <StyledItemsForPurchase />
-               </>}
-               collapse={isItemsForPurchaseVisible}
-               setCollapse={setIsItemsForPurchaseVisible}/>
+      <Segment
+        segmentIcon={<GiPriceTag />}
+        segmentName={"ItemsForPurchase"}
+        segmentDisplayName={"Items For Purchase"}
+        segmentData={
+          <>
+            <StyledItemsForPurchase />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Retainers Segment*/}
-      <Segment segmentIcon={<GiSwordwoman/>}
-               segmentName={'Retainers'}
-               segmentData={<>
-                <CharismaAdjustmentsTable />
-                <Retainers dangerouslySetInnerHTML={createMarkup(retainers)} />
-               </>}
-               collapse={isRetainersVisible}
-               setCollapse={setIsRetainersVisible}/>
+      <Segment
+        segmentIcon={<GiSwordwoman />}
+        segmentDisplayName={"Retainers"}
+        segmentData={
+          <>
+            <CharismaAdjustmentsTable />
+            <Retainers dangerouslySetInnerHTML={createMarkup(retainers)} />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
       {/* Gaining XP & Carousing Description Segment*/}
-      <Segment segmentIcon={<GiCoins/>}
-               segmentName={<GainingXPAndCarousingHeaderText>
-                  <div style={{ display: "flex" }}>
-                    Gaining XP
-                    <HeaderIcon>
-                      <FaDAndD />
-                    </HeaderIcon>
-                  </div>
-                  Carousing
-                </GainingXPAndCarousingHeaderText>
-               }
-               segmentData={<>
-                <GainingXPAndCarousing dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)} />
-                <CoinConversionsTable />
-               </>}
-               collapse={isGainingXPAndCarousingVisible}
-               setCollapse={setIsGainingXPAndCarousingVisible}/>
+      <Segment
+        segmentIcon={<GiCoins />}
+        segmentName={"GainingXPAndCarousing"}
+        segmentDisplayName={
+          <GainingXPAndCarousingHeaderText>
+            <div style={{ display: "flex" }}>
+              Gaining XP
+              <HeaderIcon>
+                <FaDAndD />
+              </HeaderIcon>
+            </div>
+            Carousing
+          </GainingXPAndCarousingHeaderText>
+        }
+        segmentData={
+          <>
+            <GainingXPAndCarousing
+              dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
+            />
+            <CoinConversionsTable />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
     </div>
   );
 };
-
 
 const HeaderIcon = styled.div`
   margin: 0 0.5rem;
@@ -385,6 +447,10 @@ const Ability = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+const TraitsContainer = styled.div`
+  padding: 0.5rem;
 `;
 
 const TurnUndeadContainer = styled.div`
