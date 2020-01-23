@@ -1,74 +1,91 @@
-import React from 'react';
-import { SavedCharacterData } from '../../utils/getSavedCharacterData';
-import { saveCharacterData } from '../../utils/saveCharacterData';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { createMarkup } from '../../utils/createMarkup';
-import styled from 'styled-components';
-import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from "styled-components";
+import { createMarkup } from "../../utils/createMarkup";
+import { SavedCharacterData } from "../../utils/getSavedCharacterData";
+import { saveCharacterData } from "../../utils/saveCharacterData";
 
 interface Props {
-    savedCharacterData?: SavedCharacterData;
-    characterName: string;
-    classSelection: string;
-    traits: string;
-    abilityScores: number[];
-    hitPoints: number;
-    languages: string;
-    spells: string[];
-    equipment: any;
-    includeKnaveSpells: boolean;
+  savedCharacterData?: SavedCharacterData;
+  characterName: string;
+  classSelection: string;
+  traits: string;
+  abilityScores: number[];
+  hitPoints: number;
+  languages: string;
+  spells: string[];
+  equipment: any;
+  includeKnaveSpells: boolean;
 }
 
-const Permalink: React.SFC<Props> = ({ savedCharacterData, characterName, classSelection, traits, abilityScores, hitPoints, languages, spells, equipment, includeKnaveSpells }) => {
-    let history = useHistory();
+/**
+ * Component for the Permalink button and the Saved Character Message after bookmarking the link.
+ */
+const Permalink: React.SFC<Props> = ({
+  savedCharacterData,
+  characterName,
+  classSelection,
+  traits,
+  abilityScores,
+  hitPoints,
+  languages,
+  spells,
+  equipment,
+  includeKnaveSpells
+}) => {
+  let history = useHistory();
 
-    return (!savedCharacterData ? (
-        <PermalinkButtonContainer>
-          <PermalinkButton
-            style={{ width: "275px" }}
-            variant="outline-secondary"
-            onClick={() => {
-              let URL = saveCharacterData(characterName,
-                                classSelection,
-                                traits,
-                                abilityScores,
-                                hitPoints,
-                                languages,
-                                spells,
-                                equipment.characterEquipmentString,
-                                equipment.slotsToFill,
-                                includeKnaveSpells
-                              );
-              history.push(`/savedCharacter/1&${URL}`);
-            }}
-          >
-            Permalink
-          </PermalinkButton>
-          <div>(or hit back to see other class options for current ability scores)</div>
-        </PermalinkButtonContainer>
-      ) : (
-        <SaveMessageContainer>
-          <SaveHeader>
-            <FontAwesomeIcon
-              icon={"exclamation-triangle"}
-              size="sm"
-              style={{ margin: "0.5rem" }}
-            />
-            IMPORTANT
-            <FontAwesomeIcon
-              icon={"exclamation-triangle"}
-              size="sm"
-              style={{ margin: "0.5rem" }}
-            />
-          </SaveHeader>
-          <SaveMessage
-            dangerouslySetInnerHTML={createMarkup(
-              "<strong>Bookmark this page. Save the results!\n</strong>"
-            )}
-          />
-        </SaveMessageContainer>
-      ))
+  return !savedCharacterData ? (
+    <PermalinkButtonContainer>
+      <PermalinkButton
+        style={{ width: "275px" }}
+        variant="outline-secondary"
+        onClick={() => {
+          let URL = saveCharacterData(
+            characterName,
+            classSelection,
+            traits,
+            abilityScores,
+            hitPoints,
+            languages,
+            spells,
+            equipment.characterEquipmentString,
+            equipment.slotsToFill,
+            includeKnaveSpells
+          );
+          history.push(`/savedCharacter/1&${URL}`);
+        }}
+      >
+        Permalink
+      </PermalinkButton>
+      <div>
+        (or hit back to see other class options for current ability scores)
+      </div>
+    </PermalinkButtonContainer>
+  ) : (
+    <SaveMessageContainer>
+      <SaveHeader>
+        <FontAwesomeIcon
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}
+        />
+        IMPORTANT
+        <FontAwesomeIcon
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}
+        />
+      </SaveHeader>
+      <SaveMessage
+        dangerouslySetInnerHTML={createMarkup(
+          "<strong>Bookmark this page. Save the results!\n</strong>"
+        )}
+      />
+    </SaveMessageContainer>
+  );
 };
 
 const PermalinkButton = styled(Button)`

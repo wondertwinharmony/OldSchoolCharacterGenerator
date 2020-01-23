@@ -1,102 +1,109 @@
-import React from 'react';
-import { createMarkup } from '../../utils/createMarkup';
-import { characterClasses, saves } from '../../characterData/classes';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { characterClasses, saves } from "../../characterData/classes";
+import { createMarkup } from "../../utils/createMarkup";
 
 interface Props {
-    hitPoints: number;
-    classSelection: string;
-    armorClass: number;
-    experienceAdjustment: string;
-};
+  hitPoints: number;
+  classSelection: string;
+  armorClass: number;
+  experienceAdjustment: string;
+}
 
-const SavesAndStats: React.SFC<Props> = ({ hitPoints, classSelection, armorClass, experienceAdjustment }) => {
-
-    return (
-        <div>
-            <SavesAndStatsGrid>
-                <StatsContainer>
-                    <div
-                        dangerouslySetInnerHTML={createMarkup(
-                        `<strong>HP:</strong> ${hitPoints}`
-                        )}
-                    />
-                    {/* <div>{`HP: ${hitPoints}`}</div> */}
-                    <div
-                        dangerouslySetInnerHTML={createMarkup(
-                        `<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`
-                        )}
-                    />
-                    <div
-                        dangerouslySetInnerHTML={createMarkup(
-                        `<strong>AC:</strong> ${armorClass}`
-                        )}
-                    />
-                    <div
-                        dangerouslySetInnerHTML={createMarkup(
-                        `<strong>${
-                            experienceAdjustment === "+0% XP"
-                            ? ""
-                            : `${experienceAdjustment}`
-                        }</strong>`
-                        )}
-                    />
-                </StatsContainer>
-                <SavesContainer>
-                    <Save>
-                        <div
-                            dangerouslySetInnerHTML={createMarkup(
-                                `<strong>${saves.poison}</strong>`
-                            )}
-                        />
-                        <SaveScore>
-                            {characterClasses[classSelection].saves.poison}
-                        </SaveScore>
-                    </Save>
-                    <Save>
-                        <div
-                            dangerouslySetInnerHTML={createMarkup(
-                                `<strong>${saves.wands}</strong>`
-                            )}
-                        />
-                        <SaveScore>
-                            {characterClasses[classSelection].saves.wands}
-                        </SaveScore>
-                    </Save>
-                    <Save>
-                        <div
-                            dangerouslySetInnerHTML={createMarkup(
-                                `<strong>${saves.stone}</strong>`
-                            )}
-                        />
-                        <SaveScore>
-                            {characterClasses[classSelection].saves.stone}
-                        </SaveScore>
-                    </Save>
-                    <Save>
-                        <div
-                            dangerouslySetInnerHTML={createMarkup(
-                                `<strong>${saves.breath}</strong>`
-                            )}
-                        />
-                        <SaveScore>
-                            {characterClasses[classSelection].saves.breath}
-                        </SaveScore>
-                    </Save>
-                    <Save>
-                        <div
-                            dangerouslySetInnerHTML={createMarkup(
-                                `<strong>${saves.magic}</strong>`
-                            )}
-                        />
-                        <SaveScore>
-                            {characterClasses[classSelection].saves.magic}
-                        </SaveScore>
-                    </Save>
-                </SavesContainer>
-            </SavesAndStatsGrid>
-        </div>
-    )
+/**
+ * Component for the Character's Saves and Stats.
+ */
+const SavesAndStats: React.SFC<Props> = ({
+  hitPoints,
+  classSelection,
+  armorClass,
+  experienceAdjustment
+}) => {
+  return (
+    <div>
+      <SavesAndStatsGrid>
+        <StatsContainer>
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>HP:</strong> ${hitPoints}`
+            )}
+          />
+          {/* <div>{`HP: ${hitPoints}`}</div> */}
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>AC:</strong> ${armorClass}`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
+              `<strong>${
+                experienceAdjustment === "+0% XP"
+                  ? ""
+                  : `${experienceAdjustment}`
+              }</strong>`
+            )}
+          />
+        </StatsContainer>
+        <SavesContainer>
+          <Save>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.poison}</strong>`
+              )}
+            />
+            <SaveScore>
+              {characterClasses[classSelection].saves.poison}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.wands}</strong>`
+              )}
+            />
+            <SaveScore>
+              {characterClasses[classSelection].saves.wands}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.stone}</strong>`
+              )}
+            />
+            <SaveScore>
+              {characterClasses[classSelection].saves.stone}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.breath}</strong>`
+              )}
+            />
+            <SaveScore>
+              {characterClasses[classSelection].saves.breath}
+            </SaveScore>
+          </Save>
+          <Save>
+            <div
+              dangerouslySetInnerHTML={createMarkup(
+                `<strong>${saves.magic}</strong>`
+              )}
+            />
+            <SaveScore>
+              {characterClasses[classSelection].saves.magic}
+            </SaveScore>
+          </Save>
+        </SavesContainer>
+      </SavesAndStatsGrid>
+    </div>
+  );
 };
 
 const SavesAndStatsGrid = styled.div`
