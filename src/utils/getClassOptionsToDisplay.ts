@@ -13,40 +13,52 @@ import {
  * based on ability score requirements.
  */
 export const getClassOptionsToDisplay = (abilityScores: number[]) => {
-  // these classes have no ability score requirements
+  // These classes have no ability score requirements:
+  // acrobat
+  // assassin
+  // cleric
+  // druid
+  // fighter
+  // halfOrc
+  // illusionist
+  // magicUser
+  // thief
+  // ynnianChangeling
+
+  // We initialize classOptions with acrobat and assassin,
+  // they come first alphabetically.
   const classOptions: {
     [key: string]: string;
   } = {
     acrobat: characterClasses.acrobat.name,
-    assassin: characterClasses.assassin.name,
-    cleric: characterClasses.cleric.name,
-    druid: characterClasses.druid.name,
-    fighter: characterClasses.fighter.name,
-    halfOrc: characterClasses.halfOrc.name,
-    illusionist: characterClasses.illusionist.name,
-    magicUser: characterClasses.magicUser.name,
-    thief: characterClasses.thief.name,
-    ynnianChangeling: characterClasses.ynnianChangeling.name
+    assassin: characterClasses.assassin.name
   };
 
   /**
-   * Note: this is the order in which classes with ability
-   * score requirements will appear after the standard four
-   * above.
+   * Note: this is the order in which remaining classes will
+   * appear in app view.
    */
   // if DEX >= 9 add Barbarian to list of possible classes
-  if (abilityScores[DEX] >= 9) {
+  if (abilityScores[DEX] >= 9)
     classOptions.barbarian = characterClasses.barbarian.name;
-  }
   // if DEX>= 9 && INT >= 9 add Bard to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[INT] >= 9)
     classOptions.bard = characterClasses.bard.name;
+  // if INT >= 13 add Citizen Lich to list of possible classes
+  if (abilityScores[INT] >= 13)
+    classOptions.citizenLich = characterClasses.citizenLich.name;
+
+  classOptions.cleric = characterClasses.cleric.name;
+
   // if STR >= 9 && CON >= 9 add Crab-Person to list of possible classes
   if (abilityScores[STR] >= 9 && abilityScores[CON] >= 9)
     classOptions.crabPerson = characterClasses.crabPerson.name;
   // if INT >= 9 add Drow to list of possible classes (done separatenly
   // from Elf so they appear in desired order)
   if (abilityScores[INT] >= 9) classOptions.drow = characterClasses.drow.name;
+
+  classOptions.druid = characterClasses.druid.name;
+
   // if CON >= 9 && INT >= 9 add Duergar to list of possible classes
   if (abilityScores[CON] >= 9 && abilityScores[INT] >= 9)
     classOptions.duergar = characterClasses.duergar.name;
@@ -56,6 +68,9 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   if (abilityScores[INT] >= 9) {
     classOptions.elf = characterClasses.elf.name;
   }
+
+  classOptions.fighter = characterClasses.fighter.name;
+
   // if CON >= 9 add Gnome to list of possible classes
   if (abilityScores[CON] >= 9) {
     classOptions.gnome = characterClasses.gnome.name;
@@ -66,9 +81,16 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   // if DEX >= 9 && INT >= 9 add Half-elf to list of possible classes
   if (abilityScores[CHA] >= 9 && abilityScores[CON] >= 9)
     classOptions.halfElf = characterClasses.halfElf.name;
+
+  classOptions.halfOrc = characterClasses.halfOrc.name;
+
   // if CON >= 9 && DEX >= 9 add Knight to list of possible classes
   if (abilityScores[DEX] >= 9 && abilityScores[CON] >= 9)
     classOptions.knight = characterClasses.knight.name;
+
+  classOptions.illusionist = characterClasses.illusionist.name;
+  classOptions.magicUser = characterClasses.magicUser.name;
+
   // if CHA >= 9 add Paladin to list of possible classes
   if (abilityScores[CHA] >= 9)
     classOptions.paladin = characterClasses.paladin.name;
@@ -81,9 +103,17 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   // if CON >= 9 add Svirfneblin to list of possible classes
   if (abilityScores[CON] >= 9)
     classOptions.svirfneblin = characterClasses.svirfneblin.name;
+
+  classOptions.thief = characterClasses.thief.name;
+
+  // if STR >= 9 && CON >= 9 add Underworld Ranger to list of possible classes
+  if (abilityScores[STR] >= 12 && abilityScores[CON] >= 12)
+    classOptions.underworldRanger = characterClasses.underworldRanger.name;
   // if INT >= 9 add Wild Magic-User to list of possible classes
   if (abilityScores[INT] >= 9)
     classOptions.wildMagicUser = characterClasses.wildMagicUser.name;
+
+  classOptions.ynnianChangeling = characterClasses.ynnianChangeling.name;
 
   return classOptions;
 };
