@@ -1,19 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
+import { GiRollingDices } from "react-icons/gi";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { GiRollingDices } from 'react-icons/gi';
+import AppContext from "./AppContext";
 import { characterClasses } from "./characterData/classes";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
 import { checkContainsDemihumans } from "./utils/checkContainsDemihumans";
+import { getAbilityScores } from "./utils/getAbilityScores";
 import { getClassOptionsToDisplay } from "./utils/getClassOptionsToDisplay";
 import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
-import { getAbilityScores } from "./utils/getAbilityScores";
-import { useHistory } from "react-router-dom";
-import AppContext from "./AppContext";
 
 /**
  * - [] Consider refactor to leverage app context in future
@@ -36,13 +36,18 @@ interface ImplProps extends Props {}
 
 const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   let history = useHistory();
-  const {setAbilityScores, abilityScores, setKnaveSpells, includeKnaveSpells} = useContext(AppContext);
+  const {
+    setAbilityScores,
+    abilityScores,
+    setKnaveSpells,
+    includeKnaveSpells
+  } = useContext(AppContext);
   const [isClassSelected] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
 
   return (
-    <div className={className} >
+    <div className={className}>
       {!isClassSelected && (
         <GridContainer>
           <Ability>STR</Ability>
@@ -59,10 +64,14 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
       {!isClassSelected && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ClassButtonsContainer>
-            <RerollAbilityScoresContainer onClick={()=> {setAbilityScores(getAbilityScores())}}>
+            <RerollAbilityScoresContainer
+              onClick={() => {
+                setAbilityScores(getAbilityScores());
+              }}
+            >
               <RollButton variant="outline-secondary">
                 <RollButtonIcon>
-                  <GiRollingDices/>
+                  <GiRollingDices />
                 </RollButtonIcon>
                 <RollButtonText>Reroll Ability Scores</RollButtonText>
               </RollButton>
@@ -90,7 +99,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
-                      history.push(`/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`);
+                      history.push(
+                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`
+                      );
                     }}
                   >
                     <div
