@@ -1,10 +1,13 @@
 import React from "react";
-import { GiHuntingHorn } from "react-icons/gi";
+import { GiHuntingHorn, GiSnakeTotem } from "react-icons/gi";
 import { barbarianEquipment } from "../equipmentKits/barbarianEquipment";
+import barbarianSkillsTable from '../../static/barbarianSkillsTable.png';
 
 export const barbarian = {
   name: "Barbarian",
   icon: React.createElement(GiHuntingHorn, {}),
+  skillsIcon: React.createElement(GiSnakeTotem, {}),
+  skillsTable: React.createElement('img', {src: barbarianSkillsTable, style: {width: '22rem', height: '33rem'}}),
   requirements: "Minimum DEX 9",
   primeRequisite: "CON and STR",
   hitDice: "1d8",

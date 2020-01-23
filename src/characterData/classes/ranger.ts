@@ -1,10 +1,13 @@
 import React from "react";
-import { GiCompass } from "react-icons/gi";
+import { GiCompass, GiPawPrint } from "react-icons/gi";
 import { rangerEquipment } from "../equipmentKits/rangerEquipment";
+import rangerTrackingTable from "../../static/rangerTrackingTable.png";
 
 export const ranger = {
   name: "Ranger",
   icon: React.createElement(GiCompass, {}),
+  skillsIcon: React.createElement(GiPawPrint, {}),
+  skillsTable: React.createElement('img', {src: rangerTrackingTable, style: {width: '20rem', height: '25rem'}}),
   requirements: "Minimum CON 9 and WIS 9",
   primeRequisite: "STR",
   hitDice: "1d8",

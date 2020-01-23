@@ -1,28 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
-  GiBloodySword,
-  GiBrain,
   GiChewedSkull,
   GiCoins,
   GiCometSpark,
-  GiInvisible,
   GiKnapsack,
-  GiLaserSparks,
-  GiLockPicking,
-  GiPawPrint,
   GiPriceTag,
   GiScrollUnfurled,
-  GiSnakeTotem,
   GiSpiralBottle,
-  GiSwordwoman,
-  GiTightrope
+  GiSwordwoman
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
-import { characterClasses, saves } from "../characterData/classes";
+import { characterClasses } from "../characterData/classes";
 import { combatActions } from "../characterData/combatActions";
 import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { retainers } from "../characterData/retainers";
@@ -36,19 +26,17 @@ import {
   STR,
   WIS
 } from "../constants/abilityScoreConstants";
-import acrobatSkillsTable from "../static/acrobatSkillsTable.png";
-import assassinSkillsTable from "../static/assassinSkillsTable.png";
-import barbarianSkillsTable from "../static/barbarianSkillsTable.png";
+import {
+  characterSheetSegments,
+  CharacterSheetSegments
+} from "../constants/characterSheetSegments";
 import charismaAdjustmentTable from "../static/charismaAdjustmentTable.png";
 import coinConversions from "../static/coinConversions.png";
-import halfOrcSkillsTable from "../static/halfOrcSkillsTable.png";
 import paladinTurningTable from "../static/paladinTurningTable.png";
-import psionicistSkillsChanceOfSuccess from "../static/psionicistSkillsTable.png";
-import rangerTrackingTable from "../static/rangerTrackingTable.png";
-import thiefSkillsChanceOfSuccess from "../static/thiefSkillsChanceOfSuccess.png";
+import parchment from "../static/parchment.png";
 import turningTableResults from "../static/turningTableResults.png";
 import turnUndeadTable from "../static/turnUndeadTable.png";
-import wildMagicUserWildSurgesTable from "../static/wildMagicUserWildSurgesTable.png";
+import { characterSkillsLookUp } from "../utils/characterSkillsLookUp";
 import { checkSpell } from "../utils/checkSpell";
 import { createMarkup } from "../utils/createMarkup";
 import { getAbilityScoreModifier } from "../utils/getAbilityScoreModifier";
@@ -62,9 +50,10 @@ import { getLanguages } from "../utils/getLanguages";
 import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
-import { saveCharacterData } from "../utils/saveCharacterData";
-import parchment from "../static/parchment.png";
-import { useHistory } from "react-router-dom";
+import CharacterDetails from "./characterDetails";
+import Permalink from "./characterSheetComponents/permalink";
+import Segment from "./characterSheetComponents/segment";
+import CharacterSkills from "./characterSkills";
 import StyledItemsForPurchase from "./itemsForPurchase";
 
 interface Props {
@@ -84,7 +73,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   includeKnaveSpells,
   savedCharacterData
 }) => {
-    let history = useHistory();
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
@@ -150,41 +138,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       : getCharacterName(classSelection)
   );
 
-  // Character Section Visibility
-  const [isTraitsVisible, setIsTraitsVisible] = useState(true);
-  const [isLanguagesVisible, setIsLanguagesVisible] = useState(true);
-  const [isAbilitiesVisible, setIsAbilitiesVisible] = useState(true);
-  const [isClericTurnVisible, setIsClericTurnVisible] = useState(true);
-  const [isPaladinTurnVisible, setIsPaladinTurnVisible] = useState(true);
-  const [isSpellsVisible, setIsSpellsVisible] = useState(true);
-  const [isThiefSkillsVisible, setIsThiefSkillsVisible] = useState(true);
-  const [isAcrobatSkillsVisible, setIsAcrobatSkillsVisible] = useState(true);
-  const [isAssassinSkillsVisible, setIsAssassinSkillsVisible] = useState(true);
-  const [isBarbarianSkillsVisible, setIsBarbarianSkillsVisible] = useState(
-    true
-  );
-  const [isHalfOrcSkillsVisible, setIsHalfOrcSkillsVisible] = useState(true);
-  const [isRangerTrackingVisible, setIsRangerTrackingVisible] = useState(true);
-  const [isPsionicistSkillsVisible, setIsPsionicistSkillsVisible] = useState(
-    true
-  );
-  const [
-    isWildMagicUserMagicSurgesVisible,
-    setIsWildMagicUserMagicSurgesVisible
-  ] = useState(true);
-  const [isEquipmentVisible, setIsEquipmentVisible] = useState(true);
-  const [isCombatActionsVisible, setIsCombatActionsVisible] = useState(false);
-  const [isWeaponQualitiesVisible, setIsWeaponQualitiesVisible] = useState(
-    false
-  );
-  const [isItemsForPurchaseVisible, setIsItemsForPurchaseVisible] = useState(
-    false
-  );
-  const [isRetainersVisible, setIsRetainersVisible] = useState(false);
-  const [
-    isGainingXPAndCarousingVisible,
-    setIsGainingXPAndCarousingVisible
-  ] = useState(false);
+  // Character Segment Visibility
+  const [segmentVisibility, setSegmentVisibility] = useState<
+    CharacterSheetSegments
+  >(characterSheetSegments);
 
   // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
@@ -201,666 +158,202 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   return (
     <div className={className}>
-      {!savedCharacterData ? (
-        <PermalinkButtonContainer>
-          <PermalinkButton
-            style={{ width: "275px" }}
-            variant="outline-secondary"
-            onClick={() => {
-              let URL = saveCharacterData(characterName,
-                                classSelection,
-                                traits,
-                                abilityScores,
-                                hitPoints,
-                                languages,
-                                spells,
-                                equipment.characterEquipmentString,
-                                equipment.slotsToFill,
-                                includeKnaveSpells
-                              );
-              history.push(`/savedCharacter/1&${URL}`);
-            }}
-          >
-            Permalink
-          </PermalinkButton>
-          <div>(or hit back to see other class options for current ability scores)</div>
-        </PermalinkButtonContainer>
-      ) : (
-        <SaveMessageContainer>
-          <SaveHeader>
-            <FontAwesomeIcon
-              icon={"exclamation-triangle"}
-              size="sm"
-              style={{ margin: "0.5rem" }}
-            />
-            IMPORTANT
-            <FontAwesomeIcon
-              icon={"exclamation-triangle"}
-              size="sm"
-              style={{ margin: "0.5rem" }}
-            />
-          </SaveHeader>
-          <SaveMessage
+      {/* Permalink Button and Bookmark Message */}
+      <Permalink
+        savedCharacterData={savedCharacterData}
+        characterName={characterName}
+        classSelection={classSelection}
+        traits={traits}
+        abilityScores={abilityScores}
+        hitPoints={hitPoints}
+        languages={languages}
+        spells={spells}
+        equipment={equipment}
+        includeKnaveSpells={includeKnaveSpells}
+      />
+
+      {/**
+       * Character Details Section -
+       * Name/Class Title/Character Class Icon/Ability Scores Grid/Saves/Stats
+       */}
+      <CharacterDetails
+        characterName={characterName}
+        classSelection={classSelection}
+        abilityScores={abilityScores}
+        strMod={strMod}
+        dexMod={dexMod}
+        conMod={conMod}
+        intMod={intMod}
+        wisMod={wisMod}
+        chaMod={chaMod}
+        hitPoints={hitPoints}
+        armorClass={armorClass}
+        experienceAdjustment={experienceAdjustment}
+      />
+
+      {/* Traits Segment*/}
+      <Segment
+        segmentIcon={<GiScrollUnfurled />}
+        segmentDisplayName={"Traits"}
+        segmentData={<TraitsContainer>{traits}</TraitsContainer>}
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
+
+      {/* Languages Segment*/}
+      <Segment
+        segmentIcon={<MdChatBubble />}
+        segmentDisplayName={"Languages"}
+        segmentData={<Language>{languages}</Language>}
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
+
+      {/* Abilities Segment*/}
+      <Segment
+        segmentIcon={<MdStar />}
+        segmentDisplayName={"Abilities"}
+        segmentData={
+          <Ability
             dangerouslySetInnerHTML={createMarkup(
-              "<strong>Bookmark this page. Save the results!\n</strong>"
+              characterClasses[classSelection].abilities!.join("\n\n")
             )}
           />
-        </SaveMessageContainer>
-      )}
-      <CharacterName>{characterName}</CharacterName>
-      <ClassTitle>
-        {`Level 1 ${characterClasses[classSelection].name}`}
-      </ClassTitle>
-      <ClassIcon>{characterClasses[classSelection].icon}</ClassIcon>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Ability Scores */}
-      <AbilityScoresGrid>
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>STR:</strong> ${abilityScores[STR]} ${
-              strMod === "None" ? "" : `(${strMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>DEX:</strong> ${abilityScores[DEX]} ${
-              dexMod === "None" ? "" : `(${dexMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>CON</strong> ${abilityScores[CON]} ${
-              conMod === "None" ? "" : `(${conMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>INT:</strong> ${abilityScores[INT]} ${
-              intMod === "None" ? "" : `(${intMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>WIS:</strong> ${abilityScores[WIS]} ${
-              wisMod === "None" ? "" : `(${wisMod})`
-            }`
-          )}
-        />
-        <div
-          dangerouslySetInnerHTML={createMarkup(
-            `<strong>CHA:</strong> ${abilityScores[CHA]} ${
-              chaMod === "None" ? "" : `(${chaMod})`
-            }`
-          )}
-        />
-      </AbilityScoresGrid>
-
-      {/* Saves and Stats */}
-      <SavesAndStatsGrid>
-        <StatsContainer>
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>HP:</strong> ${hitPoints}`
-            )}
-          />
-          {/* <div>{`HP: ${hitPoints}`}</div> */}
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>HD:</strong> ${characterClasses[classSelection].hitDice}`
-            )}
-          />
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>AC:</strong> ${armorClass}`
-            )}
-          />
-          <div
-            dangerouslySetInnerHTML={createMarkup(
-              `<strong>${
-                experienceAdjustment === "+0% XP"
-                  ? ""
-                  : `${experienceAdjustment}`
-              }</strong>`
-            )}
-          />
-        </StatsContainer>
-        <SavesContainer>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.poison}</strong>`
+      {/* Turn Undead Segment - Cleric/Paladin */}
+      {(characterClasses[classSelection].paladinTurn ||
+        characterClasses[classSelection].clericTurn) && (
+        <Segment
+          segmentIcon={<GiChewedSkull />}
+          segmentName={"TurnUndeadTable"}
+          segmentDisplayName={"Turning the Undead"}
+          segmentData={
+            <TurnUndeadContainer>
+              {characterClasses[classSelection].clericTurn ? (
+                <>
+                  <ClericTurnTable />
+                  <div>{characterClasses[classSelection].clericTurn}</div>
+                </>
+              ) : (
+                <>
+                  <PaladinTurnTable />
+                  <div>{characterClasses[classSelection].paladinTurn}</div>
+                </>
               )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.poison}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.wands}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.wands}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.stone}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.stone}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.breath}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.breath}
-            </SaveScore>
-          </Save>
-          <Save>
-            <div
-              dangerouslySetInnerHTML={createMarkup(
-                `<strong>${saves.magic}</strong>`
-              )}
-            />
-            <SaveScore>
-              {characterClasses[classSelection].saves.magic}
-            </SaveScore>
-          </Save>
-        </SavesContainer>
-      </SavesAndStatsGrid>
-
-      {/* Traits */}
-      <TraitsContainer>
-        <TraitsHeader
-          onClick={() => {
-            setIsTraitsVisible(!isTraitsVisible);
-          }}
-        >
-          <HeaderIcon>
-            <GiScrollUnfurled />
-          </HeaderIcon>
-          Traits
-          <FontAwesomeIcon
-            icon={isTraitsVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </TraitsHeader>
-        {isTraitsVisible && <div>{traits}</div>}
-      </TraitsContainer>
-
-      {/* Languages */}
-      {characterClasses[classSelection].languages && (
-        <LanguagesContainer>
-          <LanguagesHeader
-            onClick={() => {
-              setIsLanguagesVisible(!isLanguagesVisible);
-            }}
-          >
-            <HeaderIcon>
-              <MdChatBubble />
-            </HeaderIcon>
-            Languages
-            <FontAwesomeIcon
-              icon={isLanguagesVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </LanguagesHeader>
-          {isLanguagesVisible && <Language>{languages}</Language>}
-        </LanguagesContainer>
+              <ClericTurnResultsTable />
+            </TurnUndeadContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
       )}
 
-      {/* Abilities */}
-      {characterClasses[classSelection].abilities && (
-        <AbilitiesContainer>
-          <AbilitiesHeader
-            onClick={() => {
-              setIsAbilitiesVisible(!isAbilitiesVisible);
-            }}
-          >
-            <HeaderIcon>
-              <MdStar />
-            </HeaderIcon>
-            Abilities
-            <FontAwesomeIcon
-              icon={isAbilitiesVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </AbilitiesHeader>
-          {isAbilitiesVisible && (
-            <Ability
-              dangerouslySetInnerHTML={createMarkup(
-                characterClasses[classSelection].abilities!.join("\n\n")
-              )}
-            />
-          )}
-        </AbilitiesContainer>
-      )}
-
-      {/* Cleric Turn Undead */}
-      {characterClasses[classSelection].clericTurn && (
-        <ClericTurnContainer>
-          <ClericTurnHeader
-            onClick={() => {
-              setIsClericTurnVisible(!isClericTurnVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiChewedSkull />
-            </HeaderIcon>
-            Turning the Undead
-            <FontAwesomeIcon
-              icon={isClericTurnVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </ClericTurnHeader>
-          {isClericTurnVisible && <ClericTurnTable />}
-          {isClericTurnVisible && (
-            <div>{characterClasses[classSelection].clericTurn}</div>
-          )}
-          {isClericTurnVisible && <ClericTurnResultsTable />}
-        </ClericTurnContainer>
-      )}
-
-      {/* Paladin Turn Undead */}
-      {characterClasses[classSelection].paladinTurn && (
-        <PaladinTurnContainer>
-          <PaladinTurnHeader
-            onClick={() => {
-              setIsPaladinTurnVisible(!isPaladinTurnVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiChewedSkull />
-            </HeaderIcon>
-            Turning the Undead
-            <FontAwesomeIcon
-              icon={isPaladinTurnVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </PaladinTurnHeader>
-          {isPaladinTurnVisible && <PaladinTurnTable />}
-          {isPaladinTurnVisible && (
-            <div>{characterClasses[classSelection].paladinTurn}</div>
-          )}
-          {isPaladinTurnVisible && <PaladinTurnResultsTable />}
-        </PaladinTurnContainer>
-      )}
-
-      {/* Spells */}
+      {/* Spells Segment */}
       {characterClasses[classSelection].spells && (
-        <SpellsContainer>
-          <SpellsHeader
-            onClick={() => {
-              setIsSpellsVisible(!isSpellsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiCometSpark />
-            </HeaderIcon>
-            Spells
-            <FontAwesomeIcon
-              icon={isSpellsVisible ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
-          </SpellsHeader>
-          {isSpellsVisible && (
-            <Spell
-              dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-            />
-          )}
-          {isSpellsVisible && checkSpell(spells) && (
-            <KnaveAddendum
-              dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
-            />
-          )}
-        </SpellsContainer>
+        <Segment
+          segmentIcon={<GiCometSpark />}
+          segmentDisplayName={"Spells"}
+          segmentData={
+            <SpellsContainer>
+              {characterClasses[classSelection].spells && checkSpell(spells) ? (
+                <>
+                  <Spell
+                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+                  />
+                  <KnaveAddendum
+                    dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
+                  />
+                </>
+              ) : (
+                <>
+                  <Spell
+                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+                  />
+                </>
+              )}
+            </SpellsContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
       )}
 
-      {/* Thief Skills */}
-      {characterClasses[classSelection].thiefSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsThiefSkillsVisible(!isThiefSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiLockPicking />
-            </HeaderIcon>
-            Thief Skills
-            <FontAwesomeIcon
-              icon={isThiefSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
+      {/* Character Skills Segment */}
+      {characterClasses[classSelection][
+        characterSkillsLookUp(classSelection)
+      ] && (
+        <Segment
+          segmentIcon={characterClasses[classSelection].skillsIcon}
+          segmentName={"Skills"}
+          segmentDisplayName={
+            classSelection !== "ranger"
+              ? classSelection !== "wildMagicUser"
+                ? `${characterClasses[classSelection].name} Skills`
+                : "Wild Surges"
+              : "Ranger Tracking"
+          }
+          segmentData={
+            <CharacterSkills
+              classSelection={classSelection}
+              skillsTable={characterClasses[classSelection].skillsTable}
             />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isThiefSkillsVisible && <ThiefSkillsChanceOfSuccessTable />}
-            {isThiefSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].thiefSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
       )}
 
-      {/* Acrobat Skills */}
-      {characterClasses[classSelection].acrobatSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsAcrobatSkillsVisible(!isAcrobatSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiTightrope />
-            </HeaderIcon>
-            Acrobat Skills
-            <FontAwesomeIcon
-              icon={isAcrobatSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
+      {/* Equipment Segment */}
+      <Segment
+        segmentIcon={<GiKnapsack />}
+        segmentName={"Equipment"}
+        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
+          abilityScores[CON] > 10 ? abilityScores[CON] : 10
+        } slots)`}
+        segmentData={
+          <>
+            <Equipment
+              dangerouslySetInnerHTML={createMarkup(
+                equipment.characterEquipmentString
+              )}
             />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isAcrobatSkillsVisible && <AcrobatSkillsChanceOfSuccessTable />}
-            {isAcrobatSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].acrobatSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
+            <GoldText>
+              † 160 coins can be contained in 1 slot, provided you have a
+              container for them.
+            </GoldText>
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Assassin Skills */}
-      {characterClasses[classSelection].assassinSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsAssassinSkillsVisible(!isAssassinSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiBloodySword />
-            </HeaderIcon>
-            Assassin Skills
-            <FontAwesomeIcon
-              icon={isAssassinSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
+      {/* Combat Actions Segment */}
+      <Segment
+        segmentIcon={<FaDiceD20 />}
+        segmentName={"CombatActions"}
+        segmentDisplayName={"Combat Actions"}
+        segmentData={
+          <>
+            <CombatActions
+              dangerouslySetInnerHTML={createMarkup(combatActions)}
             />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isAssassinSkillsVisible && <AssassinSkillsChanceOfSuccessTable />}
-            {isAssassinSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].assassinSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Barbarian Skills */}
-      {characterClasses[classSelection].barbarianSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsBarbarianSkillsVisible(!isBarbarianSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiSnakeTotem />
-            </HeaderIcon>
-            Barbarian Skills
-            <FontAwesomeIcon
-              icon={isBarbarianSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
-            />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isBarbarianSkillsVisible && (
-              <BarbarianSkillsChanceOfSuccessTable />
-            )}
-            {isBarbarianSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].barbarianSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
-
-      {/* Half-Orc Skills */}
-      {characterClasses[classSelection].halfOrcSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsHalfOrcSkillsVisible(!isHalfOrcSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiInvisible />
-            </HeaderIcon>
-            Half-Orc Skills
-            <FontAwesomeIcon
-              icon={isHalfOrcSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
-            />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isHalfOrcSkillsVisible && <HalfOrcSkillsChanceOfSuccessTable />}
-            {isHalfOrcSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].halfOrcSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
-
-      {/* Ranger Tracking Skill */}
-      {characterClasses[classSelection].rangerTracking && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsRangerTrackingVisible(!isRangerTrackingVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiPawPrint />
-            </HeaderIcon>
-            Ranger Tracking
-            <FontAwesomeIcon
-              icon={isRangerTrackingVisible ? "caret-up" : "caret-down"}
-              size="lg"
-            />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isRangerTrackingVisible && <RangerTrackingChanceOfSuccessTable />}
-            {isRangerTrackingVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].rangerTracking!
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
-
-      {/* Psionicist Skills */}
-      {characterClasses[classSelection].psionicistSkills && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsPsionicistSkillsVisible(!isPsionicistSkillsVisible);
-            }}
-          >
-            <HeaderIcon>
-              <GiBrain />
-            </HeaderIcon>
-            Psionicist Skills
-            <FontAwesomeIcon
-              icon={isPsionicistSkillsVisible ? "caret-up" : "caret-down"}
-              size="lg"
-            />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isPsionicistSkillsVisible && (
-              <PsionicistSkillsChanceOfSuccessTable />
-            )}
-            {isPsionicistSkillsVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[classSelection].psionicistSkills!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
-
-      {/* Wild Magic-User Wild Surges */}
-      {characterClasses[classSelection].wildMagicUserMagicSurges && (
-        <React.Fragment>
-          <SkillsHeader
-            onClick={() => {
-              setIsWildMagicUserMagicSurgesVisible(
-                !isWildMagicUserMagicSurgesVisible
-              );
-            }}
-          >
-            <HeaderIcon>
-              <GiLaserSparks />
-            </HeaderIcon>
-            Wild Surges
-            <FontAwesomeIcon
-              icon={
-                isWildMagicUserMagicSurgesVisible ? "caret-up" : "caret-down"
-              }
-              size="lg"
-            />
-          </SkillsHeader>
-          <SkillsContainer>
-            {isWildMagicUserMagicSurgesVisible && (
-              <WildMagicUserWildSurgesTable />
-            )}
-            {isWildMagicUserMagicSurgesVisible && (
-              <Skill
-                dangerouslySetInnerHTML={createMarkup(
-                  characterClasses[
-                    classSelection
-                  ].wildMagicUserMagicSurges!.join("\n")
-                )}
-              />
-            )}
-          </SkillsContainer>
-        </React.Fragment>
-      )}
-
-      {/* Equipment */}
-      <EquipmentContainer>
-        <EquipmentHeader
-          onClick={() => {
-            setIsEquipmentVisible(!isEquipmentVisible);
-          }}
-        >
-          <HeaderIcon>
-            <GiKnapsack />
-          </HeaderIcon>
-          {`Equipment (${equipment.slotsToFill}/${
-            abilityScores[CON] > 10 ? abilityScores[CON] : 10
-          } slots)`}
-          <FontAwesomeIcon
-            icon={isEquipmentVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </EquipmentHeader>
-        {isEquipmentVisible && (
-          <Equipment
-            dangerouslySetInnerHTML={createMarkup(
-              equipment.characterEquipmentString
-            )}
-          />
-        )}
-        {isEquipmentVisible && (
-          <GoldText>
-            † 160 coins can be contained in 1 slot, provided you have a
-            container for them.
-          </GoldText>
-        )}
-      </EquipmentContainer>
-
-      {/* Combat Actions */}
-      <CombatActionsContainer>
-        <CombatActionsHeader
-          onClick={() => {
-            setIsCombatActionsVisible(!isCombatActionsVisible);
-          }}
-        >
-          <CombatActionsHeaderText>
-            <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <FaDiceD20 />
-              </HeaderIcon>
-              Combat Actions
-            </div>
-          </CombatActionsHeaderText>
-          <FontAwesomeIcon
-            icon={isCombatActionsVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </CombatActionsHeader>
-        {isCombatActionsVisible && (
-          <CombatActions
-            dangerouslySetInnerHTML={createMarkup(combatActions)}
-          />
-        )}
-      </CombatActionsContainer>
-
-      {/* Weapon Quality Descriptions */}
-      <WeaponQualitiesContainer>
-        <WeaponQualitiesHeader
-          onClick={() => {
-            setIsWeaponQualitiesVisible(!isWeaponQualitiesVisible);
-          }}
-        >
+      {/* Weapon Quality Descriptions Segment */}
+      <Segment
+        segmentIcon={<GiSpiralBottle />}
+        segmentName={"WeaponQualities"}
+        segmentDisplayName={
           <WeaponQualitiesHeaderText>
             <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <GiSpiralBottle />
-              </HeaderIcon>
               Item
               <HeaderIcon>
                 <FaDAndD />
@@ -869,80 +362,53 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             </div>
             <div>Qualities</div>
           </WeaponQualitiesHeaderText>
-          <FontAwesomeIcon
-            icon={isWeaponQualitiesVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </WeaponQualitiesHeader>
-        {isWeaponQualitiesVisible && (
-          <WeaponQualities
-            dangerouslySetInnerHTML={createMarkup(weaponQualities)}
-          />
-        )}
-      </WeaponQualitiesContainer>
+        }
+        segmentData={
+          <>
+            <WeaponQualities
+              dangerouslySetInnerHTML={createMarkup(weaponQualities)}
+            />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Items for Purchase */}
-      <ItemsForPurchaseHeader
-        onClick={() => {
-          setIsItemsForPurchaseVisible(!isItemsForPurchaseVisible);
-        }}
-      >
-        <ItemsForPurchaseHeaderText>
-          <div style={{ display: "flex" }}>
-            <HeaderIcon>
-              <GiPriceTag />
-            </HeaderIcon>
-            Items For Purchase
-          </div>
-        </ItemsForPurchaseHeaderText>
-        <FontAwesomeIcon
-          icon={isItemsForPurchaseVisible ? "caret-up" : "caret-down"}
-          size="lg"
-          style={{ margin: "0 0.5rem" }}
-        />
-      </ItemsForPurchaseHeader>
-      {isItemsForPurchaseVisible && <StyledItemsForPurchase />}
+      {/* Items for Purchase Segment */}
+      <Segment
+        segmentIcon={<GiPriceTag />}
+        segmentName={"ItemsForPurchase"}
+        segmentDisplayName={"Items For Purchase"}
+        segmentData={
+          <>
+            <StyledItemsForPurchase />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Retainers */}
-      <RetainersContainer>
-        <RetainersHeader
-          onClick={() => {
-            setIsRetainersVisible(!isRetainersVisible);
-          }}
-        >
-          <RetainersHeaderText>
-            <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <GiSwordwoman />
-              </HeaderIcon>
-              Retainers
-            </div>
-          </RetainersHeaderText>
-          <FontAwesomeIcon
-            icon={isRetainersVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </RetainersHeader>
-        {isRetainersVisible && <CharismaAdjustmentsTable />}
-        {isRetainersVisible && (
-          <Retainers dangerouslySetInnerHTML={createMarkup(retainers)} />
-        )}
-      </RetainersContainer>
+      {/* Retainers Segment*/}
+      <Segment
+        segmentIcon={<GiSwordwoman />}
+        segmentDisplayName={"Retainers"}
+        segmentData={
+          <>
+            <CharismaAdjustmentsTable />
+            <Retainers dangerouslySetInnerHTML={createMarkup(retainers)} />
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
 
-      {/* Gaining XP & Carousing Description */}
-      <GainingXPAndCarousingContainer>
-        <GainingXPAndCarousingHeader
-          onClick={() => {
-            setIsGainingXPAndCarousingVisible(!isGainingXPAndCarousingVisible);
-          }}
-        >
+      {/* Gaining XP & Carousing Description Segment*/}
+      <Segment
+        segmentIcon={<GiCoins />}
+        segmentName={"GainingXPAndCarousing"}
+        segmentDisplayName={
           <GainingXPAndCarousingHeaderText>
             <div style={{ display: "flex" }}>
-              <HeaderIcon>
-                <GiCoins />
-              </HeaderIcon>
               Gaining XP
               <HeaderIcon>
                 <FaDAndD />
@@ -950,171 +416,24 @@ const CharacterImpl: React.SFC<ImplProps> = ({
             </div>
             Carousing
           </GainingXPAndCarousingHeaderText>
-          <FontAwesomeIcon
-            icon={isGainingXPAndCarousingVisible ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </GainingXPAndCarousingHeader>
-        {isGainingXPAndCarousingVisible && (
-          <React.Fragment>
+        }
+        segmentData={
+          <>
             <GainingXPAndCarousing
               dangerouslySetInnerHTML={createMarkup(gainingXPAndCarousing)}
             />
             <CoinConversionsTable />
-          </React.Fragment>
-        )}
-      </GainingXPAndCarousingContainer>
+          </>
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
     </div>
   );
 };
 
-const SaveMessage = styled.div`
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid black;
-  white-space: pre-line;
-`;
-
-const SaveHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 2rem;
-`;
-
-const SaveMessageContainer = styled.div`
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-      height: 73px;
-    }
-    25% {
-      opacity: 0.75;
-      height: 73x;
-    }
-    50% {
-      opacity: 0.5;
-      height: 73px;
-    }
-    75% {
-      opacity: 0.25;
-      height: 73px;
-    }
-    95% {
-      opacity: 0;
-      height: 73px;
-    }
-    100% {
-      opacity: 0;
-      height: 0px;
-    }
-  }
-  -webkit-animation: fadeOut 8s;
-  animation: fadeOut 8s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-`;
-
-const PermalinkButton = styled(Button)`
-  color: black;
-`;
-
-const PermalinkButtonContainer = styled.div`
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1rem 0 0.5rem 0;
-`;
-
-const CharacterName = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 2rem;
-`;
-
-const ClassTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 1.5rem;
-  border-bottom: 1px solid black;
-`;
-
-const ClassIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 5rem;
-  opacity: 0.5;
-  padding: 0.5rem 0;
-`;
-
 const HeaderIcon = styled.div`
   margin: 0 0.5rem;
-`;
-
-const TraitsContainer = styled.div`
-  padding: 0.5rem;
-`;
-
-const TraitsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const AbilityScoresGrid = styled.div`
-  display: grid;
-  grid-template-columns: 120px 120px 120px;
-  justify-content: center;
-  padding: 0 0.25rem;
-`;
-
-const SavesAndStatsGrid = styled.div`
-  padding: 0.5rem;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  justify-content: center;
-`;
-
-const SavesContainer = styled.div`
-  display: grid;
-  grid-gap: 0.25rem;
-  justify-content: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-`;
-
-const Save = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const SaveScore = styled.div`
-  padding: 0 0.75rem;
-`;
-
-const StatsContainer = styled.div`
-  display: grid;
-  justify-content: flex-end;
-  align-content: baseline;
-  grid-gap: 0.25rem;
-  padding-right: 1rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-`;
-
-const LanguagesContainer = styled.div``;
-
-const LanguagesHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
 `;
 
 const Language = styled.div`
@@ -1124,22 +443,17 @@ const Language = styled.div`
   padding: 0.5rem;
 `;
 
-const AbilitiesContainer = styled.div``;
-
-const AbilitiesHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
 const Ability = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
 `;
 
-const ClericTurnContainer = styled.div`
+const TraitsContainer = styled.div`
+  padding: 0.5rem;
+`;
+
+const TurnUndeadContainer = styled.div`
   display: block;
   text-align: center;
   padding: 0.5rem;
@@ -1161,19 +475,6 @@ const ClericTurnResultsTable = styled.div`
   background-size: 24rem 14rem;
 `;
 
-const ClericTurnHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const PaladinTurnContainer = styled.div`
-  display: block;
-  text-align: center;
-  padding: 0.5rem;
-`;
-
 const PaladinTurnTable = styled.div`
   height: 26.75rem;
   background-image: url(${paladinTurningTable});
@@ -1182,29 +483,7 @@ const PaladinTurnTable = styled.div`
   background-size: 23rem 27rem;
 `;
 
-const PaladinTurnResultsTable = styled.div`
-  height: 17.75rem;
-  background-image: url(${turningTableResults});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 24rem 14rem;
-`;
-
-const PaladinTurnHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
 const SpellsContainer = styled.div``;
-
-const SpellsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
 
 const Spell = styled.div`
   padding: 0.5rem;
@@ -1216,97 +495,6 @@ const KnaveAddendum = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
-`;
-
-const SkillsContainer = styled.div`
-  display: block;
-  text-align: center;
-  padding: 0.5rem;
-`;
-
-const SkillsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const Skill = styled.div`
-  padding: 0.5rem;
-  white-space: pre-line;
-`;
-
-const ThiefSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${thiefSkillsChanceOfSuccess});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 25rem 33rem;
-`;
-
-const AcrobatSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${acrobatSkillsTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 22rem 33rem;
-`;
-
-const AssassinSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${assassinSkillsTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 22rem 33rem;
-`;
-
-const BarbarianSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${barbarianSkillsTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 22rem 33rem;
-`;
-
-const HalfOrcSkillsChanceOfSuccessTable = styled.div`
-  height: 21.75rem;
-  background-image: url(${halfOrcSkillsTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 22rem 22rem;
-`;
-
-const RangerTrackingChanceOfSuccessTable = styled.div`
-  height: 24.75rem;
-  background-image: url(${rangerTrackingTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 20rem 25rem;
-`;
-
-const PsionicistSkillsChanceOfSuccessTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${psionicistSkillsChanceOfSuccess});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 13rem 33rem;
-`;
-
-const WildMagicUserWildSurgesTable = styled.div`
-  height: 34.75rem;
-  background-image: url(${wildMagicUserWildSurgesTable});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 13rem 33rem;
-`;
-
-const EquipmentContainer = styled.div``;
-
-const EquipmentHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
 `;
 
 const Equipment = styled.div`
@@ -1322,34 +510,10 @@ const GoldText = styled.div`
   flex-direction: column;
 `;
 
-const CombatActionsContainer = styled.div``;
-
-const CombatActionsHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const CombatActionsHeaderText = styled.div`
-  text-align: center;
-`;
-
 const CombatActions = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
-`;
-
-const WeaponQualitiesContainer = styled.div``;
-
-const WeaponQualitiesHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
 `;
 
 const WeaponQualitiesHeaderText = styled.div`
@@ -1360,34 +524,6 @@ const WeaponQualities = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
-`;
-
-// const ItemsForPurchaseContainer = styled.div``;
-
-const ItemsForPurchaseHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const ItemsForPurchaseHeaderText = styled.div`
-  text-align: center;
-`;
-
-const RetainersContainer = styled.div``;
-
-const RetainersHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
-`;
-
-const RetainersHeaderText = styled.div`
-  text-align: center;
 `;
 
 const CharismaAdjustmentsTable = styled.div`
@@ -1402,16 +538,6 @@ const Retainers = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
-`;
-
-const GainingXPAndCarousingContainer = styled.div``;
-
-const GainingXPAndCarousingHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Sancreek", cursive;
-  font-size: 1.5rem;
 `;
 
 const GainingXPAndCarousingHeaderText = styled.div`

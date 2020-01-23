@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
 import { GiRollingDices } from "react-icons/gi";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import AppContext from "./AppContext";
 import { characterClasses } from "./characterData/classes";
 import CharacterSummary from "./components/characterSummary";
 import parchment from "./static/parchment.png";
@@ -47,22 +48,18 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  */
 interface Props {
   className?: string;
-  abilityScores: number[];
-  isKnaveSpellsIncluded: boolean;
-  setKnaveSpells: (params: boolean) => void;
-  setAbilityScores: (params: () => number[]) => void;
 }
 
 interface ImplProps extends Props {}
 
-const AppImpl: React.SFC<ImplProps> = ({
-  className,
-  abilityScores,
-  isKnaveSpellsIncluded,
-  setKnaveSpells,
-  setAbilityScores
-}) => {
+const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   let history = useHistory();
+  const {
+    setAbilityScores,
+    abilityScores,
+    setKnaveSpells,
+    includeKnaveSpells
+  } = useContext(AppContext);
   const [isClassSelected] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
@@ -87,7 +84,7 @@ const AppImpl: React.SFC<ImplProps> = ({
           <ClassButtonsContainer>
             <RerollAbilityScoresContainer
               onClick={() => {
-                setAbilityScores(getAbilityScores);
+                setAbilityScores(getAbilityScores());
               }}
             >
               <RollButton variant="outline-secondary">
@@ -98,9 +95,9 @@ const AppImpl: React.SFC<ImplProps> = ({
               </RollButton>
             </RerollAbilityScoresContainer>
             <KnaveSpellOptionsContainer
-              onClick={() => setKnaveSpells(!isKnaveSpellsIncluded)}
+              onClick={() => setKnaveSpells(!includeKnaveSpells)}
             >
-              {isKnaveSpellsIncluded ? (
+              {includeKnaveSpells ? (
                 <MdCheckBox size="1.5em" />
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
@@ -121,7 +118,7 @@ const AppImpl: React.SFC<ImplProps> = ({
                     variant="outline-secondary"
                     onClick={() => {
                       history.push(
-                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${isKnaveSpellsIncluded}`
+                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`
                       );
                     }}
                   >
