@@ -2,6 +2,7 @@ import { acrobat } from "./classes/acrobat";
 import { assassin } from "./classes/assassin";
 import { barbarian } from "./classes/barbarian";
 import { bard } from "./classes/bard";
+import { citizenLich } from "./classes/citizenLich";
 import { cleric } from "./classes/cleric";
 import { crabPerson } from "./classes/crabPerson";
 import { drow } from "./classes/drow";
@@ -22,6 +23,7 @@ import { psionicist } from "./classes/psionicist";
 import { ranger } from "./classes/ranger";
 import { svirfneblin } from "./classes/svirfneblin";
 import { thief } from "./classes/thief";
+import { underworldRanger } from "./classes/underworldRanger";
 import { wildMagicUser } from "./classes/wildMagicUser";
 import { ynnianChangeling } from "./classes/ynnianChangeling";
 
@@ -80,6 +82,7 @@ export const characterClasses: { [key: string]: characterClass } = {
   assassin,
   barbarian,
   bard,
+  citizenLich,
   crabPerson,
   drow,
   druid,
@@ -96,5 +99,6 @@ export const characterClasses: { [key: string]: characterClass } = {
   psionicist,
   ranger,
   svirfneblin,
+  underworldRanger,
   ynnianChangeling
 };

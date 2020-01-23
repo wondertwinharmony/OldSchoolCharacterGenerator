@@ -16,7 +16,26 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
- * - [] Consider refactor to leverage app context in future
+ * - [] @see https://thac0rpg.blogspot.com/2019/11/the-fight-over-fighters.html
+ * - "I have not tried yet giving Fighters an additional Specialization at 5th
+ * level, and then an extra attack with a Specialized weapon at 10th. The original
+ * BX books talk about giving extra attacks at some point, but it is vague as to
+ * when to do it." OR "Not sure if i said it before, but fighter gets to use a maneuver
+ * on every round a long with their attack. So would you rule that another character
+ * can still trip and make their attack? Or disarm?" OR "I prefer the gambit, wherein
+ * you declare a cool thing which is a bit more exciting than a standard combat action
+ * (usually tied prominently to abusing the environment for extra effects etc) and make
+ * three attack rolls. If all three succeed, you do your cool proposed thing with a perk.
+ * If two rolls succeed, you do your cool proposed thing as stated. If one roll succeeds,
+ * you fail but don't suffer any penalty. If no rolls succeed, your cool proposed thing
+ * happens to yourself, instead of your target. - Gambit sounds interesting, I'd probably
+ * stick to just relevant ability checks though"
+ *
+ * Yeah, it's been discussed here now and then.  I use a Cleave and simplified Specialization
+ * option for fighters:
+ * Cleave: When an opponent is slain in combat, the fighter may make an immediate free attack
+ * against an adjacent opponent.
+ *
  * - [] New feature - always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)
  *
@@ -24,7 +43,6 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool from OSE Treasure book?
  * - Create own random sentient weapon app tool from OSE Treasure book?
- * - Consider simple random spellbook generator for Illusionist and Magic-User
  * - Consider making Traps and Treasures tables rollable
  * - Modify aglet time keeper tool to handle 10min turns (with a note on torch/lantern burn out)
  */

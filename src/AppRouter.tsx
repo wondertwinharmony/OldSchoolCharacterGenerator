@@ -67,10 +67,12 @@ export default function AppRouter() {
 
     let hyphenatedCharacters = [
       "magic-user",
+      "citizen lich",
       "crab-person",
       "half-elf",
       "wild magic-user",
       "half-orc",
+      "underworld ranger",
       "ynnian changeling"
     ];
 
