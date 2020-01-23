@@ -13,19 +13,18 @@ export interface SavedCharacterData {
  * Returns an object with character data needed to rehydrate a page.
  * @param  {string} url
  * @param  {string} home
- * @param  {string} router
+ * @param  {string} route
  */
 export const getSavedCharacterData = (url: string, home: string, route: string) => {
     let decodedURI = '';
     let rawCharacterData = [];
 
-    if(route){
-        decodedURI = decodeURI(url).replace(home, '').replace(route, '');
-        rawCharacterData = decodedURI.split('&');
-    } else {
-        decodedURI = decodeURI(url).replace(home, '');
-        rawCharacterData = decodedURI.replace(/-/gm, ' ').split('$');
-    }
+    decodedURI = decodeURI(url).replace(home, '')
+                                   .replace(route, '')
+                                   .replace(/\$/gm, '&')
+                                   .replace(/-/gm, ' ')
+
+    rawCharacterData = decodedURI.split('&');
     
     let savedCharacterData = {
         name: '',
@@ -48,7 +47,7 @@ export const getSavedCharacterData = (url: string, home: string, route: string) 
     savedCharacterData.hitPoints = parseInt(rawCharacterData[4]);
     savedCharacterData.languages = rawCharacterData[5].replace(/_/gm, ' ');
     savedCharacterData.spells = rawCharacterData[6].replace(/_/gm, ' ').split('#');
-    savedCharacterData.equipment.characterEquipmentString = rawCharacterData[7].replace(/_/gm, ' ');
+    savedCharacterData.equipment.characterEquipmentString = rawCharacterData[7].replace(/_/gm, ' ').replace('5’ 10’ / 11’ 20’ / 21’ 30’', '5’-10’ / 11’-20’ / 21’-30’');
     savedCharacterData.equipment.slotsToFill = parseInt(rawCharacterData[8]);
     savedCharacterData.knave = rawCharacterData[9] === 'true';
 

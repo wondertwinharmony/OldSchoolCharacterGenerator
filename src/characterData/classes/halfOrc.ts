@@ -1,10 +1,12 @@
 import React from "react";
-import { GiOrcHead } from "react-icons/gi";
+import { GiOrcHead, GiInvisible } from "react-icons/gi";
 import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
-
+import halfOrcSkillsTable from "../../static/halfOrcSkillsTable.png";
 export const halfOrc = {
   name: "Half-Orc",
   icon: React.createElement(GiOrcHead, {}),
+  skillsIcon: React.createElement(GiInvisible, {}),
+  skillsTable: React.createElement('img', {src: halfOrcSkillsTable, style: {width: '22rem', height: '22rem'}}),
   requirements: "None",
   primeRequisite: "DEX and STR",
   hitDice: "1d6",

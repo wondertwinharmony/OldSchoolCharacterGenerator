@@ -1,10 +1,13 @@
 import React from "react";
-import { GiBodyBalance } from "react-icons/gi";
+import { GiBodyBalance, GiTightrope } from "react-icons/gi";
 import { acrobatEquipment } from "../equipmentKits/acrobatEquipment";
+import acrobatSkillsTable from "../../static/acrobatSkillsTable.png";
 
 export const acrobat = {
   name: "Acrobat",
   icon: React.createElement(GiBodyBalance, {}),
+  skillsIcon: React.createElement(GiTightrope, {}),
+  skillsTable: React.createElement('img', {src: acrobatSkillsTable, style: {width: '22rem', height: '33rem'}}),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",

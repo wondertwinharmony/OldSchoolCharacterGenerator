@@ -197,7 +197,38 @@ export const traits = {
     "mercenary",
     "cannibal",
     "outlander",
-    "hermit"
+    "hermit",
+    "champion"
+  ],
+
+  underworldRangerBackground: [
+    "orphaned as a young child",
+    "a waif",
+    "a foundling",
+    "a young stray",
+    "a street urchin",
+    "a ragamuffin",
+    "child of a wizard's illicit affair",
+    "child of a priest's illicit affair",
+    "child of a noble's scandalous affair",
+    "a noble's eldest child",
+    "a noble's youngest child",
+    "a noble's only child",
+    "a merchant's eldest child",
+    "a merchant's youngest child",
+    "a merchant's only child",
+    "a courtesan's eldest child",
+    "a courtesan's youngest child",
+    "a courtesan's only child",
+    "a beggar's eldest child",
+    "a beggar's youngest child",
+    "a beggar's only child",
+    "a tavern keeper's eldest child",
+    "a tavern keeper's youngest child",
+    "a tavern keeper's only child",
+    "a farmer's eldest child",
+    "a farmer's youngest child",
+    "a farmer's only child"
   ],
 
   background: [
@@ -298,6 +329,112 @@ export const traits = {
   ]
 };
 
+// Citizen Lich Traits are different from other classes since they are
+// so radically different from other classes in appearance and social
+// status.
+// ("Traits\n"
+// "--------------------------------------------------\n"
+// "A {background}. Wears {clothing} clothing.\n"
+// "Has a {physique} physique, {flesh} flesh, {face} face, and a {speech} voice.\n"
+// "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
+// "Favors {alignment}.")
+export const citizenLichTraits = {
+  background: [
+    "shamed professor",
+    "expelled academic",
+    "librarian",
+    "ousted cultist",
+    "jilted researcher",
+    "failed necromancer",
+    '"scientist"',
+    "disgraced archmage",
+    "radical scholar",
+    "philosopher",
+    "astrologer",
+    "expelled advisor"
+  ],
+
+  physique: [
+    "gaunt",
+    "lanky",
+    "short",
+    "tiny",
+    "towering",
+    "sickly",
+    "sinewy",
+    "misshapen",
+    "mangled",
+    "lithe",
+    "crooked",
+    "crippled",
+    "ossified"
+  ],
+
+  flesh: [
+    "dangling",
+    "crusted",
+    "reeking",
+    "cracked",
+    "green",
+    "gray",
+    "stretched",
+    "repulsive",
+    "revolting",
+    "bloated",
+    "disintegrating",
+    "decaying",
+    "swollen",
+    "tattered",
+    "moldy",
+    "moist",
+    "translucent",
+    "noxious",
+    "fetid",
+    "flaky"
+  ],
+
+  face: [
+    "melted",
+    "drooping",
+    "burnt",
+    "skeletal",
+    "oozing",
+    "wretched",
+    "slender",
+    "eyeless",
+    "mutilated",
+    "maimed",
+    "leathery",
+    "macabre",
+    "tormented",
+    "morose",
+    "twisted",
+    "pallid",
+    "ghoulish"
+  ],
+
+  misfortunes: [
+    "abandoned",
+    "addicted",
+    "blackmailed",
+    "condemned",
+    "cursed",
+    "defrauded",
+    "demoted",
+    "discredited",
+    "disowned",
+    "exiled",
+    "framed",
+    "haunted",
+    "kidnapped",
+    "pursued",
+    "rejected",
+    "replaced",
+    "robbed",
+    "suspected"
+  ]
+};
+
 // Crab-People Traits are different from other classes since they are
 // so radically different from other classes in appearance and social
 // status.
@@ -367,52 +504,6 @@ export const crabPersonTraits = {
     "undersized"
   ],
 
-  virtues: [
-    "ambitious",
-    "cautious",
-    "courageous",
-    "courteous",
-    "curious",
-    "disciplined",
-    "focused",
-    "generous",
-    "gregarious",
-    "honest",
-    "honorable",
-    "humble",
-    "idealistic",
-    "just",
-    "loyal",
-    "merciful",
-    "righteous",
-    "serene",
-    "stoic",
-    "tolerant"
-  ],
-
-  vices: [
-    "aggressive",
-    "arrogant",
-    "bitter",
-    "cowardly",
-    "cruel",
-    "deceitful",
-    "flippant",
-    "gluttonous",
-    "greedy",
-    "irascible",
-    "lazy",
-    "nervous",
-    "prejudiced",
-    "reckless",
-    "rude",
-    "suspicious",
-    "vain",
-    "vengeful",
-    "wasteful",
-    "whiny"
-  ],
-
   background: [
     "gladiator",
     "slave",
@@ -425,50 +516,5 @@ export const crabPersonTraits = {
     "bodyguard",
     "fisher",
     "pearl diver"
-  ],
-
-  misfortunes: [
-    "abandoned",
-    "addicted",
-    "blackmailed",
-    "condemned",
-    "cursed",
-    "defrauded",
-    "demoted",
-    "discredited",
-    "disowned",
-    "exiled",
-    "framed",
-    "haunted",
-    "kidnapped",
-    "mutilated",
-    "pursued",
-    "rejected",
-    "replaced",
-    "robbed",
-    "suspected"
-  ],
-
-  alignment: [
-    "law",
-    "law",
-    "law",
-    "law",
-    "law",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "neutrality",
-    "chaos",
-    "chaos",
-    "chaos",
-    "chaos",
-    "chaos"
   ]
 };

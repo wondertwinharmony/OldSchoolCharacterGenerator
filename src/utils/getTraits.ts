@@ -1,5 +1,9 @@
 import { sampleSize } from "lodash";
-import { crabPersonTraits, traits } from "../characterData/traits";
+import {
+  citizenLichTraits,
+  crabPersonTraits,
+  traits
+} from "../characterData/traits";
 
 /**
  * Utility function that produces a string describing a generated character's traits.
@@ -35,13 +39,13 @@ export const getTraits = (
     )} face, and a ${sampleSize(
       crabPersonTraits.shell,
       1
-    )} shell.\n Is ${sampleSize(crabPersonTraits.virtues, 1)}, but ${sampleSize(
-      crabPersonTraits.vices,
+    )} shell.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+      traits.vices,
       1
     )}. Has been ${sampleSize(
-      crabPersonTraits.misfortunes,
+      traits.misfortunes,
       1
-    )} in the past.\n Favors ${sampleSize(crabPersonTraits.alignment, 1)}.`;
+    )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
 
     return crabPersonTraitsString;
   }
@@ -86,6 +90,70 @@ export const getTraits = (
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
 
+  /**
+   * Citizen Lich Traits are different from other classes since they are
+   * so radically different from other classes in appearance and social
+   * status.
+   */
+  if (classOptionKey === "citizenLich") {
+    let citizenLichString = `A ${sampleSize(
+      citizenLichTraits.background,
+      1
+    )}. Wears ${sampleSize(traits.clothing, 1)} clothes.\n Has a ${sampleSize(
+      citizenLichTraits.physique,
+      1
+    )} physique, ${sampleSize(
+      citizenLichTraits.flesh,
+      1
+    )} flesh, and a ${sampleSize(
+      citizenLichTraits.face,
+      1
+    )} face. Is ${languageDescriptor} ${sampleSize(
+      traits.speech,
+      1
+    )} speech.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+      traits.vices,
+      1
+    )}. Has been ${sampleSize(
+      citizenLichTraits.misfortunes,
+      1
+    )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
+
+    return citizenLichString;
+  }
+
+  /**
+   * Underworld Ranger Traits are different from other classes because
+   * of their background trait and alignment - could make the general
+   * traits string handler more dynamic to handle this more elegantly.
+   */
+  if (classOptionKey === "underworldRanger") {
+    let underworldRangerTraitsString = `Was ${sampleSize(
+      traits.underworldRangerBackground
+    )} before discovery and recruitment by Underworld Ranger Service (URS). Wears standard-issue URS field uniform, ${languageDescriptor} ${sampleSize(
+      traits.speech,
+      1
+    )} speech.\n Has a ${sampleSize(
+      traits.physique,
+      1
+    )} physique, a ${sampleSize(traits.face, 1)} face, ${sampleSize(
+      traits.skin,
+      1
+    )} skin, and ${sampleSize(traits.hair, 1)} hair.\n Is ${sampleSize(
+      traits.virtues,
+      1
+    )}, but ${sampleSize(traits.vices, 1)}. Has been ${sampleSize(
+      traits.misfortunes,
+      1
+    )} in the past.\n Favors ${sampleSize(["law", "neutrality"], 1)}.`;
+
+    return underworldRangerTraitsString;
+  }
+
+  /**
+   * General Trait string formation with special handling for barbarian
+   * backgrounds and some class alignments.
+   */
   let traitsString = `A ${
     classOptionKey === "barbarian"
       ? sampleSize(traits.barbarianBackground, 1)

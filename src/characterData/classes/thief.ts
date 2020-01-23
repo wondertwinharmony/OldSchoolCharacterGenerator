@@ -1,10 +1,13 @@
 import React from "react";
-import { GiDominoMask } from "react-icons/gi";
+import { GiDominoMask, GiLockPicking } from "react-icons/gi";
 import { thiefEquipment } from "../equipmentKits/thiefEquipment";
+import thiefSkillsTable from "../../static/thiefSkillsChanceOfSuccess.png";
 
 export const thief = {
   name: "Thief",
   icon: React.createElement(GiDominoMask, {}),
+  skillsIcon: React.createElement(GiLockPicking, {}),
+  skillsTable: React.createElement('img', {src: thiefSkillsTable, style: {width: '25rem', height: '33rem'}}),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",

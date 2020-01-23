@@ -1,10 +1,13 @@
 import React from "react";
-import { GiRadialBalance } from "react-icons/gi";
+import { GiRadialBalance, GiLaserSparks } from "react-icons/gi";
 import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
+import wildMagicUserWildSurgesTable from "../../static/wildMagicUserWildSurgesTable.png";
 
 export const wildMagicUser = {
   name: "Wild Magic-User",
   icon: React.createElement(GiRadialBalance, {}),
+  skillsIcon: React.createElement(GiLaserSparks, {}),
+  skillsTable: React.createElement('img', {src: wildMagicUserWildSurgesTable, style: {width: '13rem', height: '33rem'}}),
   requirements: "Minimum INT 9",
   primeRequisite: "INT",
   hitDice: "1d4",

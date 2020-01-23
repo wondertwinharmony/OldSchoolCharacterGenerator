@@ -1,11 +1,15 @@
-import { random, sampleSize } from "lodash";
+import { random, sample, sampleSize } from "lodash";
 import Roll from "roll";
 import { characterClasses } from "../characterData/classes";
-import { gear } from "../characterData/gear";
+import {
+  burrowingMammals,
+  disguiseItems,
+  dungeoneeringEquipment,
+  gear,
+  instruments,
+  poisons
+} from "../characterData/gear";
 import { getEquipmentSlots } from "./getEquipmentSlots";
-import { getRandomBurrowingMammal } from "./getRandomBurrowingMammal";
-import { getRandomInstrument } from "./getRandomInstrument";
-import { getRandomPoison } from "./getRandomPoison";
 
 /**
  * Utility function to determine equipment and starting gold for a character.
@@ -64,7 +68,7 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * instrument.
    */
   if (classOptionKey === "bard") {
-    characterEquipment.push(getRandomInstrument());
+    characterEquipment.push(`${sample(instruments)} (instrument)`);
   }
 
   /**
@@ -72,7 +76,15 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * poison.
    */
   if (classOptionKey === "assassin") {
-    characterEquipment.push(getRandomPoison());
+    characterEquipment.push(sample(poisons));
+  }
+
+  /**
+   * If class is a citizen lich, make sure they have a random
+   * disguise item.
+   */
+  if (classOptionKey === "citizenLich") {
+    characterEquipment.push(sample(disguiseItems));
   }
 
   /**
@@ -80,13 +92,29 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
    * mammal as pet. (50% chance)
    */
   if (classOptionKey === "gnome" && random(1, 2) > 1) {
-    characterEquipment.push(getRandomBurrowingMammal());
+    characterEquipment.push(`${sample(burrowingMammals)} (pet)`);
   }
 
   // Determine how many equipment slots are currently occupied
   const equipmentCountBeforeRandomItems = getEquipmentSlots(
     characterEquipment.flat()
   );
+
+  /**
+   * If class is a underworld ranger, fill their remaining slots
+   * with random dungeoneering equipment.
+   */
+  if (classOptionKey === "underworldRanger") {
+    let underworldRangerRandomItems = sampleSize(
+      dungeoneeringEquipment,
+      slotsToFill - equipmentCountBeforeRandomItems
+    );
+
+    characterEquipment.push(underworldRangerRandomItems);
+    characterEquipmentString = characterEquipment.flat().join("<br><br>• ");
+
+    return { characterEquipmentString, slotsToFill };
+  }
 
   /**
    * Determine random items for available slots.
@@ -116,7 +144,9 @@ export const getEquipment: (classOptionKey: string, conScore: number) => any = (
     item => item === "<strong>Instrument</strong>"
   );
   if (indexOfItemToReplace !== -1) {
-    characterRandomItems[indexOfItemToReplace] = getRandomInstrument();
+    characterRandomItems[indexOfItemToReplace] = `${sample(
+      instruments
+    )} (instrument)`;
   }
 
   characterEquipmentString = characterEquipment.flat().join("<br><br>• ");

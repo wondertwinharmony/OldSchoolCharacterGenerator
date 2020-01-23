@@ -1,10 +1,13 @@
 import React from "react";
-import { GiDaggers } from "react-icons/gi";
+import { GiDaggers, GiBloodySword } from "react-icons/gi";
 import { assassinEquipment } from "../equipmentKits/assassinEquipment";
+import assassinSkillsTable from "../../static/assassinSkillsTable.png";
 
 export const assassin = {
   name: "Assassin",
   icon: React.createElement(GiDaggers, {}),
+  skillsIcon: React.createElement(GiBloodySword, {}),
+  skillsTable: React.createElement('img', {src: assassinSkillsTable, style: {width: '22rem', height: '33rem'}}),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
