@@ -14,23 +14,23 @@ import {
   GiWhiteTower
 } from "react-icons/gi";
 import styled from "styled-components";
-import adventuringGear1 from "../static/itemsForPurchase/adventuringGear1.png";
-import adventuringGear2 from "../static/itemsForPurchase/adventuringGear2.png";
-import ammunitionAndArmor from "../static/itemsForPurchase/ammunitionAndArmor.png";
-import animals from "../static/itemsForPurchase/animals.png";
-import buildings from "../static/itemsForPurchase/buildings.png";
-import buyingSellingMagicItems from "../static/itemsForPurchase/buyingSellingMagicItems.png";
-import clericScrolls from "../static/itemsForPurchase/clericScrolls.png";
-import clothing from "../static/itemsForPurchase/clothing.png";
-import druidScrolls from "../static/itemsForPurchase/druidScrolls.png";
-import illusionistScrolls from "../static/itemsForPurchase/illusionistScrolls.png";
-import light from "../static/itemsForPurchase/light.png";
-import lodging from "../static/itemsForPurchase/lodging.png";
-import magicUserScrolls from "../static/itemsForPurchase/magicUserScrolls.png";
-import potions from "../static/itemsForPurchase/potions.png";
-import tackAndHarness from "../static/itemsForPurchase/tackAndHarness.png";
-import transport from "../static/itemsForPurchase/transport.png";
-import weapons from "../static/itemsForPurchase/weapons.png";
+import adventuringGear1 from "../../static/itemsForPurchase/adventuringGear1.png";
+import adventuringGear2 from "../../static/itemsForPurchase/adventuringGear2.png";
+import ammunitionAndArmor from "../../static/itemsForPurchase/ammunitionAndArmor.png";
+import animals from "../../static/itemsForPurchase/animals.png";
+import buildings from "../../static/itemsForPurchase/buildings.png";
+import buyingSellingMagicItems from "../../static/itemsForPurchase/buyingSellingMagicItems.png";
+import clericScrolls from "../../static/itemsForPurchase/clericScrolls.png";
+import clothing from "../../static/itemsForPurchase/clothing.png";
+import druidScrolls from "../../static/itemsForPurchase/druidScrolls.png";
+import illusionistScrolls from "../../static/itemsForPurchase/illusionistScrolls.png";
+import light from "../../static/itemsForPurchase/light.png";
+import lodging from "../../static/itemsForPurchase/lodging.png";
+import magicUserScrolls from "../../static/itemsForPurchase/magicUserScrolls.png";
+import potions from "../../static/itemsForPurchase/potions.png";
+import tackAndHarness from "../../static/itemsForPurchase/tackAndHarness.png";
+import transport from "../../static/itemsForPurchase/transport.png";
+import weapons from "../../static/itemsForPurchase/weapons.png";
 
 interface Props {}
 

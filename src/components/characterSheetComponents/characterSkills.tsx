@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { characterClasses } from "../characterData/classes";
-import { characterSkillsLookUp } from "../utils/characterSkillsLookUp";
-import { createMarkup } from "../utils/createMarkup";
+import { characterClasses } from "../../characterData/classes";
+import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
+import { createMarkup } from "../../utils/createMarkup";
 
 interface Props {
   classSelection: string;
