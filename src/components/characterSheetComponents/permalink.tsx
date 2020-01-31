@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
+import UUID5 from "uuid/v5";
+import { postURL } from "../../api/postURL";
 import { createMarkup } from "../../utils/createMarkup";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { saveCharacterData } from "../../utils/saveCharacterData";
@@ -36,6 +38,41 @@ const Permalink: React.SFC<Props> = ({
   includeKnaveSpells
 }) => {
   let history = useHistory();
+  let match = useRouteMatch("/generatedCharacter/:character/");
+
+  const handleClick = () => {
+    let URL = saveCharacterData(
+      characterName,
+      classSelection,
+      traits,
+      abilityScores,
+      hitPoints,
+      languages,
+      spells,
+      equipment.characterEquipmentString,
+      equipment.slotsToFill,
+      includeKnaveSpells
+    );
+
+    const longLink =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://oldschoolknave.surge.sh";
+    const permaLink = longLink.concat("/savedCharacter/1&", URL);
+    const characterUUID = UUID5(permaLink, UUID5.URL);
+    const data = {
+      characterId: characterUUID,
+      permaLink: permaLink,
+      httpMethod: "POST"
+    };
+
+    const postCharacter = async () => {
+      await postURL(data).then(() =>
+        history.push(`/permalinked/${characterUUID}`)
+      );
+    };
+    postCharacter();
+  };
 
   return !savedCharacterData ? (
     <PermalinkButtonContainer>
@@ -43,19 +80,7 @@ const Permalink: React.SFC<Props> = ({
         style={{ width: "275px" }}
         variant="outline-secondary"
         onClick={() => {
-          let URL = saveCharacterData(
-            characterName,
-            classSelection,
-            traits,
-            abilityScores,
-            hitPoints,
-            languages,
-            spells,
-            equipment.characterEquipmentString,
-            equipment.slotsToFill,
-            includeKnaveSpells
-          );
-          history.push(`/savedCharacter/1&${URL}`);
+          handleClick();
         }}
       >
         Permalink
@@ -64,7 +89,8 @@ const Permalink: React.SFC<Props> = ({
         (or hit back to see other class options for current ability scores)
       </div>
     </PermalinkButtonContainer>
-  ) : (
+  ) : //The ternary below checks if savedCharacterData exists and if the route is "generatedCharacter/:character/", if both conditions are true it will not render the <SaveMessageContainer>. We don't want the <SaveMessageContainer> to be rendered when people navigate back after permalinking a character.
+  savedCharacterData && match ? null : (
     <SaveMessageContainer>
       <SaveHeader>
         <FontAwesomeIcon
