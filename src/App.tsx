@@ -17,9 +17,18 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
  *  * FIXES
- * - [] Headers need pointer icon
- * 
+ * - [] Headers need pointer mouse on hover on desktop browser
+ *
  *  * NEW FEATURES TO CONSIDER
+ * High Priority
+ * - [] Track/Edit Name
+ * - [] Track HP
+ * - [] Track Ability Scores
+ * - [] Track XP, and next level (levels stored as array or something)
+ * - [] Track Level and Saves (possibly all handled as part of track XP)
+ * - [] Track Spells
+ * - [] Track Equipment
+ * Low Priority
  * - [] Need cool error out display page if anything goes wrong with our app
  * - [] Perhaps always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)
