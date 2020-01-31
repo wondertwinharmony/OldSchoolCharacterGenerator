@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,14 +6,23 @@ import {
   Switch
 } from "react-router-dom";
 import StyledApp from "./App";
-import StyledCreatedCharacter from "./components/character";
+import AppContext from "./AppContext";
+import Character from "./components/character";
+import StyledCreatedCharacter from "./components/characterSheetComponents/characterSheet";
 import { toCamelCase } from "./utils/convertToCamelCase";
 import { getSavedCharacterData } from "./utils/getSavedCharacterData";
 
 export default function AppRouter() {
-  type TParams = { character: string; saved: string; previouslySaved: string };
+  type TParams = {
+    character: string;
+    saved: string;
+    previouslySaved: string;
+    characterId: string;
+  };
 
   function CharacterSheet({ match }: RouteComponentProps<TParams>) {
+    const { savedCharacterData, classSelection } = useContext(AppContext);
+
     const homeURL =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000/"
@@ -40,7 +49,7 @@ export default function AppRouter() {
     // }
 
     /**
-     * This checks for the route when a character is saved using the
+     * This checks for the route when a character is saved using the LEGACY
      * permalink feature -- note "savedCharacter/1&".
      */
     if (match.params.saved) {
@@ -80,16 +89,28 @@ export default function AppRouter() {
       characterClass = toCamelCase(characterClass);
     }
 
-    /**
-     * Otherwise, the return will render the selected character class.
-     */
-    return (
-      <StyledCreatedCharacter
-        classSelection={characterClass}
-        abilityScores={abilityStringScoreArr.map(item => parseInt(item))}
-        includeKnaveSpells={knave}
-      />
-    );
+    //explain this
+    if (savedCharacterData && savedCharacterData.class === classSelection) {
+      return (
+        <StyledCreatedCharacter
+          classSelection={savedCharacterData.class}
+          abilityScores={savedCharacterData.abilityScores}
+          includeKnaveSpells={savedCharacterData.knave}
+          savedCharacterData={savedCharacterData}
+        />
+      );
+    } else {
+      /**
+       * Otherwise, the return will render the selected character class.
+       */
+      return (
+        <StyledCreatedCharacter
+          classSelection={characterClass}
+          abilityScores={abilityStringScoreArr.map(item => parseInt(item))}
+          includeKnaveSpells={knave}
+        />
+      );
+    }
   }
 
   return (
@@ -104,6 +125,7 @@ export default function AppRouter() {
           path="/savedCharacter/:saved/"
           component={CharacterSheet}
         ></Route>
+        <Route path="/permalinked/:characterId/" component={Character}></Route>
         <Route
           path="/generatedCharacter/:character/"
           component={CharacterSheet}
