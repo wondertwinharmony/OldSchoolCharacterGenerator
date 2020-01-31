@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaDungeon } from "react-icons/fa";
 import { GiRollingDices } from "react-icons/gi";
@@ -58,11 +58,28 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
     setAbilityScores,
     abilityScores,
     setKnaveSpells,
-    includeKnaveSpells
+    includeKnaveSpells,
+    setClassSelection,
+    classSelection,
+    setSavedCharacterData,
+    savedCharacterData
   } = useContext(AppContext);
   const [isClassSelected] = useState(false);
 
   const classOptions = getClassOptionsToDisplay(abilityScores);
+
+  /**
+   * Resets savedCharacterData and classSelection in the main App View, to ensure that a new character
+   * is generated after a class is selected. Without the reset, choosing the same class after returning
+   * to the main App View via the back button on the browser will re-render the character that may have
+   * been saved in savedCharacterData when the Permalink button was clicked.
+   */
+  useEffect(() => {
+    if (savedCharacterData || classSelection.length > 0) {
+      setClassSelection("");
+      setSavedCharacterData(undefined);
+    }
+  });
 
   return (
     <div className={className}>
@@ -117,6 +134,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                   <ClassButton
                     variant="outline-secondary"
                     onClick={() => {
+                      setClassSelection(classOptionKey);
                       history.push(
                         `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`
                       );
