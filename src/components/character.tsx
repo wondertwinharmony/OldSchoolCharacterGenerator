@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
-import {
-  GiChewedSkull,
-  GiCoins,
-  GiCometSpark,
-  GiKnapsack,
-  GiPriceTag,
-  GiScrollUnfurled,
-  GiSpiralBottle,
-  GiSwordwoman
-} from "react-icons/gi";
+import { GiChewedSkull, GiCoins, GiCometSpark, GiKnapsack, GiPriceTag, GiScrollUnfurled, GiSpiralBottle, GiSwordwoman } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
 import { characterClasses } from "../characterData/classes";
@@ -18,18 +9,8 @@ import { gainingXPAndCarousing } from "../characterData/gainingXPAndCarousing";
 import { retainers } from "../characterData/retainers";
 import { knaveSpellAddendum } from "../characterData/spells";
 import { weaponQualities } from "../characterData/weaponQualities";
-import {
-  CHA,
-  CON,
-  DEX,
-  INT,
-  STR,
-  WIS
-} from "../constants/abilityScoreConstants";
-import {
-  characterSheetSegments,
-  CharacterSheetSegments
-} from "../constants/characterSheetSegments";
+import { CHA, CON, DEX, INT, STR, WIS } from "../constants/abilityScoreConstants";
+import { characterSheetSegments, CharacterSheetSegments } from "../constants/characterSheetSegments";
 import charismaAdjustmentTable from "../static/charismaAdjustmentTable.png";
 import coinConversions from "../static/coinConversions.png";
 import paladinTurningTable from "../static/paladinTurningTable.png";
@@ -51,6 +32,7 @@ import { SavedCharacterData } from "../utils/getSavedCharacterData";
 import { getSpells } from "../utils/getSpells";
 import { getTraits } from "../utils/getTraits";
 import CharacterDetails from "./characterDetails";
+import EquipmentImpl from "./characterSheetComponents/equipment/equipment";
 import Permalink from "./characterSheetComponents/permalink";
 import Segment from "./characterSheetComponents/segment";
 import CharacterSkills from "./characterSkills";
@@ -208,6 +190,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
       />
+
+      <EquipmentImpl/>
 
       {/* Abilities Segment*/}
       <Segment

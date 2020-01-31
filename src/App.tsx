@@ -16,6 +16,14 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
+ *  * FIXES
+ * - [] Headers need pointer icon
+ * 
+ *  * NEW FEATURES TO CONSIDER
+ * - [] Need cool error out display page if anything goes wrong with our app
+ * - [] Perhaps always display all classes available, but gray out selection
+ *      when requisites not met (maybe highlight requisite as red)
+ *
  * - [] @see https://thac0rpg.blogspot.com/2019/11/the-fight-over-fighters.html
  * - "I have not tried yet giving Fighters an additional Specialization at 5th
  * level, and then an extra attack with a Specialized weapon at 10th. The original
@@ -35,9 +43,6 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * option for fighters:
  * Cleave: When an opponent is slain in combat, the fighter may make an immediate free attack
  * against an adjacent opponent.
- *
- * - [] New feature - always display all classes available, but gray out selection
- *      when requisites not met (maybe highlight requisite as red)
  *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
