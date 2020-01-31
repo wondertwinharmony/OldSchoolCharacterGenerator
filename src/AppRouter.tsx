@@ -16,7 +16,6 @@ export default function AppRouter() {
   type TParams = {
     character: string;
     saved: string;
-    previouslySaved: string;
     characterId: string;
   };
 
@@ -138,7 +137,6 @@ export default function AppRouter() {
           path="/generatedCharacter/:character/"
           component={CharacterSheet}
         ></Route>
-        <Route path="/:previouslySaved/" component={CharacterSheet}></Route>
       </Switch>
     </Router>
   );
