@@ -89,7 +89,15 @@ export default function AppRouter() {
       characterClass = toCamelCase(characterClass);
     }
 
-    //explain this
+    /**
+     * Checks to see if savedCharacterData exists and if the savedCharacterData class matches with
+     * classSelection when the back button is clicked AFTER permalinking, because if it does,
+     * use the same data that was stored there when Permalink was clicked to populate
+     * the <CharacterSheet>.
+     * (This essentially solved the expected behavior of main App View >> generated character >>
+     * permalink {click back button} >> generated character [same character info as permalinked character]
+     * {click back button again} >> App Main View)
+     */
     if (savedCharacterData && savedCharacterData.class === classSelection) {
       return (
         <StyledCreatedCharacter
