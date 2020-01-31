@@ -1,7 +1,7 @@
 import React from "react";
-import CharacterNameAndClass from "./characterSheetComponents/characterNameAndClass";
-import ClassIconAndAbilityScores from "./characterSheetComponents/iconAndAbilityScoresGrid";
-import SavesAndStats from "./characterSheetComponents/savesAndStats";
+import CharacterNameAndClass from "./characterNameAndClass";
+import ClassIconAndAbilityScores from "./iconAndAbilityScoresGrid";
+import SavesAndStats from "./savesAndStats";
 
 interface Props {
   characterName: string;

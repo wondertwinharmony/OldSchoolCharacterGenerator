@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import AppContext from "./AppContext";
 import AppRouter from "./AppRouter";
 import { getAbilityScores } from "./utils/getAbilityScores";
+import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 export default class AppImpl extends Component {
   state = {
     abilityScores: [0, 0, 0, 0, 0, 0],
-    classSelection: "fighter",
+    classSelection: "",
     includeKnaveSpells: false,
     savedCharacterData: undefined
   };
@@ -23,6 +24,14 @@ export default class AppImpl extends Component {
     this.setState({ abilityScores });
   };
 
+  setSavedCharacterData = (savedCharacterData?: SavedCharacterData) => {
+    this.setState({ savedCharacterData });
+  };
+
+  setClassSelection = (classSelection: string) => {
+    this.setState({ classSelection });
+  };
+
   render() {
     return (
       <AppContext.Provider
@@ -32,7 +41,9 @@ export default class AppImpl extends Component {
           includeKnaveSpells: this.state.includeKnaveSpells,
           savedCharacterData: this.state.savedCharacterData,
           setKnaveSpells: this.setKnaveSpells,
-          setAbilityScores: this.setAbilityScores
+          setAbilityScores: this.setAbilityScores,
+          setSavedCharacterData: this.setSavedCharacterData,
+          setClassSelection: this.setClassSelection
         }}
       >
         <AppRouter />

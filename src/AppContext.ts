@@ -6,17 +6,21 @@ interface IAppContext {
   classSelection: string;
   includeKnaveSpells: boolean;
   savedCharacterData?: SavedCharacterData;
+  setSavedCharacterData: (savedCharacterData?: SavedCharacterData) => void;
   setKnaveSpells: (isKnaveSpellsIncluded: boolean) => void;
   setAbilityScores: (abilityScores: number[]) => void;
+  setClassSelection: (classSelection: string) => void;
 }
 
 const AppContext = createContext<IAppContext>({
   abilityScores: [0, 0, 0, 0, 0, 0],
-  classSelection: "fighter",
+  classSelection: "",
   includeKnaveSpells: false,
   savedCharacterData: undefined,
+  setSavedCharacterData: () => {},
   setKnaveSpells: () => {},
-  setAbilityScores: () => {}
+  setAbilityScores: () => {},
+  setClassSelection: () => {}
 });
 
 export default AppContext;
