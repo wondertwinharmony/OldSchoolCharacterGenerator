@@ -31,7 +31,7 @@ export default function Character() {
       setLoading(false);
     };
     fetchCharacter();
-  }, []);
+  }, [setSavedCharacterData]);
 
   return savedCharacterData && !loading ? (
     <CharacterSheet

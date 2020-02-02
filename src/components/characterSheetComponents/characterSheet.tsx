@@ -52,6 +52,7 @@ import { getSpells } from "../../utils/getSpells";
 import { getTraits } from "../../utils/getTraits";
 import CharacterDetails from "./characterDetails";
 import CharacterSkills from "./characterSkills";
+import EquipmentImpl from "./equipment/equipment";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
 import Segment from "./segment";
@@ -196,6 +197,33 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         segmentIcon={<GiScrollUnfurled />}
         segmentDisplayName={"Traits"}
         segmentData={<TraitsContainer>{traits}</TraitsContainer>}
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
+
+      {/**
+       *
+       * WIP NEW Equipment Segment
+       *
+       * Add ternaries for old header and old segment data,
+       * will need a util to check for older permalink.
+       *
+       * */}
+      <Segment
+        segmentIcon={<GiKnapsack />}
+        segmentName={"Equipment"}
+        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
+          abilityScores[CON] > 10 ? abilityScores[CON] : 10
+        } slots)`}
+        segmentData={
+          <>
+            <EquipmentImpl />
+            <GoldText>
+              † 160 coins can be contained in 1 slot, provided you have a
+              container for them.
+            </GoldText>
+          </>
+        }
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
       />

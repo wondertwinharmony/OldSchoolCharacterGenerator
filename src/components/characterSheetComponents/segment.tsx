@@ -28,27 +28,25 @@ const Segment: React.SFC<Props> = ({
     : `is${segmentDisplayName}Visible`;
 
   return (
-    <>
-      <SegmentContainer>
-        <SegmentHeader
-          onClick={() => {
-            const segmentNewState = {
-              [segmentLookup]: !collapse[segmentLookup]
-            };
-            setCollapse(() => ({ ...collapse, ...segmentNewState }));
-          }}
-        >
-          <HeaderIcon>{segmentIcon}</HeaderIcon>
-          {segmentDisplayName}
-          <FontAwesomeIcon
-            icon={collapse[segmentLookup] ? "caret-up" : "caret-down"}
-            size="lg"
-            style={{ margin: "0 0.5rem" }}
-          />
-        </SegmentHeader>
-        {collapse[segmentLookup] && <div>{segmentData}</div>}
-      </SegmentContainer>
-    </>
+    <SegmentContainer>
+      <SegmentHeader
+        onClick={() => {
+          const segmentNewState = {
+            [segmentLookup]: !collapse[segmentLookup]
+          };
+          setCollapse(() => ({ ...collapse, ...segmentNewState }));
+        }}
+      >
+        <HeaderIcon>{segmentIcon}</HeaderIcon>
+        {segmentDisplayName}
+        <FontAwesomeIcon
+          icon={collapse[segmentLookup] ? "caret-up" : "caret-down"}
+          size="lg"
+          style={{ margin: "0 0.5rem" }}
+        />
+      </SegmentHeader>
+      {collapse[segmentLookup] && <div>{segmentData}</div>}
+    </SegmentContainer>
   );
 };
 

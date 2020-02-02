@@ -28,6 +28,8 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * - [] Track Level and Saves (possibly all handled as part of track XP)
  * - [] Track Spells
  * - [] Track Equipment
+ * - [] Track Equipment NOT on character
+ * - [] Track GP NOT on character
  * Low Priority
  * - [] Need cool error out display page if anything goes wrong with our app
  * - [] Perhaps always display all classes available, but gray out selection
