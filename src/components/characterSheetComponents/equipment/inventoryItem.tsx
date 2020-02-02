@@ -27,21 +27,6 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
   const handleItemClick = (item: MockItem) => {
     /**
      * lambda call to update should probably go here
-     * - [] needs hook state to track loading of new equipment,
-     * with spinner while resolving updating of equipment
-     *
-     * ??? how to handle custom input, I suppose it just won't be
-     * on equipment list for dropdown menu items => Need a button
-     * to trigger this click next to the toggle probably which will
-     * close dropdown and make call to lambda
-     */
-    /**
-     * NOTE!!!
-     * Clicking on item, instead of submitting, it would
-     * probably be better UX experience to populate the
-     * inputValue with it, then someone can update a sword
-     * for example to say +2 without having to write out a
-     * bunch.
      */
     setInputValue(item.description);
   };
@@ -55,21 +40,25 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
     // setShow(false);
   };
 
+  const filteredItems = Object.keys(items).filter(item =>
+    items[item].description.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
   return (
     <Dropdown
       className={className}
       onToggle={() => {
-        setInputValue("");
+        setInputValue(mockInventoryItem.description);
         setShow(!show);
       }}
     >
-      <Dropdown.Toggle as={CustomToggle} id="equipment-dropdown">
-        {mockInventoryItem.description}
+      <Dropdown.Toggle as={CustomToggle} id="add-remove-item-dropdown">
         <FontAwesomeIcon
           icon={!show ? "caret-up" : "caret-down"}
           size="lg"
           style={{ margin: "0 0.5rem" }}
         />
+        {mockInventoryItem.description}
       </Dropdown.Toggle>
 
       {show && (
@@ -78,8 +67,6 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
             <InputText>Item</InputText>
             <FormControl
               style={{ marginRight: "1rem" }}
-              autoFocus
-              placeholder="Filter or update item..."
               onClick={(e: any) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -146,22 +133,23 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
           {/* iterate over equipment as dropdown.items */}
           {items && (
             <ItemsContainer>
-              {Object.keys(items)
-                .filter(item =>
-                  items[item].description
-                    .toLowerCase()
-                    .includes(inputValue.toLowerCase())
-                )
-                .map(item => (
+              {filteredItems.length === 0 && (
+                <NoMatchText>No items match search!</NoMatchText>
+              )}
+              {filteredItems.map((item, index) => (
+                <div key={item}>
                   <Item
-                    key={item}
                     onClick={() => {
                       handleItemClick(items[item]);
                     }}
                   >
                     {items[item].description}
                   </Item>
-                ))}
+                  {filteredItems.length === index + 1 ? null : (
+                    <Dropdown.Divider />
+                  )}
+                </div>
+              ))}
             </ItemsContainer>
           )}
         </Dropdown.Menu>
@@ -217,7 +205,12 @@ const ButtonItem = styled(Dropdown.Item)`
 
 const ItemsContainer = styled.div`
   overflow: scroll;
-  height: 100px;
+  max-height: 100px;
+`;
+
+const NoMatchText = styled.div`
+  font-weight: 400;
+  margin-left: 10px;
 `;
 
 const Item = styled.div`
