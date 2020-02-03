@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Dropdown } from "react-bootstrap";
+import shortid from "shortid";
 import styled from "styled-components";
+import { put } from "../../../../api/put";
+import AppContext from "../../../../AppContext";
 import { items } from "../../../../characterData/items";
 import ButtonDropdownItemImpl from "./buttonDropdownItem";
 import InputContainerImpl from "./inputContainer";
 
-interface MockItem {
+interface Item {
   description: string;
   slots: string;
 }
@@ -14,7 +17,8 @@ interface MockItem {
 interface Props {
   className?: string;
   addNewItem: boolean;
-  mockInventoryItem?: MockItem;
+  inventoryItem?: Item;
+  inventoryItemKey?: string;
 }
 
 interface ImplProps extends Props {}
@@ -22,30 +26,102 @@ interface ImplProps extends Props {}
 const InventoryItemImpl: React.SFC<ImplProps> = ({
   className,
   addNewItem,
-  mockInventoryItem
+  inventoryItem,
+  inventoryItemKey
 }) => {
+  const homeURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://oldschoolknave.surge.sh";
+  const URL = window.location.href;
+  const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
+
+  const { savedCharacterInventory, setSavedCharacterInventory } = useContext(
+    AppContext
+  );
   const [inputValue, setInputValue] = useState("");
   const [slotValue, setSlotValue] = useState("1");
   const [show, setShow] = useState(false);
 
-  const handleItemClick = (item: MockItem) => {
-    /**
-     * lambda call to update should probably go here
-     */
+  const handleItemClick = (item: Item) => {
     setInputValue(item.description);
+    setSlotValue(item.slots);
   };
 
   const handleItemSubmit = () => {
-    console.log("add new item click");
-    // setShow(false);
+    const itemId = shortid.generate();
+    setSavedCharacterInventory({
+      ...savedCharacterInventory,
+      [itemId]: { description: inputValue, slots: slotValue }
+    });
+
+    const data = {
+      characterId,
+      inventory: {
+        ...savedCharacterInventory,
+        [itemId]: { description: inputValue, slots: slotValue }
+      },
+      httpMethod: "PUT"
+    };
+
+    put(characterId, data).then(() =>
+      /**
+       * Have some sort of error handling here probably.
+       */
+      console.log("POSTED")
+    );
   };
 
-  const handleItemCancel = () => {
-    // setShow(false);
+  const handleItemUpdate = () => {
+    if (inventoryItem && inventoryItemKey) {
+      setSavedCharacterInventory({
+        ...savedCharacterInventory,
+        [inventoryItemKey]: { description: inputValue, slots: slotValue }
+      });
+
+      const data = {
+        characterId,
+        inventory: {
+          ...savedCharacterInventory,
+          [inventoryItemKey]: { description: inputValue, slots: slotValue }
+        },
+        httpMethod: "PUT"
+      };
+
+      put(characterId, data).then(() =>
+        /**
+         * Have some sort of error handling here probably.
+         */
+        console.log("POSTED UPDATE")
+      );
+    }
   };
 
   const handleItemRemove = () => {
-    // setShow(false);
+    if (inventoryItem && inventoryItemKey && savedCharacterInventory) {
+      /**
+       * Using es7 obj spread to omit a property.
+       * @see https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
+       */
+      const {
+        [inventoryItemKey]: inventoryItem,
+        ...updatedInventory
+      } = savedCharacterInventory;
+      setSavedCharacterInventory(updatedInventory);
+
+      const data = {
+        characterId,
+        inventory: updatedInventory,
+        httpMethod: "PUT"
+      };
+
+      put(characterId, data).then(() =>
+        /**
+         * Have some sort of error handling here probably.
+         */
+        console.log("POSTED UPDATE DELETE")
+      );
+    }
   };
 
   const filteredItems = Object.keys(items).filter(item =>
@@ -56,7 +132,8 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
     <Dropdown
       className={className}
       onToggle={() => {
-        setInputValue(mockInventoryItem ? mockInventoryItem.description : "");
+        setInputValue(inventoryItem ? inventoryItem.description : "");
+        setSlotValue(inventoryItem ? inventoryItem.slots : "1");
         setShow(!show);
       }}
     >
@@ -80,7 +157,7 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
               size="lg"
               style={{ margin: "0 0.5rem" }}
             />
-            {mockInventoryItem && mockInventoryItem.description}
+            {inventoryItem && inventoryItem.description}
           </>
         )}
       </Dropdown.Toggle>
@@ -97,8 +174,8 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
             inputValue={inputValue}
             slotValue={slotValue}
             addNewItem={addNewItem}
-            handleItemSubmit={handleItemSubmit}
-            handleItemCancel={addNewItem ? handleItemCancel : handleItemRemove}
+            handleItemSubmit={addNewItem ? handleItemSubmit : handleItemUpdate}
+            handleItemCancel={addNewItem ? () => {} : handleItemRemove}
           />
           <Dropdown.Divider />
           {/* iterate over equipment as dropdown.items */}

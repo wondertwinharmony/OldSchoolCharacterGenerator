@@ -15,6 +15,7 @@ import styled from "styled-components";
 import { characterClasses } from "../../characterData/classes";
 import { combatActions } from "../../characterData/combatActions";
 import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
+import { Items } from "../../characterData/items";
 import { retainers } from "../../characterData/retainers";
 import { knaveSpellAddendum } from "../../characterData/spells";
 import { weaponQualities } from "../../characterData/weaponQualities";
@@ -63,6 +64,7 @@ interface Props {
   classSelection: string;
   includeKnaveSpells: boolean;
   savedCharacterData?: SavedCharacterData;
+  savedCharacterInventory?: Items;
 }
 
 interface ImplProps extends Props {}
@@ -72,7 +74,8 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   className,
   classSelection,
   includeKnaveSpells,
-  savedCharacterData
+  savedCharacterData,
+  savedCharacterInventory
 }) => {
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
@@ -217,7 +220,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         } slots)`}
         segmentData={
           <>
-            <InventoryImpl />
+            <InventoryImpl inventory={savedCharacterInventory} />
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a
               container for them.

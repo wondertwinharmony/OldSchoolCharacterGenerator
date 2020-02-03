@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { Items } from "./characterData/items";
 import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 interface IAppContext {
@@ -7,6 +8,8 @@ interface IAppContext {
   includeKnaveSpells: boolean;
   savedCharacterData?: SavedCharacterData;
   setSavedCharacterData: (savedCharacterData?: SavedCharacterData) => void;
+  savedCharacterInventory?: Items;
+  setSavedCharacterInventory: (items: Items) => void;
   setKnaveSpells: (isKnaveSpellsIncluded: boolean) => void;
   setAbilityScores: (abilityScores: number[]) => void;
   setClassSelection: (classSelection: string) => void;
@@ -18,6 +21,8 @@ const AppContext = createContext<IAppContext>({
   includeKnaveSpells: false,
   savedCharacterData: undefined,
   setSavedCharacterData: () => {},
+  savedCharacterInventory: undefined,
+  setSavedCharacterInventory: () => {},
   setKnaveSpells: () => {},
   setAbilityScores: () => {},
   setClassSelection: () => {}
