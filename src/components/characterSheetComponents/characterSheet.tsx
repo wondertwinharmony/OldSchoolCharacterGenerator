@@ -52,7 +52,7 @@ import { getSpells } from "../../utils/getSpells";
 import { getTraits } from "../../utils/getTraits";
 import CharacterDetails from "./characterDetails";
 import CharacterSkills from "./characterSkills";
-import EquipmentImpl from "./equipment/equipment";
+import InventoryImpl from "./inventory/inventory";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
 import Segment from "./segment";
@@ -217,7 +217,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         } slots)`}
         segmentData={
           <>
-            <EquipmentImpl />
+            <InventoryImpl />
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a
               container for them.

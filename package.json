@@ -13,6 +13,7 @@
     "@types/react-bootstrap": "^0.32.20",
     "@types/react-router-dom": "^5.1.0",
     "@types/roll": "^1.2.0",
+    "@types/shortid": "0.0.29",
     "@types/styled-components": "^4.1.19",
     "@types/uuid": "^3.4.6",
     "bootstrap": "^4.3.1",
@@ -28,6 +29,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "roll": "^1.2.0",
+    "shortid": "^2.2.15",
     "styled-components": "^4.4.0",
     "typescript": "^3.6.4",
     "uuid": "^3.4.0"
