@@ -1,7 +1,6 @@
 import React from "react";
 import { GiCompass, GiPawPrint } from "react-icons/gi";
 import rangerTrackingTable from "../../static/rangerTrackingTable.png";
-import { rangerEquipment } from "../equipmentKits/rangerEquipment";
 import { rangerInventory } from "../equipmentKits/rangerInventory";
 
 export const ranger = {
@@ -27,7 +26,6 @@ export const ranger = {
     breath: 15,
     magic: 16
   },
-  equipment: rangerEquipment,
   inventory: rangerInventory,
   abilities: [
     "<strong>Alignment:</strong> As protectors, rangers may only be lawful or neutral. If a ranger ever changes alignment to chaotic, they lose all special class abilities and become a fighter of the same level. The character may be able to regain their ranger status by performing a special quest.",

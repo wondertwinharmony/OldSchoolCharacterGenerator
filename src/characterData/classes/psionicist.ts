@@ -1,7 +1,6 @@
 import React from "react";
 import { GiBrain, GiPsychicWaves } from "react-icons/gi";
 import psionicistSkillsTable from "../../static/psionicistSkillsTable.png";
-import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
 import { psionicistInventory } from "../equipmentKits/psionicistInventory";
 
 export const psionicist = {
@@ -27,7 +26,6 @@ export const psionicist = {
     breath: 16,
     magic: 15
   },
-  equipment: psionicistEquipment,
   inventory: psionicistInventory,
   abilities: [
     "<strong>Combat:</strong> Psionicists must always keep one hand free in order to use their powers. They can use any armour, but no shields or two-handed weapons.",

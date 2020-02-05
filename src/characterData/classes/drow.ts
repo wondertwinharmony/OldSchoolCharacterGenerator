@@ -1,6 +1,5 @@
 import React from "react";
 import { GiMaskedSpider } from "react-icons/gi";
-import { drowEquipment } from "../equipmentKits/drowEquipment";
 import { drowInventory } from "../equipmentKits/drowInventory";
 
 export const drow = {
@@ -28,7 +27,6 @@ export const drow = {
     breath: 15,
     magic: 12
   },
-  equipment: drowEquipment,
   inventory: drowInventory,
   abilities: [
     "<strong>Combat:</strong> Drow are able to use all forms of weapon and armor.",

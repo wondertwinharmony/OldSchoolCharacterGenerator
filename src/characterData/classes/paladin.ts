@@ -1,6 +1,5 @@
 import React from "react";
 import { GiTemplarShield } from "react-icons/gi";
-import { paladinEquipment } from "../equipmentKits/paladinEquipment";
 import { paladinInventory } from "../equipmentKits/paladinInventory";
 
 export const paladin = {
@@ -21,7 +20,6 @@ export const paladin = {
     breath: 13,
     magic: 14
   },
-  equipment: paladinEquipment,
   inventory: paladinInventory,
   abilities: [
     "<strong>Alignment:</strong> A paladin must be lawful.If the character’s alignment ever changes (for any reason), they lose all class abilities and becomes a fighter of the same level. The referee may allow the character to perform a quest of atonement in order to regain their status as a paladin.",

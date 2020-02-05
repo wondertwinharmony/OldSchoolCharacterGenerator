@@ -1,7 +1,6 @@
 import React from "react";
 import { GiLaserSparks, GiRadialBalance } from "react-icons/gi";
 import wildMagicUserWildSurgesTable from "../../static/wildMagicUserWildSurgesTable.png";
-import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
 import { magicUserInventory } from "../equipmentKits/magicUserInventory";
 
 export const wildMagicUser = {
@@ -27,7 +26,6 @@ export const wildMagicUser = {
     breath: 16,
     magic: 15
   },
-  equipment: magicUserEquipment,
   inventory: magicUserInventory,
   abilities: [
     "<strong>Combat:</strong> Wild magic-users may only use daggers and staves, and are unable to use shields or wear any kind of armor. This makes them very vulnerable in combat.",

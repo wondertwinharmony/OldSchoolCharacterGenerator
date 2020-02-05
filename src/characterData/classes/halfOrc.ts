@@ -1,7 +1,6 @@
 import React from "react";
 import { GiInvisible, GiOrcHead } from "react-icons/gi";
 import halfOrcSkillsTable from "../../static/halfOrcSkillsTable.png";
-import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
 import { halfOrcInventory } from "../equipmentKits/halfOrcInventory";
 export const halfOrc = {
   name: "Half-Orc",
@@ -26,7 +25,6 @@ export const halfOrc = {
     breath: 16,
     magic: 15
   },
-  equipment: halfOrcEquipment,
   inventory: halfOrcInventory,
   abilities: [
     "<strong>Back-stab:</strong> When attacking an unaware opponent from behind, a half-orc receives a +4 bonus to hit and doubles any damage dealt.",

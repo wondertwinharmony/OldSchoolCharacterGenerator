@@ -1,6 +1,5 @@
 import React from "react";
 import { GiReticule } from "react-icons/gi";
-import { underworldRangerEquipment } from "../equipmentKits/underworldRangerEquipment";
 import { underworldRangerInventory } from "../equipmentKits/underworldRangerInventory";
 import { Items } from "../items";
 
@@ -22,7 +21,6 @@ export const underworldRanger = {
     breath: 16,
     magic: 13
   },
-  equipment: underworldRangerEquipment,
   inventory: underworldRangerInventory,
   abilities: [
     "<strong>Combat:</strong> In basic training Underworld Rangers are taught how to use all weapons and armor. They are also instructed in the use of Underworld Ranger-only equipment they are awarded or can requisition as they progress in rank and experience.",

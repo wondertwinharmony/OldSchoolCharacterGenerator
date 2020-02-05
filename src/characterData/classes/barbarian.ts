@@ -1,7 +1,6 @@
 import React from "react";
 import { GiHuntingHorn, GiSnakeTotem } from "react-icons/gi";
 import barbarianSkillsTable from "../../static/barbarianSkillsTable.png";
-import { barbarianEquipment } from "../equipmentKits/barbarianEquipment";
 import { barbarianInventory } from "../equipmentKits/barbarianInventory";
 
 export const barbarian = {
@@ -27,7 +26,6 @@ export const barbarian = {
     breath: 15,
     magic: 16
   },
-  equipment: barbarianEquipment,
   inventory: barbarianInventory,
   abilities: [
     "<strong>Agile Fighting:</strong> Upon reaching 4th level, a barbarian gains a +1 AC bonus. This increases to +2 at 6th level, +3 at 8th level, and +4 at 10th level.",

@@ -1,6 +1,5 @@
 import React from "react";
 import { GiSwordsEmblem } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
 import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const fighter = {
@@ -21,7 +20,6 @@ export const fighter = {
     breath: 15,
     magic: 16
   },
-  equipment: fighterEquipment,
   inventory: fighterInventory,
   abilities: [
     "<strong>Combat:</strong> Fighters can use all forms of weapons and armor.",

@@ -1,6 +1,5 @@
 import React from "react";
 import { GiDaggerRose } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
 import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const ynnianChangeling = {
@@ -21,7 +20,6 @@ export const ynnianChangeling = {
     breath: 16,
     magic: 15
   },
-  equipment: fighterEquipment,
   inventory: fighterInventory,
   abilities: [
     "<strong>Combat:</strong> Ynnian changelings can use all forms of weapons and armor.",

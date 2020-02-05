@@ -1,7 +1,6 @@
 import React from "react";
 import { GiDominoMask, GiLockPicking } from "react-icons/gi";
 import thiefSkillsTable from "../../static/thiefSkillsChanceOfSuccess.png";
-import { thiefEquipment } from "../equipmentKits/thiefEquipment";
 import { thiefInventory } from "../equipmentKits/thiefInventory";
 
 export const thief = {
@@ -27,7 +26,6 @@ export const thief = {
     breath: 16,
     magic: 15
   },
-  equipment: thiefEquipment,
   inventory: thiefInventory,
   abilities: [
     "<strong>Back-stab:</strong> When attacking an unaware opponent from behind, a thief receives a +4 bonus to hit and doubles any damage dealt.",

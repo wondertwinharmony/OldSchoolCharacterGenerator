@@ -1,6 +1,5 @@
 import React from "react";
 import { GiLyre } from "react-icons/gi";
-import { bardEquipment } from "../equipmentKits/bardEquipment";
 import { bardInventory } from "../equipmentKits/bardInventory";
 
 export const bard = {
@@ -21,7 +20,6 @@ export const bard = {
     breath: 16,
     magic: 15
   },
-  equipment: bardEquipment,
   inventory: bardInventory,
   abilities: [
     "<strong>Combat:</strong> Bards can use leather armor or chainmail, but do not have the training required to use plate mail. They cannot use shields. They may use all missile weapons and any one-handed melee weapon.",

@@ -1,6 +1,5 @@
 import React from "react";
 import { GiSpikedMace } from "react-icons/gi";
-import { clericEquipment } from "../equipmentKits/clericEquipment";
 import { clericInventory } from "../equipmentKits/clericInventory";
 
 export const cleric = {
@@ -21,7 +20,6 @@ export const cleric = {
     breath: 16,
     magic: 15
   },
-  equipment: clericEquipment,
   inventory: clericInventory,
   abilities: [
     "<strong>Combat:</strong> Strict holy doctrine prevents clerics’ use of weapons that have a sharp, cutting edge or stabbing point. Weapons usable by clerics are noted in the equipment list.",

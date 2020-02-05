@@ -1,6 +1,5 @@
 import React from "react";
 import { GiVisoredHelm } from "react-icons/gi";
-import { knightEquipment } from "../equipmentKits/knightEquipment";
 import { knightInventory } from "../equipmentKits/knightInventory";
 
 export const knight = {
@@ -21,7 +20,6 @@ export const knight = {
     breath: 15,
     magic: 16
   },
-  equipment: knightEquipment,
   inventory: knightInventory,
   abilities: [
     "<strong>Alignment:</strong> A knight must have the same alignment as their liege.",

@@ -21,7 +21,6 @@ export const crabPerson = {
     breath: 13,
     magic: 12
   },
-  equipment: [["None"]],
   inventory: {},
   abilities: [
     "<strong>Amphibious:</strong> Crab-people can breathe both air and water.",

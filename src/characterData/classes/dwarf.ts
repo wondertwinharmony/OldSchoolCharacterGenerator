@@ -1,6 +1,5 @@
 import React from "react";
 import { GiDwarfHelmet } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
 import { halflingDwarfDuergarSvirfneblinInventory } from "../equipmentKits/halflingDwarfDuergarSvirfneblinInventory";
 
 export const dwarf = {
@@ -21,7 +20,6 @@ export const dwarf = {
     breath: 13,
     magic: 12
   },
-  equipment: fighterEquipment,
   inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
     "<strong>Combat:</strong> Dwarves may use any type of armor, however, due to their short height, may only use small or normal sized weapons. This means that dwarves cannot use long bows or two-handed swords.",
