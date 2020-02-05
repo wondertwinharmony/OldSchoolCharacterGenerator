@@ -2,6 +2,7 @@ import React from "react";
 import { GiBloodySword, GiDaggers } from "react-icons/gi";
 import assassinSkillsTable from "../../static/assassinSkillsTable.png";
 import { assassinEquipment } from "../equipmentKits/assassinEquipment";
+import { assassinInventory } from "../equipmentKits/assassinInventory";
 import { Items } from "../items";
 
 export const assassin = {
@@ -28,6 +29,7 @@ export const assassin = {
     magic: 15
   },
   equipment: assassinEquipment,
+  inventory: assassinInventory,
   abilities: [
     "<strong>Assassin Skills:</strong> Assassins have the following skills, which improve as the character gains levels.\n\n<div style='padding: 0 1.5rem'><strong>Assassination:</strong> When attacking an unaware opponent from behind, an assassin gains a +4 bonus to hit. If the attack succeeds, the victim must save versus death with a penalty dependent on the assassin’s level. If the save fails, the victim is instantly killed, otherwise the assassin’s attack inflicts normal damage.\n\n<strong>Climb Sheer Surfaces:</strong> A roll is required for each 100’ to be climbed. If the roll fails, the assassin falls at the half-way point, suffering falling damage.\n\n<strong>Hear Noise:</strong> In a quiet environment (e.g. not in combat), an assassin may attempt to listen at a door or to hear the sounds of something (e.g. a wandering monster) approaching.\n\n<strong>Hide in Shadows:</strong> Requires the assassin to be motionless—attacking or moving while hiding is not possible.\n\n<strong>Move Silently:</strong> An assassin may attempt to sneak past enemies unnoticed.</div>",
     "<strong>Combat:</strong> Assassins cannot wear armor bulkier than leather but may use shields. They can use all types of weapons.",

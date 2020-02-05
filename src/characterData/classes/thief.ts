@@ -1,13 +1,17 @@
 import React from "react";
 import { GiDominoMask, GiLockPicking } from "react-icons/gi";
-import { thiefEquipment } from "../equipmentKits/thiefEquipment";
 import thiefSkillsTable from "../../static/thiefSkillsChanceOfSuccess.png";
+import { thiefEquipment } from "../equipmentKits/thiefEquipment";
+import { thiefInventory } from "../equipmentKits/thiefInventory";
 
 export const thief = {
   name: "Thief",
   icon: React.createElement(GiDominoMask, {}),
   skillsIcon: React.createElement(GiLockPicking, {}),
-  skillsTable: React.createElement('img', {src: thiefSkillsTable, style: {width: '25rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: thiefSkillsTable,
+    style: { width: "25rem", height: "33rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
@@ -24,6 +28,7 @@ export const thief = {
     magic: 15
   },
   equipment: thiefEquipment,
+  inventory: thiefInventory,
   abilities: [
     "<strong>Back-stab:</strong> When attacking an unaware opponent from behind, a thief receives a +4 bonus to hit and doubles any damage dealt.",
     "<strong>Combat:</strong> Because of their need of stealth and free movement, thieves cannot wear armor heavier than leather and cannot use shields. They can use any weapon.",

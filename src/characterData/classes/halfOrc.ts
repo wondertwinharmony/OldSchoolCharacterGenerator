@@ -1,12 +1,16 @@
 import React from "react";
-import { GiOrcHead, GiInvisible } from "react-icons/gi";
-import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
+import { GiInvisible, GiOrcHead } from "react-icons/gi";
 import halfOrcSkillsTable from "../../static/halfOrcSkillsTable.png";
+import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
+import { halfOrcInventory } from "../equipmentKits/halfOrcInventory";
 export const halfOrc = {
   name: "Half-Orc",
   icon: React.createElement(GiOrcHead, {}),
   skillsIcon: React.createElement(GiInvisible, {}),
-  skillsTable: React.createElement('img', {src: halfOrcSkillsTable, style: {width: '22rem', height: '22rem'}}),
+  skillsTable: React.createElement("img", {
+    src: halfOrcSkillsTable,
+    style: { width: "22rem", height: "22rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX and STR",
   hitDice: "1d6",
@@ -23,6 +27,7 @@ export const halfOrc = {
     magic: 15
   },
   equipment: halfOrcEquipment,
+  inventory: halfOrcInventory,
   abilities: [
     "<strong>Back-stab:</strong> When attacking an unaware opponent from behind, a half-orc receives a +4 bonus to hit and doubles any damage dealt.",
     "<strong>Combat:</strong> Half-orcs can use all types of weapons and can use leather armor, chainmail, and shields.",

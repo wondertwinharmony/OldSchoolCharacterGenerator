@@ -1,6 +1,7 @@
 import React from "react";
 import { GiWizardFace } from "react-icons/gi";
 import { gnomeEquipment } from "../equipmentKits/gnomeEquipment";
+import { gnomeInventory } from "../equipmentKits/gnomeInventory";
 import { Items } from "../items";
 
 export const gnome = {
@@ -22,6 +23,7 @@ export const gnome = {
     magic: 11
   },
   equipment: gnomeEquipment,
+  inventory: gnomeInventory,
   abilities: [
     "<strong>Arcane Magic:</strong> See <i>Magic in Core Rules</i> for full details on arcane magic.\n\n<div style='padding: 0 1.5rem'><strong>Magical Research:</strong> A gnome of any level may spend time and money on magical research. This allows them to add new spells to their spell book and to research other magical effects. When a gnome reaches 8th level, they are also able to create magic items.\n\n<strong>Spell Casting:</strong> Gnomes carry spell books containing the formulae for arcane spells. A 1st level gnome has one spell in his or her spell book. The list of spells available to gnomes is provided in <i>Druid and Illusionist Spells</i> (gnomes have the same spell selection as illusionists.\n\n<strong>Using Magic Items:</strong> As spell casters, gnomes are able to use magic scrolls of spells on their spell list. They can also use items that may only be used by arcane spell casters (e.g. magic wands).</div>",
     "<strong>Combat:</strong> Gnomes can use leather armor and shields. Armor must be tailored to a gnomes’ small size. Similarly, they can use any weapon appropriate to their stature (as determined by the referee). They cannot use longbows or two-handed swords.",

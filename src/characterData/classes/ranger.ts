@@ -1,13 +1,17 @@
 import React from "react";
 import { GiCompass, GiPawPrint } from "react-icons/gi";
-import { rangerEquipment } from "../equipmentKits/rangerEquipment";
 import rangerTrackingTable from "../../static/rangerTrackingTable.png";
+import { rangerEquipment } from "../equipmentKits/rangerEquipment";
+import { rangerInventory } from "../equipmentKits/rangerInventory";
 
 export const ranger = {
   name: "Ranger",
   icon: React.createElement(GiCompass, {}),
   skillsIcon: React.createElement(GiPawPrint, {}),
-  skillsTable: React.createElement('img', {src: rangerTrackingTable, style: {width: '20rem', height: '25rem'}}),
+  skillsTable: React.createElement("img", {
+    src: rangerTrackingTable,
+    style: { width: "20rem", height: "25rem" }
+  }),
   requirements: "Minimum CON 9 and WIS 9",
   primeRequisite: "STR",
   hitDice: "1d8",
@@ -24,6 +28,7 @@ export const ranger = {
     magic: 16
   },
   equipment: rangerEquipment,
+  inventory: rangerInventory,
   abilities: [
     "<strong>Alignment:</strong> As protectors, rangers may only be lawful or neutral. If a ranger ever changes alignment to chaotic, they lose all special class abilities and become a fighter of the same level. The character may be able to regain their ranger status by performing a special quest.",
     "<strong>Awareness:</strong> Rangers are only surprised on a roll of 1. This may mean that a ranger is able to act in the surprise round while their companions are surprised.",

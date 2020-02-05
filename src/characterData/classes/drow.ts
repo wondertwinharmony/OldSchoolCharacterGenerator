@@ -1,6 +1,7 @@
 import React from "react";
 import { GiMaskedSpider } from "react-icons/gi";
 import { drowEquipment } from "../equipmentKits/drowEquipment";
+import { drowInventory } from "../equipmentKits/drowInventory";
 
 export const drow = {
   name: "Drow",
@@ -28,6 +29,7 @@ export const drow = {
     magic: 12
   },
   equipment: drowEquipment,
+  inventory: drowInventory,
   abilities: [
     "<strong>Combat:</strong> Drow are able to use all forms of weapon and armor.",
     "<strong>Detect Secret Doors:</strong> Drow have keen eyes that allow them, when actively searching, to detect hidden and secret doors with a 2-in-6 chance (see <i><strong>Dungeon Adventuring</strong> in Core Rules</i>).",

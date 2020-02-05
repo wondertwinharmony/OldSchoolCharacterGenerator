@@ -1,6 +1,7 @@
 import React from "react";
 import { GiReticule } from "react-icons/gi";
 import { underworldRangerEquipment } from "../equipmentKits/underworldRangerEquipment";
+import { underworldRangerInventory } from "../equipmentKits/underworldRangerInventory";
 import { Items } from "../items";
 
 export const underworldRanger = {
@@ -22,6 +23,7 @@ export const underworldRanger = {
     magic: 13
   },
   equipment: underworldRangerEquipment,
+  inventory: underworldRangerInventory,
   abilities: [
     "<strong>Combat:</strong> In basic training Underworld Rangers are taught how to use all weapons and armor. They are also instructed in the use of Underworld Ranger-only equipment they are awarded or can requisition as they progress in rank and experience.",
     "<strong>Monetary Policies:</strong> Underground Rangers earn XP through the acquisition of treasure, but must attempt to return acquired wealth to the URS, keeping only what they need in the performance of their duties. Paperwork must be filed for such allocations at the nearest URS station.",

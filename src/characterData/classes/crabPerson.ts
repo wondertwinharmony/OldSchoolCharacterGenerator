@@ -22,6 +22,7 @@ export const crabPerson = {
     magic: 12
   },
   equipment: [["None"]],
+  inventory: {},
   abilities: [
     "<strong>Amphibious:</strong> Crab-people can breathe both air and water.",
     "<strong>Combat:</strong> A crab-person's only attack is with their claws. Crab-people are so strong and their claws so powerful that each successful hit causes <i>double</i> damage: roll to hit as normal and then roll 1d8x2 to determine HP loss.",
