@@ -10,7 +10,9 @@ export default function Character() {
     savedCharacterData,
     setSavedCharacterData,
     savedCharacterInventory,
-    setSavedCharacterInventory
+    setSavedCharacterInventory,
+    savedCharacterAC,
+    setSavedCharacterAC
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -34,10 +36,11 @@ export default function Character() {
         )
       );
       setSavedCharacterInventory(apiResponse.inventory);
+      setSavedCharacterAC(apiResponse.AC);
       setLoading(false);
     };
     fetchCharacter();
-  }, [setSavedCharacterData, setSavedCharacterInventory]);
+  }, [setSavedCharacterData, setSavedCharacterInventory, setSavedCharacterAC]);
 
   return savedCharacterData && !loading ? (
     <CharacterSheet
@@ -46,6 +49,7 @@ export default function Character() {
       includeKnaveSpells={savedCharacterData.knave}
       savedCharacterData={savedCharacterData}
       savedCharacterInventory={savedCharacterInventory}
+      savedCharacterAC={savedCharacterAC}
     />
   ) : (
     <>

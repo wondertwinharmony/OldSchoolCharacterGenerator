@@ -11,7 +11,8 @@ export default class AppImpl extends Component {
     classSelection: "",
     includeKnaveSpells: false,
     savedCharacterData: undefined,
-    savedCharacterInventory: undefined
+    savedCharacterInventory: undefined,
+    savedCharacterAC: undefined
   };
 
   componentDidMount() {
@@ -34,6 +35,10 @@ export default class AppImpl extends Component {
     this.setState({ savedCharacterInventory: items });
   };
 
+  setSavedCharacterAC = (ac: string) => {
+    this.setState({ savedCharacterAC: ac });
+  };
+
   setClassSelection = (classSelection: string) => {
     this.setState({ classSelection });
   };
@@ -47,10 +52,12 @@ export default class AppImpl extends Component {
           includeKnaveSpells: this.state.includeKnaveSpells,
           savedCharacterData: this.state.savedCharacterData,
           savedCharacterInventory: this.state.savedCharacterInventory,
+          savedCharacterAC: this.state.savedCharacterAC,
           setKnaveSpells: this.setKnaveSpells,
           setAbilityScores: this.setAbilityScores,
           setSavedCharacterData: this.setSavedCharacterData,
           setSavedCharacterInventory: this.setSavedCharacterInventory,
+          setSavedCharacterAC: this.setSavedCharacterAC,
           setClassSelection: this.setClassSelection
         }}
       >

@@ -19,7 +19,7 @@ interface Props {
   hitPoints: number;
   languages: string;
   spells: string[];
-  equipment?: any;
+  armorClass: number;
   includeKnaveSpells: boolean;
 }
 
@@ -35,7 +35,7 @@ const Permalink: React.SFC<Props> = ({
   hitPoints,
   languages,
   spells,
-  // equipment,
+  armorClass,
   includeKnaveSpells
 }) => {
   const { savedCharacterInventory } = useContext(AppContext);
@@ -51,8 +51,6 @@ const Permalink: React.SFC<Props> = ({
       hitPoints,
       languages,
       spells,
-      // equipment.characterEquipmentString,
-      // equipment.slotsToFill,
       includeKnaveSpells
     );
 
@@ -62,11 +60,12 @@ const Permalink: React.SFC<Props> = ({
         : "https://oldschoolknave.surge.sh";
     const permaLink = longLink.concat("/savedCharacter/1&", URL);
     const characterUUID = UUID5(permaLink, UUID5.URL);
-    console.log("savedCharacterInventory: ", savedCharacterInventory);
+
     const data = {
       characterId: characterUUID,
       permaLink: permaLink,
       inventory: savedCharacterInventory,
+      AC: armorClass,
       httpMethod: "POST"
     };
 
@@ -94,7 +93,13 @@ const Permalink: React.SFC<Props> = ({
         class options for current ability scores.)
       </div>
     </PermalinkButtonContainer>
-  ) : //The ternary below checks if savedCharacterData exists and if the route is "generatedCharacter/:character/", if both conditions are true it will not render the <SaveMessageContainer>. We don't want the <SaveMessageContainer> to be rendered when people navigate back after permalinking a character.
+  ) : /**
+   * The ternary below checks if savedCharacterData exists and if the route is
+   * "generatedCharacter/:character/", if both conditions are true it will not
+   * render the <SaveMessageContainer>. We don't want the <SaveMessageContainer> to
+   * be rendered when people navigate back after permalinking a character.
+   */
+
   savedCharacterData && match ? null : (
     <SaveMessageContainer>
       <SaveHeader>

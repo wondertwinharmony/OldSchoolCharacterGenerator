@@ -342,7 +342,11 @@ export const clothing: Items = {
 /**
  * include illusionist gemstones
  */
-export const weaponsArmorAmmoClassSpecific: Items = {
+export const adventurerEquipment: Items = {
+  agate: {
+    description: "Agate Gemstone (100gp value)",
+    slots: "1"
+  },
   battleAxe: {
     description: "Battle Axe 1d8 (Melee, Slow, Two-Handed)",
     slots: "3"
@@ -393,6 +397,10 @@ export const weaponsArmorAmmoClassSpecific: Items = {
     description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
     slots: "1"
   },
+  emerald: {
+    description: "Emerald Gemstone (500gp value)",
+    slots: "1"
+  },
   flail: {
     description: "Flail 1d6 (Blunt, Melee)",
     slots: "2"
@@ -404,6 +412,15 @@ export const weaponsArmorAmmoClassSpecific: Items = {
   handAxe: {
     description: "Hand Axe 1d6 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
     slots: "2"
+  },
+  healingPotion: {
+    description: "Potion of Healing (Restores 1d6+1 hp and cures paralysis)",
+    slots: "1"
+  },
+  healingPotionGreater: {
+    description:
+      "Potion of Greater Healing (Restores 2d6+2 hp and cures paralysis)",
+    slots: "1"
   },
   holySymbol: {
     description: "Holy Symbol",
@@ -443,6 +460,10 @@ export const weaponsArmorAmmoClassSpecific: Items = {
     description: "Mace 1d6 (Blunt, Melee)",
     slots: "2"
   },
+  magnetite: {
+    description: "Magnetite Gemstone (500gp)",
+    slots: "1"
+  },
   moonBeetleOrb: {
     description: "Moon Beetle Orb",
     slots: "1"
@@ -454,6 +475,10 @@ export const weaponsArmorAmmoClassSpecific: Items = {
   oilFlask: {
     description:
       "Oil Flask 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Burning, Splash weapon)",
+    slots: "1"
+  },
+  onyx: {
+    description: "Onyx Gemstone (250gp value)",
     slots: "1"
   },
   plateMail: {
@@ -468,12 +493,24 @@ export const weaponsArmorAmmoClassSpecific: Items = {
     description: "Quarterstaff 1d4 (Blunt, Melee, Slow, Two-Handed)",
     slots: "1"
   },
+  quartz: {
+    description: "Quartz Gemstone (10gp value)",
+    slots: "1"
+  },
   quiverArrows: {
     description: "Quiver of Arrows (d20 usage die)",
     slots: "1"
   },
   quiverSilverTippedArrows: {
     description: "Quiver of Silver Tipped Arrows (d4 usage die)",
+    slots: "1"
+  },
+  ruby: {
+    description: "Ruby Gemstone (50gp value)",
+    slots: "1"
+  },
+  sapphire: {
+    description: "Sapphire Gemstone (1,000gp value)",
     slots: "1"
   },
   scroll: {
@@ -547,6 +584,10 @@ export const weaponsArmorAmmoClassSpecific: Items = {
   warhammer: {
     description: "Warhammer 1d6 (Blunt, Melee)",
     slots: "2"
+  },
+  woodenShield: {
+    description: "Wooden Shield +1 AC",
+    slots: "1"
   },
   zr1Dissuader: {
     description:
@@ -669,7 +710,7 @@ export const instruments: Items = {
 export const items: Items = {
   ...gear,
   ...clothing,
-  ...weaponsArmorAmmoClassSpecific,
+  ...adventurerEquipment,
   ...instruments,
   ...poisons,
   ...burrowingMammals

@@ -1,5 +1,5 @@
-import { Items } from "../characterData/items";
 import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
+import { SavedCharacterData } from "./getSavedCharacterData";
 /**
  * Utility for determining Armor Class (AC).
  * We determine ascending AC, because THAC0 is
@@ -9,10 +9,10 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  *
  * @param dexScore
  */
-export const getArmorClass = (
+export const getLegacyArmorClass = (
   dexScore: number,
   classOptionKey: string,
-  inventory: Items
+  savedCharacterData?: SavedCharacterData
 ) => {
   /**
    * Crab-People have an absurd starting AC due to their natural
@@ -31,22 +31,17 @@ export const getArmorClass = (
    * Shield: +1
    */
   let baseArmorClass = 10;
-  let hasShield = false;
-  if (inventory) {
-    Object.keys(inventory).forEach((item: string) => {
-      if (inventory[item].description.includes("Leather Armor")) {
-        baseArmorClass = 12;
-      }
-      if (inventory[item].description.includes("Chainmail")) {
-        baseArmorClass = 14;
-      }
-      if (inventory[item].description.includes("Plate Mail")) {
-        baseArmorClass = 16;
-      }
-      if (inventory[item].description.includes("Shield")) {
-        hasShield = true;
-      }
-    });
+  if (savedCharacterData && savedCharacterData.equipment) {
+    const equipment = savedCharacterData.equipment.characterEquipmentString;
+    const leather = equipment.includes("Leather Armor");
+    const chain = equipment.includes("Chainmail");
+    const plate = equipment.includes("Plate Armor");
+    const shield = equipment.includes("Shield");
+
+    if (leather) baseArmorClass = 12;
+    if (chain) baseArmorClass = 14;
+    if (plate) baseArmorClass = 16;
+    if (shield) baseArmorClass = baseArmorClass + 1;
   }
   /**
    * Since getAbilityScoreModifier returns a string for display,
@@ -54,17 +49,13 @@ export const getArmorClass = (
    * and other strings are converted to numbers for calculating
    * armor class.
    */
-  let armorClass =
+  const armorClass =
     baseArmorClass +
     Number(
       getAbilityScoreModifier(dexScore) === "None"
         ? "0"
         : getAbilityScoreModifier(dexScore)
     );
-
-  if (hasShield) {
-    armorClass = armorClass + 1;
-  }
 
   return armorClass;
 };

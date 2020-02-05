@@ -44,12 +44,12 @@ import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../../utils/getArmorClass";
 import { getCharacterName } from "../../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-// import { getEquipment } from "../../utils/getEquipment";
 import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
 import { getHitPoints } from "../../utils/getHitPoints";
 import { getInventory } from "../../utils/getInventory";
 import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
 import { getLanguages } from "../../utils/getLanguages";
+import { getLegacyArmorClass } from "../../utils/getLegacyArmorClass";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { getSpells } from "../../utils/getSpells";
 import { getTraits } from "../../utils/getTraits";
@@ -67,6 +67,7 @@ interface Props {
   includeKnaveSpells: boolean;
   savedCharacterData?: SavedCharacterData;
   savedCharacterInventory?: Items;
+  savedCharacterAC?: number;
 }
 
 interface ImplProps extends Props {}
@@ -77,7 +78,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   classSelection,
   includeKnaveSpells,
   savedCharacterData,
-  savedCharacterInventory
+  savedCharacterInventory,
+  savedCharacterAC
 }) => {
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
@@ -91,6 +93,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
+
   // Languages
   const [languages, setLanguages] = useState(
     savedCharacterData
@@ -116,7 +119,15 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(abilityScores[DEX], classSelection, savedCharacterData)
+    savedCharacterAC
+      ? savedCharacterAC
+      : savedCharacterData && savedCharacterData.equipment
+      ? getLegacyArmorClass(
+          abilityScores[DEX],
+          classSelection,
+          savedCharacterData
+        )
+      : getArmorClass(abilityScores[DEX], classSelection, inventory)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -173,6 +184,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         languages={languages}
         spells={spells}
+        armorClass={armorClass}
         includeKnaveSpells={includeKnaveSpells}
       />
 
@@ -327,29 +339,9 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
             : `Inventory (${savedCharacterData.equipment.slotsToFill}/${
                 abilityScores[CON] > 10 ? abilityScores[CON] : 10
               } slots)`
-          // savedCharacterInventory
-          //   ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
-          //       abilityScores[CON] > 10 ? abilityScores[CON] : 10
-          //     } slots)`
-          //   : savedCharacterData
-          //   ? `Inventory (${savedCharacterData.equipment.slotsToFill}/${
-          //       abilityScores[CON] > 10 ? abilityScores[CON] : 10
-          //     } slots)`
-          //   : "ERROR"
         }
         segmentData={
           <>
-            {/* {savedCharacterInventory ? (
-              <InventoryImpl inventory={savedCharacterInventory} />
-            ) : savedCharacterData ? (
-              <Equipment
-                dangerouslySetInnerHTML={createMarkup(
-                  savedCharacterData.equipment.characterEquipmentString
-                )}
-              />
-            ) : (
-              "ERROR"
-            )} */}
             {savedCharacterInventory ? (
               <InventoryImpl inventory={savedCharacterInventory} />
             ) : !savedCharacterData ? (

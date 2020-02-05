@@ -25,16 +25,27 @@ const InventoryImpl: React.SFC<ImplProps> = ({ className, inventory }) => {
       {savedCharacterData && <InventoryItemImpl addNewItem />}
       <Divider />
       {inventory &&
-        Object.keys(inventory).map(inventoryItem => (
-          <div key={inventoryItem}>
-            <InventoryItemImpl
-              addNewItem={false}
-              inventoryItemKey={inventoryItem}
-              inventoryItem={inventory[inventoryItem]}
-            />
-            <Divider />
-          </div>
-        ))}
+        Object.keys(inventory)
+          .sort((itemA, itemB) => {
+            if (inventory[itemA].description < inventory[itemB].description) {
+              return -1;
+            }
+            if (inventory[itemA].description > inventory[itemB].description) {
+              return 1;
+            }
+            // Names equal
+            return 0;
+          })
+          .map(inventoryItem => (
+            <div key={inventoryItem}>
+              <InventoryItemImpl
+                addNewItem={false}
+                inventoryItemKey={inventoryItem}
+                inventoryItem={inventory[inventoryItem]}
+              />
+              <Divider />
+            </div>
+          ))}
     </div>
   );
 };

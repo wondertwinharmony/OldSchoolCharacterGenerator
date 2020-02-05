@@ -34,14 +34,6 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
       ? "http://localhost:3000"
       : "https://oldschoolknave.surge.sh";
   const URL = window.location.href;
-  /**
-   * CHECK fighter and half/dwarf/etc equipment. Are item counts working correctly?
-   *
-   * Alpha sort inventory items by description
-   *
-   * INCLUDE illusionist gemstones for chromatic in items
-   */
-  // const isSavedCharacter = URL.includes("/permalinked/");
   const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
   const {
@@ -73,12 +65,7 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
       httpMethod: "PUT"
     };
 
-    put(characterId, data).then(() =>
-      /**
-       * Have some sort of error handling here probably.
-       */
-      console.log("POSTED")
-    );
+    put(characterId, data).catch(err => alert(err));
   };
 
   const handleItemUpdate = () => {
@@ -97,12 +84,7 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
         httpMethod: "PUT"
       };
 
-      put(characterId, data).then(() =>
-        /**
-         * Have some sort of error handling here probably.
-         */
-        console.log("POSTED UPDATE")
-      );
+      put(characterId, data).catch(err => alert(err));
     }
   };
 
@@ -124,18 +106,24 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
         httpMethod: "PUT"
       };
 
-      put(characterId, data).then(() =>
-        /**
-         * Have some sort of error handling here probably.
-         */
-        console.log("POSTED UPDATE DELETE")
-      );
+      put(characterId, data).catch(err => alert(err));
     }
   };
 
-  const filteredItems = Object.keys(items).filter(item =>
-    items[item].description.toLowerCase().includes(inputValue.toLowerCase())
-  );
+  const filteredAndSortedItems = Object.keys(items)
+    .filter(item =>
+      items[item].description.toLowerCase().includes(inputValue.toLowerCase())
+    )
+    .sort((itemA, itemB) => {
+      if (items[itemA].description < items[itemB].description) {
+        return -1;
+      }
+      if (items[itemA].description > items[itemB].description) {
+        return 1;
+      }
+      // Names equal
+      return 0;
+    });
 
   return (
     <Dropdown
@@ -194,10 +182,10 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
           {/* iterate over equipment as dropdown.items */}
           {items && (
             <ItemsContainer>
-              {filteredItems.length === 0 && (
+              {filteredAndSortedItems.length === 0 && (
                 <NoMatchText>Nothing matches search!</NoMatchText>
               )}
-              {filteredItems.map((item, index) => (
+              {filteredAndSortedItems.map((item, index) => (
                 <div key={item}>
                   <Item
                     onClick={() => {
@@ -206,7 +194,7 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
                   >
                     {items[item].description}
                   </Item>
-                  {filteredItems.length === index + 1 ? null : (
+                  {filteredAndSortedItems.length === index + 1 ? null : (
                     <Dropdown.Divider />
                   )}
                 </div>

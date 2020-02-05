@@ -188,8 +188,8 @@ export const halflingDwarfDuergarSvirfneblinInventory = [
       description: "Plate Mail AC 16",
       slots: "3"
     },
-    twoHandedSword: {
-      description: "Two-Handed Sword 1d10 (Melee, Slow, Two-Handed)",
+    battleAxe: {
+      description: "Battle Axe 1d8 (Melee, Slow, Two-Handed)",
       slots: "3"
     },
     dagger: {
@@ -206,12 +206,10 @@ export const halflingDwarfDuergarSvirfneblinInventory = [
       description: "Plate Mail AC 16",
       slots: "3"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     shortBow: {
       description:
         "Short Bow 1d6 (Missile 5’–50’ / 51’–100’ / 101’–150’, Two-Handed)",
@@ -234,10 +232,6 @@ export const halflingDwarfDuergarSvirfneblinInventory = [
     flail: {
       description: "Flail 1d6 (Blunt, Melee)",
       slots: "2"
-    },
-    dagger: {
-      description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
-      slots: "1"
     },
     shortBow: {
       description:
@@ -295,24 +289,6 @@ export const halflingDwarfDuergarSvirfneblinInventory = [
       description: "Plate Mail AC 16",
       slots: "3"
     },
-    twoHandedSword: {
-      description: "Two-Handed Sword 1d10 (Melee, Slow, Two-Handed)",
-      slots: "3"
-    },
-    dagger: {
-      description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
-      slots: "1"
-    },
-    travelRation: {
-      description: "Travel Ration (1/day)",
-      slots: "1"
-    }
-  },
-  {
-    plateMail: {
-      description: "Plate Mail AC 16",
-      slots: "3"
-    },
     halberd: {
       description: "Halberd 1d10 (Brace, Melee, Slow, Two-Handed)",
       slots: "3"
@@ -335,12 +311,10 @@ export const halflingDwarfDuergarSvirfneblinInventory = [
       description: "Shield +1 AC",
       slots: "1"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     travelRation: {
       description: "Travel Ration (1/day)",
       slots: "1"

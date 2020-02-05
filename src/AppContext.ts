@@ -10,6 +10,8 @@ interface IAppContext {
   setSavedCharacterData: (savedCharacterData?: SavedCharacterData) => void;
   savedCharacterInventory?: Items;
   setSavedCharacterInventory: (items: Items) => void;
+  savedCharacterAC?: number;
+  setSavedCharacterAC: (ac: string) => void;
   setKnaveSpells: (isKnaveSpellsIncluded: boolean) => void;
   setAbilityScores: (abilityScores: number[]) => void;
   setClassSelection: (classSelection: string) => void;
@@ -23,6 +25,8 @@ const AppContext = createContext<IAppContext>({
   setSavedCharacterData: () => {},
   savedCharacterInventory: undefined,
   setSavedCharacterInventory: () => {},
+  savedCharacterAC: undefined,
+  setSavedCharacterAC: () => {},
   setKnaveSpells: () => {},
   setAbilityScores: () => {},
   setClassSelection: () => {}

@@ -122,12 +122,10 @@ export const fighterInventory = [
       description: "Shield +1 AC",
       slots: "1"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     dagger: {
       description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
       slots: "1"
@@ -170,12 +168,10 @@ export const fighterInventory = [
       description: "Shield +1 AC",
       slots: "1"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     dagger: {
       description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
       slots: "1"
@@ -208,12 +204,10 @@ export const fighterInventory = [
       description: "Plate Mail AC 16",
       slots: "3"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     shortBow: {
       description:
         "Short Bow 1d6 (Missile 5’–50’ / 51’–100’ / 101’–150’, Two-Handed)",
@@ -236,10 +230,6 @@ export const fighterInventory = [
     flail: {
       description: "Flail 1d6 (Blunt, Melee)",
       slots: "2"
-    },
-    dagger: {
-      description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
-      slots: "1"
     },
     shortBow: {
       description:
@@ -337,12 +327,10 @@ export const fighterInventory = [
       description: "Shield +1 AC",
       slots: "1"
     },
-
     sword: {
       description: "Sword 1d8 (Melee)",
       slots: "2"
     },
-
     travelRation: {
       description: "Travel Ration (1/day)",
       slots: "1"
