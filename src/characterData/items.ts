@@ -286,10 +286,6 @@ export const gear: Items = {
     description: "Tinder Box, Flint and Steel (d4 usage die)",
     slots: "1"
   },
-  travelRation: {
-    description: "Travel Ration (1/day)",
-    slots: "1"
-  },
   tongs: {
     description: "Tongs",
     slots: "1"
@@ -566,6 +562,10 @@ export const adventurerEquipment: Items = {
   towerShield: {
     description:
       "Tower Shield (+1 AC against melee/+3 AC against missile, Slow)",
+    slots: "1"
+  },
+  travelRation: {
+    description: "Travel Ration (1/day)",
     slots: "1"
   },
   twoHandedSword: {
