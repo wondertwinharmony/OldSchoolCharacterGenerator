@@ -17,7 +17,7 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
  *  * FIXES
- * - [] Headers need pointer mouse on hover on desktop browser
+ * - [x] Headers need pointer mouse on hover on desktop browser
  *
  *  * NEW FEATURES TO CONSIDER
  * High Priority
@@ -31,6 +31,8 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * - [] Track Equipment NOT on character
  * - [] Track GP NOT on character
  * Low Priority
+ * - [] Kill/Delete Permanently button (modal, are you sure, no way to undo this
+ * message to user as it will remove from DB)
  * - [] Need cool error out display page if anything goes wrong with our app
  * - [] Perhaps always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)

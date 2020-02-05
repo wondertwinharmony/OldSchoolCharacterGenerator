@@ -53,6 +53,7 @@ export interface characterClass {
   languages: string[];
   saves: { [key: string]: number };
   equipment: string[][];
+  inventory?: any;
   abilities?: string[];
   abilitiesSummary: string;
   spells?: string;

@@ -1,13 +1,16 @@
 import React from "react";
 import { GiBodyBalance, GiTightrope } from "react-icons/gi";
-import { acrobatEquipment } from "../equipmentKits/acrobatEquipment";
 import acrobatSkillsTable from "../../static/acrobatSkillsTable.png";
+import { acrobatInventory } from "../equipmentKits/acrobatInventory";
 
 export const acrobat = {
   name: "Acrobat",
   icon: React.createElement(GiBodyBalance, {}),
   skillsIcon: React.createElement(GiTightrope, {}),
-  skillsTable: React.createElement('img', {src: acrobatSkillsTable, style: {width: '22rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: acrobatSkillsTable,
+    style: { width: "22rem", height: "33rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
@@ -23,7 +26,8 @@ export const acrobat = {
     breath: 16,
     magic: 15
   },
-  equipment: acrobatEquipment,
+  inventory: acrobatInventory,
+  equipment: [["string"]],
   abilities: [
     "<strong>Acrobat Skills:</strong> Acrobats have the following skills, which improve as the character gains levels. Evasion, falling, jumping, and tightrope walking cannot be performed if encumbered.\n\n<div style='padding: 0 1.5rem'><strong>Climb Sheer Surfaces:</strong> A roll is required for each 100’ to be climbed. If the roll fails, the acrobat falls at the half-way point, suffering falling damage.\n\n<strong>Falling:</strong> When able to tumble, acrobats suffer no damage from the first 10’ of any fall. Damage due to falling from a greater height is reduced by the listed percentage (rounding fractions down).\n\n<strong>Hide in Shadows:</strong> Requires the acrobat to be motionless—attacking or moving while hiding is not possible.\n\n<strong>Move Silently:</strong> An acrobat may attempt to sneak past enemies unnoticed.\n\n<strong>Tightrope Walking:</strong> Acrobats can walk along tightropes, narrow beams, and ledges at up to half their normal rate. A roll is required every 60’. Failure indicates that the acrobat falls and suffers normal falling damage. Windy conditions may modify the chance of success by up to –20%. Holding a balance pole increases the chance of success by 10%.</div>",
     "<strong>Combat:</strong> Acrobats cannot wear armor bulkier than leather and cannot use shields. They are able to use all missile weapons, one-handed blades (e.g. daggers, swords), and staff-weapons (e.g. polearms, spears, staves).",

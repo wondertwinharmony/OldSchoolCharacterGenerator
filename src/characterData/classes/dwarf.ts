@@ -1,6 +1,7 @@
 import React from "react";
 import { GiDwarfHelmet } from "react-icons/gi";
 import { fighterEquipment } from "../equipmentKits/fighterEquipment";
+import { halflingDwarfDuergarSvirfneblinInventory } from "../equipmentKits/halflingDwarfDuergarSvirfneblinInventory";
 
 export const dwarf = {
   name: "Dwarf",
@@ -21,6 +22,7 @@ export const dwarf = {
     magic: 12
   },
   equipment: fighterEquipment,
+  inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
     "<strong>Combat:</strong> Dwarves may use any type of armor, however, due to their short height, may only use small or normal sized weapons. This means that dwarves cannot use long bows or two-handed swords.",
     "<strong>Detect Construction Tricks:</strong> From their experience underground, dwarves have a 2-in-6 chance of detecting false walls, hidden construction, or sloping passages. A dwarf must be actively searching for these abilities to function.",

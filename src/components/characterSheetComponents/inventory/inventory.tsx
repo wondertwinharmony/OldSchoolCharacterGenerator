@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import AppContext from "../../../AppContext";
 import { Items } from "../../../characterData/items";
 import InventoryItemImpl from "./inventoryItemComponents/inventoryItem";
 
 interface Props {
   className?: string;
-  inventory?: Items;
+  inventory: Items;
 }
 
 interface ImplProps extends Props {}
 
 const InventoryImpl: React.SFC<ImplProps> = ({ className, inventory }) => {
+  const {
+    savedCharacterData,
+    savedCharacterInventory,
+    setSavedCharacterInventory
+  } = useContext(AppContext);
+  if (!savedCharacterData && !savedCharacterInventory) {
+    setSavedCharacterInventory(inventory);
+  }
   return (
     <div className={className}>
-      <InventoryItemImpl addNewItem />
+      {savedCharacterData && <InventoryItemImpl addNewItem />}
       <Divider />
       {inventory &&
         Object.keys(inventory).map(inventoryItem => (

@@ -1,8 +1,11 @@
+import { poisons } from "./classes/assassin";
+import { burrowingMammals } from "./classes/gnome";
+
 export interface Items {
   [key: string]: { description: string; slots: string };
 }
 
-export const items: Items = {
+export const gear: Items = {
   chain: {
     description: "10' Chain",
     slots: "1"
@@ -27,22 +30,6 @@ export const items: Items = {
     description: "Air Bladder",
     slots: "1"
   },
-  airHorn: {
-    description: "Air Horn (instrument)",
-    slots: "1"
-  },
-  arrows: {
-    description: "Arrows (d20 usage die)",
-    slots: "1"
-  },
-  bagpipe: {
-    description: "Bagpipe (instrument)",
-    slots: "1"
-  },
-  battleAxe: {
-    description: "Battle Axe 1d8 (Melee, Slow, Two-Handed)",
-    slots: "3"
-  },
   bearTrap: {
     description: "Bear Trap",
     slots: "1"
@@ -53,10 +40,6 @@ export const items: Items = {
   },
   bellows: {
     description: "Bellows",
-    slots: "1"
-  },
-  bladderPipe: {
-    description: "Bladder Pipe (instrument)",
     slots: "1"
   },
   blankBook: {
@@ -75,11 +58,6 @@ export const items: Items = {
     description: "Bucket",
     slots: "1"
   },
-  buckler: {
-    description:
-      "Buckler (+1 AC melee only. May be used when wielding two weapons, if doing so may either attack with off-hand or gain benefit of shield.)",
-    slots: "1"
-  },
   caltrops: {
     description: "Caltrops",
     slots: "1"
@@ -92,36 +70,12 @@ export const items: Items = {
     description: "Card Deck",
     slots: "1"
   },
-  castanets: {
-    description: "Castanets (instrument)",
-    slots: "1"
-  },
-  chainmail: {
-    description: "Chainmail 14 AC",
-    slots: "2"
-  },
   chalk: {
     description: "Chalk (d4 usage die)",
     slots: "1"
   },
-  chaosDampener: {
-    description: "Chaos Dampener (Man-Portable)",
-    slots: "1"
-  },
-  chaosometer: {
-    description: "Chaosometer",
-    slots: "1"
-  },
   chisel: {
     description: "Chisel",
-    slots: "1"
-  },
-  club: {
-    description: "Club 1d4 (Blunt, Melee)",
-    slots: "1"
-  },
-  coinPurse: {
-    description: "Coin Purse (holds 1 slot)",
     slots: "1"
   },
   cosmeticKit: {
@@ -132,29 +86,8 @@ export const items: Items = {
     description: "Cook Pots",
     slots: "1"
   },
-  crossbow: {
-    description:
-      "Crossbow 1d6 (Missile 5’–80’ / 81’–160’ / 161’–240’, Reload, Slow, Two-Handed)",
-    slots: "3"
-  },
-  crossbowBolts: {
-    description: "Crossbow Bolts (d20 usage die)",
-    slots: "1"
-  },
   crowbar: {
     description: "Crowbar",
-    slots: "1"
-  },
-  crumhorn: {
-    description: "Crumhorn (instruments)",
-    slots: "1"
-  },
-  cudgel: {
-    description: "Cudgel 1d4 (Blunt, Melee)",
-    slots: "1"
-  },
-  dagger: {
-    description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
     slots: "1"
   },
   diceSet: {
@@ -169,14 +102,6 @@ export const items: Items = {
     description: "Drill",
     slots: "1"
   },
-  dulcimer: {
-    description: "Dulcimer (instrument)",
-    slots: "1"
-  },
-  faceMask: {
-    description: "Face Mask",
-    slots: "1"
-  },
   facePaint: {
     description: "Face Paint",
     slots: "1"
@@ -189,20 +114,8 @@ export const items: Items = {
     description: "Fishing Rod",
     slots: "1"
   },
-  flail: {
-    description: "Flail 1d6 (Blunt, Melee)",
-    slots: "2"
-  },
-  furs: {
-    description: "Furs",
-    slots: "1"
-  },
   garlic: {
     description: "Garlic (d4 usage die)",
-    slots: "1"
-  },
-  gemshorn: {
-    description: "Gemshorn (instrument)",
     slots: "1"
   },
   glue: {
@@ -217,45 +130,12 @@ export const items: Items = {
     description: "Grease",
     slots: "1"
   },
-  halberd: {
-    description: "Halberd 1d10 (Brace, Melee, Slow, Two-Handed)",
-    slots: "3"
-  },
   hammer: {
     description: "Hammer",
     slots: "1"
   },
-  handAxe: {
-    description: "Hand Axe 1d6 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
-    slots: "2"
-  },
-  harmonica: {
-    description: "Harmonica (instrument)",
-    slots: "1"
-  },
-  harp: {
-    description: "Harp (instrument)",
-    slots: "1"
-  },
-  holySymbol: {
-    description: "Holy Symbol",
-    slots: "1"
-  },
-  holyWater: {
-    description:
-      "Holy Water Vial 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Splash weapon)",
-    slots: "1"
-  },
-  horn: {
-    description: "Horn (instrument)",
-    slots: "1"
-  },
   hourglass: {
     description: "Hourglass",
-    slots: "1"
-  },
-  hurdyGurdy: {
-    description: "Hurdy-gurdy (instrument)",
     slots: "1"
   },
   incense: {
@@ -266,58 +146,13 @@ export const items: Items = {
     description: "Jar",
     slots: "1"
   },
-  Javelin: {
-    description: "Javelin 1d4 (Missile 5’–30’ / 31’–60’ / 61’–90’)",
-    slots: "1"
-  },
-  Kazoo: {
-    description: "Kazoo (instrument)",
-    slots: "1"
-  },
-  lance: {
-    description: "Lance 1d6 (Charge, Melee)",
-    slots: "3"
-  },
-  lantern: {
-    description: "Lantern",
-    slots: "1"
-  },
-  leatherArmor: {
-    description: "Leather Armor AC 12",
-    slots: "2"
-  },
   lens: {
     description: "Lens",
-    slots: "1"
-  },
-  liGoggles: {
-    description: "Light-ntensifying Goggles",
-    slots: "1"
-  },
-  lizard: {
-    description: "Lizard (instrument)",
     slots: "1"
   },
   lockpicks: {
     description: "Lockpicks",
     slots: "1"
-  },
-  longBow: {
-    description:
-      "Long Bow 1d6 (Missile 5’–70’ / 71’–140’ / 141’–210’, Two-Handed)",
-    slots: "3"
-  },
-  lute: {
-    description: "Lute (instrument)",
-    slots: "1"
-  },
-  lyre: {
-    description: "Lyre (instrument)",
-    slots: "1"
-  },
-  mace: {
-    description: "Mace 1d6 (Blunt, Melee)",
-    slots: "2"
   },
   makeupKit: {
     description: "Makeup Kit",
@@ -329,14 +164,6 @@ export const items: Items = {
   },
   manacles: {
     description: "Manacles",
-    slots: "1"
-  },
-  mandolin: {
-    description: "Mandolin (instrument)",
-    slots: "1"
-  },
-  maracas: {
-    description: "Maracas (instrument)",
     slots: "1"
   },
   marbles: {
@@ -355,115 +182,45 @@ export const items: Items = {
     description: "Mirror",
     slots: "1"
   },
-  morningStar: {
-    description: "Morning Star 1d6 (Blunt, Melee)",
-    slots: "2"
+  mouse: {
+    description: "Mouse (pet)",
+    slots: "1"
   },
   nails: {
-    description: "Nails",
+    description: "Nails (d12 usage die)",
     slots: "1"
   },
   net: {
     description: "Net",
     slots: "1"
   },
-  nobleClothing: {
-    description: "Noble Clothing",
-    slots: "1"
-  },
-  ocarina: {
-    description: "Ocarina (instrument)",
-    slots: "1"
-  },
-  oilFlask: {
-    description:
-      "Oil Flask 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Burning, Splash weapon)",
-    slots: "1"
-  },
   padlock: {
     description: "Padlock",
-    slots: "1"
-  },
-  panFlute: {
-    description: "Pan Flute (instrument)",
     slots: "1"
   },
   perfume: {
     description: "Perfume",
     slots: "1"
   },
-  petMouse: {
-    description: "Pet Mouse",
-    slots: "1"
-  },
   pickaxe: {
     description: "Pickaxe",
-    slots: "1"
-  },
-  plateMail: {
-    description: "Plate Mail AC 16",
-    slots: "3"
-  },
-  polearm: {
-    description: "Polearm 1d10 (Brace, Melee, Slow, Two-Handed)",
-    slots: "3"
-  },
-  poorClothing: {
-    description: "Poor Clothing",
-    slots: "1"
-  },
-  psaltery: {
-    description: "Psaltery (instrument)",
     slots: "1"
   },
   pulleys: {
     description: "Pulleys",
     slots: "1"
   },
-  quarterstaff: {
-    description: "Quarterstaff 1d4 (Blunt, Melee, Slow, Two-Handed)",
-    slots: "1"
-  },
   quillAndInk: {
-    description: "Quill and Ink",
-    slots: "1"
-  },
-  sacbut: {
-    description: "Sacbut (instrument)",
+    description: "Quill and Ink (d4 usage die)",
     slots: "1"
   },
   saw: {
     description: "Saw",
     slots: "1"
   },
-  scroll: {
-    description: "Scroll",
-    slots: "1"
-  },
-  serpent: {
-    description: "Serpent (instrument)",
-    slots: "1"
-  },
-  shield: {
-    description: "Shield +1 AC",
-    slots: "1"
-  },
   shinyStone: {
     description: "Shiny Stone",
     slots: "1"
-  },
-  shofar: {
-    description: "Shofar (instrument)",
-    slots: "1"
-  },
-  shortBow: {
-    description:
-      "Short Bow 1d6 (Missile 5’–50’ / 51’–100’ / 101’–150’, Two-Handed)",
-    slots: "2"
-  },
-  shortSword: {
-    description: "Short Sword 1d6 (Melee)",
-    slots: "2"
   },
   shovel: {
     description: "Shovel",
@@ -475,27 +232,6 @@ export const items: Items = {
   },
   signetRing: {
     description: "Signet Ring",
-    slots: "1"
-  },
-  silverDagger: {
-    description:
-      "Silver Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
-    slots: "1"
-  },
-  silverTippedArrows: {
-    description: "Silver Tipped Arrows (usage die)",
-    slots: "1"
-  },
-  sitar: {
-    description: "Sitar",
-    slots: "1"
-  },
-  sling: {
-    description: "Sling 1d4 (Blunt, Missile 5’–40’ / 41’–80’ / 81’–160’)",
-    slots: "1"
-  },
-  slingStones: {
-    description: "Sling Stones (usage die)",
     slots: "1"
   },
   smallAnimalSkull: {
@@ -526,14 +262,6 @@ export const items: Items = {
     description: "Soap",
     slots: "1"
   },
-  spear: {
-    description: "Spear 1d6 (Brace, Melee, Missile 5’–20’ / 21’–40’ / 41’–60’)",
-    slots: "2"
-  },
-  spellbook: {
-    description: "Spellbook",
-    slots: "1"
-  },
   sponge: {
     description: "Sponge",
     slots: "1"
@@ -541,18 +269,6 @@ export const items: Items = {
   spyglass: {
     description: "Spyglass",
     slots: "1"
-  },
-  staff: {
-    description: "Staff 1d4 (Blunt, Melee, Slow, Two-Handed)",
-    slots: "1"
-  },
-  standardClothing: {
-    description: "Sponge",
-    slots: "1"
-  },
-  sword: {
-    description: "Sword 1d8 (Melee)",
-    slots: "2"
   },
   tarPot: {
     description: "Tar Pot (d4 usage die)",
@@ -571,7 +287,7 @@ export const items: Items = {
     slots: "1"
   },
   travelRation: {
-    description: "Travel Ration",
+    description: "Travel Ration (1/day)",
     slots: "1"
   },
   tongs: {
@@ -581,6 +297,234 @@ export const items: Items = {
   torch: {
     description: "Torch 1d4 (d4 usage die, Melee, Burning)",
     slots: "1"
+  },
+  waterskin: {
+    description: "Waterskin",
+    slots: "1"
+  },
+  whistle: {
+    description: "Whistle",
+    slots: "1"
+  },
+  wine: {
+    description: "Wine (d4 usage die)",
+    slots: "1"
+  },
+  wolfsbane: {
+    description: "Wolfsbane (d4 usage die)",
+    slots: "1"
+  }
+};
+
+export const clothing: Items = {
+  furs: {
+    description: "Furs",
+    slots: "1"
+  },
+  nobleClothing: {
+    description: "Noble Clothing",
+    slots: "1"
+  },
+  poorClothing: {
+    description: "Poor Clothing",
+    slots: "1"
+  },
+  standardClothing: {
+    description: "Sponge",
+    slots: "1"
+  },
+  winterclothing: {
+    description: "Winter Clothing",
+    slots: "1"
+  }
+};
+
+/**
+ * include illusionist gemstones
+ */
+export const weaponsArmorAmmoClassSpecific: Items = {
+  battleAxe: {
+    description: "Battle Axe 1d8 (Melee, Slow, Two-Handed)",
+    slots: "3"
+  },
+  buckler: {
+    description:
+      "Buckler (+1 AC melee only. May be used when wielding two weapons, if doing so may either attack with off-hand or gain benefit of shield.)",
+    slots: "1"
+  },
+  caseCrossbowBolts: {
+    description: "Case of Crossbow Bolts (d20 usage die)",
+    slots: "1"
+  },
+  caseSilverTippedBolts: {
+    description: "Case of Silver Tipped Bolts (d4 usage die)",
+    slots: "1"
+  },
+  chainmail: {
+    description: "Chainmail 14 AC",
+    slots: "2"
+  },
+  chaosDampener: {
+    description: "Chaos Dampener (Man-Portable)",
+    slots: "1"
+  },
+  chaosometer: {
+    description: "Chaosometer",
+    slots: "1"
+  },
+  club: {
+    description: "Club 1d4 (Blunt, Melee)",
+    slots: "1"
+  },
+  coinPurse: {
+    description: "Coin Purse (holds 1 slot)",
+    slots: "1"
+  },
+  crossbow: {
+    description:
+      "Crossbow 1d6 (Missile 5’–80’ / 81’–160’ / 161’–240’, Reload, Slow, Two-Handed)",
+    slots: "3"
+  },
+  cudgel: {
+    description: "Cudgel 1d4 (Blunt, Melee)",
+    slots: "1"
+  },
+  dagger: {
+    description: "Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
+    slots: "1"
+  },
+  flail: {
+    description: "Flail 1d6 (Blunt, Melee)",
+    slots: "2"
+  },
+  halberd: {
+    description: "Halberd 1d10 (Brace, Melee, Slow, Two-Handed)",
+    slots: "3"
+  },
+  handAxe: {
+    description: "Hand Axe 1d6 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
+    slots: "2"
+  },
+  holySymbol: {
+    description: "Holy Symbol",
+    slots: "1"
+  },
+  holyWater: {
+    description:
+      "Holy Water Vial 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Splash weapon)",
+    slots: "1"
+  },
+  javelin: {
+    description: "Javelin 1d4 (Missile 5’–30’ / 31’–60’ / 61’–90’)",
+    slots: "1"
+  },
+  lance: {
+    description: "Lance 1d6 (Charge, Melee)",
+    slots: "3"
+  },
+  lantern: {
+    description: "Lantern",
+    slots: "1"
+  },
+  leatherArmor: {
+    description: "Leather Armor AC 12",
+    slots: "2"
+  },
+  liGoggles: {
+    description: "URS Light-Intensifying Goggles",
+    slots: "1"
+  },
+  longBow: {
+    description:
+      "Long Bow 1d6 (Missile 5’–70’ / 71’–140’ / 141’–210’, Two-Handed)",
+    slots: "3"
+  },
+  mace: {
+    description: "Mace 1d6 (Blunt, Melee)",
+    slots: "2"
+  },
+  moonBeetleOrb: {
+    description: "Moon Beetle Orb",
+    slots: "1"
+  },
+  morningStar: {
+    description: "Morning Star 1d6 (Blunt, Melee)",
+    slots: "2"
+  },
+  oilFlask: {
+    description:
+      "Oil Flask 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Burning, Splash weapon)",
+    slots: "1"
+  },
+  plateMail: {
+    description: "Plate Mail AC 16",
+    slots: "3"
+  },
+  polearm: {
+    description: "Polearm 1d10 (Brace, Melee, Slow, Two-Handed)",
+    slots: "3"
+  },
+  quarterstaff: {
+    description: "Quarterstaff 1d4 (Blunt, Melee, Slow, Two-Handed)",
+    slots: "1"
+  },
+  quiverArrows: {
+    description: "Quiver of Arrows (d20 usage die)",
+    slots: "1"
+  },
+  quiverSilverTippedArrows: {
+    description: "Quiver of Silver Tipped Arrows (d4 usage die)",
+    slots: "1"
+  },
+  scroll: {
+    description: "Scroll",
+    slots: "1"
+  },
+  scrollTownPortal: {
+    description: "Scroll of Town Portal",
+    slots: "1"
+  },
+  shield: {
+    description: "Shield +1 AC",
+    slots: "1"
+  },
+  shortBow: {
+    description:
+      "Short Bow 1d6 (Missile 5’–50’ / 51’–100’ / 101’–150’, Two-Handed)",
+    slots: "2"
+  },
+  shortSword: {
+    description: "Short Sword 1d6 (Melee)",
+    slots: "2"
+  },
+  silverDagger: {
+    description:
+      "Silver Dagger 1d4 (Melee, Missile 5’–10’ / 11’–20’ / 21’–30’)",
+    slots: "1"
+  },
+  sling: {
+    description: "Sling 1d4 (Blunt, Missile 5’–40’ / 41’–80’ / 81’–160’)",
+    slots: "1"
+  },
+  slingStones: {
+    description: "Sling Stones (usage die)",
+    slots: "1"
+  },
+  spear: {
+    description: "Spear 1d6 (Brace, Melee, Missile 5’–20’ / 21’–40’ / 41’–60’)",
+    slots: "2"
+  },
+  spellbook: {
+    description: "Spellbook",
+    slots: "1"
+  },
+  staff: {
+    description: "Staff 1d4 (Blunt, Melee, Slow, Two-Handed)",
+    slots: "1"
+  },
+  sword: {
+    description: "Sword 1d8 (Melee)",
+    slots: "2"
   },
   towerShield: {
     description:
@@ -600,34 +544,112 @@ export const items: Items = {
       "URS Service Blade 1d6 (+1 versus creatures of Chaos: magical, beasts, constructs, demons, referee's discretion)",
     slots: "2"
   },
-  vialKillerBeeVenom: {
+  warhammer: {
+    description: "Warhammer 1d6 (Blunt, Melee)",
+    slots: "2"
+  },
+  zr1Dissuader: {
     description:
-      "Vial of Killer Bee Venom (Type I bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+      "Zaracanth Industries ZR-1 'Dissuader' 1, 1d3, or 1d6 (Missile 5’–70’ / 71’–140’ / 141’–210’, Electric, Reload)",
+    slots: "1"
+  }
+};
+
+export const instruments: Items = {
+  airHorn: {
+    description: "Air Horn (instrument)",
     slots: "1"
   },
-  vialRockfishPoison: {
-    description:
-      "Vial of Rockfish Poison (Type I bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+  bagpipe: {
+    description: "Bagpipe (instrument)",
     slots: "1"
   },
-  vialPitViperVenom: {
-    description:
-      "Vial of Pit Viper Venom (Type II bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+  bladderPipe: {
+    description: "Bladder Pipe (instrument)",
     slots: "1"
   },
-  vialGiantScorpionPoison: {
-    description:
-      "Vial of Giant Scorpion Poison (Type II bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+  castanets: {
+    description: "Castanets (instrument)",
     slots: "1"
   },
-  vialPurpleWormPoison: {
-    description:
-      "Vial of Purple Worm Poison (Type III bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+  crumhorn: {
+    description: "Crumhorn (instruments)",
     slots: "1"
   },
-  vialWyvernVenom: {
-    description:
-      "Vial of Wyvern Venom (Type III bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+  dulcimer: {
+    description: "Dulcimer (instrument)",
+    slots: "1"
+  },
+  gemshorn: {
+    description: "Gemshorn (instrument)",
+    slots: "1"
+  },
+  harmonica: {
+    description: "Harmonica (instrument)",
+    slots: "1"
+  },
+  harp: {
+    description: "Harp (instrument)",
+    slots: "1"
+  },
+  horn: {
+    description: "Horn (instrument)",
+    slots: "1"
+  },
+  hurdyGurdy: {
+    description: "Hurdy-gurdy (instrument)",
+    slots: "1"
+  },
+  kazoo: {
+    description: "Kazoo (instrument)",
+    slots: "1"
+  },
+  lizard: {
+    description: "Lizard (instrument)",
+    slots: "1"
+  },
+  lute: {
+    description: "Lute (instrument)",
+    slots: "1"
+  },
+  lyre: {
+    description: "Lyre (instrument)",
+    slots: "1"
+  },
+  mandolin: {
+    description: "Mandolin (instrument)",
+    slots: "1"
+  },
+  maracas: {
+    description: "Maracas (instrument)",
+    slots: "1"
+  },
+  ocarina: {
+    description: "Ocarina (instrument)",
+    slots: "1"
+  },
+  panFlute: {
+    description: "Pan Flute (instrument)",
+    slots: "1"
+  },
+  psaltery: {
+    description: "Psaltery (instrument)",
+    slots: "1"
+  },
+  sacbut: {
+    description: "Sacbut (instrument)",
+    slots: "1"
+  },
+  serpent: {
+    description: "Serpent (instrument)",
+    slots: "1"
+  },
+  shofar: {
+    description: "Shofar (instrument)",
+    slots: "1"
+  },
+  sitar: {
+    description: "Sitar (instrument)",
     slots: "1"
   },
   viol: {
@@ -638,37 +660,17 @@ export const items: Items = {
     description: "Vuvuzela (instrument)",
     slots: "1"
   },
-  warhammer: {
-    description: "Warhammer 1d6 (Blunt, Melee)",
-    slots: "2"
-  },
-  waterskin: {
-    description: "Waterskin",
-    slots: "1"
-  },
-  whistle: {
-    description: "Whistle",
-    slots: "1"
-  },
-  wine: {
-    description: "Wine (d4 usage die)",
-    slots: "1"
-  },
-  winterclothing: {
-    description: "Winter Clothing",
-    slots: "1"
-  },
-  wolfsbane: {
-    description: "Wolfsbane (d4 usage die)",
-    slots: "1"
-  },
   zink: {
     description: "Zink (instrument)",
     slots: "1"
-  },
-  zr1Dissuader: {
-    description:
-      "Zaracanth Industries ZR-1 'Dissuader' 1, 1d3, or 1d6 (Missile 5’–70’ / 71’–140’ / 141’–210’, Electric)",
-    slots: "1"
   }
+};
+
+export const items: Items = {
+  ...gear,
+  ...clothing,
+  ...weaponsArmorAmmoClassSpecific,
+  ...instruments,
+  ...poisons,
+  ...burrowingMammals
 };

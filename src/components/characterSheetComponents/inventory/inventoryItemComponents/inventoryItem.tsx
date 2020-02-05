@@ -34,11 +34,21 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
       ? "http://localhost:3000"
       : "https://oldschoolknave.surge.sh";
   const URL = window.location.href;
+  /**
+   * CHECK fighter and half/dwarf/etc equipment. Are item counts working correctly?
+   *
+   * Alpha sort inventory items by description
+   *
+   * INCLUDE illusionist gemstones for chromatic in items
+   */
+  // const isSavedCharacter = URL.includes("/permalinked/");
   const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
-  const { savedCharacterInventory, setSavedCharacterInventory } = useContext(
-    AppContext
-  );
+  const {
+    savedCharacterData,
+    savedCharacterInventory,
+    setSavedCharacterInventory
+  } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
   const [slotValue, setSlotValue] = useState("1");
   const [show, setShow] = useState(false);
@@ -54,7 +64,6 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
       ...savedCharacterInventory,
       [itemId]: { description: inputValue, slots: slotValue }
     });
-
     const data = {
       characterId,
       inventory: {
@@ -132,9 +141,11 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
     <Dropdown
       className={className}
       onToggle={() => {
-        setInputValue(inventoryItem ? inventoryItem.description : "");
-        setSlotValue(inventoryItem ? inventoryItem.slots : "1");
-        setShow(!show);
+        if (savedCharacterData) {
+          setInputValue(inventoryItem ? inventoryItem.description : "");
+          setSlotValue(inventoryItem ? inventoryItem.slots : "1");
+          setShow(!show);
+        }
       }}
     >
       <Dropdown.Toggle
@@ -152,11 +163,13 @@ const InventoryItemImpl: React.SFC<ImplProps> = ({
           </>
         ) : (
           <>
-            <FontAwesomeIcon
-              icon={!show ? "caret-up" : "caret-down"}
-              size="lg"
-              style={{ margin: "0 0.5rem" }}
-            />
+            {savedCharacterData && (
+              <FontAwesomeIcon
+                icon={!show ? "caret-up" : "caret-down"}
+                size="lg"
+                style={{ margin: "0 0.5rem" }}
+              />
+            )}
             {inventoryItem && inventoryItem.description}
           </>
         )}
@@ -224,18 +237,21 @@ const AddNewItemToggle = React.forwardRef<any, any>(
 );
 
 const UpdateItemToggle = React.forwardRef<any, any>(
-  ({ children, onClick }, ref) => (
-    <div
-      style={{ cursor: "pointer" }}
-      ref={ref}
-      onClick={e => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {children}
-    </div>
-  )
+  ({ children, onClick }, ref) => {
+    const { savedCharacterData } = useContext(AppContext);
+    return (
+      <div
+        style={savedCharacterData ? { cursor: "pointer" } : {}}
+        ref={ref}
+        onClick={e => {
+          e.preventDefault();
+          onClick(e);
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
 );
 
 const DropdownMenu = styled(Dropdown.Menu)`

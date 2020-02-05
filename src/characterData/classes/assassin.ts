@@ -1,13 +1,17 @@
 import React from "react";
-import { GiDaggers, GiBloodySword } from "react-icons/gi";
-import { assassinEquipment } from "../equipmentKits/assassinEquipment";
+import { GiBloodySword, GiDaggers } from "react-icons/gi";
 import assassinSkillsTable from "../../static/assassinSkillsTable.png";
+import { assassinEquipment } from "../equipmentKits/assassinEquipment";
+import { Items } from "../items";
 
 export const assassin = {
   name: "Assassin",
   icon: React.createElement(GiDaggers, {}),
   skillsIcon: React.createElement(GiBloodySword, {}),
-  skillsTable: React.createElement('img', {src: assassinSkillsTable, style: {width: '22rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: assassinSkillsTable,
+    style: { width: "22rem", height: "33rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
@@ -41,4 +45,37 @@ export const assassin = {
     "<strong>Assassination (AS), Climb Sheer Surface (CS), Hear Noise (HN), Hide in Shadows (HS), Move Silently (MS)</strong>\n",
     "<strong>Using an Assassin Skill:</strong> The DM will roll skill dice and the thief player will roll an ability check (d20 + DEX modifier) simultaneously. If the skill roll is successful, the assassin has perfectly executed their subtle craft and cannot fail. Otherwise the ability check result is used to determine success or failure. <i>Assassins are exceptional at these skills. Other classes may attempt these skills with only an ability check and usually disadvantage (DM discretion).</i>"
   ]
+};
+
+export const poisons: Items = {
+  vialKillerBeeVenom: {
+    description:
+      "Vial of Killer Bee Venom (Type I bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  },
+  vialRockfishPoison: {
+    description:
+      "Vial of Rockfish Poison (Type I bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  },
+  vialPitViperVenom: {
+    description:
+      "Vial of Pit Viper Venom (Type II bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  },
+  vialGiantScorpionPoison: {
+    description:
+      "Vial of Giant Scorpion Poison (Type II bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  },
+  vialPurpleWormPoison: {
+    description:
+      "Vial of Purple Worm Poison (Type III bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  },
+  vialWyvernVenom: {
+    description:
+      "Vial of Wyvern Venom (Type III bloodstream - see Poison in Advanced Fantasy Genre Rules, d4 usage die)",
+    slots: "1"
+  }
 };

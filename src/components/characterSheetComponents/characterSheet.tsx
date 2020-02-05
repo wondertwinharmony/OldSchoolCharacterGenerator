@@ -44,9 +44,11 @@ import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../../utils/getArmorClass";
 import { getCharacterName } from "../../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-import { getEquipment } from "../../utils/getEquipment";
+// import { getEquipment } from "../../utils/getEquipment";
 import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
 import { getHitPoints } from "../../utils/getHitPoints";
+import { getInventory } from "../../utils/getInventory";
+import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
 import { getLanguages } from "../../utils/getLanguages";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { getSpells } from "../../utils/getSpells";
@@ -69,7 +71,7 @@ interface Props {
 
 interface ImplProps extends Props {}
 
-const CharacterImpl: React.SFC<ImplProps> = ({
+const CharacterSheetImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
@@ -102,20 +104,19 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
-  // Equipment
-  const [equipment] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.equipment
-      : getEquipment(classSelection, abilityScores[CON])
+
+  // Inventory
+  const [inventory] = useState(
+    savedCharacterInventory
+      ? savedCharacterInventory
+      : savedCharacterData && savedCharacterData.equipment
+      ? savedCharacterData.equipment
+      : getInventory(classSelection, abilityScores[CON])
   );
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(
-      abilityScores[DEX],
-      equipment.characterEquipmentString,
-      classSelection
-    )
+    getArmorClass(abilityScores[DEX], classSelection, savedCharacterData)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -172,7 +173,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         languages={languages}
         spells={spells}
-        equipment={equipment}
         includeKnaveSpells={includeKnaveSpells}
       />
 
@@ -200,33 +200,6 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         segmentIcon={<GiScrollUnfurled />}
         segmentDisplayName={"Traits"}
         segmentData={<TraitsContainer>{traits}</TraitsContainer>}
-        collapse={segmentVisibility}
-        setCollapse={setSegmentVisibility}
-      />
-
-      {/**
-       *
-       * WIP NEW Equipment Segment
-       *
-       * Add ternaries for old header and old segment data,
-       * will need a util to check for older permalink.
-       *
-       * */}
-      <Segment
-        segmentIcon={<GiKnapsack />}
-        segmentName={"Equipment"}
-        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
-          abilityScores[CON] > 10 ? abilityScores[CON] : 10
-        } slots)`}
-        segmentData={
-          <>
-            <InventoryImpl inventory={savedCharacterInventory} />
-            <GoldText>
-              † 160 coins can be contained in 1 slot, provided you have a
-              container for them.
-            </GoldText>
-          </>
-        }
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
       />
@@ -338,20 +311,56 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* Equipment Segment */}
+      {/* Inventory Segment */}
       <Segment
         segmentIcon={<GiKnapsack />}
-        segmentName={"Equipment"}
-        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
-          abilityScores[CON] > 10 ? abilityScores[CON] : 10
-        } slots)`}
+        segmentName={"Inventory"}
+        segmentDisplayName={
+          savedCharacterInventory
+            ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : !savedCharacterData
+            ? `Inventory (${getInventorySlotsUsed(inventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : `Inventory (${savedCharacterData.equipment.slotsToFill}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+          // savedCharacterInventory
+          //   ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
+          //       abilityScores[CON] > 10 ? abilityScores[CON] : 10
+          //     } slots)`
+          //   : savedCharacterData
+          //   ? `Inventory (${savedCharacterData.equipment.slotsToFill}/${
+          //       abilityScores[CON] > 10 ? abilityScores[CON] : 10
+          //     } slots)`
+          //   : "ERROR"
+        }
         segmentData={
           <>
-            <Equipment
-              dangerouslySetInnerHTML={createMarkup(
-                equipment.characterEquipmentString
-              )}
-            />
+            {/* {savedCharacterInventory ? (
+              <InventoryImpl inventory={savedCharacterInventory} />
+            ) : savedCharacterData ? (
+              <Equipment
+                dangerouslySetInnerHTML={createMarkup(
+                  savedCharacterData.equipment.characterEquipmentString
+                )}
+              />
+            ) : (
+              "ERROR"
+            )} */}
+            {savedCharacterInventory ? (
+              <InventoryImpl inventory={savedCharacterInventory} />
+            ) : !savedCharacterData ? (
+              <InventoryImpl inventory={inventory} />
+            ) : (
+              <Equipment
+                dangerouslySetInnerHTML={createMarkup(
+                  savedCharacterData.equipment.characterEquipmentString
+                )}
+              />
+            )}
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a
               container for them.
@@ -589,7 +598,7 @@ const CoinConversionsTable = styled.div`
   background-size: 24rem 8rem;
 `;
 
-const StyledCreatedCharacter = styled(CharacterImpl)`
+const StyledCreatedCharacter = styled(CharacterSheetImpl)`
   font-family: "Roboto Mono", monospace;
   background-image: url(${parchment});
   justify-content: center;

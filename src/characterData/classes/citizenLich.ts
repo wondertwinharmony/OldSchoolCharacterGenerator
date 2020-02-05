@@ -1,6 +1,8 @@
+import { sampleSize } from "lodash";
 import React from "react";
 import { GiDeathNote } from "react-icons/gi";
 import { citizenLichEquipment } from "../equipmentKits/citizenLichEquipment";
+import { Items } from "../items";
 
 export const citizenLich = {
   name: "Citizen Lich",
@@ -32,4 +34,32 @@ export const citizenLich = {
   abilitiesSummary:
     "Arcane Magic, Undead (Quasi-living), Hard to Kill (permanently)",
   spells: "see MagicUser spells"
+};
+
+export const disguiseItems: Items = {
+  disguiseKit: {
+    description: "Disguise Kit",
+    slots: "1"
+  },
+  makeupKit: {
+    description: "Makeup Kit",
+    slots: "1"
+  },
+  cosmeticKit: {
+    description: "Cosmetic Kit",
+    slots: "1"
+  },
+  featurelessFaceMask: {
+    description: `Featureless ${sampleSize([
+      "Gold",
+      "Silver",
+      "Iron",
+      "Copper"
+    ])} Face Mask`,
+    slots: "1"
+  },
+  headScarf: {
+    description: "Headscarf",
+    slots: "1"
+  }
 };

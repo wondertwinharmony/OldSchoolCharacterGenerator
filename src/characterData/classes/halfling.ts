@@ -1,6 +1,7 @@
 import React from "react";
 import { GiHobbitDwelling } from "react-icons/gi";
 import { fighterEquipment } from "../equipmentKits/fighterEquipment";
+import { halflingDwarfDuergarSvirfneblinInventory } from "../equipmentKits/halflingDwarfDuergarSvirfneblinInventory";
 
 export const halfling = {
   name: "Halfling",
@@ -21,6 +22,7 @@ export const halfling = {
     magic: 14
   },
   equipment: fighterEquipment,
+  inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
     "<strong>Combat:</strong> Halflings may use any type of armor, though it must be tailored to their small size. Similarly, they may use any weapon which is appropriate to their stature. They cannot use long bows or two-handed swords.",
     "<strong>Defensive Bonus:</strong> Because they are so small, halflings have a +2 bonus to Armor Class when attacked by creatures greater than human sized.",

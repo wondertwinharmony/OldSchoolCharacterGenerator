@@ -33,7 +33,6 @@ export default function Character() {
           "savedCharacter/1&"
         )
       );
-      console.log("api GET response: ", apiResponse);
       setSavedCharacterInventory(apiResponse.inventory);
       setLoading(false);
     };

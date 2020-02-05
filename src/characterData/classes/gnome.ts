@@ -1,6 +1,7 @@
 import React from "react";
 import { GiWizardFace } from "react-icons/gi";
 import { gnomeEquipment } from "../equipmentKits/gnomeEquipment";
+import { Items } from "../items";
 
 export const gnome = {
   name: "Gnome",
@@ -34,4 +35,51 @@ export const gnome = {
   abilitiesSummary:
     "Arcane Magic, Defensive Bonus, Detect Construction Tricks, Hiding, Infravision, Listening at Doors, Speak with Burrowing Mammals",
   spells: "see Illusionist spells"
+};
+
+export const burrowingMammals: Items = {
+  praireDog: {
+    description: "Prairie Dog (pet)",
+    slots: "1"
+  },
+  gopher: {
+    description: "Gopher (pet)",
+    slots: "1"
+  },
+  badger: {
+    description: "Badger (pet)",
+    slots: "1"
+  },
+  skunk: {
+    description: "Skunk (pet)",
+    slots: "1"
+  },
+  armadillo: {
+    description: "Armadillo (pet)",
+    slots: "1"
+  },
+  wombat: {
+    description: "Wombat (pet)",
+    slots: "1"
+  },
+  aardvark: {
+    description: "Aardvark (pet)",
+    slots: "1"
+  },
+  mongoose: {
+    description: "Mongoose (pet)",
+    slots: "1"
+  },
+  groundhog: {
+    description: "Groundhog (pet)",
+    slots: "1"
+  },
+  mole: {
+    description: "Mole (pet)",
+    slots: "1"
+  },
+  ferret: {
+    description: "Ferret (pet)",
+    slots: "1"
+  }
 };

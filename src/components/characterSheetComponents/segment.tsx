@@ -59,6 +59,7 @@ const SegmentContainer = styled.div`
 `;
 
 const SegmentHeader = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   font-family: "Sancreek", cursive;
