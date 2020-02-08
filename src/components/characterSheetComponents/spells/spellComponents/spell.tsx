@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 import styled from "styled-components";
 import { CastingMethod } from "../../../../characterData/classes";
 
 interface Props {
   className?: string;
-  addNewItem?: boolean;
   spell: {
     name: string;
     description: string;
@@ -14,18 +13,14 @@ interface Props {
   };
   spellKey?: string;
   castingMethod?: CastingMethod;
-  // classSpells: Spells;
 }
 
 interface ImplProps extends Props {}
 
 const SpellImpl: React.SFC<ImplProps> = ({
   className,
-  // addNewItem,
   spell,
-  // spellKey,
   castingMethod
-  // classSpells
 }) => {
   //   const homeURL =
   //     process.env.NODE_ENV === "development"
@@ -41,7 +36,7 @@ const SpellImpl: React.SFC<ImplProps> = ({
   //   } = useContext(AppContext);
   // const [inputValue, setInputValue] = useState("");
   // const [levelValue, setLevelValue] = useState("1");
-  const [active, setActive] = useState(false);
+  const [prepared, setPrepared] = useState("0");
   const [show, setShow] = useState(false);
 
   // const handleItemSubmit = () => {
@@ -105,13 +100,26 @@ const SpellImpl: React.SFC<ImplProps> = ({
         className={className}
         style={{ display: "flex", alignItems: "center" }}
       >
-        <StyledInput
-          type="radio"
-          onClick={() => setActive(!active)}
-          onChange={() => {}}
-          checked={active}
+        <FormControl
+          style={{ width: "60px" }}
+          onClick={(e: any) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onChange={(e: any) => {
+            e.preventDefault();
+            e.stopPropagation();
+            /**
+             * Make call to update our client side stored
+             * spells here, call spell by key, update number
+             * prepared.
+             */
+            setPrepared(e.target.value);
+          }}
+          value={prepared}
+          type="number"
         />
-        <div onClick={() => setShow(!show)}>
+        <div onClick={() => setShow(!show)} style={{ cursor: "pointer" }}>
           <FontAwesomeIcon
             icon={!show ? "caret-up" : "caret-down"}
             size="lg"
@@ -142,13 +150,8 @@ const SpellImpl: React.SFC<ImplProps> = ({
   );
 };
 
-const StyledInput = styled.input`
-  width: 3rem;
-  height: 25px;
-`;
-
 const SpellDescription = styled.div`
-  padding-left: 3rem;
+  padding-left: 70px;
 `;
 
 const RemoveButtonContainer = styled.div`

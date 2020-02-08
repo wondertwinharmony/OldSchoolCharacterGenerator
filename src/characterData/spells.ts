@@ -4,14 +4,41 @@ import { illusionistSpells } from "./illusionistSpells";
 import { magicUserSpells } from "./magicUserSpells";
 
 export interface Spells {
-  [key: string]: { name: string; description: string; level: string };
+  [key: string]: {
+    name: string;
+    description: string;
+    level: string;
+    levelVariable?: boolean;
+  };
 }
 
+/**
+ * @todo
+ * Drow NEED special handling.
+ * They have access to Light (Darkness) spell
+ * as well as 3rd level Web in addition to normal
+ * cleric spell list.
+ */
 export const newAllSpells = {
   magicUser: magicUserSpells,
   cleric: clericSpells,
   druid: druidSpells,
-  illusionist: illusionistSpells
+  illusionist: illusionistSpells,
+  /**
+   * Drow start with light spell, and get Web at level 3
+   * automatically instead of unlocking ability to learn
+   * Web at level 2 like a magic-user.
+   */
+  drow: {
+    ...clericSpells,
+    lightDarkness: magicUserSpells.lightDarkness,
+    web: {
+      name: "Web",
+      description:
+        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      level: "3"
+    }
+  }
 };
 
 /**

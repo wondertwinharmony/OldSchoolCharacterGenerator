@@ -17,7 +17,7 @@ import { combatActions } from "../../characterData/combatActions";
 import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
 import { Items } from "../../characterData/items";
 import { retainers } from "../../characterData/retainers";
-import { knaveSpellAddendum } from "../../characterData/spells";
+import { knaveSpellAddendum, Spells } from "../../characterData/spells";
 import { weaponQualities } from "../../characterData/weaponQualities";
 import {
   CHA,
@@ -65,10 +65,11 @@ interface Props {
   abilityScores: number[];
   className?: string;
   classSelection: string;
-  includeKnaveSpells: boolean;
+  nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
   savedCharacterInventory?: Items;
   savedCharacterAC?: number;
+  savedCharacterSpells?: Spells;
 }
 
 interface ImplProps extends Props {}
@@ -77,10 +78,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
-  includeKnaveSpells,
+  nonTraditionalSpells,
   savedCharacterData,
   savedCharacterInventory,
-  savedCharacterAC
+  savedCharacterAC,
+  savedCharacterSpells
 }) => {
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
@@ -136,10 +138,12 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Spells
   const [spells] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.spells
-      : getSpells(includeKnaveSpells, classSelection)
+    savedCharacterSpells
+      ? savedCharacterSpells
+      : getSpells(nonTraditionalSpells, classSelection)
   );
+  // Old Spells
+  const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
 
   // Traits
   const [traits] = useState(
@@ -184,9 +188,9 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         abilityScores={abilityScores}
         hitPoints={hitPoints}
         languages={languages}
-        spells={spells}
+        // spells={spells}
         armorClass={armorClass}
-        includeKnaveSpells={includeKnaveSpells}
+        nonTraditionalSpells={nonTraditionalSpells}
       />
 
       {/**
@@ -270,125 +274,62 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       )}
 
       {/* WIP NEW Spells Segment */}
-      {characterClasses[classSelection].spells && (
+      {/**
+       * @todo
+       * Check if character has spells available by level.
+       * E.g. half elf gets spells segment to show up when
+       * they can finally cast spells.
+       */}
+      {characterClasses[classSelection].spellList && (
         <Segment
           segmentIcon={<GiCometSpark />}
           segmentDisplayName={"Spells"}
           segmentData={
-            <SpellsImpl
-              classSelection={classSelection}
-              castingMethod={characterClasses[classSelection].castingMethod}
-              spells={{
-                detectMagic: {
-                  name: "Detect Magic",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "1"
-                },
-                floatingDisc: {
-                  name: "Floating Disc",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "1"
-                },
-                magicMissile: {
-                  name: "Magic Missile",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "1"
-                },
-                shield: {
-                  name: "Shield",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "1"
-                },
-                ventriloquism: {
-                  name: "Ventriloquism",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "1"
-                },
-                continualLight: {
-                  name: "Continual Light (Continual Darkness)",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                },
-                knock: {
-                  name: "Knock",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                },
-                levitate: {
-                  name: "Levitate",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                },
-                locateObject: {
-                  name: "Locate Object",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                },
-                mirrorImage: {
-                  name: "Mirror Image",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                },
-                wizardLock: {
-                  name: "Wizard Lock",
-                  description:
-                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                  level: "2"
-                }
-              }}
-            />
-            // <SpellsContainer>
-            //   {characterClasses[classSelection].spell && (
-            //     <>
-            //       <Spell
-            //         dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-            //       />
-            //       {checkSpell(spells) && <KnaveAddendum
-            //         dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
-            //       />}
-            //     </>
-            //   )}
-            // </SpellsContainer>
-          }
-          collapse={segmentVisibility}
-          setCollapse={setSegmentVisibility}
-        />
-      )}
-
-      {/* Spells Segment */}
-      {characterClasses[classSelection].spells && (
-        <Segment
-          segmentIcon={<GiCometSpark />}
-          segmentDisplayName={"Spells"}
-          segmentData={
-            <SpellsContainer>
-              {characterClasses[classSelection].spells && checkSpell(spells) ? (
-                <>
-                  <Spell
-                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-                  />
-                  <KnaveAddendum
-                    dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
-                  />
-                </>
-              ) : (
-                <>
-                  <Spell
-                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-                  />
-                </>
-              )}
-            </SpellsContainer>
+            savedCharacterSpells ? (
+              <SpellsImpl
+                classSelection={classSelection}
+                castingMethod={characterClasses[classSelection].castingMethod}
+                spells={{
+                  detectMagic: {
+                    name: "Detect Magic",
+                    description:
+                      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                    level: "1"
+                  },
+                  magicMissile: {
+                    name: "Magic Missile",
+                    description:
+                      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                    level: "1"
+                  }
+                }}
+              />
+            ) : spells ? (
+              <SpellsImpl
+                classSelection={classSelection}
+                castingMethod={characterClasses[classSelection].castingMethod}
+                spells={spells}
+              />
+            ) : (
+              <SpellsContainer>
+                {characterClasses[classSelection].spell && oldSpells && (
+                  <>
+                    <Spell
+                      dangerouslySetInnerHTML={createMarkup(
+                        oldSpells.join("\n\n")
+                      )}
+                    />
+                    {checkSpell(spells) && (
+                      <KnaveAddendum
+                        dangerouslySetInnerHTML={createMarkup(
+                          knaveSpellAddendum
+                        )}
+                      />
+                    )}
+                  </>
+                )}
+              </SpellsContainer>
+            )
           }
           collapse={segmentVisibility}
           setCollapse={setSegmentVisibility}

@@ -61,6 +61,7 @@ export interface characterClass {
   spells?: string;
   castingMethod?: CastingMethod;
   spellList?: SpellList;
+  spellMatrix?: number[][];
   clericTurn?: string;
   paladinTurn?: string;
   thiefSkills?: string[];

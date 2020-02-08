@@ -18,9 +18,9 @@ interface Props {
   abilityScores: number[];
   hitPoints: number;
   languages: string;
-  spells: string[];
+  // spells: string[];
   armorClass: number;
-  includeKnaveSpells: boolean;
+  nonTraditionalSpells: boolean;
 }
 
 /**
@@ -34,11 +34,13 @@ const Permalink: React.SFC<Props> = ({
   abilityScores,
   hitPoints,
   languages,
-  spells,
+  // spells,
   armorClass,
-  includeKnaveSpells
+  nonTraditionalSpells
 }) => {
-  const { savedCharacterInventory } = useContext(AppContext);
+  const { savedCharacterInventory, savedCharacterSpells } = useContext(
+    AppContext
+  );
   let history = useHistory();
   let match = useRouteMatch("/generatedCharacter/:character/");
 
@@ -50,8 +52,8 @@ const Permalink: React.SFC<Props> = ({
       abilityScores,
       hitPoints,
       languages,
-      spells,
-      includeKnaveSpells
+      // spells,
+      nonTraditionalSpells
     );
 
     const longLink =
@@ -66,6 +68,7 @@ const Permalink: React.SFC<Props> = ({
       permaLink: permaLink,
       inventory: savedCharacterInventory,
       AC: armorClass,
+      spells: savedCharacterSpells,
       httpMethod: "POST"
     };
 

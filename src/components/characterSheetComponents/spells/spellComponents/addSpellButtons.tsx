@@ -6,7 +6,6 @@ interface Props {
   className?: string;
   disabled: boolean;
   handleSubmit: () => void;
-  //   handleCancel: () => void;
 }
 
 interface ImplProps extends Props {}
@@ -15,17 +14,12 @@ const AddSpellButtonsImpl: React.SFC<ImplProps> = ({
   className,
   disabled,
   handleSubmit
-  //   handleCancel
 }) => {
   return (
     <ButtonDropdownItem className={className}>
       <ButtonContainer>
         <Button
           onClick={(e: any) => {
-            /**
-             * If no input value or slot value, we
-             * stop event propagation here.
-             */
             if (disabled) {
               e.preventDefault();
               e.stopPropagation();

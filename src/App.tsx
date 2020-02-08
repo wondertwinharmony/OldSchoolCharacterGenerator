@@ -84,8 +84,8 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   const {
     setAbilityScores,
     abilityScores,
-    setKnaveSpells,
-    includeKnaveSpells,
+    setNonTraditionalSpells,
+    nonTraditionalSpells,
     setClassSelection,
     classSelection,
     setSavedCharacterData,
@@ -139,9 +139,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
               </RollButton>
             </RerollAbilityScoresContainer>
             <KnaveSpellOptionsContainer
-              onClick={() => setKnaveSpells(!includeKnaveSpells)}
+              onClick={() => setNonTraditionalSpells(!nonTraditionalSpells)}
             >
-              {includeKnaveSpells ? (
+              {nonTraditionalSpells ? (
                 <MdCheckBox size="1.5em" />
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
@@ -163,7 +163,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                     onClick={() => {
                       setClassSelection(classOptionKey);
                       history.push(
-                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`
+                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${nonTraditionalSpells}`
                       );
                     }}
                   >

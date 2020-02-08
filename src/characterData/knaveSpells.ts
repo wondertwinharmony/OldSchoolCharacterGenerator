@@ -4,7 +4,8 @@ export const knaveSpells: Spells = {
   adhere: {
     name: "Adhere",
     description: "",
-    level: "1"
+    level: "1",
+    levelVariable: true
   }
 };
 

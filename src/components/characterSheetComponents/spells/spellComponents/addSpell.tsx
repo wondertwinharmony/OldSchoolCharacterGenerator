@@ -4,14 +4,16 @@ import { Button, Dropdown } from "react-bootstrap";
 import styled from "styled-components";
 import AppContext from "../../../../AppContext";
 import { characterClasses } from "../../../../characterData/classes";
+import { knaveSpells } from "../../../../characterData/knaveSpells";
 import { newAllSpells } from "../../../../characterData/spells";
-import InputContainerImpl from "../../inventory/inventoryItemComponents/inputContainer";
 import AddSpellButtonsImpl from "./addSpellButtons";
+import SpellInputContainerImpl from "./spellInputContainer";
 
-interface Spell {
+export interface Spell {
   name: string;
   description: string;
   level: string;
+  levelVariable?: boolean;
 }
 
 interface Props {
@@ -30,20 +32,33 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
   //   const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
   const {
+    nonTraditionalSpells,
     savedCharacterData
     // savedCharacterInventory,
     // setSavedCharacterInventory
   } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
   const [levelValue, setLevelValue] = useState("1");
+  const [levelDisabled, setLevelDisabled] = useState(true);
   const [show, setShow] = useState(false);
 
   const handleItemClick = (spell: Spell) => {
     setInputValue(spell.name);
     setLevelValue(spell.level);
+    if (spell.levelVariable) {
+      setLevelDisabled(false);
+    } else {
+      setLevelDisabled(true);
+    }
   };
 
   const handleSubmit = () => {
+    /**
+     * We will never™️ submit divine spell caster
+     * lists to db, since the spells available to
+     * them never fluctuate like a wizard with
+     * a spellbook will.
+     */
     // const itemId = shortid.generate();
     // setSavedCharacterInventory({
     //   ...savedCharacterInventory,
@@ -64,9 +79,18 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
 
   if (!classSelectionSpellList) return null;
 
-  const classSpells = newAllSpells[classSelectionSpellList];
+  let classSpells = newAllSpells[classSelectionSpellList];
 
-  //   const filteredAndClassSpells = Object.keys(classSpells);
+  if (nonTraditionalSpells) {
+    classSpells = { ...classSpells, ...knaveSpells };
+  }
+
+  /**
+   * @todo
+   * Could be good to filter available spells in this list by
+   * the levels of spells available to the characte depending
+   * on their current level.
+   */
   const filteredAndClassSpells = Object.keys(classSpells)
     .filter(spell =>
       classSpells[spell].name.toLowerCase().includes(inputValue.toLowerCase())
@@ -85,15 +109,23 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
   const inputMatchesValidSpell = Object.keys(classSpells).find(
     spell => classSpells[spell].name === inputValue
   );
+  console.log("savedCharacterData? ", savedCharacterData);
   return (
     <Dropdown
       className={className}
       onToggle={() => {
-        if (savedCharacterData) {
-          //   setInputValue(inventoryItem ? inventoryItem.description : "");
-          //   setLevelValue(inventoryItem ? inventoryItem.slots : "1");
-          setShow(!show);
-        }
+        /**
+         * If we are renabling this, we need to make sure
+         * we hide all the other checks required for managing
+         * state etc. that NEED the character to be permalinked first,
+         * think like how we handled inventory, we don't do anything
+         * to modify inventory until that character is saved FIRST.
+         */
+        // if (savedCharacterData) {
+        setInputValue("");
+        setLevelValue("1");
+        setShow(!show);
+        // }
       }}
     >
       <Dropdown.Toggle as={AddNewSpellToggle} id="spell-dropdown">
@@ -109,11 +141,12 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
 
       {show && (
         <DropdownMenu>
-          <InputContainerImpl
+          <SpellInputContainerImpl
             inputValue={inputValue}
             setInputValue={setInputValue}
-            slotValue={levelValue}
-            setSlotValue={setLevelValue}
+            levelValue={levelValue}
+            setLevelValue={setLevelValue}
+            levelDisabled={levelDisabled}
           />
           <AddSpellButtonsImpl
             disabled={
