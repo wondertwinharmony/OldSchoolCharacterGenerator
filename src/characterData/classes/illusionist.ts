@@ -1,10 +1,13 @@
 import React from "react";
 import { GiPointyHat } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { illusionistInventory } from "../equipmentKits/illusionistInventory";
 
 export const illusionist = {
   name: "Illusionist",
   icon: React.createElement(GiPointyHat, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "illusionist" as SpellList,
   /**
    * Homebrew, minimum DEX 9 for illusionist seems
    * kind of silly - so ignoring! Same for prime

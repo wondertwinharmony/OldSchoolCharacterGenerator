@@ -1,11 +1,14 @@
 import React from "react";
 import { GiLaserSparks, GiRadialBalance } from "react-icons/gi";
 import wildMagicUserWildSurgesTable from "../../static/wildMagicUserWildSurgesTable.png";
+import { CastingMethod, SpellList } from "../classes";
 import { magicUserInventory } from "../equipmentKits/magicUserInventory";
 
 export const wildMagicUser = {
   name: "Wild Magic-User",
   icon: React.createElement(GiRadialBalance, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
   skillsIcon: React.createElement(GiLaserSparks, {}),
   skillsTable: React.createElement("img", {
     src: wildMagicUserWildSurgesTable,

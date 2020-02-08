@@ -30,6 +30,15 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * - [] Track Equipment
  * - [] Track Equipment NOT on character
  * - [] Track GP NOT on character
+ * - [] Resurrection Tracker starting with default character CON, so resurrections
+ * can be tracked downward
+ * - [] "Stored Inventory" segment. Add button to "Inventory" segment that
+ * says "Store Item", and "Store Inventory" segment will have button that
+ * says "Equip Item" - handling this with animals will be more interesting
+ * and difficult -> we may need another dropdown to choose a target. Maybe
+ * instead we just call this "Move Item" and provide viable targets to send
+ * item to?
+ *
  * Low Priority
  * - [] Kill/Delete Permanently button (modal, are you sure, no way to undo this
  * message to user as it will remove from DB)

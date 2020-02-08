@@ -1,10 +1,13 @@
 import React from "react";
 import { GiSpikedMace } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { clericInventory } from "../equipmentKits/clericInventory";
 
 export const cleric = {
   name: "Cleric",
   icon: React.createElement(GiSpikedMace, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "cleric" as SpellList,
   requirements: "None",
   primeRequisite: "WIS",
   hitDice: "1d6",

@@ -1,3 +1,19 @@
+import { clericSpells } from "./clericSpells";
+import { druidSpells } from "./druidSpells";
+import { illusionistSpells } from "./illusionistSpells";
+import { magicUserSpells } from "./magicUserSpells";
+
+export interface Spells {
+  [key: string]: { name: string; description: string; level: string };
+}
+
+export const newAllSpells = {
+  magicUser: magicUserSpells,
+  cleric: clericSpells,
+  druid: druidSpells,
+  illusionist: illusionistSpells
+};
+
 /**
  * Basic Magic-User Level One Spells
  */
@@ -21,7 +37,7 @@ export const readMagicSpell =
 /**
  * Basic Illusionist Level One Spells
  */
-export const illusionistSpells = [
+export const oldIllusionistSpells = [
   "<strong>Auditory Illusion</strong><br><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> 240'<br><br>A sound of the caster’s choosing is conjured, emanating from a point anywhere within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Motion:</strong> The sound may move as long as it remains within range.<br><br>• <strong>Change:</strong> The sound may change and evolve over the course of the duration as the caster wishes.<br><br>• <strong>Maximum volume:</strong> The volume of the sound is limited by the caster’s level: a maximum of approximately four humans shouting per experience level. (For example, a horde of rats is equal to 8 humans, a lion roaring is equal to 16 humans, or a dragon roaring is equal to 24 or more humans.)</div>",
   "<strong>Chromatic Orb</strong><br><strong>Duration:</strong> instant<br><strong>Range:</strong> 60'<br><br>This spell conjures an orb of pure color that shoots towards a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Color:</strong> The caster may conjure an orb of one of the colors listed on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>, depending on their experience level and the gems available.<br><br>• <strong>Gemstone:</strong> The color orb is created by refracting and amplifying the pure hue and intrinsic properties of a gemstone, which must be in the caster’s possession. Casting <i>chromatic orb</i> does not cause the gemstone to be consumed.<br><br>• <strong>Value:</strong> The gem to be used must be of a certain minimum value (also indicated on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>).<br><br>• <strong>Hit:</strong> The orb hits unerringly, inflicting damage on the target and another effect that depends on its color.</div>",
   "<strong>Color Spray</strong><br><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div>",

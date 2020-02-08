@@ -1,10 +1,13 @@
 import React from "react";
 import { GiElfHelmet } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const elf = {
   name: "Elf",
   icon: React.createElement(GiElfHelmet, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
   requirements: "Minimum INT 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",

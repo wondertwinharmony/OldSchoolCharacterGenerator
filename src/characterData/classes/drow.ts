@@ -1,10 +1,13 @@
 import React from "react";
 import { GiMaskedSpider } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { drowInventory } from "../equipmentKits/drowInventory";
 
 export const drow = {
   name: "Drow",
   icon: React.createElement(GiMaskedSpider, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "cleric" as SpellList,
   requirements: "Minimum INT 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d6",

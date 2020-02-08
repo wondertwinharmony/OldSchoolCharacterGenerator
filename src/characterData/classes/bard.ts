@@ -1,10 +1,13 @@
 import React from "react";
 import { GiLyre } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { bardInventory } from "../equipmentKits/bardInventory";
 
 export const bard = {
   name: "Bard",
   icon: React.createElement(GiLyre, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "druid" as SpellList,
   requirements: "Minimum DEX 9 and INT 9",
   primeRequisite: "CHA",
   hitDice: "1d6",

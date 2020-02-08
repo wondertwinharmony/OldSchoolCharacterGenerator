@@ -1,11 +1,14 @@
 import React from "react";
 import { GiWizardFace } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { gnomeInventory } from "../equipmentKits/gnomeInventory";
 import { Items } from "../items";
 
 export const gnome = {
   name: "Gnome",
   icon: React.createElement(GiWizardFace, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "illusionist" as SpellList,
   requirements: "Minimum CON 9",
   primeRequisite: "DEX and INT",
   hitDice: "1d4",

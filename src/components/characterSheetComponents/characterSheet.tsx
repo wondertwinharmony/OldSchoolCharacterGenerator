@@ -59,6 +59,7 @@ import InventoryImpl from "./inventory/inventory";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
 import Segment from "./segment";
+import SpellsImpl from "./spells/spells";
 
 interface Props {
   abilityScores: number[];
@@ -262,6 +263,102 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
               )}
               <ClericTurnResultsTable />
             </TurnUndeadContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
+      )}
+
+      {/* WIP NEW Spells Segment */}
+      {characterClasses[classSelection].spells && (
+        <Segment
+          segmentIcon={<GiCometSpark />}
+          segmentDisplayName={"Spells"}
+          segmentData={
+            <SpellsImpl
+              classSelection={classSelection}
+              castingMethod={characterClasses[classSelection].castingMethod}
+              spells={{
+                detectMagic: {
+                  name: "Detect Magic",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "1"
+                },
+                floatingDisc: {
+                  name: "Floating Disc",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "1"
+                },
+                magicMissile: {
+                  name: "Magic Missile",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "1"
+                },
+                shield: {
+                  name: "Shield",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "1"
+                },
+                ventriloquism: {
+                  name: "Ventriloquism",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "1"
+                },
+                continualLight: {
+                  name: "Continual Light (Continual Darkness)",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                },
+                knock: {
+                  name: "Knock",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                },
+                levitate: {
+                  name: "Levitate",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                },
+                locateObject: {
+                  name: "Locate Object",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                },
+                mirrorImage: {
+                  name: "Mirror Image",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                },
+                wizardLock: {
+                  name: "Wizard Lock",
+                  description:
+                    "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                  level: "2"
+                }
+              }}
+            />
+            // <SpellsContainer>
+            //   {characterClasses[classSelection].spell && (
+            //     <>
+            //       <Spell
+            //         dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
+            //       />
+            //       {checkSpell(spells) && <KnaveAddendum
+            //         dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
+            //       />}
+            //     </>
+            //   )}
+            // </SpellsContainer>
           }
           collapse={segmentVisibility}
           setCollapse={setSegmentVisibility}

@@ -38,6 +38,9 @@ export const saves = {
   magic: "Spells/Rods/Staves"
 };
 
+export type CastingMethod = "arcane" | "divine";
+export type SpellList = "magicUser" | "cleric" | "illusionist" | "druid";
+
 export interface characterClass {
   name: string;
   icon?: JSX.Element;
@@ -56,6 +59,8 @@ export interface characterClass {
   abilities?: string[];
   abilitiesSummary: string;
   spells?: string;
+  castingMethod?: CastingMethod;
+  spellList?: SpellList;
   clericTurn?: string;
   paladinTurn?: string;
   thiefSkills?: string[];

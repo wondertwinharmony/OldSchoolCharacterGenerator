@@ -1,10 +1,13 @@
 import React from "react";
 import { GiSpellBook } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { magicUserInventory } from "../equipmentKits/magicUserInventory";
 
 export const magicUser = {
   name: "Magic-User",
   icon: React.createElement(GiSpellBook, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
   requirements: "None",
   primeRequisite: "INT",
   hitDice: "1d4",

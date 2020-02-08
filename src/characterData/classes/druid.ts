@@ -1,10 +1,13 @@
 import React from "react";
 import { GiWizardStaff } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { druidInventory } from "../equipmentKits/druidInventory";
 
 export const druid = {
   name: "Druid",
   icon: React.createElement(GiWizardStaff, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "druid" as SpellList,
   requirements: "None",
   primeRequisite: "WIS",
   hitDice: "1d6",

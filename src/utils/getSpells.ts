@@ -1,7 +1,7 @@
 import { sampleSize } from "lodash";
 import {
-  illusionistSpells,
   knaveSpells,
+  oldIllusionistSpells,
   readMagicSpell,
   spells
 } from "../characterData/spells";
@@ -35,7 +35,7 @@ export const getSpells = (
    * do NOT get a chance for a knave spell.
    */
   if (classSelection === "illusionist" || classSelection === "gnome") {
-    let randomSpell = sampleSize(illusionistSpells, 1);
+    let randomSpell = sampleSize(oldIllusionistSpells, 1);
     randomSpell.push(readMagicSpell);
     return randomSpell;
   }

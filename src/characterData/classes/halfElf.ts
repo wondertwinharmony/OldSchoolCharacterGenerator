@@ -1,10 +1,13 @@
 import React from "react";
 import { GiZeusSword } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const halfElf = {
   name: "Half-Elf",
   icon: React.createElement(GiZeusSword, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
   requirements: "Minimum CHA and CON 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",
