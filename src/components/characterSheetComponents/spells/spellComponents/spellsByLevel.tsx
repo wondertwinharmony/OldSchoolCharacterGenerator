@@ -6,8 +6,10 @@ import SpellImpl from "./spell";
 
 interface Props {
   className?: string;
-  spellsByLevel: any;
+  spellsForLevelKeys: string[];
+  spells: any;
   spellLevel?: number;
+  spellsKnown: number;
   castingMethod?: CastingMethod;
 }
 
@@ -15,35 +17,49 @@ interface ImplProps extends Props {}
 
 const SpellsByLevelImpl: React.SFC<ImplProps> = ({
   className,
-  spellsByLevel,
+  spellsForLevelKeys,
+  spells,
   spellLevel,
+  spellsKnown,
   castingMethod
 }) => {
   const [showSpells, setShowSpells] = useState(true);
+  let preparedCount = 0;
+  spellsForLevelKeys.forEach((spellKey: string) => {
+    preparedCount = preparedCount + spells[spellKey].preparedCount;
+  });
+  const hasSpellsForThisLevel = spellsForLevelKeys.length > 0;
   return (
     <div className={className}>
-      <LevelHeader onClick={() => setShowSpells(!showSpells)}>
-        <PreparedText>{`0/3`}</PreparedText>
+      <LevelHeader
+        style={hasSpellsForThisLevel ? { cursor: "pointer" } : {}}
+        onClick={() => {
+          hasSpellsForThisLevel && setShowSpells(!showSpells);
+        }}
+      >
+        <PreparedText>{`0/${spellsKnown}`}</PreparedText>
         <LevelText>{`Level ${spellLevel} Spells`}</LevelText>
-        <FontAwesomeIcon
-          icon={showSpells ? "caret-up" : "caret-down"}
-          size="2x"
-          style={{ margin: "0 0.5rem" }}
-        />
+        {hasSpellsForThisLevel && (
+          <FontAwesomeIcon
+            icon={showSpells ? "caret-up" : "caret-down"}
+            size="2x"
+            style={{ margin: "0 0.5rem" }}
+          />
+        )}
       </LevelHeader>
       <Divider />
       {showSpells &&
-        spellsByLevel.map((spellByLevel: any) => {
+        spellsForLevelKeys.map((spellKey: string) => {
           /**
            * While iterating here we'll want to check a
            * property on each spell that is client state tracked
            * and add them. Then put them in header.
            */
           return (
-            <div key={spellByLevel.name}>
+            <div key={spells[spellKey].name}>
               <SpellImpl
-                spellKey={spellByLevel}
-                spell={spellByLevel}
+                spellKey={spellKey}
+                spell={spells[spellKey]}
                 castingMethod={castingMethod}
               />
               <Divider />
@@ -58,7 +74,6 @@ const LevelHeader = styled.div`
   display: flex;
   font-family: "Sancreek", cursive;
   align-items: center;
-  cursor: pointer;
 `;
 
 const PreparedText = styled.div`
@@ -69,7 +84,7 @@ const PreparedText = styled.div`
 
 const LevelText = styled.div`
   font-size: 20px;
-  width: 120px;
+  width: 130px;
 `;
 
 const Divider = styled.div`

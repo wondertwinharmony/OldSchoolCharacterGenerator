@@ -4,6 +4,7 @@ export const illusionistSpells: Spells = {
   adhere: {
     name: "",
     description: "",
-    level: "1"
+    level: "1",
+    preparedCount: 0
   }
 };

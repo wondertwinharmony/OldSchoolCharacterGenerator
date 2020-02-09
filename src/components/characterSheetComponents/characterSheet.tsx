@@ -177,6 +177,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
 
+  /**
+   * hardcoded character level for now
+   */
+  const characterLevel = 6;
+  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
+  const levelSpellMatrixIndex = characterLevel - 1;
+
   return (
     <div className={className}>
       {/* Permalink Button and Bookmark Message */}
@@ -280,61 +287,74 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
        * E.g. half elf gets spells segment to show up when
        * they can finally cast spells.
        */}
-      {characterClasses[classSelection].spellList && (
-        <Segment
-          segmentIcon={<GiCometSpark />}
-          segmentDisplayName={"Spells"}
-          segmentData={
-            savedCharacterSpells ? (
-              <SpellsImpl
-                classSelection={classSelection}
-                castingMethod={characterClasses[classSelection].castingMethod}
-                spells={{
-                  detectMagic: {
-                    name: "Detect Magic",
-                    description:
-                      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                    level: "1"
-                  },
-                  magicMissile: {
-                    name: "Magic Missile",
-                    description:
-                      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                    level: "1"
+      {characterSpellMatrix &&
+        characterSpellMatrix[levelSpellMatrixIndex][0] >= 1 && (
+          <Segment
+            segmentIcon={<GiCometSpark />}
+            segmentDisplayName={"Spells"}
+            segmentData={
+              savedCharacterSpells ? (
+                <SpellsImpl
+                  classSelection={classSelection}
+                  castingMethod={characterClasses[classSelection].castingMethod}
+                  spells={{
+                    detectMagic: {
+                      name: "Detect Magic",
+                      description:
+                        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                      level: "1",
+                      preparedCount: 0
+                    },
+                    magicMissile: {
+                      name: "Magic Missile",
+                      description:
+                        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+                      level: "1",
+                      preparedCount: 0
+                    }
+                  }}
+                  spellsMatrix={
+                    characterSpellMatrix &&
+                    characterSpellMatrix[levelSpellMatrixIndex]
                   }
-                }}
-              />
-            ) : spells ? (
-              <SpellsImpl
-                classSelection={classSelection}
-                castingMethod={characterClasses[classSelection].castingMethod}
-                spells={spells}
-              />
-            ) : (
-              <SpellsContainer>
-                {characterClasses[classSelection].spell && oldSpells && (
-                  <>
-                    <Spell
-                      dangerouslySetInnerHTML={createMarkup(
-                        oldSpells.join("\n\n")
-                      )}
-                    />
-                    {checkSpell(spells) && (
-                      <KnaveAddendum
+                  characterLevel={characterLevel}
+                />
+              ) : spells ? (
+                <SpellsImpl
+                  classSelection={classSelection}
+                  castingMethod={characterClasses[classSelection].castingMethod}
+                  spells={spells}
+                  spellsMatrix={
+                    characterSpellMatrix &&
+                    characterSpellMatrix[levelSpellMatrixIndex]
+                  }
+                  characterLevel={characterLevel}
+                />
+              ) : (
+                <SpellsContainer>
+                  {characterClasses[classSelection].spell && oldSpells && (
+                    <>
+                      <Spell
                         dangerouslySetInnerHTML={createMarkup(
-                          knaveSpellAddendum
+                          oldSpells.join("\n\n")
                         )}
                       />
-                    )}
-                  </>
-                )}
-              </SpellsContainer>
-            )
-          }
-          collapse={segmentVisibility}
-          setCollapse={setSegmentVisibility}
-        />
-      )}
+                      {checkSpell(spells) && (
+                        <KnaveAddendum
+                          dangerouslySetInnerHTML={createMarkup(
+                            knaveSpellAddendum
+                          )}
+                        />
+                      )}
+                    </>
+                  )}
+                </SpellsContainer>
+              )
+            }
+            collapse={segmentVisibility}
+            setCollapse={setSegmentVisibility}
+          />
+        )}
 
       {/* Character Skills Segment */}
       {characterClasses[classSelection][

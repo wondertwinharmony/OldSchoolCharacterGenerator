@@ -9,6 +9,7 @@ export interface Spells {
     description: string;
     level: string;
     levelVariable?: boolean;
+    preparedCount: number;
   };
 }
 
@@ -31,12 +32,12 @@ export const newAllSpells = {
    */
   drow: {
     ...clericSpells,
-    lightDarkness: magicUserSpells.lightDarkness,
     web: {
       name: "Web",
       description:
         "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-      level: "3"
+      level: "3",
+      preparedCount: 0
     }
   }
 };

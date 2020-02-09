@@ -8,6 +8,18 @@ export const drow = {
   icon: React.createElement(GiMaskedSpider, {}),
   castingMethod: "divine" as CastingMethod,
   spellList: "cleric" as SpellList,
+  spellMatrix: [
+    [1, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0],
+    [2, 1, 0, 0, 0],
+    [2, 2, 0, 0, 0],
+    [2, 2, 1, 0, 0],
+    [2, 2, 2, 1, 0],
+    [3, 3, 2, 2, 1],
+    [3, 3, 3, 2, 2],
+    [4, 4, 3, 3, 2],
+    [4, 4, 4, 3, 3]
+  ],
   requirements: "Minimum INT 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d6",

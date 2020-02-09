@@ -1,4 +1,5 @@
 import React from "react";
+import shortid from "shortid";
 import styled from "styled-components";
 import { CastingMethod } from "../../../characterData/classes";
 import { Spells } from "../../../characterData/spells";
@@ -9,40 +10,34 @@ interface Props {
   className?: string;
   classSelection: string;
   spells: Spells;
+  spellsMatrix?: number[];
   castingMethod?: CastingMethod;
+  characterLevel: number;
 }
-
-// [
-//     [1, 0, 0, 0, 0, 0],
-//     [2, 0, 0, 0, 0, 0],
-//     [2, 1, 0, 0, 0, 0],
-//     [2, 2, 0, 0, 0, 0],
-//     [2, 2, 1, 0, 0, 0],
-//     [2, 2, 2, 0, 0, 0],
-//     [3, 2, 2, 1, 0, 0],
-//     [3, 3, 2, 2, 0, 0],
-//     [3, 3, 3, 2, 1, 0],
-//     [3, 3, 3, 3, 2, 0],
-//     [4, 3, 3, 3, 2, 1],
-//     [4, 4, 3, 3, 3, 2],
-//     [4, 4, 4, 3, 3, 3],
-//     [4, 4, 4, 4, 3, 3]
-//   ],
 
 interface ImplProps extends Props {}
 
 /**
  * Next steps:
- * - [] mockup cleric data to test Drow and Cleric
- * - [] use the spellsMatrix to iterate over spell headers - and whether
+ * - [x] mockup cleric data to test Drow and Cleric
+ * - [x] technicall drow start with light at level one,
+ * this changes to be all cleric spells as they level - don't care, just yell at player
+ * - [x] use the spellsMatrix to iterate over spell headers - and whether
  * to show the spell segment (simple do a level check for the position in the
  * array, 0 means its not there, this will work for even half-elf eg at
  * level 3 they get their first level one spell, therefore the segment should
  * always just check presence of level one spell)
- * - [] implement HARDCODED FOR NOW level tracking using matrix above for
+ * - [x] implement HARDCODED FOR NOW level tracking using matrix above for
  * classes to determine how many spell headers to display
  * as well as number of spells available to prepare/level
- * - [] mockup magic user data to test same as previous
+ * - [x] mockup magic user data to test same as previous
+ * - [] handle permalink of set client state for spells -> this will NOT push
+ * arcane spells yet, but will store both arcane and divine user spells in a client
+ * side object (we will handle push later). Once that is done then we will update number prepared
+ * on the spells in that list.
+ * - [] figure out why non trad spells checkbox is misbehaving and closing toggle
+ * now, it wasn't before -> possibly occurring because we are updaing app context
+ * instead of local state?
  * - [] MU vs Divine -> if Divine should show all spells all the time
  *
  * - [x] should levels be collapsible? Makes showing divine ALL
@@ -64,8 +59,11 @@ const SpellsImpl: React.SFC<ImplProps> = ({
   className,
   classSelection,
   castingMethod,
-  spells
+  characterLevel,
+  spells,
+  spellsMatrix
 }) => {
+  if (!spellsMatrix) return null;
   //   const {
   //     savedCharacterData,
   //     savedCharacterInventory,
@@ -76,62 +74,42 @@ const SpellsImpl: React.SFC<ImplProps> = ({
   //     setSavedCharacterInventory(inventory);
   //   }
 
-  const spellsByLevel = Object.keys(spells).sort((itemA, itemB) => {
-    if (spells[itemA].level < spells[itemB].level) {
-      return -1;
-    }
-    if (spells[itemA].level > spells[itemB].level) {
-      return 1;
-    }
-    // Names equal
-    return 0;
-  });
-
-  const getSpellsOrganizedByLevel = () => {
-    const spellsOrganizedByLevel: any = {};
-
-    for (var i = 0; i < spellsByLevel.length; i++) {
-      if (spellsOrganizedByLevel[spells[spellsByLevel[i]].level]) {
-        spellsOrganizedByLevel[spells[spellsByLevel[i]].level].push({
-          name: spells[spellsByLevel[i]].name,
-          description: spells[spellsByLevel[i]].description,
-          level: spells[spellsByLevel[i]].level
-        });
-      } else {
-        spellsOrganizedByLevel[spells[spellsByLevel[i]].level] = [
-          {
-            name: spells[spellsByLevel[i]].name,
-            description: spells[spellsByLevel[i]].description,
-            level: spells[spellsByLevel[i]].level
-          }
-        ];
-      }
-    }
-    return spellsOrganizedByLevel;
-  };
-
-  const spellsOrganizedByLevel = getSpellsOrganizedByLevel();
-
+  const MIN_SPELLS_KNOWN_REQUIRED = 1;
   return (
     <div className={className}>
       {castingMethod === "arcane" && (
         <AddSpellImpl classSelection={classSelection} />
       )}
+      {classSelection === "drow" && characterLevel === 1 && (
+        <DrowSpellText>
+          At 1st level, a drow may only pray for the "Light (Darkness)" spell,
+          but from 2nd level, the character may pray for any spell on the spell
+          list.
+        </DrowSpellText>
+      )}
       <Divider />
-      {spellsOrganizedByLevel &&
-        Object.keys(
-          spellsOrganizedByLevel
-        ).map((spellsByLevel: string, index: number) => (
+      {spellsMatrix.map((spellsKnown: number, index: number) => {
+        const spellsForLevelKeys = Object.keys(spells).filter(
+          spell => parseInt(spells[spell].level) === index + 1
+        );
+        return spellsKnown >= MIN_SPELLS_KNOWN_REQUIRED ? (
           <SpellsByLevelImpl
-            key={spellsByLevel}
-            spellsByLevel={spellsOrganizedByLevel[spellsByLevel]}
+            key={shortid.generate()}
+            spellsForLevelKeys={spellsForLevelKeys}
+            spells={spells}
             spellLevel={index + 1}
+            spellsKnown={spellsKnown}
             castingMethod={castingMethod}
           />
-        ))}
+        ) : null;
+      })}
     </div>
   );
 };
+
+const DrowSpellText = styled.div`
+  color: red;
+`;
 
 const Divider = styled.div`
   height: 0;

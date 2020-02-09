@@ -66,13 +66,21 @@ const SpellInputContainerImpl: React.SFC<ImplProps> = ({
         {nonTraditionalSpells ? (
           <MdCheckBox
             style={{ cursor: "pointer" }}
-            onClick={() => setNonTraditionalSpells(false)}
+            onClick={(e: any) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setNonTraditionalSpells(false);
+            }}
             size="2.5em"
           />
         ) : (
           <MdCheckBoxOutlineBlank
             style={{ cursor: "pointer" }}
-            onClick={() => setNonTraditionalSpells(true)}
+            onClick={(e: any) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setNonTraditionalSpells(true);
+            }}
             size="2.5em"
           />
         )}
