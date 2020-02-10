@@ -17,7 +17,7 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
  *  * FIXES
- * - [x] Headers need pointer mouse on hover on desktop browser
+ * - none currently
  *
  *  * NEW FEATURES TO CONSIDER
  * High Priority
@@ -26,9 +26,7 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * - [] Track Ability Scores
  * - [] Track XP, and next level (levels stored as array or something)
  * - [] Track Level and Saves (possibly all handled as part of track XP)
- * - [] Track Spells
- * - [] Track Equipment
- * - [] Track Equipment NOT on character
+ * - [] Track Inventory NOT on character
  * - [] Track GP NOT on character
  * - [] Resurrection Tracker starting with default character CON, so resurrections
  * can be tracked downward
@@ -42,6 +40,9 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * Low Priority
  * - [] Kill/Delete Permanently button (modal, are you sure, no way to undo this
  * message to user as it will remove from DB)
+ * - [] More robust spell filtering, maybe only display spells that available
+ * at current level, or allow displaying spells all of a certain level. Maybe
+ * display more details about them as well.
  * - [] Need cool error out display page if anything goes wrong with our app
  * - [] Perhaps always display all classes available, but gray out selection
  *      when requisites not met (maybe highlight requisite as red)

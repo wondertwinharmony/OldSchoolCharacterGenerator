@@ -1,5 +1,5 @@
 import { sample } from "lodash";
-import { newAllSpells } from "../characterData/spells";
+import { allNonTraditionalSpells, newAllSpells } from "../characterData/spells";
 
 /**
  * Utility function that returns a single spell for spellcasting classes.
@@ -14,19 +14,6 @@ export const getSpells = (
   classSelection: string
 ) => {
   let spells = {};
-
-  /**
-   * NEED different handling for divine casters. They have access to
-   * everything, and drow are special.
-   *
-   * This util should give arcane users random starting spells,
-   * And THEN give divine casters their entire spell lists...probably for
-   * EVERY class (e.g half-elf, ranger, paladin, etc.). Then the Spell segment
-   * will reveal more spells by level as the saved character levels up and
-   * unlocks ACCESS to more spells. Every class will get this unlocking feature,
-   * but divine casters will just automatically have a full suite of spells to
-   * select from.
-   */
 
   /**
    * Drow normally have all cleric spells, but also start
@@ -92,7 +79,8 @@ export const getSpells = (
       if (randomNonTraditionalSpell)
         return {
           ...spells,
-          lightDarkness: newAllSpells.magicUser.lightDarkness,
+          [randomNonTraditionalSpell]:
+            allNonTraditionalSpells[randomNonTraditionalSpell],
           readMagic: newAllSpells.magicUser.readMagic
         };
     }
@@ -111,10 +99,10 @@ export const getSpells = (
   }
 
   /**
-   * Defaulting to undefined here for the classes that don't
-   * need spells.
+   * Defaulting to empty spells object here for classes
+   * that get spells at later levels.
    */
-  return undefined;
+  return {};
 };
 
 const magicUserStartOptions: string[] = [
@@ -145,4 +133,75 @@ const illusionistStartOptions: string[] = [
   "wallOfFog"
 ];
 
-const nonTraditionalStartOptions: string[] = ["adhere"];
+const nonTraditionalStartOptions: string[] = [
+  // Knave spells
+  "adhere",
+  "animateObject",
+  "anthropomorphize",
+  "astralPrison",
+  "attract",
+  "babble",
+  "beastForm",
+  "befuddle",
+  "bendFate",
+  "birdPerson",
+  "bodySwap",
+  "catherine",
+  "command",
+  "counterspell",
+  "deafen",
+  "disassemble",
+  "disguise",
+  "displace",
+  "earthquake",
+  "elasticity",
+  "filch",
+  "gate",
+  "gravityShift",
+  "greed",
+  "hatred",
+  "hearWhispers",
+  "icyTouch",
+  "increaseGravity",
+  "invisibleTether",
+  "leap",
+  "liquidAir",
+  "magicDampener",
+  "manse",
+  "marbleMadness",
+  "masquerade",
+  "miniaturize",
+  "mirrorwalk",
+  "multiarm",
+  "nightSphere",
+  "objectify",
+  "oozeForm",
+  "pacify",
+  "phantomCoach",
+  "phobia",
+  "pit",
+  "primevalSurge",
+  "psychometry",
+  "raiseSpirit",
+  "repel",
+  "scry",
+  "shroud",
+  "shuffle",
+  "snailKnight",
+  "sniff",
+  "sort",
+  "spellseize",
+  "spiderClimb",
+  "summonIdol",
+  "swarm",
+  "thaumaturgicAnchor",
+  "timeJump",
+  "timeRush",
+  "timeSlow",
+  "upwell",
+  "ward",
+  "wizardMark",
+  "xrayVision",
+  // Operation Unfathomable spells
+  "magicMissive"
+];

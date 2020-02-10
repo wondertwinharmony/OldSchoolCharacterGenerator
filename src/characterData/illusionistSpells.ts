@@ -5,6 +5,7 @@ export const illusionistSpells: Spells = {
     name: "",
     description: "",
     level: "1",
-    preparedCount: 0
+    preparedCount: 0,
+    levelVariable: false
   }
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
   GiChewedSkull,
@@ -12,12 +12,11 @@ import {
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
+import AppContext from "../../AppContext";
 import { characterClasses } from "../../characterData/classes";
 import { combatActions } from "../../characterData/combatActions";
 import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
-import { Items } from "../../characterData/items";
 import { retainers } from "../../characterData/retainers";
-import { knaveSpellAddendum, Spells } from "../../characterData/spells";
 import { weaponQualities } from "../../characterData/weaponQualities";
 import {
   CHA,
@@ -38,7 +37,6 @@ import parchment from "../../static/parchment.png";
 import turningTableResults from "../../static/turningTableResults.png";
 import turnUndeadTable from "../../static/turnUndeadTable.png";
 import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
-import { checkSpell } from "../../utils/checkSpell";
 import { createMarkup } from "../../utils/createMarkup";
 import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../../utils/getArmorClass";
@@ -67,9 +65,7 @@ interface Props {
   classSelection: string;
   nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
-  savedCharacterInventory?: Items;
   savedCharacterAC?: number;
-  savedCharacterSpells?: Spells;
 }
 
 interface ImplProps extends Props {}
@@ -80,10 +76,19 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   classSelection,
   nonTraditionalSpells,
   savedCharacterData,
-  savedCharacterInventory,
-  savedCharacterAC,
-  savedCharacterSpells
+  savedCharacterAC
 }) => {
+  /**
+   * NOTE!!!
+   * Hardcoded character level for now
+   */
+  const characterLevel = 6;
+  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
+  const levelSpellMatrixIndex = characterLevel - 1;
+
+  const { savedCharacterSpells, savedCharacterInventory } = useContext(
+    AppContext
+  );
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
@@ -138,12 +143,26 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Spells
   const [spells] = useState(
-    savedCharacterSpells
+    savedCharacterSpells && savedCharacterData
       ? savedCharacterSpells
       : getSpells(nonTraditionalSpells, classSelection)
   );
   // Old Spells
   const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
+  // Spell Level Headers
+  const [levelHeadersVisible, setLevelHeadersVisible] = useState(() => {
+    let levelHeaders: { [key: string]: boolean } = {};
+    if (characterSpellMatrix && characterSpellMatrix[levelSpellMatrixIndex]) {
+      characterSpellMatrix[levelSpellMatrixIndex].forEach(
+        (spellsKnown: number, index: number) => {
+          if (spellsKnown >= 1) {
+            levelHeaders[`${index + 1}`] = true;
+          }
+        }
+      );
+    }
+    return levelHeaders;
+  });
 
   // Traits
   const [traits] = useState(
@@ -177,13 +196,6 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
   const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
 
-  /**
-   * hardcoded character level for now
-   */
-  const characterLevel = 6;
-  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
-  const levelSpellMatrixIndex = characterLevel - 1;
-
   return (
     <div className={className}>
       {/* Permalink Button and Bookmark Message */}
@@ -195,7 +207,6 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         abilityScores={abilityScores}
         hitPoints={hitPoints}
         languages={languages}
-        // spells={spells}
         armorClass={armorClass}
         nonTraditionalSpells={nonTraditionalSpells}
       />
@@ -253,8 +264,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       />
 
       {/* Turn Undead Segment - Cleric/Paladin */}
-      {(characterClasses[classSelection].paladinTurn ||
-        characterClasses[classSelection].clericTurn) && (
+      {(classSelection === "paladin" || classSelection === "cleric") && (
         <Segment
           segmentIcon={<GiChewedSkull />}
           segmentName={"TurnUndeadTable"}
@@ -280,9 +290,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* WIP NEW Spells Segment */}
+      {/* Spells Segment */}
       {/**
-       * @todo
        * Check if character has spells available by level.
        * E.g. half elf gets spells segment to show up when
        * they can finally cast spells.
@@ -293,31 +302,18 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
             segmentIcon={<GiCometSpark />}
             segmentDisplayName={"Spells"}
             segmentData={
-              savedCharacterSpells ? (
+              savedCharacterSpells && savedCharacterData ? (
                 <SpellsImpl
                   classSelection={classSelection}
                   castingMethod={characterClasses[classSelection].castingMethod}
-                  spells={{
-                    detectMagic: {
-                      name: "Detect Magic",
-                      description:
-                        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                      level: "1",
-                      preparedCount: 0
-                    },
-                    magicMissile: {
-                      name: "Magic Missile",
-                      description:
-                        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-                      level: "1",
-                      preparedCount: 0
-                    }
-                  }}
+                  spells={savedCharacterSpells}
                   spellsMatrix={
                     characterSpellMatrix &&
                     characterSpellMatrix[levelSpellMatrixIndex]
                   }
                   characterLevel={characterLevel}
+                  levelHeadersVisible={levelHeadersVisible}
+                  setLevelHeadersVisible={setLevelHeadersVisible}
                 />
               ) : spells ? (
                 <SpellsImpl
@@ -329,6 +325,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
                     characterSpellMatrix[levelSpellMatrixIndex]
                   }
                   characterLevel={characterLevel}
+                  levelHeadersVisible={levelHeadersVisible}
+                  setLevelHeadersVisible={setLevelHeadersVisible}
                 />
               ) : (
                 <SpellsContainer>
@@ -339,13 +337,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
                           oldSpells.join("\n\n")
                         )}
                       />
-                      {checkSpell(spells) && (
+                      {/* {checkSpell(oldSpells) && (
                         <KnaveAddendum
                           dangerouslySetInnerHTML={createMarkup(
                             knaveSpellAddendum
                           )}
                         />
-                      )}
+                      )} */}
                     </>
                   )}
                 </SpellsContainer>
@@ -581,11 +579,11 @@ const Spell = styled.div`
   white-space: pre-line;
 `;
 
-const KnaveAddendum = styled.div`
-  padding: 0.5rem;
-  display: block;
-  white-space: pre-line;
-`;
+// const KnaveAddendum = styled.div`
+//   padding: 0.5rem;
+//   display: block;
+//   white-space: pre-line;
+// `;
 
 const Equipment = styled.div`
   padding: 0.5rem;

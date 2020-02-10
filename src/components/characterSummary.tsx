@@ -26,6 +26,7 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
     >
       <div
         style={{
+          cursor: "pointer",
           display: "flex",
           padding: `${isSummaryVisible ? "0.25rem" : ""}`
         }}
@@ -38,44 +39,32 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
         <div style={{ marginRight: "auto", padding: "0.25rem" }}>
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>Hit Dice:</strong> ${
-                characterClasses[classOption].hitDice
-              }`
+              `<strong>Hit Dice:</strong> ${characterClasses[classOption].hitDice}`
             )}
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>Requisite:</strong> ${
-                characterClasses[classOption].primeRequisite
-              }`
+              `<strong>Requisite:</strong> ${characterClasses[classOption].primeRequisite}`
             )}
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>XP to 2nd Level:</strong> ${
-                characterClasses[classOption].xpToSecondLevel
-              }`
+              `<strong>XP to 2nd Level:</strong> ${characterClasses[classOption].xpToSecondLevel}`
             )}
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>Weapons:</strong> ${
-                characterClasses[classOption].allowedWeapons
-              }`
+              `<strong>Weapons:</strong> ${characterClasses[classOption].allowedWeapons}`
             )}
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>Armor:</strong> ${
-                characterClasses[classOption].allowedArmor
-              }`
+              `<strong>Armor:</strong> ${characterClasses[classOption].allowedArmor}`
             )}
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>Abilities:</strong> ${
-                characterClasses[classOption].abilitiesSummary
-              }`
+              `<strong>Abilities:</strong> ${characterClasses[classOption].abilitiesSummary}`
             )}
           />
         </div>

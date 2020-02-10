@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { Button, FormControl } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button } from "react-bootstrap";
+import { FaRegMinusSquare, FaRegPlusSquare } from "react-icons/fa";
 import styled from "styled-components";
+import { put } from "../../../../api/put";
+import AppContext from "../../../../AppContext";
 import { CastingMethod } from "../../../../characterData/classes";
 
 interface Props {
@@ -10,8 +13,10 @@ interface Props {
     name: string;
     description: string;
     level: string;
+    levelVariable: boolean;
+    preparedCount: number;
   };
-  spellKey?: string;
+  spellKey: string;
   castingMethod?: CastingMethod;
 }
 
@@ -20,79 +25,40 @@ interface ImplProps extends Props {}
 const SpellImpl: React.SFC<ImplProps> = ({
   className,
   spell,
+  spellKey,
   castingMethod
 }) => {
-  //   const homeURL =
-  //     process.env.NODE_ENV === "development"
-  //       ? "http://localhost:3000"
-  //       : "https://oldschoolknave.surge.sh";
-  //   const URL = window.location.href;
-  //   const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
+  const homeURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://oldschoolknave.surge.sh";
+  const URL = window.location.href;
+  const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
-  //   const {
-  //     savedCharacterData,
-  //     savedCharacterInventory,
-  //     setSavedCharacterInventory
-  //   } = useContext(AppContext);
-  // const [inputValue, setInputValue] = useState("");
-  // const [levelValue, setLevelValue] = useState("1");
-  const [prepared, setPrepared] = useState("0");
+  const {
+    savedCharacterData,
+    savedCharacterSpells,
+    setSavedCharacterSpells
+  } = useContext(AppContext);
   const [show, setShow] = useState(false);
-
-  // const handleItemSubmit = () => {
-  //   // const itemId = shortid.generate();
-  //   // setSavedCharacterInventory({
-  //   //   ...savedCharacterInventory,
-  //   //   [itemId]: { description: inputValue, slots: slotValue }
-  //   // });
-  //   // const data = {
-  //   //   characterId,
-  //   //   inventory: {
-  //   //     ...savedCharacterInventory,
-  //   //     [itemId]: { description: inputValue, slots: slotValue }
-  //   //   },
-  //   //   httpMethod: "PUT"
-  //   // };
-  //   // put(characterId, data).catch(err => alert(err));
-  // };
 
   const handleItemRemove = () => {
     setShow(false);
-    // if (inventoryItem && inventoryItemKey && savedCharacterInventory) {
-    //   /**
-    //    * Using es7 obj spread to omit a property.
-    //    * @see https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
-    //    */
-    //   const {
-    //     [inventoryItemKey]: inventoryItem,
-    //     ...updatedInventory
-    //   } = savedCharacterInventory;
-    //   setSavedCharacterInventory(updatedInventory);
-    //   const data = {
-    //     characterId,
-    //     inventory: updatedInventory,
-    //     httpMethod: "PUT"
-    //   };
-    //   put(characterId, data).catch(err => alert(err));
-    // }
+    if (spell && spellKey && savedCharacterSpells) {
+      /**
+       * Using es7 obj spread to omit a property.
+       * @see https://github.com/airbnb/javascript/blob/master/README.md#objects--rest-spread
+       */
+      const { [spellKey]: spell, ...updatedSpells } = savedCharacterSpells;
+      setSavedCharacterSpells(updatedSpells);
+      const data = {
+        characterId,
+        spells: updatedSpells,
+        httpMethod: "PUT"
+      };
+      put(characterId, data).catch(err => alert(err));
+    }
   };
-
-  // const filteredAndSortedItems = Object.keys(classSpells)
-  //   .filter(spellKey =>
-  //     classSpells[spellKey].description
-  //       .toLowerCase()
-  //       .includes(inputValue.toLowerCase())
-  //   )
-  //   .sort((spellA, spellB) => {
-  //     if (classSpells[spellA].description < classSpells[spellB].description) {
-  //       return -1;
-  //     }
-  //     if (classSpells[spellA].description > classSpells[spellB].description) {
-  //       return 1;
-  //     }
-  //     // Names equal
-  //     return 0;
-  //   });
 
   return (
     <>
@@ -100,25 +66,42 @@ const SpellImpl: React.SFC<ImplProps> = ({
         className={className}
         style={{ display: "flex", alignItems: "center" }}
       >
-        <FormControl
-          style={{ width: "60px" }}
-          onClick={(e: any) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onChange={(e: any) => {
-            e.preventDefault();
-            e.stopPropagation();
-            /**
-             * Make call to update our client side stored
-             * spells here, call spell by key, update number
-             * prepared.
-             */
-            setPrepared(e.target.value);
-          }}
-          value={prepared}
-          type="number"
-        />
+        {savedCharacterData && (
+          <>
+            <PreparedCountText>{spell.preparedCount}</PreparedCountText>
+            <IncrementButton>
+              <FaRegMinusSquare
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  if (spell.preparedCount !== 0)
+                    setSavedCharacterSpells({
+                      ...savedCharacterSpells,
+                      [spellKey]: {
+                        ...spell,
+                        preparedCount: spell.preparedCount - 1
+                      }
+                    });
+                }}
+              />
+            </IncrementButton>
+            <IncrementButton>
+              <FaRegPlusSquare
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setSavedCharacterSpells({
+                    ...savedCharacterSpells,
+                    [spellKey]: {
+                      ...spell,
+                      preparedCount: spell.preparedCount + 1
+                    }
+                  });
+                }}
+              />
+            </IncrementButton>
+          </>
+        )}
         <div onClick={() => setShow(!show)} style={{ cursor: "pointer" }}>
           <FontAwesomeIcon
             icon={!show ? "caret-up" : "caret-down"}
@@ -129,9 +112,15 @@ const SpellImpl: React.SFC<ImplProps> = ({
         </div>
       </div>
       {show && (
-        <SpellDescription>
+        <div
+          style={
+            savedCharacterData
+              ? { paddingLeft: "110px" }
+              : { paddingLeft: "0.5rem" }
+          }
+        >
           {spell && spell.description}
-          {castingMethod === "arcane" && (
+          {castingMethod === "arcane" && savedCharacterData && (
             <RemoveButtonContainer>
               <RemoveButton
                 onClick={() => {
@@ -144,14 +133,23 @@ const SpellImpl: React.SFC<ImplProps> = ({
               </RemoveButton>
             </RemoveButtonContainer>
           )}
-        </SpellDescription>
+        </div>
       )}
     </>
   );
 };
 
-const SpellDescription = styled.div`
-  padding-left: 70px;
+const PreparedCountText = styled.div`
+  font-size: 20px;
+  margin-left: 10px;
+  padding-right: 0.5rem;
+`;
+
+const IncrementButton = styled.div`
+  cursor: pointer;
+  display: flex;
+  padding-right: 0.5rem;
+  font-size: 30px;
 `;
 
 const RemoveButtonContainer = styled.div`

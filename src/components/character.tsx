@@ -9,11 +9,9 @@ export default function Character() {
   const {
     savedCharacterData,
     setSavedCharacterData,
-    savedCharacterInventory,
     setSavedCharacterInventory,
     savedCharacterAC,
     setSavedCharacterAC,
-    savedCharacterSpells,
     setSavedCharacterSpells
   } = useContext(AppContext);
 
@@ -58,9 +56,7 @@ export default function Character() {
       classSelection={savedCharacterData.class}
       nonTraditionalSpells={savedCharacterData.knave}
       savedCharacterData={savedCharacterData}
-      savedCharacterInventory={savedCharacterInventory}
       savedCharacterAC={savedCharacterAC}
-      savedCharacterSpells={savedCharacterSpells}
     />
   ) : (
     <>

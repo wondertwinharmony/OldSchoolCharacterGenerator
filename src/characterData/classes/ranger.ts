@@ -9,6 +9,22 @@ export const ranger = {
   icon: React.createElement(GiCompass, {}),
   castingMethod: "divine" as CastingMethod,
   spellList: "druid" as SpellList,
+  spellMatrix: [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [1, 0, 0],
+    [2, 0, 0],
+    [2, 1, 0],
+    [2, 2, 0],
+    [2, 2, 1],
+    [3, 2, 1],
+    [3, 2, 2]
+  ],
   skillsIcon: React.createElement(GiPawPrint, {}),
   skillsTable: React.createElement("img", {
     src: rangerTrackingTable,

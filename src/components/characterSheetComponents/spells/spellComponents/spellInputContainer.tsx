@@ -10,7 +10,7 @@ interface Props {
   setInputValue: (value: string) => void;
   levelValue: string;
   setLevelValue: (value: string) => void;
-  levelDisabled: boolean;
+  isLevelDisabled: boolean;
 }
 
 interface ImplProps extends Props {}
@@ -21,14 +21,11 @@ const SpellInputContainerImpl: React.SFC<ImplProps> = ({
   setInputValue,
   levelValue,
   setLevelValue,
-  levelDisabled
+  isLevelDisabled
 }) => {
-  const {
-    nonTraditionalSpells,
-    setNonTraditionalSpells
-    // savedCharacterInventory,
-    // setSavedCharacterInventory
-  } = useContext(AppContext);
+  const { nonTraditionalSpells, setNonTraditionalSpells } = useContext(
+    AppContext
+  );
   return (
     <InputContainer className={className}>
       <InputText>Item</InputText>
@@ -58,7 +55,7 @@ const SpellInputContainerImpl: React.SFC<ImplProps> = ({
           e.stopPropagation();
           setLevelValue(e.target.value);
         }}
-        disabled={levelDisabled}
+        disabled={isLevelDisabled}
         value={levelValue}
         type="number"
       />

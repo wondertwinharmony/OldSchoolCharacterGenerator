@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CastingMethod } from "../../../../characterData/classes";
 import SpellImpl from "./spell";
@@ -8,9 +8,11 @@ interface Props {
   className?: string;
   spellsForLevelKeys: string[];
   spells: any;
-  spellLevel?: number;
+  spellLevel: number;
   spellsKnown: number;
   castingMethod?: CastingMethod;
+  levelHeadersVisible: { [key: string]: boolean };
+  setLevelHeadersVisible: (value: { [key: string]: boolean }) => void;
 }
 
 interface ImplProps extends Props {}
@@ -21,12 +23,14 @@ const SpellsByLevelImpl: React.SFC<ImplProps> = ({
   spells,
   spellLevel,
   spellsKnown,
-  castingMethod
+  castingMethod,
+  levelHeadersVisible,
+  setLevelHeadersVisible
 }) => {
-  const [showSpells, setShowSpells] = useState(true);
-  let preparedCount = 0;
+  let preparedCountForLevel = 0;
   spellsForLevelKeys.forEach((spellKey: string) => {
-    preparedCount = preparedCount + spells[spellKey].preparedCount;
+    preparedCountForLevel =
+      preparedCountForLevel + spells[spellKey].preparedCount;
   });
   const hasSpellsForThisLevel = spellsForLevelKeys.length > 0;
   return (
@@ -34,38 +38,35 @@ const SpellsByLevelImpl: React.SFC<ImplProps> = ({
       <LevelHeader
         style={hasSpellsForThisLevel ? { cursor: "pointer" } : {}}
         onClick={() => {
-          hasSpellsForThisLevel && setShowSpells(!showSpells);
+          hasSpellsForThisLevel &&
+            setLevelHeadersVisible({
+              ...levelHeadersVisible,
+              [`${spellLevel}`]: !levelHeadersVisible[spellLevel]
+            });
         }}
       >
-        <PreparedText>{`0/${spellsKnown}`}</PreparedText>
+        <PreparedText>{`${preparedCountForLevel}/${spellsKnown}`}</PreparedText>
         <LevelText>{`Level ${spellLevel} Spells`}</LevelText>
         {hasSpellsForThisLevel && (
           <FontAwesomeIcon
-            icon={showSpells ? "caret-up" : "caret-down"}
+            icon={levelHeadersVisible[spellLevel] ? "caret-up" : "caret-down"}
             size="2x"
             style={{ margin: "0 0.5rem" }}
           />
         )}
       </LevelHeader>
       <Divider />
-      {showSpells &&
-        spellsForLevelKeys.map((spellKey: string) => {
-          /**
-           * While iterating here we'll want to check a
-           * property on each spell that is client state tracked
-           * and add them. Then put them in header.
-           */
-          return (
-            <div key={spells[spellKey].name}>
-              <SpellImpl
-                spellKey={spellKey}
-                spell={spells[spellKey]}
-                castingMethod={castingMethod}
-              />
-              <Divider />
-            </div>
-          );
-        })}
+      {levelHeadersVisible[spellLevel] &&
+        spellsForLevelKeys.map((spellKey: string) => (
+          <div key={spells[spellKey].name}>
+            <SpellImpl
+              spellKey={spellKey}
+              spell={spells[spellKey]}
+              castingMethod={castingMethod}
+            />
+            <Divider />
+          </div>
+        ))}
     </div>
   );
 };

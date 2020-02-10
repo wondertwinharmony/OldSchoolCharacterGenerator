@@ -1,9 +1,7 @@
 import { sampleSize } from "lodash";
 import {
-  knaveSpells,
-  oldIllusionistSpells,
-  readMagicSpell,
-  spells
+  // knaveSpells,
+  oldIllusionistSpells, readMagicSpell, spells
 } from "../characterData/spells";
 
 const LIGHT_SPELL_INDEX = 4;
@@ -20,6 +18,7 @@ export const getOldSpells = (
   nonTraditionalSpells: boolean,
   classSelection: string
 ) => {
+  console.log("Old character permalink has knave spell: ", nonTraditionalSpells)
   /**
    * The Drow (and other classes in future) may have
    * access to either pre-determined starting spells
@@ -44,27 +43,27 @@ export const getOldSpells = (
    * Only magic-users, citizen liches, wild magic-users, and
    * elves have opportunity to receive a knave spell at level one.
    */
-  if (nonTraditionalSpells) {
-    let allSpells = [];
-    allSpells.push(spells, knaveSpells);
+  // if (nonTraditionalSpells) {
+  //   let allSpells = [];
+  //   allSpells.push(spells, knaveSpells);
 
-    /**
-     * If class is magic-user, citizen lich, wild magic-user, or elf
-     * (therefore Arcane spell caster and rely on a spellbook for
-     * casting), award them the Read Magic spell at level one as well.
-     */
-    if (
-      classSelection === "magicUser" ||
-      classSelection === "citizenLich" ||
-      classSelection === "wildMagicUser" ||
-      classSelection === "elf"
-    ) {
-      let randomSpell = sampleSize(allSpells.flat(), 1);
-      randomSpell.push(readMagicSpell);
-      return randomSpell;
-    }
-    return sampleSize(allSpells.flat(), 1);
-  }
+  //   /**
+  //    * If class is magic-user, citizen lich, wild magic-user, or elf
+  //    * (therefore Arcane spell caster and rely on a spellbook for
+  //    * casting), award them the Read Magic spell at level one as well.
+  //    */
+  //   if (
+  //     classSelection === "magicUser" ||
+  //     classSelection === "citizenLich" ||
+  //     classSelection === "wildMagicUser" ||
+  //     classSelection === "elf"
+  //   ) {
+  //     let randomSpell = sampleSize(allSpells.flat(), 1);
+  //     randomSpell.push(readMagicSpell);
+  //     return randomSpell;
+  //   }
+  //   return sampleSize(allSpells.flat(), 1);
+  // }
 
   if (
     classSelection === "magicUser" ||

@@ -2,10 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Button, Dropdown } from "react-bootstrap";
 import styled from "styled-components";
+import { put } from "../../../../api/put";
 import AppContext from "../../../../AppContext";
 import { characterClasses } from "../../../../characterData/classes";
-import { knaveSpells } from "../../../../characterData/knaveSpells";
-import { newAllSpells } from "../../../../characterData/spells";
+import {
+  allNonTraditionalSpells,
+  newAllSpells
+} from "../../../../characterData/spells";
 import AddSpellButtonsImpl from "./addSpellButtons";
 import SpellInputContainerImpl from "./spellInputContainer";
 
@@ -13,7 +16,7 @@ export interface Spell {
   name: string;
   description: string;
   level: string;
-  levelVariable?: boolean;
+  levelVariable: boolean;
 }
 
 interface Props {
@@ -24,55 +27,59 @@ interface Props {
 interface ImplProps extends Props {}
 
 const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
-  //   const homeURL =
-  //     process.env.NODE_ENV === "development"
-  //       ? "http://localhost:3000"
-  //       : "https://oldschoolknave.surge.sh";
-  //   const URL = window.location.href;
-  //   const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
+  const homeURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://oldschoolknave.surge.sh";
+  const URL = window.location.href;
+  const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
   const {
     nonTraditionalSpells,
-    savedCharacterData
-    // savedCharacterInventory,
-    // setSavedCharacterInventory
+    savedCharacterSpells,
+    setSavedCharacterSpells
   } = useContext(AppContext);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("nameString");
+  const [descriptionValue, setDescriptionValue] = useState("descriptionString");
   const [levelValue, setLevelValue] = useState("1");
-  const [levelDisabled, setLevelDisabled] = useState(true);
+  const [spellKey, setSpellKey] = useState("spellKeyString");
+  const [isLevelDisabled, setIsLevelDisabled] = useState(true);
   const [show, setShow] = useState(false);
 
-  const handleItemClick = (spell: Spell) => {
-    setInputValue(spell.name);
-    setLevelValue(spell.level);
-    if (spell.levelVariable) {
-      setLevelDisabled(false);
-    } else {
-      setLevelDisabled(true);
-    }
+  const handleItemClick = (selectedSpell: Spell, spellKey: string) => {
+    setInputValue(selectedSpell.name);
+    setLevelValue(selectedSpell.level);
+    setDescriptionValue(selectedSpell.description);
+    setSpellKey(spellKey);
+    setIsLevelDisabled(selectedSpell.levelVariable);
   };
 
   const handleSubmit = () => {
-    /**
-     * We will never™️ submit divine spell caster
-     * lists to db, since the spells available to
-     * them never fluctuate like a wizard with
-     * a spellbook will.
-     */
-    // const itemId = shortid.generate();
-    // setSavedCharacterInventory({
-    //   ...savedCharacterInventory,
-    //   [itemId]: { description: inputValue, slots: levelValue }
-    // });
-    // const data = {
-    //   characterId,
-    //   inventory: {
-    //     ...savedCharacterInventory,
-    //     [itemId]: { description: inputValue, slots: levelValue }
-    //   },
-    //   httpMethod: "PUT"
-    // };
-    // put(characterId, data).catch(err => alert(err));
+    setSavedCharacterSpells({
+      ...savedCharacterSpells,
+      [spellKey]: {
+        name: inputValue,
+        description: descriptionValue,
+        level: levelValue,
+        levelVariable: isLevelDisabled,
+        preparedCount: 0
+      }
+    });
+    const data = {
+      characterId,
+      spells: {
+        ...savedCharacterSpells,
+        [spellKey]: {
+          name: inputValue,
+          description: descriptionValue,
+          level: levelValue,
+          levelVariable: isLevelDisabled,
+          preparedCount: 0
+        }
+      },
+      httpMethod: "PUT"
+    };
+    put(characterId, data).catch(err => alert(err));
   };
 
   const classSelectionSpellList = characterClasses[classSelection].spellList;
@@ -82,14 +89,19 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
   let classSpells = newAllSpells[classSelectionSpellList];
 
   if (nonTraditionalSpells) {
-    classSpells = { ...classSpells, ...knaveSpells };
+    classSpells = {
+      ...classSpells,
+      ...allNonTraditionalSpells
+    };
   }
 
   /**
    * @todo
    * Could be good to filter available spells in this list by
-   * the levels of spells available to the characte depending
-   * on their current level.
+   * the levels of spells available to the character depending
+   * on their current level. Or add a way to sort all available
+   * spells by a level designated by user (e.g. list all level
+   * 3 spells).
    */
   const filteredAndClassSpells = Object.keys(classSpells)
     .filter(spell =>
@@ -109,7 +121,7 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
   const inputMatchesValidSpell = Object.keys(classSpells).find(
     spell => classSpells[spell].name === inputValue
   );
-  console.log("savedCharacterData? ", savedCharacterData);
+
   return (
     <Dropdown
       className={className}
@@ -121,11 +133,9 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
          * think like how we handled inventory, we don't do anything
          * to modify inventory until that character is saved FIRST.
          */
-        // if (savedCharacterData) {
         setInputValue("");
         setLevelValue("1");
         setShow(!show);
-        // }
       }}
     >
       <Dropdown.Toggle as={AddNewSpellToggle} id="spell-dropdown">
@@ -146,7 +156,7 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
             setInputValue={setInputValue}
             levelValue={levelValue}
             setLevelValue={setLevelValue}
-            levelDisabled={levelDisabled}
+            isLevelDisabled={!isLevelDisabled}
           />
           <AddSpellButtonsImpl
             disabled={
@@ -158,7 +168,6 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
             handleSubmit={handleSubmit}
           />
           <Dropdown.Divider />
-          {/* iterate over equipment as dropdown.items */}
           {classSpells && (
             <ItemsContainer>
               {filteredAndClassSpells.length === 0 && (
@@ -168,7 +177,7 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
                 <div key={spell}>
                   <Item
                     onClick={() => {
-                      handleItemClick(classSpells[spell]);
+                      handleItemClick(classSpells[spell], spell);
                     }}
                   >
                     {classSpells[spell].name}
