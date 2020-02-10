@@ -27,7 +27,6 @@ const replaceSpaces = (stringToProcess: string) => {
  * @param  {number} hitPoints
  * @param  {string} languages
  * @param  {string[]} characterSpells
- * @param  {string} equipment
  * @param  {number} equipmentSlots
  * @param  {boolean} knave
  */
@@ -39,8 +38,6 @@ export const saveCharacterData = (
   hitPoints: number,
   languages: string,
   characterSpells: string[],
-  equipment: string,
-  equipmentSlots: number,
   knave: boolean
 ) => {
   const characterData = "";
@@ -72,10 +69,6 @@ export const saveCharacterData = (
     replaceSpaces(languages),
     "&",
     replaceSpaces(spells),
-    "&",
-    replaceSpaces(equipment),
-    "&",
-    equipmentSlots.toString(),
     "&",
     knave.toString()
   );

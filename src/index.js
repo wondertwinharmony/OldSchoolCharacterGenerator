@@ -2,7 +2,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCaretDown,
   faCaretUp,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -10,7 +11,7 @@ import AppWithContext from "./AppWithContext";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-library.add(faCaretUp, faCaretDown, faExclamationTriangle);
+library.add(faCaretUp, faCaretDown, faExclamationTriangle, faPlus);
 
 ReactDOM.render(<AppWithContext />, document.getElementById("root"));
 

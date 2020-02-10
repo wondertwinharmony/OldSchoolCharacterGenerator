@@ -15,6 +15,7 @@ import styled from "styled-components";
 import { characterClasses } from "../../characterData/classes";
 import { combatActions } from "../../characterData/combatActions";
 import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
+import { Items } from "../../characterData/items";
 import { retainers } from "../../characterData/retainers";
 import { knaveSpellAddendum } from "../../characterData/spells";
 import { weaponQualities } from "../../characterData/weaponQualities";
@@ -43,15 +44,18 @@ import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../../utils/getArmorClass";
 import { getCharacterName } from "../../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-import { getEquipment } from "../../utils/getEquipment";
 import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
 import { getHitPoints } from "../../utils/getHitPoints";
+import { getInventory } from "../../utils/getInventory";
+import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
 import { getLanguages } from "../../utils/getLanguages";
+import { getLegacyArmorClass } from "../../utils/getLegacyArmorClass";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { getSpells } from "../../utils/getSpells";
 import { getTraits } from "../../utils/getTraits";
 import CharacterDetails from "./characterDetails";
 import CharacterSkills from "./characterSkills";
+import InventoryImpl from "./inventory/inventory";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
 import Segment from "./segment";
@@ -62,16 +66,20 @@ interface Props {
   classSelection: string;
   includeKnaveSpells: boolean;
   savedCharacterData?: SavedCharacterData;
+  savedCharacterInventory?: Items;
+  savedCharacterAC?: number;
 }
 
 interface ImplProps extends Props {}
 
-const CharacterImpl: React.SFC<ImplProps> = ({
+const CharacterSheetImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
   includeKnaveSpells,
-  savedCharacterData
+  savedCharacterData,
+  savedCharacterInventory,
+  savedCharacterAC
 }) => {
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
@@ -85,6 +93,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
+
   // Languages
   const [languages, setLanguages] = useState(
     savedCharacterData
@@ -98,20 +107,27 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
-  // Equipment
-  const [equipment] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.equipment
-      : getEquipment(classSelection, abilityScores[CON])
+
+  // Inventory
+  const [inventory] = useState(
+    savedCharacterInventory
+      ? savedCharacterInventory
+      : savedCharacterData && savedCharacterData.equipment
+      ? savedCharacterData.equipment
+      : getInventory(classSelection, abilityScores[CON])
   );
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(
-      abilityScores[DEX],
-      equipment.characterEquipmentString,
-      classSelection
-    )
+    savedCharacterAC
+      ? savedCharacterAC
+      : savedCharacterData && savedCharacterData.equipment
+      ? getLegacyArmorClass(
+          abilityScores[DEX],
+          classSelection,
+          savedCharacterData
+        )
+      : getArmorClass(abilityScores[DEX], classSelection, inventory)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -168,7 +184,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         languages={languages}
         spells={spells}
-        equipment={equipment}
+        armorClass={armorClass}
         includeKnaveSpells={includeKnaveSpells}
       />
 
@@ -307,20 +323,36 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* Equipment Segment */}
+      {/* Inventory Segment */}
       <Segment
         segmentIcon={<GiKnapsack />}
-        segmentName={"Equipment"}
-        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
-          abilityScores[CON] > 10 ? abilityScores[CON] : 10
-        } slots)`}
+        segmentName={"Inventory"}
+        segmentDisplayName={
+          savedCharacterInventory
+            ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : !savedCharacterData
+            ? `Inventory (${getInventorySlotsUsed(inventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : `Inventory (${savedCharacterData.equipment.slotsToFill}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+        }
         segmentData={
           <>
-            <Equipment
-              dangerouslySetInnerHTML={createMarkup(
-                equipment.characterEquipmentString
-              )}
-            />
+            {savedCharacterInventory ? (
+              <InventoryImpl inventory={savedCharacterInventory} />
+            ) : !savedCharacterData ? (
+              <InventoryImpl inventory={inventory} />
+            ) : (
+              <Equipment
+                dangerouslySetInnerHTML={createMarkup(
+                  savedCharacterData.equipment.characterEquipmentString
+                )}
+              />
+            )}
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a
               container for them.
@@ -558,7 +590,7 @@ const CoinConversionsTable = styled.div`
   background-size: 24rem 8rem;
 `;
 
-const StyledCreatedCharacter = styled(CharacterImpl)`
+const StyledCreatedCharacter = styled(CharacterSheetImpl)`
   font-family: "Roboto Mono", monospace;
   background-image: url(${parchment});
   justify-content: center;

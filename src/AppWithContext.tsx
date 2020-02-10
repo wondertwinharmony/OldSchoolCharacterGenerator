@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppContext from "./AppContext";
 import AppRouter from "./AppRouter";
+import { Items } from "./characterData/items";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
@@ -9,7 +10,9 @@ export default class AppImpl extends Component {
     abilityScores: [0, 0, 0, 0, 0, 0],
     classSelection: "",
     includeKnaveSpells: false,
-    savedCharacterData: undefined
+    savedCharacterData: undefined,
+    savedCharacterInventory: undefined,
+    savedCharacterAC: undefined
   };
 
   componentDidMount() {
@@ -28,6 +31,14 @@ export default class AppImpl extends Component {
     this.setState({ savedCharacterData });
   };
 
+  setSavedCharacterInventory = (items?: Items) => {
+    this.setState({ savedCharacterInventory: items });
+  };
+
+  setSavedCharacterAC = (ac: string) => {
+    this.setState({ savedCharacterAC: ac });
+  };
+
   setClassSelection = (classSelection: string) => {
     this.setState({ classSelection });
   };
@@ -40,9 +51,13 @@ export default class AppImpl extends Component {
           classSelection: this.state.classSelection,
           includeKnaveSpells: this.state.includeKnaveSpells,
           savedCharacterData: this.state.savedCharacterData,
+          savedCharacterInventory: this.state.savedCharacterInventory,
+          savedCharacterAC: this.state.savedCharacterAC,
           setKnaveSpells: this.setKnaveSpells,
           setAbilityScores: this.setAbilityScores,
           setSavedCharacterData: this.setSavedCharacterData,
+          setSavedCharacterInventory: this.setSavedCharacterInventory,
+          setSavedCharacterAC: this.setSavedCharacterAC,
           setClassSelection: this.setClassSelection
         }}
       >

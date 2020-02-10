@@ -12,7 +12,7 @@ export interface CharacterSheetSegments {
   isAbilitiesVisible: boolean;
   isTurnUndeadTableVisible: boolean;
   isSpellsVisible: boolean;
-  isEquipmentVisible: boolean;
+  isInventoryVisible: boolean;
   isSkillsVisible: boolean;
   isCombatActionsVisible: boolean;
   isWeaponQualitiesVisible: boolean;
@@ -28,7 +28,7 @@ export let characterSheetSegments = {
   isAbilitiesVisible: true,
   isTurnUndeadTableVisible: true,
   isSpellsVisible: true,
-  isEquipmentVisible: true,
+  isInventoryVisible: true,
   isSkillsVisible: true,
   isCombatActionsVisible: false,
   isWeaponQualitiesVisible: false,
