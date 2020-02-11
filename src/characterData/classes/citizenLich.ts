@@ -1,6 +1,8 @@
+import { sampleSize } from "lodash";
 import React from "react";
 import { GiDeathNote } from "react-icons/gi";
-import { citizenLichEquipment } from "../equipmentKits/citizenLichEquipment";
+import { citizenLichInventory } from "../equipmentKits/citizenLichInventory";
+import { Items } from "../items";
 
 export const citizenLich = {
   name: "Citizen Lich",
@@ -20,7 +22,7 @@ export const citizenLich = {
     breath: 16,
     magic: 13
   },
-  equipment: citizenLichEquipment,
+  inventory: citizenLichInventory,
   abilities: [
     "<strong>Arcane Magic:</strong> See <i>Magic in Core Rules</i> for full details on arcane magic.\n\n<div style='padding: 0 1.5rem'><strong>Magical Research:</strong> A citizen lich of any level may spend time and money to research new spells to add to his or her spell book. When a citizen lich reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell Casting:</strong> Citizen liches carry spell books containing the formulae for arcane spells. A 1st level citizen lich has one spell in his or her spell book. The list of spells available to citizen liches is found on <i>Magic-User and Cleric Spells</i> and <i>Operation Unfathomable Player's Guide</i>.\n\n<strong>Using Magic Items:</strong> As spell casters, citizen liches are able to use magic scrolls of spells on their spell list. There are also items (e.g. magic wands) that may only be used by arcane spell casters (including citizen liches).</div>",
     "<strong>Combat:</strong> Citizen liches may only use daggers and staves, and are unable to use shields or wear any kind of armor. This makes them very vulnerable in combat.",
@@ -32,4 +34,32 @@ export const citizenLich = {
   abilitiesSummary:
     "Arcane Magic, Undead (Quasi-living), Hard to Kill (permanently)",
   spells: "see MagicUser spells"
+};
+
+export const disguiseItems: Items = {
+  disguiseKit: {
+    description: "Disguise Kit",
+    slots: "1"
+  },
+  makeupKit: {
+    description: "Makeup Kit",
+    slots: "1"
+  },
+  cosmeticKit: {
+    description: "Cosmetic Kit",
+    slots: "1"
+  },
+  featurelessFaceMask: {
+    description: `Featureless ${sampleSize([
+      "Gold",
+      "Silver",
+      "Iron",
+      "Copper"
+    ])} Face Mask`,
+    slots: "1"
+  },
+  headScarf: {
+    description: "Headscarf",
+    slots: "1"
+  }
 };

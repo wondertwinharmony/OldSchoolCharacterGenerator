@@ -52,7 +52,7 @@ export interface characterClass {
   allowedWeapons: string;
   languages: string[];
   saves: { [key: string]: number };
-  equipment: string[][];
+  inventory: any;
   abilities?: string[];
   abilitiesSummary: string;
   spells?: string;

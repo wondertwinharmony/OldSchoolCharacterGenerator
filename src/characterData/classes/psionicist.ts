@@ -1,13 +1,16 @@
 import React from "react";
-import { GiPsychicWaves, GiBrain } from "react-icons/gi";
-import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
+import { GiBrain, GiPsychicWaves } from "react-icons/gi";
 import psionicistSkillsTable from "../../static/psionicistSkillsTable.png";
+import { psionicistInventory } from "../equipmentKits/psionicistInventory";
 
 export const psionicist = {
   name: "Psionicist",
   icon: React.createElement(GiPsychicWaves, {}),
   skillsIcon: React.createElement(GiBrain, {}),
-  skillsTable: React.createElement('img', {src: psionicistSkillsTable, style: {width: '13rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: psionicistSkillsTable,
+    style: { width: "13rem", height: "33rem" }
+  }),
   requirements: "Minimum CON 9",
   primeRequisite: "CON",
   hitDice: "1d6",
@@ -23,7 +26,7 @@ export const psionicist = {
     breath: 16,
     magic: 15
   },
-  equipment: psionicistEquipment,
+  inventory: psionicistInventory,
   abilities: [
     "<strong>Combat:</strong> Psionicists must always keep one hand free in order to use their powers. They can use any armour, but no shields or two-handed weapons.",
     "<strong>Biofeedback:</strong> At 5th level, the psionicist gains the power of biofeedback. This allows the psionicist to either purge their body of any natural poisons or diseases once per day (unnatural diseases such as lycanthropy are not affected) or to heal themself of 1d6 HP for every three levels they possess.",

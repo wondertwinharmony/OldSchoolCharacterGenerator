@@ -6,7 +6,14 @@ import CharacterSheet from "./characterSheetComponents/characterSheet";
 
 export default function Character() {
   const [loading, setLoading] = useState(true);
-  const { savedCharacterData, setSavedCharacterData } = useContext(AppContext);
+  const {
+    savedCharacterData,
+    setSavedCharacterData,
+    savedCharacterInventory,
+    setSavedCharacterInventory,
+    savedCharacterAC,
+    setSavedCharacterAC
+  } = useContext(AppContext);
 
   useEffect(() => {
     const homeURL =
@@ -28,10 +35,12 @@ export default function Character() {
           "savedCharacter/1&"
         )
       );
+      setSavedCharacterInventory(apiResponse.inventory);
+      setSavedCharacterAC(apiResponse.AC);
       setLoading(false);
     };
     fetchCharacter();
-  }, []);
+  }, [setSavedCharacterData, setSavedCharacterInventory, setSavedCharacterAC]);
 
   return savedCharacterData && !loading ? (
     <CharacterSheet
@@ -39,8 +48,15 @@ export default function Character() {
       classSelection={savedCharacterData.class}
       includeKnaveSpells={savedCharacterData.knave}
       savedCharacterData={savedCharacterData}
+      savedCharacterInventory={savedCharacterInventory}
+      savedCharacterAC={savedCharacterAC}
     />
   ) : (
-    <></>
+    <>
+      {/**
+       * Need a loading spinner here while loading hook state
+       * is toggled so we don't have just a blank screen.
+       */}
+    </>
   );
 }

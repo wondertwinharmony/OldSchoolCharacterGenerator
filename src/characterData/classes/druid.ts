@@ -1,6 +1,6 @@
 import React from "react";
 import { GiWizardStaff } from "react-icons/gi";
-import { druidEquipment } from "../equipmentKits/druidEquipment";
+import { druidInventory } from "../equipmentKits/druidInventory";
 
 export const druid = {
   name: "Druid",
@@ -20,7 +20,7 @@ export const druid = {
     breath: 16,
     magic: 15
   },
-  equipment: druidEquipment,
+  inventory: druidInventory,
   abilities: [
     "<strong>Alignment:</strong> Druids regard the ways of the natural world as the ideal state of things. They see the concepts of Law and Chaos as extremes that are both equally against nature. Thus, druids must be neutral in alignment.",
     "<strong>Charm Immunity:</strong> Druids of 7th level and above are immune to the charms of fairies and Sylvan creatures (e.g. dryads, nixies).",

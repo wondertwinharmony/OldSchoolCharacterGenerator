@@ -1,13 +1,16 @@
 import React from "react";
 import { GiHuntingHorn, GiSnakeTotem } from "react-icons/gi";
-import { barbarianEquipment } from "../equipmentKits/barbarianEquipment";
-import barbarianSkillsTable from '../../static/barbarianSkillsTable.png';
+import barbarianSkillsTable from "../../static/barbarianSkillsTable.png";
+import { barbarianInventory } from "../equipmentKits/barbarianInventory";
 
 export const barbarian = {
   name: "Barbarian",
   icon: React.createElement(GiHuntingHorn, {}),
   skillsIcon: React.createElement(GiSnakeTotem, {}),
-  skillsTable: React.createElement('img', {src: barbarianSkillsTable, style: {width: '22rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: barbarianSkillsTable,
+    style: { width: "22rem", height: "33rem" }
+  }),
   requirements: "Minimum DEX 9",
   primeRequisite: "CON and STR",
   hitDice: "1d8",
@@ -23,7 +26,7 @@ export const barbarian = {
     breath: 15,
     magic: 16
   },
-  equipment: barbarianEquipment,
+  inventory: barbarianInventory,
   abilities: [
     "<strong>Agile Fighting:</strong> Upon reaching 4th level, a barbarian gains a +1 AC bonus. This increases to +2 at 6th level, +3 at 8th level, and +4 at 10th level.",
     "<strong>Barbarian Skills:</strong> In the wilderness, barbarians have the following skills, which improve as the character gains levels.\n\n<div style='padding: 0 1.5rem'><strong>Climb Sheer Surfaces:</strong> Only applies to natural surfaces (e.g. tree trunks, cliff faces). A skill roll is required for each 100’ height to be climbed. Failure indicates that the barbarian falls at the halfway point, suffering normal falling damage (1d6 damage per 10’ fallen).\n\n<strong>Hiding:</strong> Requires the barbarian to be motionless—attacking or moving while hiding is not possible.\n\n<strong>Move Silently:</strong> A barbarian may attempt to sneak past enemies unnoticed.</div>",

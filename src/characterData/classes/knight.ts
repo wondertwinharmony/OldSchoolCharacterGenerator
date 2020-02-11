@@ -1,6 +1,6 @@
 import React from "react";
 import { GiVisoredHelm } from "react-icons/gi";
-import { knightEquipment } from "../equipmentKits/knightEquipment";
+import { knightInventory } from "../equipmentKits/knightInventory";
 
 export const knight = {
   name: "Knight",
@@ -20,7 +20,7 @@ export const knight = {
     breath: 15,
     magic: 16
   },
-  equipment: knightEquipment,
+  inventory: knightInventory,
   abilities: [
     "<strong>Alignment:</strong> A knight must have the same alignment as their liege.",
     "<strong>Chivalric Code:</strong> Knights are bound by a stringent code of honour, which they strive to uphold in all their deeds. A knight does not earn any experience points for deeds performed at odds with this code. The fundamentals of this code are: preference of death over dishonour; service of the knight’s liege as the greatest honour; glory in single combat; defence to the death of any in the knight’s charge; honouring of superiors; respect of equals; demanding obedience from inferiors; scorning the ignoble.\n\n<div style='padding: 0 1.5rem'><strong>Hospitality:</strong> A knight of 3rd level or higher can expect hospitality and aid from nobles and other knights of the same alignment or social affiliation (e.g. order, religion, noble house, etc). A knight is expected to extend such hospitality in kind.\n\n<strong>Single Combat:</strong> In a battle, a knight must attack the most powerful or worthy foe in single combat.\n\n<strong>Dishonor:</strong> A knight who dishonors their liege (this may include changing alignment) may have their knighthood revoked. In this case, the character becomes a fighter of equivalent level. It may be possible to regain the status of knighthood by performing a special quest.</div>",

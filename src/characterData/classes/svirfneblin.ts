@@ -1,6 +1,6 @@
 import React from "react";
 import { GiWarPick } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
+import { halflingDwarfDuergarSvirfneblinInventory } from "../equipmentKits/halflingDwarfDuergarSvirfneblinInventory";
 
 export const svirfneblin = {
   name: "Svirfneblin",
@@ -28,7 +28,7 @@ export const svirfneblin = {
     breath: 14,
     magic: 11
   },
-  equipment: fighterEquipment,
+  inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
     "<strong>Blend into Stone:</strong> Svirfneblins have the uncanny ability to go unnoticed when in an environment of natural or carved stone so long as they remain silent and motionless. The chance of success is 4-in-6 in gloomy conditions or 2-in-6 in well-lit conditions.",
     "<strong>Combat:</strong> Svirfneblins can use all types of armor. Armor must be tailored to svirfneblins’ small size. Likewise, svirfneblins can only use weapons appropriate to their stature (as determined by the referee). They cannot use longbows or two-handed swords.",

@@ -1,6 +1,7 @@
 import React from "react";
 import { GiReticule } from "react-icons/gi";
-import { underworldRangerEquipment } from "../equipmentKits/underworldRangerEquipment";
+import { underworldRangerInventory } from "../equipmentKits/underworldRangerInventory";
+import { Items } from "../items";
 
 export const underworldRanger = {
   name: "Underworld Ranger",
@@ -20,7 +21,7 @@ export const underworldRanger = {
     breath: 16,
     magic: 13
   },
-  equipment: underworldRangerEquipment,
+  inventory: underworldRangerInventory,
   abilities: [
     "<strong>Combat:</strong> In basic training Underworld Rangers are taught how to use all weapons and armor. They are also instructed in the use of Underworld Ranger-only equipment they are awarded or can requisition as they progress in rank and experience.",
     "<strong>Monetary Policies:</strong> Underground Rangers earn XP through the acquisition of treasure, but must attempt to return acquired wealth to the URS, keeping only what they need in the performance of their duties. Paperwork must be filed for such allocations at the nearest URS station.",
@@ -33,4 +34,72 @@ export const underworldRanger = {
   ],
   abilitiesSummary:
     "Monetary Policies, Requisition Item, Special Equipment (LI goggles, service blade, ZR1), Standard Items, Underworld Survival & Tracking"
+};
+
+export const dungeoneeringEquipment: Items = {
+  bearTrap: {
+    description: "Bear Trap",
+    slots: "1"
+  },
+  rope: {
+    description: "50' Rope",
+    slots: "1"
+  },
+  pole: {
+    description: "10' Pole",
+    slots: "1"
+  },
+  chain: {
+    description: "10' Chain",
+    slots: "1"
+  },
+  chalk: {
+    description: "Chalk (d4 usage die)",
+    slots: "1"
+  },
+  crowbar: {
+    description: "Crowbar",
+    slots: "1"
+  },
+  pulleys: {
+    description: "Pulleys",
+    slots: "1"
+  },
+  pickaxe: {
+    description: "Pickaxe",
+    slots: "1"
+  },
+  shovel: {
+    description: "Shovel",
+    slots: "1"
+  },
+  grapplingHook: {
+    description: "Grappling Hook",
+    slots: "1"
+  },
+  hammer: {
+    description: "Hammer",
+    slots: "1"
+  },
+  smallSack: {
+    description: "Small Sack (holds 1 slot)",
+    slots: "1"
+  },
+  oilFlask: {
+    description:
+      "Oil Flask 1d8 (Missile 5’–10’ / 11’–30’ / 31’–50’, Burning, Splash weapon)",
+    slots: "1"
+  },
+  net: {
+    description: "Net",
+    slots: "1"
+  },
+  chisel: {
+    description: "Chisel",
+    slots: "1"
+  },
+  drill: {
+    description: "Drill",
+    slots: "1"
+  }
 };
