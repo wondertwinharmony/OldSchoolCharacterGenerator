@@ -17,7 +17,7 @@ const InventoryImpl: React.SFC<ImplProps> = ({ className, inventory }) => {
     savedCharacterInventory,
     setSavedCharacterInventory
   } = useContext(AppContext);
-  if (!savedCharacterData && !savedCharacterInventory) {
+  if (!savedCharacterInventory) {
     setSavedCharacterInventory(inventory);
   }
   return (

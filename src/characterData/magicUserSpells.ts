@@ -5,7 +5,7 @@ export const magicUserSpells: Spells = {
   charmPerson: {
     name: "Charm Person",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -13,7 +13,7 @@ export const magicUserSpells: Spells = {
   detectMagic: {
     name: "Detect Magic",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -21,7 +21,7 @@ export const magicUserSpells: Spells = {
   floatingDisc: {
     name: "Floating Disc",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -29,7 +29,7 @@ export const magicUserSpells: Spells = {
   holdPortal: {
     name: "Hold Portal",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -37,7 +37,7 @@ export const magicUserSpells: Spells = {
   lightDarkness: {
     name: "Light (Darkness)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -45,7 +45,7 @@ export const magicUserSpells: Spells = {
   magicMissile: {
     name: "Magic Missile",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -53,7 +53,7 @@ export const magicUserSpells: Spells = {
   protectionFromEvil: {
     name: "Protection from Evil",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -61,7 +61,7 @@ export const magicUserSpells: Spells = {
   readLanguages: {
     name: "Read Languages",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -69,7 +69,7 @@ export const magicUserSpells: Spells = {
   readMagic: {
     name: "Read Magic",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.24, OSE Classic Fantasy Tome p.80",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -77,7 +77,7 @@ export const magicUserSpells: Spells = {
   shield: {
     name: "Shield",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.24, OSE Classic Fantasy Tome p.80",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -85,7 +85,7 @@ export const magicUserSpells: Spells = {
   sleep: {
     name: "Sleep",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.24, OSE Classic Fantasy Tome p.80",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -93,7 +93,7 @@ export const magicUserSpells: Spells = {
   ventriloquism: {
     name: "Ventriloquism",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.24, OSE Classic Fantasy Tome p.80",
     level: "1",
     preparedCount: 0,
     levelVariable: false
@@ -102,7 +102,7 @@ export const magicUserSpells: Spells = {
   continualLight: {
     name: "Continual Light (Continual Darkness)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.81",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -110,7 +110,7 @@ export const magicUserSpells: Spells = {
   detectEvil: {
     name: "Detect Evil",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.81",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -118,7 +118,7 @@ export const magicUserSpells: Spells = {
   detectInvisible: {
     name: "Detect Invisible",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.81",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -126,7 +126,7 @@ export const magicUserSpells: Spells = {
   esp: {
     name: "ESP",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.81",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -134,7 +134,7 @@ export const magicUserSpells: Spells = {
   invisibility: {
     name: "Invisibility",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -142,7 +142,7 @@ export const magicUserSpells: Spells = {
   knock: {
     name: "Knock",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -150,7 +150,7 @@ export const magicUserSpells: Spells = {
   levitate: {
     name: "Levitate",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -158,7 +158,7 @@ export const magicUserSpells: Spells = {
   locateObject: {
     name: "Locate Object",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -166,7 +166,7 @@ export const magicUserSpells: Spells = {
   mirrorImage: {
     name: "Mirror Image",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -174,7 +174,7 @@ export const magicUserSpells: Spells = {
   phantasmalForce: {
     name: "Phantasmal Force",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.27, OSE Classic Fantasy Tome p.83",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -182,7 +182,7 @@ export const magicUserSpells: Spells = {
   web: {
     name: "Web",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.27, OSE Classic Fantasy Tome p.83",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -190,7 +190,7 @@ export const magicUserSpells: Spells = {
   wizardLock: {
     name: "Wizard Lock",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.27, OSE Classic Fantasy Tome p.83",
     level: "2",
     preparedCount: 0,
     levelVariable: false
@@ -199,7 +199,7 @@ export const magicUserSpells: Spells = {
   clairvoyance: {
     name: "Clairvoyance",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -207,7 +207,7 @@ export const magicUserSpells: Spells = {
   dispelMagic: {
     name: "Dispel Magic",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -215,7 +215,7 @@ export const magicUserSpells: Spells = {
   fireBall: {
     name: "Fire Ball",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -223,7 +223,7 @@ export const magicUserSpells: Spells = {
   fly: {
     name: "Fly",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -231,7 +231,7 @@ export const magicUserSpells: Spells = {
   haste: {
     name: "Haste",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -239,7 +239,7 @@ export const magicUserSpells: Spells = {
   holdPerson: {
     name: "Hold Person",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -247,7 +247,7 @@ export const magicUserSpells: Spells = {
   infravision: {
     name: "Infravision",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -255,7 +255,7 @@ export const magicUserSpells: Spells = {
   invisibilityRadius: {
     name: "Invisibility 10' Radius",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -263,7 +263,7 @@ export const magicUserSpells: Spells = {
   lightningBolt: {
     name: "Lightning Bolt",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -271,7 +271,7 @@ export const magicUserSpells: Spells = {
   protectionEvilRadius: {
     name: "Protection from Evil 10' Radius",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -279,7 +279,7 @@ export const magicUserSpells: Spells = {
   protectionNormalMissiles: {
     name: "Protection from Normal Missiles",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -287,7 +287,7 @@ export const magicUserSpells: Spells = {
   waterBreathing: {
     name: "Water Breathing",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.29, OSE Classic Fantasy Tome p.85",
     level: "3",
     preparedCount: 0,
     levelVariable: false
@@ -296,7 +296,7 @@ export const magicUserSpells: Spells = {
   charmMonster: {
     name: "Charm Monster",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.30, OSE Classic Fantasy Tome p.86",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -304,7 +304,7 @@ export const magicUserSpells: Spells = {
   confusion: {
     name: "Confusion",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.30, OSE Classic Fantasy Tome p.86",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -312,7 +312,7 @@ export const magicUserSpells: Spells = {
   dimensionDoor: {
     name: "Dimension Door",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.30, OSE Classic Fantasy Tome p.86",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -320,7 +320,7 @@ export const magicUserSpells: Spells = {
   growthOfPlants: {
     name: "Growth of Plants",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.31, OSE Classic Fantasy Tome p.87",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -328,7 +328,7 @@ export const magicUserSpells: Spells = {
   hallucinatoryTerrain: {
     name: "Hallucinatory Terrain",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.31, OSE Classic Fantasy Tome p.87",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -336,7 +336,7 @@ export const magicUserSpells: Spells = {
   massmorph: {
     name: "Massmorph",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.31, OSE Classic Fantasy Tome p.87",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -344,7 +344,7 @@ export const magicUserSpells: Spells = {
   polymorphOthers: {
     name: "Polymorph Others",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.31, OSE Classic Fantasy Tome p.87",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -352,7 +352,7 @@ export const magicUserSpells: Spells = {
   polymorphSelf: {
     name: "Polymorph Self",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.31, OSE Classic Fantasy Tome p.87",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -360,7 +360,7 @@ export const magicUserSpells: Spells = {
   removeCurse: {
     name: "Remove Curse (Curse)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -368,7 +368,7 @@ export const magicUserSpells: Spells = {
   wallOfFire: {
     name: "Wall of Fire",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -376,7 +376,7 @@ export const magicUserSpells: Spells = {
   wallOfIce: {
     name: "Wall of Ice",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -384,7 +384,7 @@ export const magicUserSpells: Spells = {
   wizardEye: {
     name: "Wizard Eye",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
     level: "4",
     preparedCount: 0,
     levelVariable: false
@@ -393,7 +393,7 @@ export const magicUserSpells: Spells = {
   animateDead: {
     name: "Animate Dead",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -401,7 +401,7 @@ export const magicUserSpells: Spells = {
   cloudkill: {
     name: "Cloudkill",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -409,7 +409,7 @@ export const magicUserSpells: Spells = {
   conjureElemental: {
     name: "Conjure Elemental",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.34, OSE Classic Fantasy Tome p.90",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -417,7 +417,7 @@ export const magicUserSpells: Spells = {
   contactHigherPlane: {
     name: "Contact Higher Plane",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.35, OSE Classic Fantasy Tome p.91",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -425,7 +425,7 @@ export const magicUserSpells: Spells = {
   feeblemind: {
     name: "Feeblemind",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.35, OSE Classic Fantasy Tome p.91",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -433,7 +433,7 @@ export const magicUserSpells: Spells = {
   holdMonster: {
     name: "Hold Monster",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.35, OSE Classic Fantasy Tome p.91",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -441,7 +441,7 @@ export const magicUserSpells: Spells = {
   magicJar: {
     name: "Magic Jar",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -449,7 +449,7 @@ export const magicUserSpells: Spells = {
   passWal: {
     name: "Pass-Wall",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -457,7 +457,7 @@ export const magicUserSpells: Spells = {
   telekinesis: {
     name: "Telekinesis",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -465,7 +465,7 @@ export const magicUserSpells: Spells = {
   teleport: {
     name: "Teleport",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.37, OSE Classic Fantasy Tome p.93",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -473,7 +473,7 @@ export const magicUserSpells: Spells = {
   transmuteRockToMud: {
     name: "Transmute Rock to Mud (Mud to Rock)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.37, OSE Classic Fantasy Tome p.93",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -481,7 +481,7 @@ export const magicUserSpells: Spells = {
   wallOfStone: {
     name: "Wall of Stone",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.37, OSE Classic Fantasy Tome p.93",
     level: "5",
     preparedCount: 0,
     levelVariable: false
@@ -490,7 +490,7 @@ export const magicUserSpells: Spells = {
   antiMagicShell: {
     name: "Anti-Magic Shell",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.38, OSE Classic Fantasy Tome p.94",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -498,7 +498,7 @@ export const magicUserSpells: Spells = {
   controlWeather: {
     name: "Control Weather",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.38, OSE Classic Fantasy Tome p.94",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -506,7 +506,7 @@ export const magicUserSpells: Spells = {
   deathSpell: {
     name: "Death Spell",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.38, OSE Classic Fantasy Tome p.94",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -514,7 +514,7 @@ export const magicUserSpells: Spells = {
   disintegrate: {
     name: "Disintegrate",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -522,7 +522,7 @@ export const magicUserSpells: Spells = {
   geas: {
     name: "Geas (Remove Geas)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -530,7 +530,7 @@ export const magicUserSpells: Spells = {
   invisibleStalker: {
     name: "Invisible Stalker",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -538,7 +538,7 @@ export const magicUserSpells: Spells = {
   lowerWater: {
     name: "Lower Water",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -546,7 +546,7 @@ export const magicUserSpells: Spells = {
   moveEarth: {
     name: "Move Earth",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.40, OSE Classic Fantasy Tome p.96",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -554,7 +554,7 @@ export const magicUserSpells: Spells = {
   partWater: {
     name: "Part Water",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.40, OSE Classic Fantasy Tome p.96",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -562,7 +562,7 @@ export const magicUserSpells: Spells = {
   projectedImage: {
     name: "Project Image",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.40, OSE Classic Fantasy Tome p.96",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -570,7 +570,7 @@ export const magicUserSpells: Spells = {
   reincarnation: {
     name: "Reincarnation",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.40, OSE Classic Fantasy Tome p.96",
     level: "6",
     preparedCount: 0,
     levelVariable: false
@@ -578,7 +578,7 @@ export const magicUserSpells: Spells = {
   stoneToFlesh: {
     name: "Stone to Flesh (Flesh to Stone)",
     description:
-      "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      "OSE Cleric and Magic-User Spells p.40, OSE Classic Fantasy Tome p.96",
     level: "6",
     preparedCount: 0,
     levelVariable: false

@@ -118,7 +118,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Inventory
   const [inventory] = useState(
-    savedCharacterInventory
+    savedCharacterInventory && savedCharacterData
       ? savedCharacterInventory
       : savedCharacterData && savedCharacterData.equipment
       ? savedCharacterData.equipment
@@ -384,7 +384,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         segmentIcon={<GiKnapsack />}
         segmentName={"Inventory"}
         segmentDisplayName={
-          savedCharacterInventory
+          savedCharacterInventory && savedCharacterData
             ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
                 abilityScores[CON] > 10 ? abilityScores[CON] : 10
               } slots)`
@@ -398,7 +398,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         }
         segmentData={
           <>
-            {savedCharacterInventory ? (
+            {savedCharacterInventory && savedCharacterData ? (
               <InventoryImpl inventory={savedCharacterInventory} />
             ) : !savedCharacterData ? (
               <InventoryImpl inventory={inventory} />
