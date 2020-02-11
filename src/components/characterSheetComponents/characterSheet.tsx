@@ -80,9 +80,9 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 }) => {
   /**
    * NOTE!!!
-   * Hardcoded character level for now
+   * HARDCODED character level for now
    */
-  const characterLevel = 6;
+  const characterLevel = 1;
   const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
   const levelSpellMatrixIndex = characterLevel - 1;
 
@@ -118,11 +118,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Inventory
   const [inventory] = useState(
-    savedCharacterInventory && savedCharacterData
+    savedCharacterInventory
       ? savedCharacterInventory
-      : savedCharacterData && savedCharacterData.equipment
-      ? savedCharacterData.equipment
       : getInventory(classSelection, abilityScores[CON])
+  );
+  // Old Inventory
+  const [oldInventory] = useState(
+    savedCharacterData && savedCharacterData.equipment
   );
 
   // Armor Class
@@ -143,13 +145,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Spells
   const [spells] = useState(
-    savedCharacterSpells && savedCharacterData
+    savedCharacterSpells
       ? savedCharacterSpells
       : getSpells(nonTraditionalSpells, classSelection)
   );
   // Old Spells
   const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
-  // Spell Level Headers
+  // Spell Level Headers (dynamically determined and tracked)
   const [levelHeadersVisible, setLevelHeadersVisible] = useState(() => {
     let levelHeaders: { [key: string]: boolean } = {};
     if (characterSpellMatrix && characterSpellMatrix[levelSpellMatrixIndex]) {
@@ -207,7 +209,9 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         abilityScores={abilityScores}
         hitPoints={hitPoints}
         languages={languages}
+        inventory={inventory}
         armorClass={armorClass}
+        spells={spells}
         nonTraditionalSpells={nonTraditionalSpells}
       />
 
@@ -290,11 +294,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* Spells Segment */}
       {/**
-       * Check if character has spells available by level.
-       * E.g. half elf gets spells segment to show up when
-       * they can finally cast spells.
+       * Spells Segment
+       *
+       * Check if character has spells available by their
+       * current level. E.g. half-elf gets spells segment
+       * to show up when they can finally cast spells at
+       * level two.
        */}
       {characterSpellMatrix &&
         characterSpellMatrix[levelSpellMatrixIndex][0] >= 1 && (
@@ -388,11 +394,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
             ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
                 abilityScores[CON] > 10 ? abilityScores[CON] : 10
               } slots)`
-            : !savedCharacterData
+            : inventory
             ? `Inventory (${getInventorySlotsUsed(inventory)}/${
                 abilityScores[CON] > 10 ? abilityScores[CON] : 10
               } slots)`
-            : `Inventory (${savedCharacterData.equipment.slotsToFill}/${
+            : `Inventory (${oldInventory && oldInventory.slotsToFill}/${
                 abilityScores[CON] > 10 ? abilityScores[CON] : 10
               } slots)`
         }
@@ -400,14 +406,19 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
           <>
             {savedCharacterInventory && savedCharacterData ? (
               <InventoryImpl inventory={savedCharacterInventory} />
-            ) : !savedCharacterData ? (
+            ) : inventory ? (
               <InventoryImpl inventory={inventory} />
             ) : (
-              <Equipment
-                dangerouslySetInnerHTML={createMarkup(
-                  savedCharacterData.equipment.characterEquipmentString
+              <>
+                {oldInventory && (
+                  <Equipment
+                    dangerouslySetInnerHTML={
+                      savedCharacterData &&
+                      createMarkup(oldInventory.characterEquipmentString)
+                    }
+                  />
                 )}
-              />
+              </>
             )}
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a

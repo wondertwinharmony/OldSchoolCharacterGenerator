@@ -1,13 +1,25 @@
 import React from "react";
 import { GiElfHelmet } from "react-icons/gi";
 import { CastingMethod, SpellList } from "../classes";
-import { fighterInventory } from "../equipmentKits/fighterInventory";
+import { elfInventory } from "../equipmentKits/elfInventory";
 
 export const elf = {
   name: "Elf",
   icon: React.createElement(GiElfHelmet, {}),
   castingMethod: "arcane" as CastingMethod,
   spellList: "magicUser" as SpellList,
+  spellMatrix: [
+    [1, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0],
+    [2, 1, 0, 0, 0],
+    [2, 2, 0, 0, 0],
+    [2, 2, 1, 0, 0],
+    [2, 2, 2, 0, 0],
+    [3, 2, 2, 1, 0],
+    [3, 3, 2, 2, 0],
+    [3, 3, 3, 2, 1],
+    [3, 3, 3, 3, 2]
+  ],
   requirements: "Minimum INT 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",
@@ -23,7 +35,7 @@ export const elf = {
     breath: 15,
     magic: 15
   },
-  inventory: fighterInventory,
+  inventory: elfInventory,
   abilities: [
     "<strong>Arcane Magic:</strong> See <i>Magic in Core Rules, p42</i> for full details on arcane magic.\n\n<div style='padding: 0 1.5rem'><strong>Magical Research:</strong> An elf of any level may spend time and money to research new spells to add to his or her spell book. When an elf reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell Casting:</strong> Elves carry spell books containing the formulae for arcane spells. A 1st level elf has one spell in his or her spell book. The list of spells available to elves is found on <i>p45</i>.\n\n<strong>Using Magic Items:</strong> As spell casters, elves are able to use magic scrolls of spells on their spell list. There are also items (e.g. magic wands) that may only be used by arcane spell casters (including elves).</div>",
     "<strong>Combat:</strong> Elves are able to use all forms of weapon and armor.",

@@ -20,11 +20,6 @@ interface Props {
 
 interface ImplProps extends Props {}
 
-/**
- * Next steps:
- * - [] MOAR spell data
- * - [] add OU player's guide spells to non-Old-School spell list
- */
 const SpellsImpl: React.SFC<ImplProps> = ({
   className,
   classSelection,
@@ -35,15 +30,8 @@ const SpellsImpl: React.SFC<ImplProps> = ({
   levelHeadersVisible,
   setLevelHeadersVisible
 }) => {
-  const {
-    savedCharacterData,
-    savedCharacterSpells,
-    setSavedCharacterSpells
-  } = useContext(AppContext);
+  const { savedCharacterData } = useContext(AppContext);
   if (!spellsMatrix || !spells) return null;
-  if (!savedCharacterSpells) {
-    setSavedCharacterSpells(spells);
-  }
 
   return (
     <div className={className}>
