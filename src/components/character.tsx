@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { getURL } from "../api/getURL";
-import AppContext from "../AppContext";
-import { getSavedCharacterData } from "../utils/getSavedCharacterData";
-import CharacterSheet from "./characterSheetComponents/characterSheet";
+import React, { useContext, useEffect, useState } from 'react';
+import { getURL } from '../api/getURL';
+import AppContext from '../AppContext';
+import { getSavedCharacterData } from '../utils/getSavedCharacterData';
+import CharacterSheet from './characterSheetComponents/characterSheet';
 
 export default function Character() {
   const [loading, setLoading] = useState(true);
@@ -17,12 +17,12 @@ export default function Character() {
 
   useEffect(() => {
     const homeURL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/"
-        : "https://oldschoolknave.surge.sh/";
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/'
+        : 'https://oldschoolknave.surge.sh/';
 
     const URL = window.location.href;
-    const characterId = URL.replace(homeURL.concat("permalinked/"), "");
+    const characterId = URL.replace(homeURL.concat('permalinked/'), '');
 
     const fetchCharacter = async () => {
       const apiResponse = await getURL(characterId).then(response =>
@@ -32,7 +32,7 @@ export default function Character() {
         getSavedCharacterData(
           apiResponse.permaLink,
           homeURL,
-          "savedCharacter/1&"
+          'savedCharacter/1&'
         )
       );
       setSavedCharacterInventory(apiResponse.inventory);
