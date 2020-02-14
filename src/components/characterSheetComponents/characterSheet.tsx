@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaDAndD, FaDiceD20 } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from 'react';
+import { FaDAndD, FaDiceD20 } from 'react-icons/fa';
 import {
   GiChewedSkull,
   GiCoins,
@@ -9,15 +9,15 @@ import {
   GiScrollUnfurled,
   GiSpiralBottle,
   GiSwordwoman
-} from "react-icons/gi";
-import { MdChatBubble, MdStar } from "react-icons/md";
-import styled from "styled-components";
-import AppContext from "../../AppContext";
-import { characterClasses } from "../../characterData/classes";
-import { combatActions } from "../../characterData/combatActions";
-import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
-import { retainers } from "../../characterData/retainers";
-import { weaponQualities } from "../../characterData/weaponQualities";
+} from 'react-icons/gi';
+import { MdChatBubble, MdStar } from 'react-icons/md';
+import styled from 'styled-components';
+import AppContext from '../../AppContext';
+import { characterClasses } from '../../characterData/classes';
+import { combatActions } from '../../characterData/combatActions';
+import { gainingXPAndCarousing } from '../../characterData/gainingXPAndCarousing';
+import { retainers } from '../../characterData/retainers';
+import { weaponQualities } from '../../characterData/weaponQualities';
 import {
   CHA,
   CON,
@@ -25,39 +25,39 @@ import {
   INT,
   STR,
   WIS
-} from "../../constants/abilityScoreConstants";
+} from '../../constants/abilityScoreConstants';
 import {
   characterSheetSegments,
   CharacterSheetSegments
-} from "../../constants/characterSheetSegments";
-import charismaAdjustmentTable from "../../static/charismaAdjustmentTable.png";
-import coinConversions from "../../static/coinConversions.png";
-import paladinTurningTable from "../../static/paladinTurningTable.png";
-import parchment from "../../static/parchment.png";
-import turningTableResults from "../../static/turningTableResults.png";
-import turnUndeadTable from "../../static/turnUndeadTable.png";
-import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
-import { createMarkup } from "../../utils/createMarkup";
-import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
-import { getArmorClass } from "../../utils/getArmorClass";
-import { getCharacterName } from "../../utils/getCharacterName";
-import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
-import { getHitPoints } from "../../utils/getHitPoints";
-import { getInventory } from "../../utils/getInventory";
-import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
-import { getLanguages } from "../../utils/getLanguages";
-import { getLegacyArmorClass } from "../../utils/getLegacyArmorClass";
-import { SavedCharacterData } from "../../utils/getSavedCharacterData";
-import { getSpells } from "../../utils/getSpells";
-import { getTraits } from "../../utils/getTraits";
-import CharacterDetails from "./characterDetails";
-import CharacterSkills from "./characterSkills";
-import InventoryImpl from "./inventory/inventory";
-import StyledItemsForPurchase from "./itemsForPurchase";
-import Permalink from "./permalink";
-import Segment from "./segment";
-import SpellsImpl from "./spells/spells";
+} from '../../constants/characterSheetSegments';
+import charismaAdjustmentTable from '../../static/charismaAdjustmentTable.png';
+import coinConversions from '../../static/coinConversions.png';
+import paladinTurningTable from '../../static/paladinTurningTable.png';
+import parchment from '../../static/parchment.png';
+import turningTableResults from '../../static/turningTableResults.png';
+import turnUndeadTable from '../../static/turnUndeadTable.png';
+import { characterSkillsLookUp } from '../../utils/characterSkillsLookUp';
+import { createMarkup } from '../../utils/createMarkup';
+import { getAbilityScoreModifier } from '../../utils/getAbilityScoreModifier';
+import { getArmorClass } from '../../utils/getArmorClass';
+import { getCharacterName } from '../../utils/getCharacterName';
+import { getClassPrimeRequisites } from '../../utils/getClassPrimeRequisites';
+import { getExperienceAdjustment } from '../../utils/getExperienceAdjustment';
+import { getHitPoints } from '../../utils/getHitPoints';
+import { getInventory } from '../../utils/getInventory';
+import { getInventorySlotsUsed } from '../../utils/getInventorySlotsUsed';
+import { getLanguages } from '../../utils/getLanguages';
+import { getLegacyArmorClass } from '../../utils/getLegacyArmorClass';
+import { SavedCharacterData } from '../../utils/getSavedCharacterData';
+import { getSpells } from '../../utils/getSpells';
+import { getTraits } from '../../utils/getTraits';
+import CharacterDetails from './characterDetails';
+import CharacterSkills from './characterSkills';
+import InventoryImpl from './inventory/inventory';
+import StyledItemsForPurchase from './itemsForPurchase';
+import Permalink from './permalink';
+import Segment from './segment';
+import SpellsImpl from './spells/spells';
 
 interface Props {
   abilityScores: number[];
@@ -82,7 +82,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
    * NOTE!!!
    * HARDCODED character level for now
    */
-  const characterLevel = 1;
+  const characterLevel = 6;
   const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
   const levelSpellMatrixIndex = characterLevel - 1;
 
@@ -237,7 +237,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Traits Segment*/}
       <Segment
         segmentIcon={<GiScrollUnfurled />}
-        segmentDisplayName={"Traits"}
+        segmentDisplayName={'Traits'}
         segmentData={<TraitsContainer>{traits}</TraitsContainer>}
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
@@ -246,7 +246,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Languages Segment*/}
       <Segment
         segmentIcon={<MdChatBubble />}
-        segmentDisplayName={"Languages"}
+        segmentDisplayName={'Languages'}
         segmentData={<Language>{languages}</Language>}
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
@@ -255,11 +255,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Abilities Segment*/}
       <Segment
         segmentIcon={<MdStar />}
-        segmentDisplayName={"Abilities"}
+        segmentDisplayName={'Abilities'}
         segmentData={
           <Ability
             dangerouslySetInnerHTML={createMarkup(
-              characterClasses[classSelection].abilities!.join("\n\n")
+              characterClasses[classSelection].abilities!.join('\n\n')
             )}
           />
         }
@@ -268,11 +268,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       />
 
       {/* Turn Undead Segment - Cleric/Paladin */}
-      {(classSelection === "paladin" || classSelection === "cleric") && (
+      {(classSelection === 'paladin' || classSelection === 'cleric') && (
         <Segment
           segmentIcon={<GiChewedSkull />}
-          segmentName={"TurnUndeadTable"}
-          segmentDisplayName={"Turning the Undead"}
+          segmentName={'TurnUndeadTable'}
+          segmentDisplayName={'Turning the Undead'}
           segmentData={
             <TurnUndeadContainer>
               {characterClasses[classSelection].clericTurn ? (
@@ -306,7 +306,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         characterSpellMatrix[levelSpellMatrixIndex][0] >= 1 && (
           <Segment
             segmentIcon={<GiCometSpark />}
-            segmentDisplayName={"Spells"}
+            segmentDisplayName={'Spells'}
             segmentData={
               savedCharacterSpells && savedCharacterData ? (
                 <SpellsImpl
@@ -340,7 +340,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
                     <>
                       <Spell
                         dangerouslySetInnerHTML={createMarkup(
-                          oldSpells.join("\n\n")
+                          oldSpells.join('\n\n')
                         )}
                       />
                       {/* {checkSpell(oldSpells) && (
@@ -366,13 +366,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       ] && (
         <Segment
           segmentIcon={characterClasses[classSelection].skillsIcon}
-          segmentName={"Skills"}
+          segmentName={'Skills'}
           segmentDisplayName={
-            classSelection !== "ranger"
-              ? classSelection !== "wildMagicUser"
+            classSelection !== 'ranger'
+              ? classSelection !== 'wildMagicUser'
                 ? `${characterClasses[classSelection].name} Skills`
-                : "Wild Surges"
-              : "Ranger Tracking"
+                : 'Wild Surges'
+              : 'Ranger Tracking'
           }
           segmentData={
             <CharacterSkills
@@ -388,7 +388,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Inventory Segment */}
       <Segment
         segmentIcon={<GiKnapsack />}
-        segmentName={"Inventory"}
+        segmentName={'Inventory'}
         segmentDisplayName={
           savedCharacterInventory && savedCharacterData
             ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
@@ -433,8 +433,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Combat Actions Segment */}
       <Segment
         segmentIcon={<FaDiceD20 />}
-        segmentName={"CombatActions"}
-        segmentDisplayName={"Combat Actions"}
+        segmentName={'CombatActions'}
+        segmentDisplayName={'Combat Actions'}
         segmentData={
           <>
             <CombatActions
@@ -449,10 +449,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Weapon Quality Descriptions Segment */}
       <Segment
         segmentIcon={<GiSpiralBottle />}
-        segmentName={"WeaponQualities"}
+        segmentName={'WeaponQualities'}
         segmentDisplayName={
           <WeaponQualitiesHeaderText>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               Item
               <HeaderIcon>
                 <FaDAndD />
@@ -476,8 +476,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Items for Purchase Segment */}
       <Segment
         segmentIcon={<GiPriceTag />}
-        segmentName={"ItemsForPurchase"}
-        segmentDisplayName={"Items For Purchase"}
+        segmentName={'ItemsForPurchase'}
+        segmentDisplayName={'Items For Purchase'}
         segmentData={
           <>
             <StyledItemsForPurchase />
@@ -490,7 +490,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Retainers Segment*/}
       <Segment
         segmentIcon={<GiSwordwoman />}
-        segmentDisplayName={"Retainers"}
+        segmentDisplayName={'Retainers'}
         segmentData={
           <>
             <CharismaAdjustmentsTable />
@@ -504,10 +504,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Gaining XP & Carousing Description Segment*/}
       <Segment
         segmentIcon={<GiCoins />}
-        segmentName={"GainingXPAndCarousing"}
+        segmentName={'GainingXPAndCarousing'}
         segmentDisplayName={
           <GainingXPAndCarousingHeaderText>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               Gaining XP
               <HeaderIcon>
                 <FaDAndD />
@@ -658,7 +658,7 @@ const CoinConversionsTable = styled.div`
 `;
 
 const StyledCreatedCharacter = styled(CharacterSheetImpl)`
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   background-image: url(${parchment});
   justify-content: center;
   display: flex;
