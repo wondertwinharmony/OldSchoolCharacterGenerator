@@ -1,4 +1,0 @@
-export const homeURL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000/"
-    : "https://oldschoolknave.surge.sh/";
