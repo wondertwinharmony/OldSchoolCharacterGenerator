@@ -1,3 +1,57 @@
+import { clericSpells } from "./clericSpells";
+import { druidSpells } from "./druidSpells";
+import { illusionistSpells } from "./illusionistSpells";
+import { magicUserSpells } from "./magicUserSpells";
+import {
+  knaveSpells,
+  operationUnfathomableSpells
+} from "./nonTraditionalSpells";
+
+export interface Spells {
+  [key: string]: {
+    name: string;
+    description: string;
+    level: string;
+    levelVariable: boolean;
+    preparedCount: number;
+  };
+}
+
+/**
+ * @todo
+ * Drow NEED special handling.
+ * They have access to Light (Darkness) spell
+ * as well as 3rd level Web in addition to normal
+ * cleric spell list.
+ */
+export const newAllSpells = {
+  magicUser: magicUserSpells,
+  cleric: clericSpells,
+  druid: druidSpells,
+  illusionist: illusionistSpells,
+  /**
+   * Drow start with light spell, and get Web at level 3
+   * automatically instead of unlocking ability to learn
+   * Web at level 2 like a magic-user.
+   */
+  drow: {
+    ...clericSpells,
+    web: {
+      name: "Web",
+      description:
+        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      level: "3",
+      preparedCount: 0,
+      levelVariable: false
+    }
+  }
+};
+
+export const allNonTraditionalSpells: Spells = {
+  ...knaveSpells,
+  ...operationUnfathomableSpells
+};
+
 /**
  * Basic Magic-User Level One Spells
  */
@@ -21,7 +75,7 @@ export const readMagicSpell =
 /**
  * Basic Illusionist Level One Spells
  */
-export const illusionistSpells = [
+export const oldIllusionistSpells = [
   "<strong>Auditory Illusion</strong><br><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> 240'<br><br>A sound of the caster’s choosing is conjured, emanating from a point anywhere within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Motion:</strong> The sound may move as long as it remains within range.<br><br>• <strong>Change:</strong> The sound may change and evolve over the course of the duration as the caster wishes.<br><br>• <strong>Maximum volume:</strong> The volume of the sound is limited by the caster’s level: a maximum of approximately four humans shouting per experience level. (For example, a horde of rats is equal to 8 humans, a lion roaring is equal to 16 humans, or a dragon roaring is equal to 24 or more humans.)</div>",
   "<strong>Chromatic Orb</strong><br><strong>Duration:</strong> instant<br><strong>Range:</strong> 60'<br><br>This spell conjures an orb of pure color that shoots towards a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Color:</strong> The caster may conjure an orb of one of the colors listed on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>, depending on their experience level and the gems available.<br><br>• <strong>Gemstone:</strong> The color orb is created by refracting and amplifying the pure hue and intrinsic properties of a gemstone, which must be in the caster’s possession. Casting <i>chromatic orb</i> does not cause the gemstone to be consumed.<br><br>• <strong>Value:</strong> The gem to be used must be of a certain minimum value (also indicated on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>).<br><br>• <strong>Hit:</strong> The orb hits unerringly, inflicting damage on the target and another effect that depends on its color.</div>",
   "<strong>Color Spray</strong><br><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div>",
@@ -40,108 +94,108 @@ export const illusionistSpells = [
  */
 export const knaveSpellAddendum =
   "† <strong><i>Knave Spell Rules May Apply</strong></i><br>“L” is a number equal to the caster’s level, an item is an object able to be lifted with one hand, and an object is anything up to human size. Unless otherwise noted, all spells with ongoing effects last up to L×10 minutes, and have a range of up to 40'. If a spell directly affects another creature, the creature may make a save to avoid it (as described previously). Success reduces or negates the spell’s effects.";
-export const knaveSpells = [
-  "<strong>Adhere:</strong> Object is covered in extremely sticky slime.<sup>†</sup>",
-  "<strong>Animate Object:</strong> Object obeys your commands as best it can. It can walk 15' per round.<sup>†</sup>",
-  "<strong>Anthropomorphize:</strong> A touched animal either gains human intelligence or human appearance for L days.<sup>†</sup>",
-  "<strong>Arcane Eye:</strong> You can see through a magical floating eyeball that flies around at your command.<sup>†</sup>",
-  "<strong>Astral Prison:</strong> An object is frozen in time and space within an invulnerable crystal shell.<sup>†</sup>",
-  "<strong>Attract:</strong> L+1 objects are strongly magnetically attracted to each other if they come within 10 feet.<sup>†</sup>",
-  "<strong>Auditory Illusion:</strong> You create illusory sounds that seem to come from a direction of your choice.<sup>†</sup>",
-  "<strong>Babble:</strong> A creature must loudly and clearly repeat everything you think. It is otherwise mute.<sup>†</sup>",
-  "<strong>Beast Form:</strong> You and your possessions transform into a mundane animal.<sup>†</sup>",
-  "<strong>Befuddle:</strong> L creatures of your choice are unable to form new short-term memories for the duration of the spell.<sup>†</sup>",
-  "<strong>Bend Fate:</strong> Roll L+1 d20s. Whenever you must roll a d20 after casting the spell, you must choose and then discard one of the rolled results until they are all gone.<sup>†</sup>",
-  "<strong>Bird Person:</strong> Your arms turn into huge bird wings.<sup>†</sup>",
-  "<strong>Body Swap:</strong> You switch bodies with a creature you touch. If one body dies, the other dies as well.<sup>†</sup>",
-  "<strong>Catherine:</strong> A woman wearing a blue dress appears until end of spell. She will obey polite, safe requests.<sup>†</sup>",
-  "<strong>Charm:</strong> L creatures treat you like a friend.<sup>†</sup>",
-  "<strong>Command:</strong> A creature obeys a single, three-word command that does not harm it.<sup>†</sup>",
-  "<strong>Comprehend:</strong> You become fluent in all languages.<sup>†</sup>",
-  "<strong>Control Plants:</strong> Nearby plants and trees obey you and gain the ability to move at 5 feet per round.<sup>†</sup>",
-  "<strong>Control Weather:</strong> You may alter the type of weather at will, but you do not otherwise control it.<sup>†</sup>",
-  "<strong>Counterspell:</strong> Make an opposed Intelligence save against the Intelligence of the caster of a nearby spell. You may do this out of turn as a reaction, or against an ongoing magical effect. On a success, you may cancel the spell.<sup>†</sup>",
-  "<strong>Deafen:</strong> All nearby creatures are deafened.<sup>†</sup>",
-  "<strong>Detect Magic:</strong> You hear nearby magical auras singing. Volume and harmony signify the aura’s power and refinement.<sup>†</sup>",
-  "<strong>Disassemble:</strong> Any of your body parts may be detached and reattached at will, without causing pain or damage. You can still control them.<sup>†</sup>",
-  "<strong>Disguise:</strong> You may alter the appearance of L characters at will as long as they remain humanoid. Attempts to duplicate other characters will seem uncanny.<sup>†</sup>",
-  "<strong>Displace:</strong> An object appears to be up to L×10' from its actual position.<sup>†</sup>",
-  "<strong>Earthquake:</strong> The ground begins shaking violently. Structures may be damaged or collapse.<sup>†</sup>",
-  "<strong>Elasticity:</strong> Your body can stretch up to L×10'.<sup>†</sup>",
-  "<strong>Elemental Wall:</strong> A straight wall of ice or fire L×40' long and 10' high rises from the ground.<sup>†</sup>",
-  "<strong>Filch:</strong> L visible items teleport to your hands.<sup>†</sup>",
-  "<strong>Fog Cloud:</strong> Dense fog spreads out from you.<sup>†</sup>",
-  "<strong>Frenzy:</strong> L creatures erupt in a frenzy of violence.<sup>†</sup>",
-  "<strong>Gate:</strong> A portal to a random plane opens.<sup>†</sup>",
-  "<strong>Gravity Shift:</strong> You can change the direction of gravity (for yourself only) up to once per round.<sup>†</sup>",
-  "<strong>Greed:</strong> L creatures develop an overwhelming urge to possess a visible item of your choice.<sup>†</sup>",
-  "<strong>Haste:</strong> Your movement speed is tripled.<sup>†</sup>",
-  "<strong>Hatred:</strong> L creatures develop a deep hatred of another creature or group of creatures and wish to destroy it.<sup>†</sup>",
-  "<strong>Hear Whispers:</strong> You can hear faint sounds clearly.<sup>†</sup>",
-  "<strong>Hover:</strong> An object hovers, frictionless, 2' above the ground. It can hold up to L humanoids.<sup>†</sup>",
-  "<strong>Hypnotize:</strong> A creature enters a trance and will truthfully answer L yes or no questions you ask it.<sup>†</sup>",
-  "<strong>Icy Touch:</strong> A thick ice layer spreads across a touched surface, up to L×10' in radius.<sup>†</sup>",
-  "<strong>Illuminate:</strong> A floating light moves as you command.<sup>†</sup>",
-  "<strong>Increase Gravity:</strong> The gravity in an area triples.<sup>†</sup>",
-  "<strong>Invisible Tether:</strong> Two objects within 10' of each other cannot be moved more than 10' apart.<sup>†</sup>",
-  "<strong>Knock:</strong> L nearby mundane or magical locks unlock.<sup>†</sup>",
-  "<strong>Leap:</strong> You can jump up to L×10' in the air.<sup>†</sup>",
-  "<strong>Liquid Air:</strong> The air around you becomes swimmable.<sup>†</sup>",
-  "<strong>Magic Dampener:</strong> All nearby magical effects have their effectiveness halved.<sup>†</sup>",
-  "<strong>Manse:</strong> A sturdy, furnished cottage appears for L×12 hours. You can permit and forbid entry to it at will.<sup>†</sup>",
-  "<strong>Marble Madness:</strong> Your pockets are full of marbles, and will refill every round.<sup>†</sup>",
-  "<strong>Masquerade:</strong> L characters’ appearances and voices become identical to a touched character.<sup>†</sup>",
-  "<strong>Miniaturize:</strong> You and L other touched creatures are reduced to the size of a mouse.<sup>†</sup>",
-  "<strong>Mirror Image:</strong> L illusory duplicates of yourself appear under your control.<sup>†</sup>",
-  "<strong>Mirrorwalk:</strong> A mirror becomes a gateway to another mirror that you looked into today.<sup>†</sup>",
-  "<strong>Multiarm:</strong> You gain L extra arms.<sup>†</sup>",
-  "<strong>Night Sphere:</strong> An L×40' wide sphere of darkness displaying the night sky appears.<sup>†</sup>",
-  "<strong>Objectify:</strong> You become any inanimate object between the size of a grand piano and an apple.<sup>†</sup>",
-  "<strong>Ooze Form:</strong> You become a living jelly.<sup>†</sup>",
-  "<strong>Pacify:</strong> L creatures have an aversion to violence.<sup>†</sup>",
-  "<strong>Phantom Coach:</strong> A ghostly coach appears until end of spell. It moves unnaturally fast over any terrain, including water<sup> </sup>†",
-  "<strong>Phobia:</strong> L creatures become terrified of an object of your choice.<sup>†</sup>",
-  "<strong>Pit:</strong> A pit 10' wide and L×5' deep opens in the ground.<sup>†</sup>",
-  "<strong>Primeval Surge:</strong> An object grows to the size of an elephant. If it is an animal, it is enraged.<sup>†</sup>",
-  "<strong>Psychometry:</strong> The referee answers L yes or no questions about a touched object.<sup>†</sup>",
-  "<strong>Pull:</strong> An object of any size is pulled directly towards you with the strength of L men for one round.<sup>†</sup>",
-  "<strong>Push:</strong> An object of any size is pushed directly away from you with the strength of L men for one round.<sup>†</sup>",
-  "<strong>Raise Dead:</strong> L skeletons rise from the ground to serve you. They are incredibly stupid and can only obey simple orders.<sup>†</sup>",
-  "<strong>Raise Spirit:</strong> The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
-  "<strong>Read Mind:</strong> You can hear the surface thoughts of nearby creatures.<sup>†</sup>",
-  "<strong>Repel:</strong> L+1 objects are strongly magnetically repelled from each other if they come within 10 feet.<sup>†</sup>",
-  "<strong>Scry:</strong> You can see through the eyes of a creature you touched earlier today.<sup>†</sup>",
-  "<strong>Sculpt Elements:</strong> All inanimate material behaves like clay in your hands.<sup>†</sup>",
-  "<strong>Shroud:</strong> L creatures are invisible until they move.<sup>†</sup>",
-  "<strong>Shuffle:</strong> L creatures instantly switch places. Determine where they end up randomly.<sup>†</sup>",
-  "<strong>Sleep:</strong> L creatures fall into a light sleep.<sup>†</sup>",
-  "<strong>Smoke Form:</strong> Your body becomes living smoke.<sup>†</sup>",
-  "<strong>Snail Knight:</strong> 10 minutes after casting, a knight sitting astride a giant snail rides into view. He is able to answer most questions related to quests and chivalry, and may aid you if he finds you worthy.<sup>†</sup>",
-  "<strong>Sniff:</strong> You can smell even the faintest traces of scents.<sup>†</sup>",
-  "<strong>Sort:</strong> Inanimate items sort themselves according to categories you set. The categories must be visually verifiable.<sup>†</sup>",
-  "<strong>Spectacle:</strong> A clearly unreal but impressive illusion of your choice appears, under your control. It may be up to the size of a palace and has full motion and sound.<sup>†</sup>",
-  "<strong>Spellseize:</strong> Cast this as a reaction to another spell going off to make a temporary copy of it that you can cast at any time before this spell ends.<sup>†</sup>",
-  "<strong>Spider Climb:</strong> You can climb surfaces like a spider.<sup>†</sup>",
-  "<strong>Summon Cube:</strong> Once per second, (6 times per round) you may summon or banish a 3-foot-wide cube of earth. New cubes must be affixed to the earth or to other cubes.<sup>†</sup>",
-  "<strong>Swarm:</strong> You become a swarm of crows, rats, or piranhas. You only take damage from area effects.<sup>†</sup>",
-  "<strong>Telekinesis:</strong> You may mentally move L items.<sup>†</sup>",
-  "<strong>Telepathy:</strong> L+1 creatures can hear each other’s thoughts, no matter how far apart they move.<sup>†</sup>",
-  "<strong>Teleport:</strong> An object disappears and reappears on the ground in a visible, clear area up to L×40' away.<sup>†</sup>",
-  "<strong>Thaumaturgic Anchor:</strong> Object becomes the target of every spell cast near it.<sup>†</sup>",
-  "<strong>Thicket:</strong> A thicket of trees and dense brush up to L×40' wide suddenly sprouts up.<sup>†</sup>",
-  "<strong>Time Jump:</strong> An object disappears as it jumps L×10 minutes into the future. When it returns, it appears in the unoccupied area nearest to where it left.<sup>†</sup>",
-  "<strong>Summon Idol:</strong> A carved stone statue the size of a four poster bed rises from the ground.<sup>†</sup>",
-  "<strong>Time Rush:</strong> Time in a 40' bubble starts moving 10 times faster.<sup>†</sup>",
-  "<strong>Time Slow:</strong> Time in a 40' bubble slows to 10 percent.<sup>†</sup>",
-  "<strong>True Sight:</strong> You see through all nearby illusions.<sup>†</sup>",
-  "<strong>Upwell:</strong> A spring of seawater appears.<sup>†</sup>",
-  "<strong>Vision:</strong> You completely control what a creature sees.<sup>†</sup>",
-  "<strong>Visual Illusion:</strong> A silent, immobile, illusion of your choice appears, up to the size of a bedroom.<sup>†</sup>",
-  "<strong>Ward:</strong> A silver circle 40' across appears on the ground. Choose one thing that cannot cross it: Living creatures, dead creatures, projectiles or metal.<sup>†</sup>",
-  "<strong>Web:</strong> Your wrists can shoot thick webbing.<sup>†</sup>",
-  "<strong>Wizard Mark:</strong> Your finger can shoot a stream of ulfire-colored paint. This paint is only visible to you, and can be seen at any distance, even through solid objects.<sup>†</sup>",
-  "<strong>X-Ray Vision:</strong> You gain X-Ray vision.<sup>†</sup>"
-];
+// export const knaveSpells = [
+//   "<strong>Adhere:</strong> Object is covered in extremely sticky slime.<sup>†</sup>",
+//   "<strong>Animate Object:</strong> Object obeys your commands as best it can. It can walk 15' per round.<sup>†</sup>",
+//   "<strong>Anthropomorphize:</strong> A touched animal either gains human intelligence or human appearance for L days.<sup>†</sup>",
+//   "<strong>Arcane Eye:</strong> You can see through a magical floating eyeball that flies around at your command.<sup>†</sup>",
+//   "<strong>Astral Prison:</strong> An object is frozen in time and space within an invulnerable crystal shell.<sup>†</sup>",
+//   "<strong>Attract:</strong> L+1 objects are strongly magnetically attracted to each other if they come within 10 feet.<sup>†</sup>",
+//   "<strong>Auditory Illusion:</strong> You create illusory sounds that seem to come from a direction of your choice.<sup>†</sup>",
+//   "<strong>Babble:</strong> A creature must loudly and clearly repeat everything you think. It is otherwise mute.<sup>†</sup>",
+//   "<strong>Beast Form:</strong> You and your possessions transform into a mundane animal.<sup>†</sup>",
+//   "<strong>Befuddle:</strong> L creatures of your choice are unable to form new short-term memories for the duration of the spell.<sup>†</sup>",
+//   "<strong>Bend Fate:</strong> Roll L+1 d20s. Whenever you must roll a d20 after casting the spell, you must choose and then discard one of the rolled results until they are all gone.<sup>†</sup>",
+//   "<strong>Bird Person:</strong> Your arms turn into huge bird wings.<sup>†</sup>",
+//   "<strong>Body Swap:</strong> You switch bodies with a creature you touch. If one body dies, the other dies as well.<sup>†</sup>",
+//   "<strong>Catherine:</strong> A woman wearing a blue dress appears until end of spell. She will obey polite, safe requests.<sup>†</sup>",
+//   "<strong>Charm:</strong> L creatures treat you like a friend.<sup>†</sup>",
+//   "<strong>Command:</strong> A creature obeys a single, three-word command that does not harm it.<sup>†</sup>",
+//   "<strong>Comprehend:</strong> You become fluent in all languages.<sup>†</sup>",
+//   "<strong>Control Plants:</strong> Nearby plants and trees obey you and gain the ability to move at 5 feet per round.<sup>†</sup>",
+//   "<strong>Control Weather:</strong> You may alter the type of weather at will, but you do not otherwise control it.<sup>†</sup>",
+//   "<strong>Counterspell:</strong> Make an opposed Intelligence save against the Intelligence of the caster of a nearby spell. You may do this out of turn as a reaction, or against an ongoing magical effect. On a success, you may cancel the spell.<sup>†</sup>",
+//   "<strong>Deafen:</strong> All nearby creatures are deafened.<sup>†</sup>",
+//   "<strong>Detect Magic:</strong> You hear nearby magical auras singing. Volume and harmony signify the aura’s power and refinement.<sup>†</sup>",
+//   "<strong>Disassemble:</strong> Any of your body parts may be detached and reattached at will, without causing pain or damage. You can still control them.<sup>†</sup>",
+//   "<strong>Disguise:</strong> You may alter the appearance of L characters at will as long as they remain humanoid. Attempts to duplicate other characters will seem uncanny.<sup>†</sup>",
+//   "<strong>Displace:</strong> An object appears to be up to L×10' from its actual position.<sup>†</sup>",
+//   "<strong>Earthquake:</strong> The ground begins shaking violently. Structures may be damaged or collapse.<sup>†</sup>",
+//   "<strong>Elasticity:</strong> Your body can stretch up to L×10'.<sup>†</sup>",
+//   "<strong>Elemental Wall:</strong> A straight wall of ice or fire L×40' long and 10' high rises from the ground.<sup>†</sup>",
+//   "<strong>Filch:</strong> L visible items teleport to your hands.<sup>†</sup>",
+//   "<strong>Fog Cloud:</strong> Dense fog spreads out from you.<sup>†</sup>",
+//   "<strong>Frenzy:</strong> L creatures erupt in a frenzy of violence.<sup>†</sup>",
+//   "<strong>Gate:</strong> A portal to a random plane opens.<sup>†</sup>",
+//   "<strong>Gravity Shift:</strong> You can change the direction of gravity (for yourself only) up to once per round.<sup>†</sup>",
+//   "<strong>Greed:</strong> L creatures develop an overwhelming urge to possess a visible item of your choice.<sup>†</sup>",
+//   "<strong>Haste:</strong> Your movement speed is tripled.<sup>†</sup>",
+//   "<strong>Hatred:</strong> L creatures develop a deep hatred of another creature or group of creatures and wish to destroy it.<sup>†</sup>",
+//   "<strong>Hear Whispers:</strong> You can hear faint sounds clearly.<sup>†</sup>",
+//   "<strong>Hover:</strong> An object hovers, frictionless, 2' above the ground. It can hold up to L humanoids.<sup>†</sup>",
+//   "<strong>Hypnotize:</strong> A creature enters a trance and will truthfully answer L yes or no questions you ask it.<sup>†</sup>",
+//   "<strong>Icy Touch:</strong> A thick ice layer spreads across a touched surface, up to L×10' in radius.<sup>†</sup>",
+//   "<strong>Illuminate:</strong> A floating light moves as you command.<sup>†</sup>",
+//   "<strong>Increase Gravity:</strong> The gravity in an area triples.<sup>†</sup>",
+//   "<strong>Invisible Tether:</strong> Two objects within 10' of each other cannot be moved more than 10' apart.<sup>†</sup>",
+//   "<strong>Knock:</strong> L nearby mundane or magical locks unlock.<sup>†</sup>",
+//   "<strong>Leap:</strong> You can jump up to L×10' in the air.<sup>†</sup>",
+//   "<strong>Liquid Air:</strong> The air around you becomes swimmable.<sup>†</sup>",
+//   "<strong>Magic Dampener:</strong> All nearby magical effects have their effectiveness halved.<sup>†</sup>",
+//   "<strong>Manse:</strong> A sturdy, furnished cottage appears for L×12 hours. You can permit and forbid entry to it at will.<sup>†</sup>",
+//   "<strong>Marble Madness:</strong> Your pockets are full of marbles, and will refill every round.<sup>†</sup>",
+//   "<strong>Masquerade:</strong> L characters’ appearances and voices become identical to a touched character.<sup>†</sup>",
+//   "<strong>Miniaturize:</strong> You and L other touched creatures are reduced to the size of a mouse.<sup>†</sup>",
+//   "<strong>Mirror Image:</strong> L illusory duplicates of yourself appear under your control.<sup>†</sup>",
+//   "<strong>Mirrorwalk:</strong> A mirror becomes a gateway to another mirror that you looked into today.<sup>†</sup>",
+//   "<strong>Multiarm:</strong> You gain L extra arms.<sup>†</sup>",
+//   "<strong>Night Sphere:</strong> An L×40' wide sphere of darkness displaying the night sky appears.<sup>†</sup>",
+//   "<strong>Objectify:</strong> You become any inanimate object between the size of a grand piano and an apple.<sup>†</sup>",
+//   "<strong>Ooze Form:</strong> You become a living jelly.<sup>†</sup>",
+//   "<strong>Pacify:</strong> L creatures have an aversion to violence.<sup>†</sup>",
+//   "<strong>Phantom Coach:</strong> A ghostly coach appears until end of spell. It moves unnaturally fast over any terrain, including water<sup> </sup>†",
+//   "<strong>Phobia:</strong> L creatures become terrified of an object of your choice.<sup>†</sup>",
+//   "<strong>Pit:</strong> A pit 10' wide and L×5' deep opens in the ground.<sup>†</sup>",
+//   "<strong>Primeval Surge:</strong> An object grows to the size of an elephant. If it is an animal, it is enraged.<sup>†</sup>",
+//   "<strong>Psychometry:</strong> The referee answers L yes or no questions about a touched object.<sup>†</sup>",
+//   "<strong>Pull:</strong> An object of any size is pulled directly towards you with the strength of L men for one round.<sup>†</sup>",
+//   "<strong>Push:</strong> An object of any size is pushed directly away from you with the strength of L men for one round.<sup>†</sup>",
+//   "<strong>Raise Dead:</strong> L skeletons rise from the ground to serve you. They are incredibly stupid and can only obey simple orders.<sup>†</sup>",
+//   "<strong>Raise Spirit:</strong> The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
+//   "<strong>Read Mind:</strong> You can hear the surface thoughts of nearby creatures.<sup>†</sup>",
+//   "<strong>Repel:</strong> L+1 objects are strongly magnetically repelled from each other if they come within 10 feet.<sup>†</sup>",
+//   "<strong>Scry:</strong> You can see through the eyes of a creature you touched earlier today.<sup>†</sup>",
+//   "<strong>Sculpt Elements:</strong> All inanimate material behaves like clay in your hands.<sup>†</sup>",
+//   "<strong>Shroud:</strong> L creatures are invisible until they move.<sup>†</sup>",
+//   "<strong>Shuffle:</strong> L creatures instantly switch places. Determine where they end up randomly.<sup>†</sup>",
+//   "<strong>Sleep:</strong> L creatures fall into a light sleep.<sup>†</sup>",
+//   "<strong>Smoke Form:</strong> Your body becomes living smoke.<sup>†</sup>",
+//   "<strong>Snail Knight:</strong> 10 minutes after casting, a knight sitting astride a giant snail rides into view. He is able to answer most questions related to quests and chivalry, and may aid you if he finds you worthy.<sup>†</sup>",
+//   "<strong>Sniff:</strong> You can smell even the faintest traces of scents.<sup>†</sup>",
+//   "<strong>Sort:</strong> Inanimate items sort themselves according to categories you set. The categories must be visually verifiable.<sup>†</sup>",
+//   "<strong>Spectacle:</strong> A clearly unreal but impressive illusion of your choice appears, under your control. It may be up to the size of a palace and has full motion and sound.<sup>†</sup>",
+//   "<strong>Spellseize:</strong> Cast this as a reaction to another spell going off to make a temporary copy of it that you can cast at any time before this spell ends.<sup>†</sup>",
+//   "<strong>Spider Climb:</strong> You can climb surfaces like a spider.<sup>†</sup>",
+//   "<strong>Summon Cube:</strong> Once per second, (6 times per round) you may summon or banish a 3-foot-wide cube of earth. New cubes must be affixed to the earth or to other cubes.<sup>†</sup>",
+//   "<strong>Swarm:</strong> You become a swarm of crows, rats, or piranhas. You only take damage from area effects.<sup>†</sup>",
+//   "<strong>Telekinesis:</strong> You may mentally move L items.<sup>†</sup>",
+//   "<strong>Telepathy:</strong> L+1 creatures can hear each other’s thoughts, no matter how far apart they move.<sup>†</sup>",
+//   "<strong>Teleport:</strong> An object disappears and reappears on the ground in a visible, clear area up to L×40' away.<sup>†</sup>",
+//   "<strong>Thaumaturgic Anchor:</strong> Object becomes the target of every spell cast near it.<sup>†</sup>",
+//   "<strong>Thicket:</strong> A thicket of trees and dense brush up to L×40' wide suddenly sprouts up.<sup>†</sup>",
+//   "<strong>Time Jump:</strong> An object disappears as it jumps L×10 minutes into the future. When it returns, it appears in the unoccupied area nearest to where it left.<sup>†</sup>",
+//   "<strong>Summon Idol:</strong> A carved stone statue the size of a four poster bed rises from the ground.<sup>†</sup>",
+//   "<strong>Time Rush:</strong> Time in a 40' bubble starts moving 10 times faster.<sup>†</sup>",
+//   "<strong>Time Slow:</strong> Time in a 40' bubble slows to 10 percent.<sup>†</sup>",
+//   "<strong>True Sight:</strong> You see through all nearby illusions.<sup>†</sup>",
+//   "<strong>Upwell:</strong> A spring of seawater appears.<sup>†</sup>",
+//   "<strong>Vision:</strong> You completely control what a creature sees.<sup>†</sup>",
+//   "<strong>Visual Illusion:</strong> A silent, immobile, illusion of your choice appears, up to the size of a bedroom.<sup>†</sup>",
+//   "<strong>Ward:</strong> A silver circle 40' across appears on the ground. Choose one thing that cannot cross it: Living creatures, dead creatures, projectiles or metal.<sup>†</sup>",
+//   "<strong>Web:</strong> Your wrists can shoot thick webbing.<sup>†</sup>",
+//   "<strong>Wizard Mark:</strong> Your finger can shoot a stream of ulfire-colored paint. This paint is only visible to you, and can be seen at any distance, even through solid objects.<sup>†</sup>",
+//   "<strong>X-Ray Vision:</strong> You gain X-Ray vision.<sup>†</sup>"
+// ];
 
 /**
  * NOTE: spell scrolls have a slightly different format, an

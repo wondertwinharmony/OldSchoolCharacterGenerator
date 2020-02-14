@@ -1,10 +1,29 @@
 import React from "react";
 import { GiTemplarShield } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { paladinInventory } from "../equipmentKits/paladinInventory";
 
 export const paladin = {
   name: "Paladin",
   icon: React.createElement(GiTemplarShield, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "cleric" as SpellList,
+  spellMatrix: [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [1, 0, 0],
+    [2, 0, 0],
+    [2, 1, 0],
+    [2, 2, 0],
+    [2, 2, 1],
+    [3, 2, 1]
+  ],
   requirements: "Minimum CHA 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d8",
