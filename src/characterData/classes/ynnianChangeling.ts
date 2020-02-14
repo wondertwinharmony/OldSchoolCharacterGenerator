@@ -1,6 +1,6 @@
 import React from "react";
 import { GiDaggerRose } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
+import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const ynnianChangeling = {
   name: "Ynnian Changeling",
@@ -36,7 +36,7 @@ export const ynnianChangeling = {
     breath: [16, 14, 11, 8],
     magic: [15, 12, 9, 7]
   },
-  equipment: fighterEquipment,
+  inventory: fighterInventory,
   abilities: [
     "<strong>Combat:</strong> Ynnian changelings can use all forms of weapons and armor.",
     "<strong>Hide in Plants:</strong> Where there are plants at least up to their knees, a Ynnian changeling can attempt to blend into the vegetation. Ynnian changelings have a 5-in-6 chance to do so, and if successful become supernaturally well-hidden and impossible to detect by mundane means. This concealment lasts for as long as they remain perfectly still.",

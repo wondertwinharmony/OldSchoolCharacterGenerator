@@ -1,10 +1,29 @@
 import React from "react";
 import { GiTemplarShield } from "react-icons/gi";
-import { paladinEquipment } from "../equipmentKits/paladinEquipment";
+import { CastingMethod, SpellList } from "../classes";
+import { paladinInventory } from "../equipmentKits/paladinInventory";
 
 export const paladin = {
   name: "Paladin",
   icon: React.createElement(GiTemplarShield, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "cleric" as SpellList,
+  spellMatrix: [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [1, 0, 0],
+    [2, 0, 0],
+    [2, 1, 0],
+    [2, 2, 0],
+    [2, 2, 1],
+    [3, 2, 1]
+  ],
   requirements: "Minimum CHA 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d8",
@@ -36,7 +55,7 @@ export const paladin = {
     breath: [13, 10, 8, 6, 3],
     magic: [14, 12, 10, 8, 6]
   },
-  equipment: paladinEquipment,
+  inventory: paladinInventory,
   abilities: [
     "<strong>Alignment:</strong> A paladin must be lawful.If the character’s alignment ever changes (for any reason), they lose all class abilities and becomes a fighter of the same level. The referee may allow the character to perform a quest of atonement in order to regain their status as a paladin.",
     "<strong>Combat:</strong> Paladins can use all types of weapons and armour.",

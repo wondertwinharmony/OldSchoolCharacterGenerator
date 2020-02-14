@@ -1,10 +1,25 @@
 import React from "react";
 import { GiMaskedSpider } from "react-icons/gi";
-import { drowEquipment } from "../equipmentKits/drowEquipment";
+import { CastingMethod, SpellList } from "../classes";
+import { drowInventory } from "../equipmentKits/drowInventory";
 
 export const drow = {
   name: "Drow",
   icon: React.createElement(GiMaskedSpider, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "cleric" as SpellList,
+  spellMatrix: [
+    [1, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0],
+    [2, 1, 0, 0, 0],
+    [2, 2, 0, 0, 0],
+    [2, 2, 1, 0, 0],
+    [2, 2, 2, 1, 0],
+    [3, 3, 2, 2, 1],
+    [3, 3, 3, 2, 2],
+    [4, 4, 3, 3, 2],
+    [4, 4, 4, 3, 3]
+  ],
   requirements: "Minimum INT 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d6",
@@ -39,7 +54,7 @@ export const drow = {
     breath: [15, 13, 10, 8],
     magic: [12, 10, 8, 6]
   },
-  equipment: drowEquipment,
+  inventory: drowInventory,
   abilities: [
     "<strong>Combat:</strong> Drow are able to use all forms of weapon and armor.",
     "<strong>Detect Secret Doors:</strong> Drow have keen eyes that allow them, when actively searching, to detect hidden and secret doors with a 2-in-6 chance (see <i><strong>Dungeon Adventuring</strong> in Core Rules</i>).",

@@ -1,10 +1,29 @@
 import React from "react";
 import { GiLyre } from "react-icons/gi";
-import { bardEquipment } from "../equipmentKits/bardEquipment";
+import { CastingMethod, SpellList } from "../classes";
+import { bardInventory } from "../equipmentKits/bardInventory";
 
 export const bard = {
   name: "Bard",
   icon: React.createElement(GiLyre, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "druid" as SpellList,
+  spellMatrix: [
+    [0, 0, 0, 0],
+    [1, 0, 0, 0],
+    [2, 0, 0, 0],
+    [3, 0, 0, 0],
+    [3, 1, 0, 0],
+    [3, 2, 0, 0],
+    [3, 3, 0, 0],
+    [3, 3, 1, 0],
+    [3, 3, 2, 0],
+    [3, 3, 3, 0],
+    [3, 3, 3, 1],
+    [3, 3, 3, 2],
+    [3, 3, 3, 3],
+    [4, 4, 3, 3]
+  ],
   requirements: "Minimum DEX 9 and INT 9",
   primeRequisite: "CHA",
   hitDice: "1d6",
@@ -36,7 +55,7 @@ export const bard = {
     breath: [16, 14, 12, 10],
     magic: [15, 13, 10, 8]
   },
-  equipment: bardEquipment,
+  inventory: bardInventory,
   abilities: [
     "<strong>Combat:</strong> Bards can use leather armor or chainmail, but do not have the training required to use plate mail. They cannot use shields. They may use all missile weapons and any one-handed melee weapon.",
     "<strong>Divine Magic:</strong> See <i>Magic in Core Rules, p42</i> for full details on divine magic.\n\n<div style='padding: 0 1.5rem'><strong>Deity disfavor:</strong> Bards must be faithful to the tenets of their alignment and religion. Bards who fall from favor with their deity may incur penalties.\n\n<strong>Spell casting:</strong> Once a bard has proven his or her faith (from 2nd level), the character may pray to receive spells. The power and number of spells available to a bard are determined by the character’s experience level. The list of spells available to bards is found in <i>Druid and Illusionist Spells</i> (bards have the same spell selection as druids).\n\n<strong>Using magic items:</strong> As spell casters, bards can use magic scrolls of spells on their spell list. They may also use any items that only druids can use.</div>",

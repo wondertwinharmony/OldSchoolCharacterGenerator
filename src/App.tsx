@@ -16,6 +16,37 @@ import { getClassPrimeRequisites } from "./utils/getClassPrimeRequisites";
 import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
 
 /**
+ *  * FIXES
+ * - none currently
+ *
+ *  * NEW FEATURES TO CONSIDER
+ * High Priority
+ * - [] Track/Edit Name
+ * - [] Track HP
+ * - [] Track Ability Scores
+ * - [] Track XP, and next level (levels stored as array or something)
+ * - [] Track Level and Saves (possibly all handled as part of track XP)
+ * - [] Track Inventory NOT on character
+ * - [] Track GP NOT on character
+ * - [] Resurrection Tracker starting with default character CON, so resurrections
+ * can be tracked downward
+ * - [] "Stored Inventory" segment. Add button to "Inventory" segment that
+ * says "Store Item", and "Store Inventory" segment will have button that
+ * says "Equip Item" - handling this with animals will be more interesting
+ * and difficult -> we may need another dropdown to choose a target. Maybe
+ * instead we just call this "Move Item" and provide viable targets to send
+ * item to?
+ *
+ * Low Priority
+ * - [] Kill/Delete Permanently button (modal, are you sure, no way to undo this
+ * message to user as it will remove from DB)
+ * - [] More robust spell filtering, maybe only display spells that available
+ * at current level, or allow displaying spells all of a certain level. Maybe
+ * display more details about them as well.
+ * - [] Need cool error out display page if anything goes wrong with our app
+ * - [] Perhaps always display all classes available, but gray out selection
+ *      when requisites not met (maybe highlight requisite as red)
+ *
  * - [] @see https://thac0rpg.blogspot.com/2019/11/the-fight-over-fighters.html
  * - "I have not tried yet giving Fighters an additional Specialization at 5th
  * level, and then an extra attack with a Specialized weapon at 10th. The original
@@ -36,9 +67,6 @@ import { getExperienceAdjustment } from "./utils/getExperienceAdjustment";
  * Cleave: When an opponent is slain in combat, the fighter may make an immediate free attack
  * against an adjacent opponent.
  *
- * - [] New feature - always display all classes available, but gray out selection
- *      when requisites not met (maybe highlight requisite as red)
- *
  * - Add custom kobold class, GiFoxHead (like an infravision halfling)?
  * @see https://dysonlogos.blog/2011/04/13/tuckers-kobolds/
  * - Create own random treasure app tool from OSE Treasure book?
@@ -57,8 +85,8 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
   const {
     setAbilityScores,
     abilityScores,
-    setKnaveSpells,
-    includeKnaveSpells,
+    setNonTraditionalSpells,
+    nonTraditionalSpells,
     setClassSelection,
     classSelection,
     setSavedCharacterData,
@@ -112,9 +140,9 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
               </RollButton>
             </RerollAbilityScoresContainer>
             <KnaveSpellOptionsContainer
-              onClick={() => setKnaveSpells(!includeKnaveSpells)}
+              onClick={() => setNonTraditionalSpells(!nonTraditionalSpells)}
             >
-              {includeKnaveSpells ? (
+              {nonTraditionalSpells ? (
                 <MdCheckBox size="1.5em" />
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
@@ -136,7 +164,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
                     onClick={() => {
                       setClassSelection(classOptionKey);
                       history.push(
-                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${includeKnaveSpells}`
+                        `/generatedCharacter/${classOptions[classOptionKey]}&${abilityScores}&${nonTraditionalSpells}`
                       );
                     }}
                   >

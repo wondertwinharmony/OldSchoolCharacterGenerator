@@ -5,6 +5,9 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import UUID5 from "uuid/v5";
 import { postURL } from "../../api/postURL";
+import { characterClasses } from "../../characterData/classes";
+import { Items } from "../../characterData/items";
+import { Spells } from "../../characterData/spells";
 import { createMarkup } from "../../utils/createMarkup";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { saveCharacterData } from "../../utils/saveCharacterData";
@@ -17,9 +20,10 @@ interface Props {
   abilityScores: number[];
   hitPoints: number;
   languages: string;
-  spells: string[];
-  equipment: any;
-  includeKnaveSpells: boolean;
+  inventory: Items;
+  armorClass: number;
+  spells?: Spells;
+  nonTraditionalSpells: boolean;
 }
 
 /**
@@ -33,9 +37,10 @@ const Permalink: React.SFC<Props> = ({
   abilityScores,
   hitPoints,
   languages,
+  inventory,
+  armorClass,
   spells,
-  equipment,
-  includeKnaveSpells
+  nonTraditionalSpells
 }) => {
   let history = useHistory();
   let match = useRouteMatch("/generatedCharacter/:character/");
@@ -48,10 +53,7 @@ const Permalink: React.SFC<Props> = ({
       abilityScores,
       hitPoints,
       languages,
-      spells,
-      equipment.characterEquipmentString,
-      equipment.slotsToFill,
-      includeKnaveSpells
+      nonTraditionalSpells
     );
 
     const longLink =
@@ -60,11 +62,22 @@ const Permalink: React.SFC<Props> = ({
         : "https://oldschoolknave.surge.sh";
     const permaLink = longLink.concat("/savedCharacter/1&", URL);
     const characterUUID = UUID5(permaLink, UUID5.URL);
-    const data = {
+
+    let data: any = {
       characterId: characterUUID,
       permaLink: permaLink,
+      inventory,
+      AC: armorClass,
       httpMethod: "POST"
     };
+
+    /**
+     * NOTE
+     * Do not unnecessarily save divine caster spell lists to DB,
+     * save arcane spells only.
+     */
+    let castingMethod = characterClasses[classSelection].castingMethod;
+    if (spells && castingMethod === "arcane") data.spells = spells;
 
     const postCharacter = async () => {
       await postURL(data).then(() =>
@@ -86,10 +99,17 @@ const Permalink: React.SFC<Props> = ({
         Permalink
       </PermalinkButton>
       <div>
-        (or hit back to see other class options for current ability scores)
+        (Only permalinked characters can be edited. Or hit back to see other
+        class options for current ability scores.)
       </div>
     </PermalinkButtonContainer>
-  ) : //The ternary below checks if savedCharacterData exists and if the route is "generatedCharacter/:character/", if both conditions are true it will not render the <SaveMessageContainer>. We don't want the <SaveMessageContainer> to be rendered when people navigate back after permalinking a character.
+  ) : /**
+   * The ternary below checks if savedCharacterData exists and if the route is
+   * "generatedCharacter/:character/", if both conditions are true it will not
+   * render the <SaveMessageContainer>. We don't want the <SaveMessageContainer> to
+   * be rendered when people navigate back after permalinking a character.
+   */
+
   savedCharacterData && match ? null : (
     <SaveMessageContainer>
       <SaveHeader>
