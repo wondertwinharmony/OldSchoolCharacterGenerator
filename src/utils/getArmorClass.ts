@@ -1,3 +1,4 @@
+import { Items } from "../characterData/items";
 import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
 /**
  * Utility for determining Armor Class (AC).
@@ -10,8 +11,8 @@ import { getAbilityScoreModifier } from "./getAbilityScoreModifier";
  */
 export const getArmorClass = (
   dexScore: number,
-  equipment: string,
-  classOptionKey: string
+  classOptionKey: string,
+  inventory: Items
 ) => {
   /**
    * Crab-People have an absurd starting AC due to their natural
@@ -30,28 +31,40 @@ export const getArmorClass = (
    * Shield: +1
    */
   let baseArmorClass = 10;
-  const leather = equipment.includes("Leather Armor");
-  const chain = equipment.includes("Chainmail");
-  const plate = equipment.includes("Plate Armor");
-  const shield = equipment.includes("Shield");
-
-  if (leather) baseArmorClass = 12;
-  if (chain) baseArmorClass = 14;
-  if (plate) baseArmorClass = 16;
-  if (shield) baseArmorClass = baseArmorClass + 1;
+  let hasShield = false;
+  if (inventory) {
+    Object.keys(inventory).forEach((item: string) => {
+      if (inventory[item].description.includes("Leather Armor")) {
+        baseArmorClass = 12;
+      }
+      if (inventory[item].description.includes("Chainmail")) {
+        baseArmorClass = 14;
+      }
+      if (inventory[item].description.includes("Plate Mail")) {
+        baseArmorClass = 16;
+      }
+      if (inventory[item].description.includes("Shield")) {
+        hasShield = true;
+      }
+    });
+  }
   /**
    * Since getAbilityScoreModifier returns a string for display,
    * we need to do a little work here to make sure that "None"
    * and other strings are converted to numbers for calculating
    * armor class.
    */
-  const armorClass =
+  let armorClass =
     baseArmorClass +
     Number(
       getAbilityScoreModifier(dexScore) === "None"
         ? "0"
         : getAbilityScoreModifier(dexScore)
     );
+
+  if (hasShield) {
+    armorClass = armorClass + 1;
+  }
 
   return armorClass;
 };

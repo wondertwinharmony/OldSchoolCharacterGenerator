@@ -1,3 +1,57 @@
+import { clericSpells } from "./clericSpells";
+import { druidSpells } from "./druidSpells";
+import { illusionistSpells } from "./illusionistSpells";
+import { magicUserSpells } from "./magicUserSpells";
+import {
+  knaveSpells,
+  operationUnfathomableSpells
+} from "./nonTraditionalSpells";
+
+export interface Spells {
+  [key: string]: {
+    name: string;
+    description: string;
+    level: string;
+    levelVariable: boolean;
+    preparedCount: number;
+  };
+}
+
+/**
+ * @todo
+ * Drow NEED special handling.
+ * They have access to Light (Darkness) spell
+ * as well as 3rd level Web in addition to normal
+ * cleric spell list.
+ */
+export const newAllSpells = {
+  magicUser: magicUserSpells,
+  cleric: clericSpells,
+  druid: druidSpells,
+  illusionist: illusionistSpells,
+  /**
+   * Drow start with light spell, and get Web at level 3
+   * automatically instead of unlocking ability to learn
+   * Web at level 2 like a magic-user.
+   */
+  drow: {
+    ...clericSpells,
+    web: {
+      name: "Web",
+      description:
+        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+      level: "3",
+      preparedCount: 0,
+      levelVariable: false
+    }
+  }
+};
+
+export const allNonTraditionalSpells: Spells = {
+  ...knaveSpells,
+  ...operationUnfathomableSpells
+};
+
 /**
  * Basic Magic-User Level One Spells
  */
@@ -21,7 +75,7 @@ export const readMagicSpell =
 /**
  * Basic Illusionist Level One Spells
  */
-export const illusionistSpells = [
+export const oldIllusionistSpells = [
   "<strong>Auditory Illusion</strong><br><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> 240'<br><br>A sound of the caster’s choosing is conjured, emanating from a point anywhere within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Motion:</strong> The sound may move as long as it remains within range.<br><br>• <strong>Change:</strong> The sound may change and evolve over the course of the duration as the caster wishes.<br><br>• <strong>Maximum volume:</strong> The volume of the sound is limited by the caster’s level: a maximum of approximately four humans shouting per experience level. (For example, a horde of rats is equal to 8 humans, a lion roaring is equal to 16 humans, or a dragon roaring is equal to 24 or more humans.)</div>",
   "<strong>Chromatic Orb</strong><br><strong>Duration:</strong> instant<br><strong>Range:</strong> 60'<br><br>This spell conjures an orb of pure color that shoots towards a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Color:</strong> The caster may conjure an orb of one of the colors listed on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>, depending on their experience level and the gems available.<br><br>• <strong>Gemstone:</strong> The color orb is created by refracting and amplifying the pure hue and intrinsic properties of a gemstone, which must be in the caster’s possession. Casting <i>chromatic orb</i> does not cause the gemstone to be consumed.<br><br>• <strong>Value:</strong> The gem to be used must be of a certain minimum value (also indicated on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>).<br><br>• <strong>Hit:</strong> The orb hits unerringly, inflicting damage on the target and another effect that depends on its color.</div>",
   "<strong>Color Spray</strong><br><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div>",
@@ -40,108 +94,108 @@ export const illusionistSpells = [
  */
 export const knaveSpellAddendum =
   "† <strong><i>Knave Spell Rules May Apply</strong></i><br>“L” is a number equal to the caster’s level, an item is an object able to be lifted with one hand, and an object is anything up to human size. Unless otherwise noted, all spells with ongoing effects last up to L×10 minutes, and have a range of up to 40'. If a spell directly affects another creature, the creature may make a save to avoid it (as described previously). Success reduces or negates the spell’s effects.";
-export const knaveSpells = [
-  "<strong>Adhere:</strong> Object is covered in extremely sticky slime.<sup>†</sup>",
-  "<strong>Animate Object:</strong> Object obeys your commands as best it can. It can walk 15' per round.<sup>†</sup>",
-  "<strong>Anthropomorphize:</strong> A touched animal either gains human intelligence or human appearance for L days.<sup>†</sup>",
-  "<strong>Arcane Eye:</strong> You can see through a magical floating eyeball that flies around at your command.<sup>†</sup>",
-  "<strong>Astral Prison:</strong> An object is frozen in time and space within an invulnerable crystal shell.<sup>†</sup>",
-  "<strong>Attract:</strong> L+1 objects are strongly magnetically attracted to each other if they come within 10 feet.<sup>†</sup>",
-  "<strong>Auditory Illusion:</strong> You create illusory sounds that seem to come from a direction of your choice.<sup>†</sup>",
-  "<strong>Babble:</strong> A creature must loudly and clearly repeat everything you think. It is otherwise mute.<sup>†</sup>",
-  "<strong>Beast Form:</strong> You and your possessions transform into a mundane animal.<sup>†</sup>",
-  "<strong>Befuddle:</strong> L creatures of your choice are unable to form new short-term memories for the duration of the spell.<sup>†</sup>",
-  "<strong>Bend Fate:</strong> Roll L+1 d20s. Whenever you must roll a d20 after casting the spell, you must choose and then discard one of the rolled results until they are all gone.<sup>†</sup>",
-  "<strong>Bird Person:</strong> Your arms turn into huge bird wings.<sup>†</sup>",
-  "<strong>Body Swap:</strong> You switch bodies with a creature you touch. If one body dies, the other dies as well.<sup>†</sup>",
-  "<strong>Catherine:</strong> A woman wearing a blue dress appears until end of spell. She will obey polite, safe requests.<sup>†</sup>",
-  "<strong>Charm:</strong> L creatures treat you like a friend.<sup>†</sup>",
-  "<strong>Command:</strong> A creature obeys a single, three-word command that does not harm it.<sup>†</sup>",
-  "<strong>Comprehend:</strong> You become fluent in all languages.<sup>†</sup>",
-  "<strong>Control Plants:</strong> Nearby plants and trees obey you and gain the ability to move at 5 feet per round.<sup>†</sup>",
-  "<strong>Control Weather:</strong> You may alter the type of weather at will, but you do not otherwise control it.<sup>†</sup>",
-  "<strong>Counterspell:</strong> Make an opposed Intelligence save against the Intelligence of the caster of a nearby spell. You may do this out of turn as a reaction, or against an ongoing magical effect. On a success, you may cancel the spell.<sup>†</sup>",
-  "<strong>Deafen:</strong> All nearby creatures are deafened.<sup>†</sup>",
-  "<strong>Detect Magic:</strong> You hear nearby magical auras singing. Volume and harmony signify the aura’s power and refinement.<sup>†</sup>",
-  "<strong>Disassemble:</strong> Any of your body parts may be detached and reattached at will, without causing pain or damage. You can still control them.<sup>†</sup>",
-  "<strong>Disguise:</strong> You may alter the appearance of L characters at will as long as they remain humanoid. Attempts to duplicate other characters will seem uncanny.<sup>†</sup>",
-  "<strong>Displace:</strong> An object appears to be up to L×10' from its actual position.<sup>†</sup>",
-  "<strong>Earthquake:</strong> The ground begins shaking violently. Structures may be damaged or collapse.<sup>†</sup>",
-  "<strong>Elasticity:</strong> Your body can stretch up to L×10'.<sup>†</sup>",
-  "<strong>Elemental Wall:</strong> A straight wall of ice or fire L×40' long and 10' high rises from the ground.<sup>†</sup>",
-  "<strong>Filch:</strong> L visible items teleport to your hands.<sup>†</sup>",
-  "<strong>Fog Cloud:</strong> Dense fog spreads out from you.<sup>†</sup>",
-  "<strong>Frenzy:</strong> L creatures erupt in a frenzy of violence.<sup>†</sup>",
-  "<strong>Gate:</strong> A portal to a random plane opens.<sup>†</sup>",
-  "<strong>Gravity Shift:</strong> You can change the direction of gravity (for yourself only) up to once per round.<sup>†</sup>",
-  "<strong>Greed:</strong> L creatures develop an overwhelming urge to possess a visible item of your choice.<sup>†</sup>",
-  "<strong>Haste:</strong> Your movement speed is tripled.<sup>†</sup>",
-  "<strong>Hatred:</strong> L creatures develop a deep hatred of another creature or group of creatures and wish to destroy it.<sup>†</sup>",
-  "<strong>Hear Whispers:</strong> You can hear faint sounds clearly.<sup>†</sup>",
-  "<strong>Hover:</strong> An object hovers, frictionless, 2' above the ground. It can hold up to L humanoids.<sup>†</sup>",
-  "<strong>Hypnotize:</strong> A creature enters a trance and will truthfully answer L yes or no questions you ask it.<sup>†</sup>",
-  "<strong>Icy Touch:</strong> A thick ice layer spreads across a touched surface, up to L×10' in radius.<sup>†</sup>",
-  "<strong>Illuminate:</strong> A floating light moves as you command.<sup>†</sup>",
-  "<strong>Increase Gravity:</strong> The gravity in an area triples.<sup>†</sup>",
-  "<strong>Invisible Tether:</strong> Two objects within 10' of each other cannot be moved more than 10' apart.<sup>†</sup>",
-  "<strong>Knock:</strong> L nearby mundane or magical locks unlock.<sup>†</sup>",
-  "<strong>Leap:</strong> You can jump up to L×10' in the air.<sup>†</sup>",
-  "<strong>Liquid Air:</strong> The air around you becomes swimmable.<sup>†</sup>",
-  "<strong>Magic Dampener:</strong> All nearby magical effects have their effectiveness halved.<sup>†</sup>",
-  "<strong>Manse:</strong> A sturdy, furnished cottage appears for L×12 hours. You can permit and forbid entry to it at will.<sup>†</sup>",
-  "<strong>Marble Madness:</strong> Your pockets are full of marbles, and will refill every round.<sup>†</sup>",
-  "<strong>Masquerade:</strong> L characters’ appearances and voices become identical to a touched character.<sup>†</sup>",
-  "<strong>Miniaturize:</strong> You and L other touched creatures are reduced to the size of a mouse.<sup>†</sup>",
-  "<strong>Mirror Image:</strong> L illusory duplicates of yourself appear under your control.<sup>†</sup>",
-  "<strong>Mirrorwalk:</strong> A mirror becomes a gateway to another mirror that you looked into today.<sup>†</sup>",
-  "<strong>Multiarm:</strong> You gain L extra arms.<sup>†</sup>",
-  "<strong>Night Sphere:</strong> An L×40' wide sphere of darkness displaying the night sky appears.<sup>†</sup>",
-  "<strong>Objectify:</strong> You become any inanimate object between the size of a grand piano and an apple.<sup>†</sup>",
-  "<strong>Ooze Form:</strong> You become a living jelly.<sup>†</sup>",
-  "<strong>Pacify:</strong> L creatures have an aversion to violence.<sup>†</sup>",
-  "<strong>Phantom Coach:</strong> A ghostly coach appears until end of spell. It moves unnaturally fast over any terrain, including water<sup> </sup>†",
-  "<strong>Phobia:</strong> L creatures become terrified of an object of your choice.<sup>†</sup>",
-  "<strong>Pit:</strong> A pit 10' wide and L×5' deep opens in the ground.<sup>†</sup>",
-  "<strong>Primeval Surge:</strong> An object grows to the size of an elephant. If it is an animal, it is enraged.<sup>†</sup>",
-  "<strong>Psychometry:</strong> The referee answers L yes or no questions about a touched object.<sup>†</sup>",
-  "<strong>Pull:</strong> An object of any size is pulled directly towards you with the strength of L men for one round.<sup>†</sup>",
-  "<strong>Push:</strong> An object of any size is pushed directly away from you with the strength of L men for one round.<sup>†</sup>",
-  "<strong>Raise Dead:</strong> L skeletons rise from the ground to serve you. They are incredibly stupid and can only obey simple orders.<sup>†</sup>",
-  "<strong>Raise Spirit:</strong> The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
-  "<strong>Read Mind:</strong> You can hear the surface thoughts of nearby creatures.<sup>†</sup>",
-  "<strong>Repel:</strong> L+1 objects are strongly magnetically repelled from each other if they come within 10 feet.<sup>†</sup>",
-  "<strong>Scry:</strong> You can see through the eyes of a creature you touched earlier today.<sup>†</sup>",
-  "<strong>Sculpt Elements:</strong> All inanimate material behaves like clay in your hands.<sup>†</sup>",
-  "<strong>Shroud:</strong> L creatures are invisible until they move.<sup>†</sup>",
-  "<strong>Shuffle:</strong> L creatures instantly switch places. Determine where they end up randomly.<sup>†</sup>",
-  "<strong>Sleep:</strong> L creatures fall into a light sleep.<sup>†</sup>",
-  "<strong>Smoke Form:</strong> Your body becomes living smoke.<sup>†</sup>",
-  "<strong>Snail Knight:</strong> 10 minutes after casting, a knight sitting astride a giant snail rides into view. He is able to answer most questions related to quests and chivalry, and may aid you if he finds you worthy.<sup>†</sup>",
-  "<strong>Sniff:</strong> You can smell even the faintest traces of scents.<sup>†</sup>",
-  "<strong>Sort:</strong> Inanimate items sort themselves according to categories you set. The categories must be visually verifiable.<sup>†</sup>",
-  "<strong>Spectacle:</strong> A clearly unreal but impressive illusion of your choice appears, under your control. It may be up to the size of a palace and has full motion and sound.<sup>†</sup>",
-  "<strong>Spellseize:</strong> Cast this as a reaction to another spell going off to make a temporary copy of it that you can cast at any time before this spell ends.<sup>†</sup>",
-  "<strong>Spider Climb:</strong> You can climb surfaces like a spider.<sup>†</sup>",
-  "<strong>Summon Cube:</strong> Once per second, (6 times per round) you may summon or banish a 3-foot-wide cube of earth. New cubes must be affixed to the earth or to other cubes.<sup>†</sup>",
-  "<strong>Swarm:</strong> You become a swarm of crows, rats, or piranhas. You only take damage from area effects.<sup>†</sup>",
-  "<strong>Telekinesis:</strong> You may mentally move L items.<sup>†</sup>",
-  "<strong>Telepathy:</strong> L+1 creatures can hear each other’s thoughts, no matter how far apart they move.<sup>†</sup>",
-  "<strong>Teleport:</strong> An object disappears and reappears on the ground in a visible, clear area up to L×40' away.<sup>†</sup>",
-  "<strong>Thaumaturgic Anchor:</strong> Object becomes the target of every spell cast near it.<sup>†</sup>",
-  "<strong>Thicket:</strong> A thicket of trees and dense brush up to L×40' wide suddenly sprouts up.<sup>†</sup>",
-  "<strong>Time Jump:</strong> An object disappears as it jumps L×10 minutes into the future. When it returns, it appears in the unoccupied area nearest to where it left.<sup>†</sup>",
-  "<strong>Summon Idol:</strong> A carved stone statue the size of a four poster bed rises from the ground.<sup>†</sup>",
-  "<strong>Time Rush:</strong> Time in a 40' bubble starts moving 10 times faster.<sup>†</sup>",
-  "<strong>Time Slow:</strong> Time in a 40' bubble slows to 10 percent.<sup>†</sup>",
-  "<strong>True Sight:</strong> You see through all nearby illusions.<sup>†</sup>",
-  "<strong>Upwell:</strong> A spring of seawater appears.<sup>†</sup>",
-  "<strong>Vision:</strong> You completely control what a creature sees.<sup>†</sup>",
-  "<strong>Visual Illusion:</strong> A silent, immobile, illusion of your choice appears, up to the size of a bedroom.<sup>†</sup>",
-  "<strong>Ward:</strong> A silver circle 40' across appears on the ground. Choose one thing that cannot cross it: Living creatures, dead creatures, projectiles or metal.<sup>†</sup>",
-  "<strong>Web:</strong> Your wrists can shoot thick webbing.<sup>†</sup>",
-  "<strong>Wizard Mark:</strong> Your finger can shoot a stream of ulfire-colored paint. This paint is only visible to you, and can be seen at any distance, even through solid objects.<sup>†</sup>",
-  "<strong>X-Ray Vision:</strong> You gain X-Ray vision.<sup>†</sup>"
-];
+// export const knaveSpells = [
+//   "<strong>Adhere:</strong> Object is covered in extremely sticky slime.<sup>†</sup>",
+//   "<strong>Animate Object:</strong> Object obeys your commands as best it can. It can walk 15' per round.<sup>†</sup>",
+//   "<strong>Anthropomorphize:</strong> A touched animal either gains human intelligence or human appearance for L days.<sup>†</sup>",
+//   "<strong>Arcane Eye:</strong> You can see through a magical floating eyeball that flies around at your command.<sup>†</sup>",
+//   "<strong>Astral Prison:</strong> An object is frozen in time and space within an invulnerable crystal shell.<sup>†</sup>",
+//   "<strong>Attract:</strong> L+1 objects are strongly magnetically attracted to each other if they come within 10 feet.<sup>†</sup>",
+//   "<strong>Auditory Illusion:</strong> You create illusory sounds that seem to come from a direction of your choice.<sup>†</sup>",
+//   "<strong>Babble:</strong> A creature must loudly and clearly repeat everything you think. It is otherwise mute.<sup>†</sup>",
+//   "<strong>Beast Form:</strong> You and your possessions transform into a mundane animal.<sup>†</sup>",
+//   "<strong>Befuddle:</strong> L creatures of your choice are unable to form new short-term memories for the duration of the spell.<sup>†</sup>",
+//   "<strong>Bend Fate:</strong> Roll L+1 d20s. Whenever you must roll a d20 after casting the spell, you must choose and then discard one of the rolled results until they are all gone.<sup>†</sup>",
+//   "<strong>Bird Person:</strong> Your arms turn into huge bird wings.<sup>†</sup>",
+//   "<strong>Body Swap:</strong> You switch bodies with a creature you touch. If one body dies, the other dies as well.<sup>†</sup>",
+//   "<strong>Catherine:</strong> A woman wearing a blue dress appears until end of spell. She will obey polite, safe requests.<sup>†</sup>",
+//   "<strong>Charm:</strong> L creatures treat you like a friend.<sup>†</sup>",
+//   "<strong>Command:</strong> A creature obeys a single, three-word command that does not harm it.<sup>†</sup>",
+//   "<strong>Comprehend:</strong> You become fluent in all languages.<sup>†</sup>",
+//   "<strong>Control Plants:</strong> Nearby plants and trees obey you and gain the ability to move at 5 feet per round.<sup>†</sup>",
+//   "<strong>Control Weather:</strong> You may alter the type of weather at will, but you do not otherwise control it.<sup>†</sup>",
+//   "<strong>Counterspell:</strong> Make an opposed Intelligence save against the Intelligence of the caster of a nearby spell. You may do this out of turn as a reaction, or against an ongoing magical effect. On a success, you may cancel the spell.<sup>†</sup>",
+//   "<strong>Deafen:</strong> All nearby creatures are deafened.<sup>†</sup>",
+//   "<strong>Detect Magic:</strong> You hear nearby magical auras singing. Volume and harmony signify the aura’s power and refinement.<sup>†</sup>",
+//   "<strong>Disassemble:</strong> Any of your body parts may be detached and reattached at will, without causing pain or damage. You can still control them.<sup>†</sup>",
+//   "<strong>Disguise:</strong> You may alter the appearance of L characters at will as long as they remain humanoid. Attempts to duplicate other characters will seem uncanny.<sup>†</sup>",
+//   "<strong>Displace:</strong> An object appears to be up to L×10' from its actual position.<sup>†</sup>",
+//   "<strong>Earthquake:</strong> The ground begins shaking violently. Structures may be damaged or collapse.<sup>†</sup>",
+//   "<strong>Elasticity:</strong> Your body can stretch up to L×10'.<sup>†</sup>",
+//   "<strong>Elemental Wall:</strong> A straight wall of ice or fire L×40' long and 10' high rises from the ground.<sup>†</sup>",
+//   "<strong>Filch:</strong> L visible items teleport to your hands.<sup>†</sup>",
+//   "<strong>Fog Cloud:</strong> Dense fog spreads out from you.<sup>†</sup>",
+//   "<strong>Frenzy:</strong> L creatures erupt in a frenzy of violence.<sup>†</sup>",
+//   "<strong>Gate:</strong> A portal to a random plane opens.<sup>†</sup>",
+//   "<strong>Gravity Shift:</strong> You can change the direction of gravity (for yourself only) up to once per round.<sup>†</sup>",
+//   "<strong>Greed:</strong> L creatures develop an overwhelming urge to possess a visible item of your choice.<sup>†</sup>",
+//   "<strong>Haste:</strong> Your movement speed is tripled.<sup>†</sup>",
+//   "<strong>Hatred:</strong> L creatures develop a deep hatred of another creature or group of creatures and wish to destroy it.<sup>†</sup>",
+//   "<strong>Hear Whispers:</strong> You can hear faint sounds clearly.<sup>†</sup>",
+//   "<strong>Hover:</strong> An object hovers, frictionless, 2' above the ground. It can hold up to L humanoids.<sup>†</sup>",
+//   "<strong>Hypnotize:</strong> A creature enters a trance and will truthfully answer L yes or no questions you ask it.<sup>†</sup>",
+//   "<strong>Icy Touch:</strong> A thick ice layer spreads across a touched surface, up to L×10' in radius.<sup>†</sup>",
+//   "<strong>Illuminate:</strong> A floating light moves as you command.<sup>†</sup>",
+//   "<strong>Increase Gravity:</strong> The gravity in an area triples.<sup>†</sup>",
+//   "<strong>Invisible Tether:</strong> Two objects within 10' of each other cannot be moved more than 10' apart.<sup>†</sup>",
+//   "<strong>Knock:</strong> L nearby mundane or magical locks unlock.<sup>†</sup>",
+//   "<strong>Leap:</strong> You can jump up to L×10' in the air.<sup>†</sup>",
+//   "<strong>Liquid Air:</strong> The air around you becomes swimmable.<sup>†</sup>",
+//   "<strong>Magic Dampener:</strong> All nearby magical effects have their effectiveness halved.<sup>†</sup>",
+//   "<strong>Manse:</strong> A sturdy, furnished cottage appears for L×12 hours. You can permit and forbid entry to it at will.<sup>†</sup>",
+//   "<strong>Marble Madness:</strong> Your pockets are full of marbles, and will refill every round.<sup>†</sup>",
+//   "<strong>Masquerade:</strong> L characters’ appearances and voices become identical to a touched character.<sup>†</sup>",
+//   "<strong>Miniaturize:</strong> You and L other touched creatures are reduced to the size of a mouse.<sup>†</sup>",
+//   "<strong>Mirror Image:</strong> L illusory duplicates of yourself appear under your control.<sup>†</sup>",
+//   "<strong>Mirrorwalk:</strong> A mirror becomes a gateway to another mirror that you looked into today.<sup>†</sup>",
+//   "<strong>Multiarm:</strong> You gain L extra arms.<sup>†</sup>",
+//   "<strong>Night Sphere:</strong> An L×40' wide sphere of darkness displaying the night sky appears.<sup>†</sup>",
+//   "<strong>Objectify:</strong> You become any inanimate object between the size of a grand piano and an apple.<sup>†</sup>",
+//   "<strong>Ooze Form:</strong> You become a living jelly.<sup>†</sup>",
+//   "<strong>Pacify:</strong> L creatures have an aversion to violence.<sup>†</sup>",
+//   "<strong>Phantom Coach:</strong> A ghostly coach appears until end of spell. It moves unnaturally fast over any terrain, including water<sup> </sup>†",
+//   "<strong>Phobia:</strong> L creatures become terrified of an object of your choice.<sup>†</sup>",
+//   "<strong>Pit:</strong> A pit 10' wide and L×5' deep opens in the ground.<sup>†</sup>",
+//   "<strong>Primeval Surge:</strong> An object grows to the size of an elephant. If it is an animal, it is enraged.<sup>†</sup>",
+//   "<strong>Psychometry:</strong> The referee answers L yes or no questions about a touched object.<sup>†</sup>",
+//   "<strong>Pull:</strong> An object of any size is pulled directly towards you with the strength of L men for one round.<sup>†</sup>",
+//   "<strong>Push:</strong> An object of any size is pushed directly away from you with the strength of L men for one round.<sup>†</sup>",
+//   "<strong>Raise Dead:</strong> L skeletons rise from the ground to serve you. They are incredibly stupid and can only obey simple orders.<sup>†</sup>",
+//   "<strong>Raise Spirit:</strong> The spirit of a dead body manifests and will answer L questions.<sup>†</sup>",
+//   "<strong>Read Mind:</strong> You can hear the surface thoughts of nearby creatures.<sup>†</sup>",
+//   "<strong>Repel:</strong> L+1 objects are strongly magnetically repelled from each other if they come within 10 feet.<sup>†</sup>",
+//   "<strong>Scry:</strong> You can see through the eyes of a creature you touched earlier today.<sup>†</sup>",
+//   "<strong>Sculpt Elements:</strong> All inanimate material behaves like clay in your hands.<sup>†</sup>",
+//   "<strong>Shroud:</strong> L creatures are invisible until they move.<sup>†</sup>",
+//   "<strong>Shuffle:</strong> L creatures instantly switch places. Determine where they end up randomly.<sup>†</sup>",
+//   "<strong>Sleep:</strong> L creatures fall into a light sleep.<sup>†</sup>",
+//   "<strong>Smoke Form:</strong> Your body becomes living smoke.<sup>†</sup>",
+//   "<strong>Snail Knight:</strong> 10 minutes after casting, a knight sitting astride a giant snail rides into view. He is able to answer most questions related to quests and chivalry, and may aid you if he finds you worthy.<sup>†</sup>",
+//   "<strong>Sniff:</strong> You can smell even the faintest traces of scents.<sup>†</sup>",
+//   "<strong>Sort:</strong> Inanimate items sort themselves according to categories you set. The categories must be visually verifiable.<sup>†</sup>",
+//   "<strong>Spectacle:</strong> A clearly unreal but impressive illusion of your choice appears, under your control. It may be up to the size of a palace and has full motion and sound.<sup>†</sup>",
+//   "<strong>Spellseize:</strong> Cast this as a reaction to another spell going off to make a temporary copy of it that you can cast at any time before this spell ends.<sup>†</sup>",
+//   "<strong>Spider Climb:</strong> You can climb surfaces like a spider.<sup>†</sup>",
+//   "<strong>Summon Cube:</strong> Once per second, (6 times per round) you may summon or banish a 3-foot-wide cube of earth. New cubes must be affixed to the earth or to other cubes.<sup>†</sup>",
+//   "<strong>Swarm:</strong> You become a swarm of crows, rats, or piranhas. You only take damage from area effects.<sup>†</sup>",
+//   "<strong>Telekinesis:</strong> You may mentally move L items.<sup>†</sup>",
+//   "<strong>Telepathy:</strong> L+1 creatures can hear each other’s thoughts, no matter how far apart they move.<sup>†</sup>",
+//   "<strong>Teleport:</strong> An object disappears and reappears on the ground in a visible, clear area up to L×40' away.<sup>†</sup>",
+//   "<strong>Thaumaturgic Anchor:</strong> Object becomes the target of every spell cast near it.<sup>†</sup>",
+//   "<strong>Thicket:</strong> A thicket of trees and dense brush up to L×40' wide suddenly sprouts up.<sup>†</sup>",
+//   "<strong>Time Jump:</strong> An object disappears as it jumps L×10 minutes into the future. When it returns, it appears in the unoccupied area nearest to where it left.<sup>†</sup>",
+//   "<strong>Summon Idol:</strong> A carved stone statue the size of a four poster bed rises from the ground.<sup>†</sup>",
+//   "<strong>Time Rush:</strong> Time in a 40' bubble starts moving 10 times faster.<sup>†</sup>",
+//   "<strong>Time Slow:</strong> Time in a 40' bubble slows to 10 percent.<sup>†</sup>",
+//   "<strong>True Sight:</strong> You see through all nearby illusions.<sup>†</sup>",
+//   "<strong>Upwell:</strong> A spring of seawater appears.<sup>†</sup>",
+//   "<strong>Vision:</strong> You completely control what a creature sees.<sup>†</sup>",
+//   "<strong>Visual Illusion:</strong> A silent, immobile, illusion of your choice appears, up to the size of a bedroom.<sup>†</sup>",
+//   "<strong>Ward:</strong> A silver circle 40' across appears on the ground. Choose one thing that cannot cross it: Living creatures, dead creatures, projectiles or metal.<sup>†</sup>",
+//   "<strong>Web:</strong> Your wrists can shoot thick webbing.<sup>†</sup>",
+//   "<strong>Wizard Mark:</strong> Your finger can shoot a stream of ulfire-colored paint. This paint is only visible to you, and can be seen at any distance, even through solid objects.<sup>†</sup>",
+//   "<strong>X-Ray Vision:</strong> You gain X-Ray vision.<sup>†</sup>"
+// ];
 
 /**
  * NOTE: spell scrolls have a slightly different format, an
@@ -161,17 +215,15 @@ export const knaveSpells = [
  * Cure Light Wounds
  */
 export const divineScrollSpells = [
-  "<strong>Color Spray</strong><br><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div>",
-  "<strong>Dancing Lights</strong><br><strong>Duration:</strong> 1 turn<br><strong>Range:</strong> 40’ + 10’ per level<br><br>Lights under the caster’s control are conjured and may be directed to move anywhere within range. The caster may choose to conjure one of the following types of light:<br><div style='padding: 0 1.5rem'><br> <strong>1. Torches:</strong> 1–4 lights that resemble torches or lanterns, casting the appropriate volume of light.<br><br> <strong>2. Spheres:</strong> 1–4 glowing spheres, resembling will-o-the-wisps.<br><br> <strong>3. Humanoid:</strong> A single, glowing, humanoid form.</div>",
-  "<strong>Spell Scroll of Light (Darkness)</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns +1 per level<br><strong>Range:</strong> 120’<br><br>This spell has three usages:<br><br><div style='padding: 0 1.5rem'><strong>1. Conjuring light:</strong> In a 15’ radius. The magical light is sufficient for reading, but is not as bright as daylight. The spell may be cast upon an object, in which case, the light moves with the object.<br><br><strong>2. Blinding a creature:</strong> By casting the spell upon its eyes. If the target fails a <strong>saving throw versus spells</strong>, it is blinded for the duration. A blind creature cannot attack.<br><br><strong>3. Cancelling darkness:</strong> <i>Light</i> may cancel a <i>darkness</i> spell (see below).</div><br><strong>Reversed: Darkness</strong><br>Creates a 15’ radius area of magical blackness, preventing normal sight (but not infravision). Like <i>light</i>, it may alternatively be used to blind creatures or to dispel a <i>light</i> spell.</div>",
-  "<strong>Spell Scroll of Detect Magic</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>Enchanted objects, areas, or creatures are caused to glow. Both permanent and temporary enchantments are revealed.</div>",
-  "<strong>Spell Scroll of Protection from Evil</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> The caster<br><br>This spell wards the caster from attacks by creatures of another alignment, as follows:<br><br><div style='padding: 0 1.5rem'>• <strong>Bonuses:</strong> The caster gains a +1 bonus to saving throws against attacks or special abilities of affected creatures.<br><br>• <strong>Affected creatures’ attacks:</strong> against the caster are penalised by -1.<br><br>• <strong>Enchanted, constructed, or summoned creatures:</strong> The spell additionally prevents such creatures from attacking the caster in melee, though they may still make ranged attacks. If the caster engages such a creature in melee, this protection is broken (the caster still gains the bonuses to saving throws and attack rolls mentioned above).</div></div>",
-  "<strong>Spell Scroll of Detect Evil</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> 120’<br><br>Objects enchanted for evil purposes or living beings with evil intentions are caused to magically glow.<br><br><div style='padding: 0 1.5rem'>• <strong>Intent only:</strong> This spell does not grant the ability to read minds, but only grants a general sense of evil intent.<br><br>• <strong>Definition of evil:</strong> The referee must decide what is “evil”. Some things that are potentially harmful, like traps, are not 'evil.'</div></div>",
-  "<strong>Spell Scroll of Hold Person</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 9 turns<br><strong>Range:</strong> 180’<br><br>This spell causes one or more humans, demihumans, or humanoid monsters to be paralysed if they fail a <strong>saving throw versus spells</strong>. It may be cast in two ways:<br><br>• <strong>Against an individual:</strong> The target’s saving throw is penalised by -2.<br><br>• <strong>Against a group:</strong> 1d4 individuals in the group are targeted.<br>Humanoids of greater than 4+1 HD and undead are not affected.</div>",
-  "<strong>Spell Scroll of Locate Object</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’ +10’ per level<br><br>The caster can sense the direction (but not distance) of an object. One of two types of object may be located:<br><br>• <strong>1.</strong> An object of a general class (e.g. a stairway, an altar, etc). In this case, the nearest object of the type is located.<br><br>• <strong>2.</strong> A specific object known to the caster.<br>This spell cannot be used to locate creatures.</div>",
-  "<strong>Spell Scroll of Continual Light (Continual Darkness)</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Permanent<br><strong>Range:</strong> 120’<br><br>This spell has three usages:<br><br><div style='padding: 0 1.5rem'><strong>1. Conjuring light:</strong> In a 30’ radius. The magical light is as bright as full daylight (creatures that suffer attack penalties in daylight are affected). The spell may be cast upon an object, in which case, the light moves with the object.<br><br><strong>2. Blinding a creature:</strong> By casting the spell upon its eyes. If the target fails a <strong>saving throw versus spells</strong>, it is blinded. A blind creature cannot attack.<br><br><strong>3. Cancelling continual darkness:</strong> <i>Continual Light</i> may cancel a <i>continual darkness</i> spell (see below).</div><br><strong>Reversed:</strong> Continual Darkness<br>Creates a 30’ radius area of magical blackness, preventing both normal sight and infravision. Light sources brought within the area of darkness do not illuminate it. Like <i>continual light</i>, it may alternatively be used to blind creatures or to dispel a <i>continual light</i> spell.</div>",
-  "<strong>Spell Scroll of Remove Curse (Curse)</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant / Permanent (curse)<br><strong>Range:</strong> The caster or a creature touched<br><br>Remove curse instantaneously removes one curse from a creature. It may allow a character to discard a cursed magic item.<br><br><strong>Reversed:</strong> Curse<br>Places a deleterious effect upon a creature, if it fails a <strong>saving throw versus spells</strong>.<br><br>• The exact form and effects of the curse are determined by the caster.<br><br>• Maximum possible effects include: a -2 penalty to saving throws, a -4 penalty to hit, reducing an ability score by 50 percent.<br><br>• Multiple curses may afflict a creature, as long as each has a different effect.<br><br>• The referee should judge the effects of this spell and may turn overly powerful curses back onto the caster!</div>",
-  "<strong>Spell Scroll of Cure Light Wounds (Cause Light Wounds)</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> The caster or a creature touched<br><br>This spell has two uses<br><br><div style='padding: 0 1.5rem'><strong>1. Healing a living subject:</strong> Restores 1d6+1 hit points of damage. This cannot grant more hit points than the subject’s normal maximum.<br><br><strong>2. Curing paralysis:</strong> Paralysing effects are negated.<br><br></div><strong>Reversed:</strong> Cause Light Wounds<br>Inflicts 1d6+1 hit points of damage to a touched creature. In combat, a melee attack roll is required.</div>"
+  "Spell Scroll of Light (Darkness) - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+  "Spell Scroll of Detect Magic - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+  "Spell Scroll of Protection from Evil - OSE Cleric and Magic-User Spells p.11, OSE Classic Fantasy Tome p.67",
+  "Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
+  "Spell Scroll of Hold Person - OSE Cleric and Magic-User Spells p.12, OSE Classic Fantasy Tome p.68",
+  "Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71",
+  "Spell Scroll of Continual Light - OSE Cleric and Magic-User Spells p.14, OSE Classic Fantasy Tome p.70",
+  "Spell Scroll of Remove Curse - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71",
+  "Spell Scroll of Cure Light Wounds - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66"
 ];
 
 /**
@@ -191,20 +243,18 @@ export const divineScrollSpells = [
  * Disintegrate
  */
 export const magicUserScrollSpells = [
-  "<strong>Spell Scroll of Magic Missile</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn<br><strong>Range:</strong> 150’<br><br>This spell conjures a glowing dart of energy that the caster may choose to shoot at a visible target within range.<br><br><div style='padding: 0 1.5rem'>• <strong>Hit:</strong> The missile hits unerringly (no attack roll or saving throw is required).<br><br>• <strong>Damage:</strong> The missile inflicts 1d6+1 damage.<br><br>• <strong>Higher level casters:</strong> May conjure more missiles: two additional missiles are conjured per five experience levels the caster has gained (i.e. three missiles at 6th-10th level, five missiles at 11th-15th level, etc). Multiple missiles may be directed at a single target.</div></div>",
-  "<strong>Spell Scroll of Detect Evil</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> 120’<br><br>Objects enchanted for evil purposes or living beings with evil intentions are caused to magically glow.<br><br><div style='padding: 0 1.5rem'>• <strong>Intent only:</strong> This spell does not grant the ability to read minds, but only grants a general sense of evil intent.<br><br>• <strong>Definition of evil:</strong> The referee must decide what is “evil”. Some things that are potentially harmful, like traps, are not 'evil.'</div></div>",
-  "<strong>Spell Scroll of Knock</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 round<br><strong>Range:</strong> 60’<br><br>The knock spell opens stuck, barred, or locked doors, gates, chests, and so forth.<br><br><div style='padding: 0 1.5rem'>• Magically held doors (for example with hold portal, wizard lock) are affected.<br><br>• Secret doors may be opened, but they must be known to the caster.</div></div>",
-  "<strong>Spell Scroll of Locate Object</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’ +10’ per level<br><br>The caster can sense the direction (but not distance) of an object. One of two types of object may be located:<br><br>• <strong>1.</strong> An object of a general class (e.g. a stairway, an altar, etc). In this case, the nearest object of the type is located.<br><br>• <strong>2.</strong> A specific object known to the caster.<br>This spell cannot be used to locate creatures.</div>",
-  "<strong>Spell Scroll of Mirror Image</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> The caster<br><br>1d4 illusory duplicates of the caster appear.<br><br><div style='padding: 0 1.5rem'>• <strong>Behavior:</strong> The mirror images look and behave exactly as the caster.<br><br>• <strong>Attacks on the caster:</strong> Destroy one of the mirror images (even if the attack misses).</div></div>",
-  "<strong>Spell Scroll of Wizard Lock</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Permanent<br><strong>Range:</strong> 10’<br><br>A <i>wizard lock</i> spell magically locks a door, gate, similar portal, or any item that has a lock. The magical lock is permanent but may be bypassed as follows:<br><br><div style='padding: 0 1.5rem'>• The caster can freely pass his or her own <i>wizard lock</i>.<br><br>• A <i>knock</i> spell allows passage.<br><br>• Any magic-using character who is at least 3 levels higher than the caster of the wizard lock may pass through unimpeded.</div><br>Bypassing a <i>wizard lock</i> does not destroy it.</div>",
-  "<strong>Spell Scroll of Dispel Magic</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 120’<br><br>Dispel magic ends ongoing spells (i.e. those with a non-instantaneous duration) within a 20’ cube area.<br><br><div style='padding: 0 1.5rem'>• If the level of the caster of the effect to be dispelled is higher than the level of the caster of dispel magic, there is a 5 percent chance per level difference that the attempt to dispel will fail.<br><br>• Magic items are unaffected.</div></div>",
-  "<strong>Spell Scroll of Fireball</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 240’<br><br>This spell conjures a streak of flame that shoots towards an area within range and detonates in a 40’ diameter sphere of fire. Creatures caught in the fire ball suffer 1d6 damage per level of the caster, with a successful <strong>save versus spells</strong> indicating half damage.</div>",
-  "<strong>Spell Scroll of Lightning Bolt</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 180’<br><br>A powerful stroke of electrical energy, 60’ long and 5’ wide, is conjured. Creatures caught in the <i>lightning bolt</i> suffer 1d6 damage per level of the caster, with a successful <strong>save versus spells</strong> indicating half damage.<br><br>If the <i>lightning bolt</i> hits a solid barrier before its full length is reached, it is reflected and travels for any remaining distance of its full length in the direction of the caster.</div>",
-  "<strong>Spell Scroll of Wall of Ice</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 12 turns<br><strong>Range:</strong> 120’<br><br>An immobile, translucent, wall of ice springs into existence.<br><br><div style='padding: 0 1.5rem'>• The wall can be any size up to 1,200 square feet and may be shaped in any manner and to any dimensions the caster desires. It may be a straight wall or curved into a protective circle.<br><br>• The wall must rest upon a solid surface and may not be evoked so that it appears where objects are.<br><br>• The wall of ice is impenetrable to monsters with fewer than 4 HD.<br><br>• Monsters with more than 4 HD can break through the wall but suffer 1d6 hit points of damage when doing so. The wall deals double damage to creatures that use fire or are accustomed to fire.</div>",
-  "<strong>Spell Scroll of Cloudkill</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> 30’<br><br>A poisonous fog streams from the caster’s fingertips, filling a 30’ diameter area.<br><br><div style='padding: 0 1.5rem'>• The fog moves at 60’ per turn (20’ per round), driven by the wind (or away from the caster, in still conditions).<br><br>• Because the fog is heavier than air, it sinks to the lowest level of the land, even pouring down den or sinkhole openings.<br><br>• All creatures in contact with the vapours suffer 1 hit point of damage per round of contact. Creatures with less than 5 Hit Dice must also save versus death (also once per round of contact) or die.</div></div>",
-  "<strong>Spell Scroll of Pass-Wall</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> 30’<br><br>A 5’ diameter hole is temporarily opened in solid rock or stone, forming a passageway up to 10’ deep.</div>",
-  "<strong>Spell Scroll of Animate Dead</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Permanent<br><strong>Range:</strong> 60’<br><br>This spell turns the bones or bodies of dead creatures into undead skeletons or zombies:<br><br><div style='padding: 0 1.5rem'>• They obey the caster’s commands.<br><br>• They are unable to use any special abilities (including spell casting) that they possessed in life.<br><br>• They remain animated until they are destroyed or until a dispel magic spell is cast upon them.</div></div>",
-  "<strong>Spell Scroll of Disintegrate</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 60’<br><br>The material form of a single, non-magical creature or object is unwoven, causing it to instantly and permanently cease to exist.<br><br><div style='padding: 0 1.5rem'>• If a creature is targeted, it may save versus death to resist disintegration.<br><br>• Examples of objects that might be targeted: a tree, a ship, a 10’ section of wall.</div></div>"
+  "Spell Scroll of Magic Missile - OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
+  "Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.78",
+  "Spell Scroll of Knock - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
+  "Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
+  "Spell Scroll of Mirror Image - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
+  "Spell Scroll of Dispel Magic - OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
+  "Spell Scroll of Fire Ball - OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
+  "Spell Scroll of Wall of Ice - OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
+  "Spell Scroll of Cloudkill - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
+  "Spell Scroll of Pass-Wall - OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92",
+  "Spell Scroll of Animate Dead - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
+  "Spell Scroll of Disintegrate - OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95"
 ];
 
 /**
@@ -220,15 +270,15 @@ export const magicUserScrollSpells = [
  * True Seeing
  */
 export const illusionistSpellScrolls = [
-  "<strong>Scroll of Color Spray</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div></div>",
-  "<strong>Scroll of Chromatic Orb</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> instant<br><strong>Range:</strong> 60'<br><br>This spell conjures an orb of pure color that shoots towards a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Color:</strong> The caster may conjure an orb of one of the colors listed on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>, depending on their experience level and the gems available.<br><br>• <strong>Gemstone:</strong> The color orb is created by refracting and amplifying the pure hue and intrinsic properties of a gemstone, which must be in the caster’s possession. Casting <i>chromatic orb</i> does not cause the gemstone to be consumed.<br><br>• <strong>Value:</strong> The gem to be used must be of a certain minimum value (also indicated on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>).<br><br>• <strong>Hit:</strong> The orb hits unerringly, inflicting damage on the target and another effect that depends on its color.</div></div>",
-  "<strong>Scroll of Detect Magic</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>Enchanted objects, areas, or creatures are caused to glow. Both permanent and temporary enchantments are revealed.</div>",
-  "<strong>Spell Scroll of Dispel Magic</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 120’<br><br>Dispel magic ends ongoing spells (i.e. those with a non-instantaneous duration) within a 20’ cube area.<br><br><div style='padding: 0 1.5rem'>• If the level of the caster of the effect to be dispelled is higher than the level of the caster of dispel magic, there is a 5 percent chance per level difference that the attempt to dispel will fail.<br><br>• Magic items are unaffected.</div></div>",
-  "<strong>Spell Scroll of Mirror Image</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> The caster<br><br>1d4 illusory duplicates of the caster appear.<br><br><div style='padding: 0 1.5rem'>• <strong>Behavior:</strong> The mirror images look and behave exactly as the caster.<br><br>• <strong>Attacks on the caster:</strong> Destroy one of the mirror images (even if the attack misses).</div></div>",
-  "<strong>Spell Scroll of Massmorph</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Permanent<br><strong>Range:</strong> 240'<br><br>A force of human-sized creatures within a 240’ diameter area is veiled by illusion to appear as a copse or orchard of trees.<br><br><div style='padding: 0 1.5rem'>• <strong>Moving through:</strong> Once the illusion is in place, even creatures moving among the veiled subjects are deceived.<br><br>• <strong>Subjects who leave the affected area:</strong> Cease to be veiled.<br><br>• <strong>Dismissing:</strong> The caster may dismiss the illusion in its entirety at any time.</div></div>",
-  "<strong>Spell Scroll of Looking Glass</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 round per level<br><strong>Range:</strong> Touch<br><br>A finely wrought, silver mirror is enchanted to act as a scrying device, allowing the caster to fleetingly view any place or object that is brought to mind:<br><br><div style='padding: 0 1.5rem'>• <strong>The clarity of the vision:</strong> Is dependent on the scryer’s familiarity with the subject.<br><br>• <strong>Casting spells:</strong> It is not possible to cast spells through the mirror into the viewed scene.<br><br>• <strong>Material cost:</strong> The mirror enchanted by this spell must be of at least 1,000gp in value.</div></div>",
-  "<strong>Spell Scroll of Maze of Mirrors</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Varies by subject’s INT<br><strong>Range:</strong> 5' per level<br><br>A single subject within range is transported into a shifting, extra-dimensional mirror maze.<br><br><div style='padding: 0 1.5rem'>• <strong>Duration:</strong> The subject is trapped in the maze for a duration depending on its intelligence. (see <i>p.35 of Advanced Fantasy, Druid and Illusionist Spells</i>)<br><br>• <strong>Escaping the maze:</strong> Once the subject has found its way out of the maze, it reappears in the location it was transported from.</div></div>",
-  "<strong>Spell Scroll of True Seeing</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 round per level<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject sees all things within 60’ as they truly are.<br><br><div style='padding: 0 1.5rem'>• <strong>Secret doors:</strong> Are revealed.<br><br>• <strong>Invisible:</strong> Objects and creatures are perceived.<br><br>• <strong>Illusions:</strong> Are seen through.<br><br>• <strong>Enchantments:</strong> Enchanted objects and creatures are made apparent.</div></div>"
+  "Spell Scroll of Color Spray - OSE Druid and Illusionist Spells p.18",
+  "Spell Scroll of Chromatic Orb - OSE Druid and Illusionist Spells p.16",
+  "Spell Scroll of Detect Magic - OSE Druid and Illusionist Spells p.22",
+  "Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.29",
+  "Spell Scroll of Mirror Image - OSE Druid and Illusionist Spells p.24",
+  "Spell Scroll of Massmorph - OSE Druid and Illusionist Spells p.30",
+  "Spell Scroll of Looking Glass - OSE Druid and Illusionist Spells p.34",
+  "Spell Scroll of Maze of Mirrors - OSE Druid and Illusionist Spells p.35",
+  "Spell Scroll of True Seeing - OSE Druid and Illusionist Spells p.43"
 ];
 
 /**
@@ -243,12 +293,11 @@ export const illusionistSpellScrolls = [
  * Protection from Fire and Lightning
  */
 export const druidSpellScrolls = [
-  "<strong>Spell Scroll of Entangle</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn<br><strong>Range:</strong> 80'<br><br>All plants present in a 20’ radius area within range of the caster bend and twist, entangling creatures inside.<br><br><div style='padding: 0 1.5rem'>• <strong>Saving throw:</strong> Each creature in the affected area may <b>save versus spells</b>.<br><br>• <strong>If the save fails:</strong> The creature is entangled and cannot move.<br><br>• <strong>If the save succeeds:</strong> The creature is able to move through the entangled area at half its normal movement rate.</div></div>",
-  "<strong>Spell Scroll of Barkskin</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn per level<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject’s skin toughens like bark.<br><br><div style='padding: 0 1.5rem'>• <strong>AC bonus:</strong> The subject’s Armor Class improves by 1.<br><br>• <strong>Save bonus:</strong> The subject gains a +1 bonus to all saving throws except against magical effects.</div></div>",
-  "<strong>Spell Scroll of Cure Light Wounds (Cause Light Wounds)</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> The caster or a creature touched<br><br>This spell has two uses<br><br><div style='padding: 0 1.5rem'><strong>1. Healing a living subject:</strong> Restores 1d6+1 hit points of damage. This cannot grant more hit points than the subject’s normal maximum.<br><br><strong>2. Curing paralysis:</strong> Paralysing effects are negated.<br><br></div><strong>Reversed:</strong> Cause Light Wounds<br>Inflicts 1d6+1 hit points of damage to a touched creature. In combat, a melee attack roll is required.</div>",
-  "<strong>Spell Scroll of Call Lightning</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn per level<br><strong>Range:</strong> 360'<br><br>The caster directs the violent energies of a storm, causing lightning to strike the ground at points of the caster’s choice.<br><br><div style='padding: 0 1.5rem'>• <strong>Storm clouds:</strong> Must be present in the sky above the point to be struck by lightning.<br><br>• <strong>Number of strikes:</strong> One lightning strike may be summoned per turn of the spell’s duration.<br><br>• <strong>Area:</strong> A lightning strike affects a 10’ radius area.<br><br>• <strong>Damage:</strong> All creatures in the area suffer 8d6 damage (<b>save versus spells</b> for half damage).<br><br>• <strong>If the storm dissipates:</strong> The spell ends prematurely.</div></div>",
-  "<strong>Spell Scroll of Water Breathing</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 day<br><strong>Range:</strong> 30'<br><br>The subject can breathe water freely by means of this spell. The spell does not affect the subject’s ability to breathe air and grants no additional proficiency at swimming.</div><br><strong>Reversed: An aquatic subject can breathe air freely. The spell does not affect the subject’s ability to breathe water and grants no additional ability to move on land.",
-  "<strong>Spell Scroll of Dispel Magic</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> Instant<br><strong>Range:</strong> 120’<br><br>Dispel magic ends ongoing spells (i.e. those with a non-instantaneous duration) within a 20’ cube area.<br><br><div style='padding: 0 1.5rem'>• If the level of the caster of the effect to be dispelled is higher than the level of the caster of dispel magic, there is a 5 percent chance per level difference that the attempt to dispel will fail.<br><br>• Magic items are unaffected.</div></div>",
-  "<strong>Spell Scroll of Protection from Poison</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn per level<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject gains a supernatural resistance to poisons.<br><br><div style='padding: 0 1.5rem'>• <strong>Venoms and gases:</strong> Complete immunity is granted against venomous attacks of monsters (e.g. bites) and poisonous gases (including those conjured by magic).<br><br>• <strong>Breath attacks:</strong> The subject gains a +4 bonus to saving throws against poisonous breath weapons. (This does not include petrifying breath attacks.)<br><br>• <strong>Pre-existing poisons:</strong> Any poisons that are actively affecting the subject when <i>protection from poison</i> is cast are neutralized. A character who has died from poisoning can be revived if this spell is cast within ten rounds.</div></div>",
-  "<strong>Spell Scroll of Protection from Fire and Lightning</strong><br><div style='padding: 0 1.5rem'><strong>Duration:</strong> 1 turn per level<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject is granted immunity to a certain amount of either electrical or fire damage.<br><br><div style='padding: 0 1.5rem'>• <strong>Fire or lightning:</strong> Upon casting the spell, the caster must choose the type of energy the subject is protected from.<br><br>• <strong>Damage negation:</strong> The subject gains protection against 6 hit points of damage of the chosen type per level.<br><br>• <strong>Ending:</strong> When all of the hit points of protection are used up, the spell ends.</div></div>"
+  "Spell Scroll of Entangle - OSE Druid and Illusionist Spells p.6",
+  "Spell Scroll of Barkskin - OSE Druid and Illusionist Spells p.8",
+  "Spell Scroll of Call Lightning - OSE Druid and Illusionist Spells p.10",
+  "Spell Scroll of Water Breathing - OSE Druid and Illusionist Spells p.11",
+  "Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.12",
+  "Spell Scroll of Protection from Poison - OSE Druid and Illusionist Spells p.11",
+  "Spell Scroll of Protection from Fire and Lightning - OSE Druid and Illusionist Spells p.12"
 ];

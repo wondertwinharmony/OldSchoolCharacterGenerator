@@ -1,6 +1,6 @@
 import React from "react";
 import { GiHeavyHelm } from "react-icons/gi";
-import { fighterEquipment } from "../equipmentKits/fighterEquipment";
+import { halflingDwarfDuergarSvirfneblinInventory } from "../equipmentKits/halflingDwarfDuergarSvirfneblinInventory";
 
 export const duergar = {
   name: "Duergar",
@@ -28,7 +28,7 @@ export const duergar = {
     breath: 13,
     magic: 12
   },
-  equipment: fighterEquipment,
+  inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
     "<strong>Combat:</strong> Duergars can use all types of armour. Due to their short height, duergars can only use small or normal sized weapons. They cannot use longbows or two-handed swords.",
     "<strong>Detect Construction Tricks:</strong> As expert miners, duergars have a 2-in- 6 chance of being able to detect new construction, sliding walls, or sloping passages when searching.",

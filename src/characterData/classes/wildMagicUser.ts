@@ -1,13 +1,35 @@
 import React from "react";
-import { GiRadialBalance, GiLaserSparks } from "react-icons/gi";
-import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
+import { GiLaserSparks, GiRadialBalance } from "react-icons/gi";
 import wildMagicUserWildSurgesTable from "../../static/wildMagicUserWildSurgesTable.png";
+import { CastingMethod, SpellList } from "../classes";
+import { magicUserInventory } from "../equipmentKits/magicUserInventory";
 
 export const wildMagicUser = {
   name: "Wild Magic-User",
   icon: React.createElement(GiRadialBalance, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
+  spellMatrix: [
+    [1, 0, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0, 0],
+    [2, 1, 0, 0, 0, 0],
+    [2, 2, 0, 0, 0, 0],
+    [2, 2, 1, 0, 0, 0],
+    [2, 2, 2, 0, 0, 0],
+    [3, 2, 2, 1, 0, 0],
+    [3, 3, 2, 2, 0, 0],
+    [3, 3, 3, 2, 1, 0],
+    [3, 3, 3, 3, 2, 0],
+    [4, 3, 3, 3, 2, 1],
+    [4, 4, 3, 3, 3, 2],
+    [4, 4, 4, 3, 3, 3],
+    [4, 4, 4, 4, 3, 3]
+  ],
   skillsIcon: React.createElement(GiLaserSparks, {}),
-  skillsTable: React.createElement('img', {src: wildMagicUserWildSurgesTable, style: {width: '13rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: wildMagicUserWildSurgesTable,
+    style: { width: "13rem", height: "33rem" }
+  }),
   requirements: "Minimum INT 9",
   primeRequisite: "INT",
   hitDice: "1d4",
@@ -23,7 +45,7 @@ export const wildMagicUser = {
     breath: 16,
     magic: 15
   },
-  equipment: magicUserEquipment,
+  inventory: magicUserInventory,
   abilities: [
     "<strong>Combat:</strong> Wild magic-users may only use daggers and staves, and are unable to use shields or wear any kind of armor. This makes them very vulnerable in combat.",
     "<strong>Arcane Magic:</strong> See <i>Magic in Core Rules, p42</i> for full details on arcane magic.\n\n<div style='padding: 0 1.5rem'><strong>Magical Research:</strong> A wild magic-user of any level may spend time and money to research new spells to add to his or her spell book. When a wild magic-user reaches 9th level, he or she is also able to create magic items and research other magical effects.\n\n<strong>Spell Casting:</strong> Wild magic-users carry spell books containing the formulae for arcane spells. A 1st level wild magic-user has one spell in his or her spell book. The list of spells available to wild magic-users is found on <i>p45</i>.\n\n<strong>Using Magic Items:</strong> As spell casters, wild magic-users are able to use magic scrolls of spells on their spell list. There are also items (e.g. magic wands) that may only be used by arcane spell casters (including wild magic-users).</div>",

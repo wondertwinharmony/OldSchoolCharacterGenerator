@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
   GiChewedSkull,
@@ -12,11 +12,11 @@ import {
 } from "react-icons/gi";
 import { MdChatBubble, MdStar } from "react-icons/md";
 import styled from "styled-components";
+import AppContext from "../../AppContext";
 import { characterClasses } from "../../characterData/classes";
 import { combatActions } from "../../characterData/combatActions";
 import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
 import { retainers } from "../../characterData/retainers";
-import { knaveSpellAddendum } from "../../characterData/spells";
 import { weaponQualities } from "../../characterData/weaponQualities";
 import {
   CHA,
@@ -37,42 +37,58 @@ import parchment from "../../static/parchment.png";
 import turningTableResults from "../../static/turningTableResults.png";
 import turnUndeadTable from "../../static/turnUndeadTable.png";
 import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
-import { checkSpell } from "../../utils/checkSpell";
 import { createMarkup } from "../../utils/createMarkup";
 import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
 import { getArmorClass } from "../../utils/getArmorClass";
 import { getCharacterName } from "../../utils/getCharacterName";
 import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-import { getEquipment } from "../../utils/getEquipment";
 import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
 import { getHitPoints } from "../../utils/getHitPoints";
+import { getInventory } from "../../utils/getInventory";
+import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
 import { getLanguages } from "../../utils/getLanguages";
+import { getLegacyArmorClass } from "../../utils/getLegacyArmorClass";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { getSpells } from "../../utils/getSpells";
 import { getTraits } from "../../utils/getTraits";
 import CharacterDetails from "./characterDetails";
 import CharacterSkills from "./characterSkills";
+import InventoryImpl from "./inventory/inventory";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
 import Segment from "./segment";
+import SpellsImpl from "./spells/spells";
 
 interface Props {
   abilityScores: number[];
   className?: string;
   classSelection: string;
-  includeKnaveSpells: boolean;
+  nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
+  savedCharacterAC?: number;
 }
 
 interface ImplProps extends Props {}
 
-const CharacterImpl: React.SFC<ImplProps> = ({
+const CharacterSheetImpl: React.SFC<ImplProps> = ({
   abilityScores,
   className,
   classSelection,
-  includeKnaveSpells,
-  savedCharacterData
+  nonTraditionalSpells,
+  savedCharacterData,
+  savedCharacterAC
 }) => {
+  /**
+   * NOTE!!!
+   * HARDCODED character level for now
+   */
+  const characterLevel = 1;
+  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
+  const levelSpellMatrixIndex = characterLevel - 1;
+
+  const { savedCharacterSpells, savedCharacterInventory } = useContext(
+    AppContext
+  );
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
@@ -85,6 +101,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setHitPoints(hitPoints);
   }, [hitPoints]);
+
   // Languages
   const [languages, setLanguages] = useState(
     savedCharacterData
@@ -98,20 +115,29 @@ const CharacterImpl: React.SFC<ImplProps> = ({
   useEffect(() => {
     setLanguages(languages);
   }, [languages]);
-  // Equipment
-  const [equipment] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.equipment
-      : getEquipment(classSelection, abilityScores[CON])
+
+  // Inventory
+  const [inventory] = useState(
+    savedCharacterInventory
+      ? savedCharacterInventory
+      : getInventory(classSelection, abilityScores[CON])
+  );
+  // Old Inventory
+  const [oldInventory] = useState(
+    savedCharacterData && savedCharacterData.equipment
   );
 
   // Armor Class
   const [armorClass, setArmorClass] = useState(
-    getArmorClass(
-      abilityScores[DEX],
-      equipment.characterEquipmentString,
-      classSelection
-    )
+    savedCharacterAC
+      ? savedCharacterAC
+      : savedCharacterData && savedCharacterData.equipment
+      ? getLegacyArmorClass(
+          abilityScores[DEX],
+          classSelection,
+          savedCharacterData
+        )
+      : getArmorClass(abilityScores[DEX], classSelection, inventory)
   );
   useEffect(() => {
     setArmorClass(armorClass);
@@ -119,10 +145,26 @@ const CharacterImpl: React.SFC<ImplProps> = ({
 
   // Spells
   const [spells] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.spells
-      : getSpells(includeKnaveSpells, classSelection)
+    savedCharacterSpells
+      ? savedCharacterSpells
+      : getSpells(nonTraditionalSpells, classSelection)
   );
+  // Old Spells
+  const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
+  // Spell Level Headers (dynamically determined and tracked)
+  const [levelHeadersVisible, setLevelHeadersVisible] = useState(() => {
+    let levelHeaders: { [key: string]: boolean } = {};
+    if (characterSpellMatrix && characterSpellMatrix[levelSpellMatrixIndex]) {
+      characterSpellMatrix[levelSpellMatrixIndex].forEach(
+        (spellsKnown: number, index: number) => {
+          if (spellsKnown >= 1) {
+            levelHeaders[`${index + 1}`] = true;
+          }
+        }
+      );
+    }
+    return levelHeaders;
+  });
 
   // Traits
   const [traits] = useState(
@@ -167,9 +209,10 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         abilityScores={abilityScores}
         hitPoints={hitPoints}
         languages={languages}
+        inventory={inventory}
+        armorClass={armorClass}
         spells={spells}
-        equipment={equipment}
-        includeKnaveSpells={includeKnaveSpells}
+        nonTraditionalSpells={nonTraditionalSpells}
       />
 
       {/**
@@ -225,8 +268,7 @@ const CharacterImpl: React.SFC<ImplProps> = ({
       />
 
       {/* Turn Undead Segment - Cleric/Paladin */}
-      {(characterClasses[classSelection].paladinTurn ||
-        characterClasses[classSelection].clericTurn) && (
+      {(classSelection === "paladin" || classSelection === "cleric") && (
         <Segment
           segmentIcon={<GiChewedSkull />}
           segmentName={"TurnUndeadTable"}
@@ -252,35 +294,71 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* Spells Segment */}
-      {characterClasses[classSelection].spells && (
-        <Segment
-          segmentIcon={<GiCometSpark />}
-          segmentDisplayName={"Spells"}
-          segmentData={
-            <SpellsContainer>
-              {characterClasses[classSelection].spells && checkSpell(spells) ? (
-                <>
-                  <Spell
-                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-                  />
-                  <KnaveAddendum
-                    dangerouslySetInnerHTML={createMarkup(knaveSpellAddendum)}
-                  />
-                </>
+      {/**
+       * Spells Segment
+       *
+       * Check if character has spells available by their
+       * current level. E.g. half-elf gets spells segment
+       * to show up when they can finally cast spells at
+       * level two.
+       */}
+      {characterSpellMatrix &&
+        characterSpellMatrix[levelSpellMatrixIndex][0] >= 1 && (
+          <Segment
+            segmentIcon={<GiCometSpark />}
+            segmentDisplayName={"Spells"}
+            segmentData={
+              savedCharacterSpells && savedCharacterData ? (
+                <SpellsImpl
+                  classSelection={classSelection}
+                  castingMethod={characterClasses[classSelection].castingMethod}
+                  spells={savedCharacterSpells}
+                  spellsMatrix={
+                    characterSpellMatrix &&
+                    characterSpellMatrix[levelSpellMatrixIndex]
+                  }
+                  characterLevel={characterLevel}
+                  levelHeadersVisible={levelHeadersVisible}
+                  setLevelHeadersVisible={setLevelHeadersVisible}
+                />
+              ) : spells ? (
+                <SpellsImpl
+                  classSelection={classSelection}
+                  castingMethod={characterClasses[classSelection].castingMethod}
+                  spells={spells}
+                  spellsMatrix={
+                    characterSpellMatrix &&
+                    characterSpellMatrix[levelSpellMatrixIndex]
+                  }
+                  characterLevel={characterLevel}
+                  levelHeadersVisible={levelHeadersVisible}
+                  setLevelHeadersVisible={setLevelHeadersVisible}
+                />
               ) : (
-                <>
-                  <Spell
-                    dangerouslySetInnerHTML={createMarkup(spells.join("\n\n"))}
-                  />
-                </>
-              )}
-            </SpellsContainer>
-          }
-          collapse={segmentVisibility}
-          setCollapse={setSegmentVisibility}
-        />
-      )}
+                <SpellsContainer>
+                  {characterClasses[classSelection].spell && oldSpells && (
+                    <>
+                      <Spell
+                        dangerouslySetInnerHTML={createMarkup(
+                          oldSpells.join("\n\n")
+                        )}
+                      />
+                      {/* {checkSpell(oldSpells) && (
+                        <KnaveAddendum
+                          dangerouslySetInnerHTML={createMarkup(
+                            knaveSpellAddendum
+                          )}
+                        />
+                      )} */}
+                    </>
+                  )}
+                </SpellsContainer>
+              )
+            }
+            collapse={segmentVisibility}
+            setCollapse={setSegmentVisibility}
+          />
+        )}
 
       {/* Character Skills Segment */}
       {characterClasses[classSelection][
@@ -307,20 +385,41 @@ const CharacterImpl: React.SFC<ImplProps> = ({
         />
       )}
 
-      {/* Equipment Segment */}
+      {/* Inventory Segment */}
       <Segment
         segmentIcon={<GiKnapsack />}
-        segmentName={"Equipment"}
-        segmentDisplayName={`Equipment (${equipment.slotsToFill}/${
-          abilityScores[CON] > 10 ? abilityScores[CON] : 10
-        } slots)`}
+        segmentName={"Inventory"}
+        segmentDisplayName={
+          savedCharacterInventory && savedCharacterData
+            ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : inventory
+            ? `Inventory (${getInventorySlotsUsed(inventory)}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+            : `Inventory (${oldInventory && oldInventory.slotsToFill}/${
+                abilityScores[CON] > 10 ? abilityScores[CON] : 10
+              } slots)`
+        }
         segmentData={
           <>
-            <Equipment
-              dangerouslySetInnerHTML={createMarkup(
-                equipment.characterEquipmentString
-              )}
-            />
+            {savedCharacterInventory && savedCharacterData ? (
+              <InventoryImpl inventory={savedCharacterInventory} />
+            ) : inventory ? (
+              <InventoryImpl inventory={inventory} />
+            ) : (
+              <>
+                {oldInventory && (
+                  <Equipment
+                    dangerouslySetInnerHTML={
+                      savedCharacterData &&
+                      createMarkup(oldInventory.characterEquipmentString)
+                    }
+                  />
+                )}
+              </>
+            )}
             <GoldText>
               † 160 coins can be contained in 1 slot, provided you have a
               container for them.
@@ -491,11 +590,11 @@ const Spell = styled.div`
   white-space: pre-line;
 `;
 
-const KnaveAddendum = styled.div`
-  padding: 0.5rem;
-  display: block;
-  white-space: pre-line;
-`;
+// const KnaveAddendum = styled.div`
+//   padding: 0.5rem;
+//   display: block;
+//   white-space: pre-line;
+// `;
 
 const Equipment = styled.div`
   padding: 0.5rem;
@@ -558,7 +657,7 @@ const CoinConversionsTable = styled.div`
   background-size: 24rem 8rem;
 `;
 
-const StyledCreatedCharacter = styled(CharacterImpl)`
+const StyledCreatedCharacter = styled(CharacterSheetImpl)`
   font-family: "Roboto Mono", monospace;
   background-image: url(${parchment});
   justify-content: center;

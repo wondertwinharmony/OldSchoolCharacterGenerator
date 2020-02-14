@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AppContext from "./AppContext";
 import AppRouter from "./AppRouter";
+import { Items } from "./characterData/items";
+import { Spells } from "./characterData/spells";
 import { getAbilityScores } from "./utils/getAbilityScores";
 import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
@@ -8,16 +10,19 @@ export default class AppImpl extends Component {
   state = {
     abilityScores: [0, 0, 0, 0, 0, 0],
     classSelection: "",
-    includeKnaveSpells: false,
-    savedCharacterData: undefined
+    nonTraditionalSpells: false,
+    savedCharacterData: undefined,
+    savedCharacterInventory: undefined,
+    savedCharacterAC: undefined,
+    savedCharacterSpells: undefined
   };
 
   componentDidMount() {
     this.setAbilityScores(getAbilityScores());
   }
 
-  setKnaveSpells = (isKnaveSpellsIncluded: boolean) => {
-    this.setState({ includeKnaveSpells: isKnaveSpellsIncluded });
+  setNonTraditionalSpells = (includeNonTraditionalSpells: boolean) => {
+    this.setState({ nonTraditionalSpells: includeNonTraditionalSpells });
   };
 
   setAbilityScores = (abilityScores: number[]) => {
@@ -28,8 +33,20 @@ export default class AppImpl extends Component {
     this.setState({ savedCharacterData });
   };
 
+  setSavedCharacterInventory = (items?: Items) => {
+    this.setState({ savedCharacterInventory: items });
+  };
+
+  setSavedCharacterAC = (ac: string) => {
+    this.setState({ savedCharacterAC: ac });
+  };
+
   setClassSelection = (classSelection: string) => {
     this.setState({ classSelection });
+  };
+
+  setSavedCharacterSpells = (savedCharacterSpells: Spells) => {
+    this.setState({ savedCharacterSpells });
   };
 
   render() {
@@ -38,12 +55,18 @@ export default class AppImpl extends Component {
         value={{
           abilityScores: this.state.abilityScores,
           classSelection: this.state.classSelection,
-          includeKnaveSpells: this.state.includeKnaveSpells,
+          nonTraditionalSpells: this.state.nonTraditionalSpells,
           savedCharacterData: this.state.savedCharacterData,
-          setKnaveSpells: this.setKnaveSpells,
+          savedCharacterInventory: this.state.savedCharacterInventory,
+          savedCharacterAC: this.state.savedCharacterAC,
+          setNonTraditionalSpells: this.setNonTraditionalSpells,
           setAbilityScores: this.setAbilityScores,
           setSavedCharacterData: this.setSavedCharacterData,
-          setClassSelection: this.setClassSelection
+          setSavedCharacterInventory: this.setSavedCharacterInventory,
+          setSavedCharacterAC: this.setSavedCharacterAC,
+          setClassSelection: this.setClassSelection,
+          savedCharacterSpells: this.state.savedCharacterSpells,
+          setSavedCharacterSpells: this.setSavedCharacterSpells
         }}
       >
         <AppRouter />

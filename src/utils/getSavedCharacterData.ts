@@ -52,13 +52,21 @@ export const getSavedCharacterData = (
   savedCharacterData.abilityScores = abilityScores.map(item => parseInt(item));
   savedCharacterData.hitPoints = parseInt(rawCharacterData[4]);
   savedCharacterData.languages = rawCharacterData[5].replace(/_/gm, " ");
+  /**
+   * As we remove stuff from permalink just do a ternary check so we don't
+   * bork old legacy permalink support just yet.
+   */
   savedCharacterData.spells = rawCharacterData[6]
-    .replace(/_/gm, " ")
-    .split("#");
+    ? rawCharacterData[6].replace(/_/gm, " ").split("#")
+    : [];
   savedCharacterData.equipment.characterEquipmentString = rawCharacterData[7]
-    .replace(/_/gm, " ")
-    .replace("5’ 10’ / 11’ 20’ / 21’ 30’", "5’-10’ / 11’-20’ / 21’-30’");
-  savedCharacterData.equipment.slotsToFill = parseInt(rawCharacterData[8]);
+    ? rawCharacterData[7]
+        .replace(/_/gm, " ")
+        .replace("5’ 10’ / 11’ 20’ / 21’ 30’", "5’-10’ / 11’-20’ / 21’-30’")
+    : "";
+  savedCharacterData.equipment.slotsToFill = rawCharacterData[8]
+    ? parseInt(rawCharacterData[8])
+    : 0;
   savedCharacterData.knave = rawCharacterData[9] === "true";
 
   return savedCharacterData;

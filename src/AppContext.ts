@@ -1,26 +1,40 @@
 import { createContext } from "react";
+import { Items } from "./characterData/items";
+import { Spells } from "./characterData/spells";
 import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 interface IAppContext {
   abilityScores: number[];
   classSelection: string;
-  includeKnaveSpells: boolean;
+  nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
   setSavedCharacterData: (savedCharacterData?: SavedCharacterData) => void;
-  setKnaveSpells: (isKnaveSpellsIncluded: boolean) => void;
+  savedCharacterInventory?: Items;
+  setSavedCharacterInventory: (items: Items) => void;
+  savedCharacterAC?: number;
+  setSavedCharacterAC: (ac: string) => void;
+  setNonTraditionalSpells: (isKnaveSpellsIncluded: boolean) => void;
   setAbilityScores: (abilityScores: number[]) => void;
   setClassSelection: (classSelection: string) => void;
+  savedCharacterSpells?: Spells;
+  setSavedCharacterSpells: (spells: Spells) => void;
 }
 
 const AppContext = createContext<IAppContext>({
   abilityScores: [0, 0, 0, 0, 0, 0],
   classSelection: "",
-  includeKnaveSpells: false,
+  nonTraditionalSpells: false,
   savedCharacterData: undefined,
   setSavedCharacterData: () => {},
-  setKnaveSpells: () => {},
+  savedCharacterInventory: undefined,
+  setSavedCharacterInventory: () => {},
+  savedCharacterAC: undefined,
+  setSavedCharacterAC: () => {},
+  setNonTraditionalSpells: () => {},
   setAbilityScores: () => {},
-  setClassSelection: () => {}
+  setClassSelection: () => {},
+  savedCharacterSpells: undefined,
+  setSavedCharacterSpells: () => {}
 });
 
 export default AppContext;
