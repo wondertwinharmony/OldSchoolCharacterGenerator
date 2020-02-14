@@ -1,27 +1,46 @@
 import React from "react";
 import { GiCompass, GiPawPrint } from "react-icons/gi";
-import { rangerEquipment } from "../equipmentKits/rangerEquipment";
 import rangerTrackingTable from "../../static/rangerTrackingTable.png";
+import { rangerEquipment } from "../equipmentKits/rangerEquipment";
 
 export const ranger = {
   name: "Ranger",
   icon: React.createElement(GiCompass, {}),
   skillsIcon: React.createElement(GiPawPrint, {}),
-  skillsTable: React.createElement('img', {src: rangerTrackingTable, style: {width: '20rem', height: '25rem'}}),
+  skillsTable: React.createElement("img", {
+    src: rangerTrackingTable,
+    style: { width: "20rem", height: "25rem" }
+  }),
   requirements: "Minimum CON 9 and WIS 9",
   primeRequisite: "STR",
   hitDice: "1d8",
-  xpToSecondLevel: "2,250 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,250",
+    "4,500",
+    "10,000",
+    "20,000",
+    "40,000",
+    "90,000",
+    "150,000",
+    "300,000",
+    "425,000",
+    "550,000",
+    "675,000",
+    "800,000",
+    "925,000"
+  ],
   maximumLevel: "14",
+  attackBonus: ["0", "+2", "+5", "+7", "+9"],
   allowedArmor: "Leather and chainmail armor, shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 12,
-    wands: 13,
-    stone: 14,
-    breath: 15,
-    magic: 16
+    poison: [12, 10, 8, 6, 4],
+    wands: [13, 11, 9, 7, 5],
+    stone: [14, 12, 10, 8, 6],
+    breath: [15, 13, 10, 8, 6],
+    magic: [16, 14, 12, 10, 8]
   },
   equipment: rangerEquipment,
   abilities: [

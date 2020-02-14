@@ -8,8 +8,20 @@ export const drow = {
   requirements: "Minimum INT 9",
   primeRequisite: "STR and WIS",
   hitDice: "1d6",
-  xpToSecondLevel: "4,000 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "4,000",
+    "8,000",
+    "16,000",
+    "32,000",
+    "64,000",
+    "120,000",
+    "250,000",
+    "400,000",
+    "600,000"
+  ],
   maximumLevel: "10",
+  attackBonus: ["0", "+2", "+5", "+7"],
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
   languages: [
@@ -21,11 +33,11 @@ export const drow = {
     "Secret Language of Spiders"
   ],
   saves: {
-    poison: 12,
-    wands: 13,
-    stone: 13,
-    breath: 15,
-    magic: 12
+    poison: [12, 10, 8, 6],
+    wands: [13, 11, 9, 7],
+    stone: [13, 11, 9, 8],
+    breath: [15, 13, 10, 8],
+    magic: [12, 10, 8, 6]
   },
   equipment: drowEquipment,
   abilities: [

@@ -8,17 +8,31 @@ export const dwarf = {
   requirements: "Minimum CON 9",
   primeRequisite: "STR",
   hitDice: "1d8",
-  xpToSecondLevel: "2,200 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,200",
+    "4,400",
+    "8,800",
+    "17,000",
+    "35,000",
+    "70,000",
+    "140,000",
+    "270,000",
+    "400,000",
+    "530,000",
+    "660,000"
+  ],
   maximumLevel: "12",
+  attackBonus: ["0", "+2", "+5", "+7"],
   allowedArmor: "Any, including shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: ["Alignment", "Common", "Dwarvish", "Gnome", "Goblin", "Kobold"],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 13,
-    magic: 12
+    poison: [8, 6, 4, 2],
+    wands: [9, 7, 5, 3],
+    stone: [10, 8, 6, 4],
+    breath: [13, 10, 7, 4],
+    magic: [12, 10, 8, 6]
   },
   equipment: fighterEquipment,
   abilities: [

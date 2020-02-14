@@ -19,6 +19,20 @@ const CharacterNameAndClass: React.SFC<Props> = ({
       <CharacterName>{characterName}</CharacterName>
       <ClassTitle>
         {`Level 1 ${characterClasses[classSelection].name}`}
+        {/* <FormControl
+          style={{ width: "60px" }}
+          onClick={(e: any) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onChange={(e: any) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // setSlotValue(e.target.value);
+          }}
+          // value={slotValue}
+          type="number"
+        /> */}
       </ClassTitle>
     </div>
   );

@@ -1,27 +1,46 @@
 import React from "react";
 import { GiHuntingHorn, GiSnakeTotem } from "react-icons/gi";
+import barbarianSkillsTable from "../../static/barbarianSkillsTable.png";
 import { barbarianEquipment } from "../equipmentKits/barbarianEquipment";
-import barbarianSkillsTable from '../../static/barbarianSkillsTable.png';
 
 export const barbarian = {
   name: "Barbarian",
   icon: React.createElement(GiHuntingHorn, {}),
   skillsIcon: React.createElement(GiSnakeTotem, {}),
-  skillsTable: React.createElement('img', {src: barbarianSkillsTable, style: {width: '22rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: barbarianSkillsTable,
+    style: { width: "22rem", height: "33rem" }
+  }),
   requirements: "Minimum DEX 9",
   primeRequisite: "CON and STR",
   hitDice: "1d8",
-  xpToSecondLevel: "2,500 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,500",
+    "5,000",
+    "10,000",
+    "18,500",
+    "37,000",
+    "85,000",
+    "140,000",
+    "270,000",
+    "400,000",
+    "530,000",
+    "660,000",
+    "790,000",
+    "920,000"
+  ],
   maximumLevel: "14",
+  attackBonus: ["0", "+2", "+5", "+7", "+9"],
   allowedArmor: "Leather and chainmail armor, shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 10,
-    wands: 13,
-    stone: 12,
-    breath: 15,
-    magic: 16
+    poison: [10, 8, 6, 4, 3],
+    wands: [13, 11, 9, 7, 5],
+    stone: [12, 10, 8, 6, 4],
+    breath: [15, 13, 10, 8, 5],
+    magic: [16, 13, 10, 7, 5]
   },
   equipment: barbarianEquipment,
   abilities: [

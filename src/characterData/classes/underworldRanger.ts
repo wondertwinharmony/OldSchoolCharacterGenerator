@@ -8,17 +8,29 @@ export const underworldRanger = {
   requirements: "Minimum STR 12 and CON 12",
   primeRequisite: "CON",
   hitDice: "1d6",
-  xpToSecondLevel: "4,000 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "4,000",
+    "8,000",
+    "16,000",
+    "32,000",
+    "64,000",
+    "120,000",
+    "240,000",
+    "360,000",
+    "480,000"
+  ],
   maximumLevel: "1",
+  attackBonus: ["0", "+2", "+5"],
   allowedArmor: "Any",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 11,
-    wands: 12,
-    stone: 14,
-    breath: 16,
-    magic: 13
+    poison: [11, 9, 6],
+    wands: [12, 10, 7],
+    stone: [14, 12, 9],
+    breath: [16, 14, 11],
+    magic: [13, 10, 7]
   },
   equipment: underworldRangerEquipment,
   abilities: [

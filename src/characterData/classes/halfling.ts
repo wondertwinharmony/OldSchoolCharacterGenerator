@@ -8,17 +8,27 @@ export const halfling = {
   requirements: "Minimum CON and DEX 9",
   primeRequisite: "DEX and STR",
   hitDice: "1d6",
-  xpToSecondLevel: "2,000 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8],
+  experienceLevel: [
+    "2,000",
+    "4,000",
+    "8,000",
+    "16,000",
+    "32,000",
+    "64,000",
+    "120,000"
+  ],
   maximumLevel: "8",
+  attackBonus: ["0", "+2", "+5"],
   allowedArmor: "Any appropriate to size, including shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: ["Alignment", "Common", "Halfling"],
   saves: {
-    poison: 10,
-    wands: 11,
-    stone: 12,
-    breath: 13,
-    magic: 14
+    poison: [8, 6, 4],
+    wands: [9, 7, 5],
+    stone: [10, 8, 6],
+    breath: [13, 10, 7],
+    magic: [12, 10, 8]
   },
   equipment: fighterEquipment,
   abilities: [

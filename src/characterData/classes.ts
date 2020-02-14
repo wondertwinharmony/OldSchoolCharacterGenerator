@@ -46,12 +46,14 @@ export interface characterClass {
   requirements: string;
   primeRequisite: string;
   hitDice: string;
-  xpToSecondLevel?: string;
+  hitDiceCount: number[];
+  experienceLevel: string[];
   maximumLevel: string;
+  attackBonus: string[];
   allowedArmor: string;
   allowedWeapons: string;
   languages: string[];
-  saves: { [key: string]: number };
+  saves: { [key: string]: number[] };
   equipment: string[][];
   abilities?: string[];
   abilitiesSummary: string;

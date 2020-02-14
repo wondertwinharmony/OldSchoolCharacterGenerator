@@ -8,17 +8,31 @@ export const halfElf = {
   requirements: "Minimum CHA and CON 9",
   primeRequisite: "INT and STR",
   hitDice: "1d6",
-  xpToSecondLevel: "2,500 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,500",
+    "5,000",
+    "10,000",
+    "20,000",
+    "40,000",
+    "80,000",
+    "150,000",
+    "300,000",
+    "450,000",
+    "600,000",
+    "750,000"
+  ],
   maximumLevel: "10",
+  attackBonus: ["0", "+2", "+5", "+7"],
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common", "Elvish", "Hobgoblin"],
   saves: {
-    poison: 12,
-    wands: 13,
-    stone: 13,
-    breath: 15,
-    magic: 15
+    poison: [12, 10, 8, 6],
+    wands: [13, 11, 9, 7],
+    stone: [13, 11, 9, 8],
+    breath: [15, 13, 10, 8],
+    magic: [15, 12, 10, 8]
   },
   equipment: fighterEquipment,
   abilities: [

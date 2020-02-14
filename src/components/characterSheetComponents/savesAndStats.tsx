@@ -41,6 +41,11 @@ const SavesAndStats: React.SFC<Props> = ({
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
+              `<strong>ATK Bonus:</strong> ${characterClasses[classSelection].attackBonus[0]}`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
               `<strong>${
                 experienceAdjustment === "+0% XP"
                   ? ""
@@ -57,7 +62,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.poison}
+              {characterClasses[classSelection].saves.poison[0]}
             </SaveScore>
           </Save>
           <Save>
@@ -67,7 +72,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.wands}
+              {characterClasses[classSelection].saves.wands[0]}
             </SaveScore>
           </Save>
           <Save>
@@ -77,7 +82,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.stone}
+              {characterClasses[classSelection].saves.stone[0]}
             </SaveScore>
           </Save>
           <Save>
@@ -87,7 +92,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.breath}
+              {characterClasses[classSelection].saves.breath[0]}
             </SaveScore>
           </Save>
           <Save>
@@ -97,7 +102,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.magic}
+              {characterClasses[classSelection].saves.magic[0]}
             </SaveScore>
           </Save>
         </SavesContainer>

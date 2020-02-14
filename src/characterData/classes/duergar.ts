@@ -8,8 +8,20 @@ export const duergar = {
   requirements: "Minimum CON 9 and INT 9",
   primeRequisite: "STR",
   hitDice: "1d6",
-  xpToSecondLevel: "2,800 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,800",
+    "5,600",
+    "11,200",
+    "23,000",
+    "46,000",
+    "100,000",
+    "200,000",
+    "300,000",
+    "400,000"
+  ],
   maximumLevel: "10",
+  attackBonus: ["0", "+2", "+5", "+7"],
   allowedArmor: "Any, including shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: [
@@ -22,11 +34,11 @@ export const duergar = {
     "Kobold"
   ],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 13,
-    magic: 12
+    poison: [8, 6, 4, 2],
+    wands: [9, 7, 5, 3],
+    stone: [10, 8, 6, 4],
+    breath: [13, 10, 7, 4],
+    magic: [12, 10, 8, 6]
   },
   equipment: fighterEquipment,
   abilities: [

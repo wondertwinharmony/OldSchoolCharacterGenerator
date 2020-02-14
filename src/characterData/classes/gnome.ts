@@ -8,17 +8,27 @@ export const gnome = {
   requirements: "Minimum CON 9",
   primeRequisite: "DEX and INT",
   hitDice: "1d4",
-  xpToSecondLevel: "3,000 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8],
+  experienceLevel: [
+    "3,000",
+    "6,000",
+    "12,000",
+    "30,000",
+    "60,000",
+    "120,000",
+    "240,000"
+  ],
   maximumLevel: "8",
+  attackBonus: ["0", "+2"],
   allowedArmor: "Leather armor, shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 14,
-    magic: 11
+    poison: [8, 6],
+    wands: [9, 7],
+    stone: [10, 8],
+    breath: [14, 11],
+    magic: [11, 9]
   },
   equipment: gnomeEquipment,
   abilities: [

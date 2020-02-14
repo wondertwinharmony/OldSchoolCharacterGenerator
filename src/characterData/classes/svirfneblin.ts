@@ -8,8 +8,18 @@ export const svirfneblin = {
   requirements: "Minimum CON 9",
   primeRequisite: "DEX and INT",
   hitDice: "1d6",
-  xpToSecondLevel: "2,250 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8],
+  experienceLevel: [
+    "2,400",
+    "4,800",
+    "10,000",
+    "20,000",
+    "40,000",
+    "80,000",
+    "160,000"
+  ],
   maximumLevel: "8",
+  attackBonus: ["0", "+2", "+5"],
   allowedArmor: "Any appropriate to size, including shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: [
@@ -22,11 +32,11 @@ export const svirfneblin = {
     "the language of earth elementals"
   ],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 14,
-    magic: 11
+    poison: [8, 6, 4],
+    wands: [9, 7, 5],
+    stone: [10, 8, 6],
+    breath: [14, 11, 9],
+    magic: [11, 9, 7]
   },
   equipment: fighterEquipment,
   abilities: [

@@ -1,27 +1,46 @@
 import React from "react";
-import { GiRadialBalance, GiLaserSparks } from "react-icons/gi";
-import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
+import { GiLaserSparks, GiRadialBalance } from "react-icons/gi";
 import wildMagicUserWildSurgesTable from "../../static/wildMagicUserWildSurgesTable.png";
+import { magicUserEquipment } from "../equipmentKits/magicUserEquipment";
 
 export const wildMagicUser = {
   name: "Wild Magic-User",
   icon: React.createElement(GiRadialBalance, {}),
   skillsIcon: React.createElement(GiLaserSparks, {}),
-  skillsTable: React.createElement('img', {src: wildMagicUserWildSurgesTable, style: {width: '13rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: wildMagicUserWildSurgesTable,
+    style: { width: "13rem", height: "33rem" }
+  }),
   requirements: "Minimum INT 9",
   primeRequisite: "INT",
   hitDice: "1d4",
-  xpToSecondLevel: "2,500 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,500",
+    "5,000",
+    "10,000",
+    "20,000",
+    "40,000",
+    "80,000",
+    "150,000",
+    "300,000",
+    "450,000",
+    "600,000",
+    "750,000",
+    "900,000",
+    "1,050,000"
+  ],
   maximumLevel: "14",
+  attackBonus: ["0", "+2", "+5"],
   allowedArmor: "None",
   allowedWeapons: "Daggers and staves only",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 15
+    poison: [13, 11, 8],
+    wands: [14, 12, 9],
+    stone: [13, 11, 8],
+    breath: [16, 14, 11],
+    magic: [15, 12, 8]
   },
   equipment: magicUserEquipment,
   abilities: [

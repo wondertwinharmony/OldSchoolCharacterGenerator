@@ -8,17 +8,32 @@ export const citizenLich = {
   requirements: "Minimum INT 13",
   primeRequisite: "INT",
   hitDice: "1d4-1",
-  xpToSecondLevel: "2,500 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,500",
+    "5,000",
+    "10,000",
+    "20,000",
+    "40,000",
+    "80,000",
+    "150,000",
+    "300,000",
+    "450,000",
+    "600,000",
+    "750,000",
+    "900,000"
+  ],
   maximumLevel: "13",
+  attackBonus: ["0", "+2", "+5"],
   allowedArmor: "None",
   allowedWeapons: "Daggers and staves only",
   languages: ["Alignment", "Common", "Undead"],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 13
+    poison: [13, 11, 8],
+    wands: [14, 12, 9],
+    stone: [13, 11, 8],
+    breath: [16, 14, 11],
+    magic: [13, 10, 6]
   },
   equipment: citizenLichEquipment,
   abilities: [

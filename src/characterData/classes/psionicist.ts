@@ -1,27 +1,46 @@
 import React from "react";
-import { GiPsychicWaves, GiBrain } from "react-icons/gi";
-import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
+import { GiBrain, GiPsychicWaves } from "react-icons/gi";
 import psionicistSkillsTable from "../../static/psionicistSkillsTable.png";
+import { psionicistEquipment } from "../equipmentKits/psionicistEquipment";
 
 export const psionicist = {
   name: "Psionicist",
   icon: React.createElement(GiPsychicWaves, {}),
   skillsIcon: React.createElement(GiBrain, {}),
-  skillsTable: React.createElement('img', {src: psionicistSkillsTable, style: {width: '13rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: psionicistSkillsTable,
+    style: { width: "13rem", height: "33rem" }
+  }),
   requirements: "Minimum CON 9",
   primeRequisite: "CON",
   hitDice: "1d6",
-  xpToSecondLevel: "2,000 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "2,000",
+    "4,000",
+    "8,000",
+    "16,000",
+    "32,000",
+    "64,000",
+    "120,000",
+    "240,000",
+    "360,000",
+    "480,000",
+    "600,000",
+    "720,000",
+    "840,000"
+  ],
   maximumLevel: "14",
+  attackBonus: ["0", "+2", "+5", "+7"],
   allowedArmor: "Any armor, no shields",
   allowedWeapons: "No two-handed weapons",
   languages: ["Alignment", "Common"],
   saves: {
-    poison: 11,
-    wands: 12,
-    stone: 14,
-    breath: 16,
-    magic: 15
+    poison: [11, 9, 6, 3],
+    wands: [12, 10, 7, 5],
+    stone: [14, 12, 9, 7],
+    breath: [16, 14, 11, 8],
+    magic: [15, 12, 9, 7]
   },
   equipment: psionicistEquipment,
   abilities: [

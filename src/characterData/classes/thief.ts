@@ -1,27 +1,46 @@
 import React from "react";
 import { GiDominoMask, GiLockPicking } from "react-icons/gi";
-import { thiefEquipment } from "../equipmentKits/thiefEquipment";
 import thiefSkillsTable from "../../static/thiefSkillsChanceOfSuccess.png";
+import { thiefEquipment } from "../equipmentKits/thiefEquipment";
 
 export const thief = {
   name: "Thief",
   icon: React.createElement(GiDominoMask, {}),
   skillsIcon: React.createElement(GiLockPicking, {}),
-  skillsTable: React.createElement('img', {src: thiefSkillsTable, style: {width: '25rem', height: '33rem'}}),
+  skillsTable: React.createElement("img", {
+    src: thiefSkillsTable,
+    style: { width: "25rem", height: "33rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX",
   hitDice: "1d4",
-  xpToSecondLevel: "1,200 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "1,200",
+    "2,400",
+    "4,800",
+    "9,600",
+    "20,000",
+    "40,000",
+    "80,000",
+    "160,000",
+    "280,000",
+    "400,000",
+    "520,000",
+    "640,000",
+    "760,000"
+  ],
   maximumLevel: "14",
+  attackBonus: ["0", "+2", "+5", "+7", "+9"],
   allowedArmor: "Leather armor, no shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common", "Thieves' Cant"],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 15
+    poison: [13, 12, 10, 8],
+    wands: [14, 13, 11, 9],
+    stone: [13, 11, 9, 7],
+    breath: [16, 14, 12, 10],
+    magic: [15, 13, 10, 8]
   },
   equipment: thiefEquipment,
   abilities: [

@@ -1,26 +1,39 @@
 import React from "react";
-import { GiOrcHead, GiInvisible } from "react-icons/gi";
-import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
+import { GiInvisible, GiOrcHead } from "react-icons/gi";
 import halfOrcSkillsTable from "../../static/halfOrcSkillsTable.png";
+import { halfOrcEquipment } from "../equipmentKits/halfOrcEquipment";
 export const halfOrc = {
   name: "Half-Orc",
   icon: React.createElement(GiOrcHead, {}),
   skillsIcon: React.createElement(GiInvisible, {}),
-  skillsTable: React.createElement('img', {src: halfOrcSkillsTable, style: {width: '22rem', height: '22rem'}}),
+  skillsTable: React.createElement("img", {
+    src: halfOrcSkillsTable,
+    style: { width: "22rem", height: "22rem" }
+  }),
   requirements: "None",
   primeRequisite: "DEX and STR",
   hitDice: "1d6",
-  xpToSecondLevel: "1,800 XP",
+  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  experienceLevel: [
+    "1,800",
+    "3,600",
+    "7,000",
+    "14,000",
+    "28,000",
+    "60,000",
+    "120,000"
+  ],
   maximumLevel: "8",
+  attackBonus: ["0", "+2"],
   allowedArmor: "Leather and chainmail armor, shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common", "Orcish"],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 15
+    poison: [13, 12],
+    wands: [14, 13],
+    stone: [13, 11],
+    breath: [16, 14],
+    magic: [15, 13]
   },
   equipment: halfOrcEquipment,
   abilities: [
