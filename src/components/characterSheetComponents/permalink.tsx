@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import UUID5 from "uuid/v5";
 import { postURL } from "../../api/postURL";
-import AppContext from "../../AppContext";
+import { characterClasses } from "../../characterData/classes";
+import { Items } from "../../characterData/items";
+import { Spells } from "../../characterData/spells";
 import { createMarkup } from "../../utils/createMarkup";
 import { SavedCharacterData } from "../../utils/getSavedCharacterData";
 import { saveCharacterData } from "../../utils/saveCharacterData";
@@ -18,9 +20,10 @@ interface Props {
   abilityScores: number[];
   hitPoints: number;
   languages: string;
-  spells: string[];
+  inventory: Items;
   armorClass: number;
-  includeKnaveSpells: boolean;
+  spells?: Spells;
+  nonTraditionalSpells: boolean;
 }
 
 /**
@@ -34,11 +37,11 @@ const Permalink: React.SFC<Props> = ({
   abilityScores,
   hitPoints,
   languages,
-  spells,
+  inventory,
   armorClass,
-  includeKnaveSpells
+  spells,
+  nonTraditionalSpells
 }) => {
-  const { savedCharacterInventory } = useContext(AppContext);
   let history = useHistory();
   let match = useRouteMatch("/generatedCharacter/:character/");
 
@@ -50,8 +53,7 @@ const Permalink: React.SFC<Props> = ({
       abilityScores,
       hitPoints,
       languages,
-      spells,
-      includeKnaveSpells
+      nonTraditionalSpells
     );
 
     const longLink =
@@ -61,13 +63,21 @@ const Permalink: React.SFC<Props> = ({
     const permaLink = longLink.concat("/savedCharacter/1&", URL);
     const characterUUID = UUID5(permaLink, UUID5.URL);
 
-    const data = {
+    let data: any = {
       characterId: characterUUID,
       permaLink: permaLink,
-      inventory: savedCharacterInventory,
+      inventory,
       AC: armorClass,
       httpMethod: "POST"
     };
+
+    /**
+     * NOTE
+     * Do not unnecessarily save divine caster spell lists to DB,
+     * save arcane spells only.
+     */
+    let castingMethod = characterClasses[classSelection].castingMethod;
+    if (spells && castingMethod === "arcane") data.spells = spells;
 
     const postCharacter = async () => {
       await postURL(data).then(() =>

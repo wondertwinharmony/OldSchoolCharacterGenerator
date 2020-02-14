@@ -12,14 +12,8 @@ interface Props {
 interface ImplProps extends Props {}
 
 const InventoryImpl: React.SFC<ImplProps> = ({ className, inventory }) => {
-  const {
-    savedCharacterData,
-    savedCharacterInventory,
-    setSavedCharacterInventory
-  } = useContext(AppContext);
-  if (!savedCharacterData && !savedCharacterInventory) {
-    setSavedCharacterInventory(inventory);
-  }
+  const { savedCharacterData } = useContext(AppContext);
+
   return (
     <div className={className}>
       {savedCharacterData && <InventoryItemImpl addNewItem />}

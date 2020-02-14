@@ -1,12 +1,31 @@
 import { sampleSize } from "lodash";
 import React from "react";
 import { GiDeathNote } from "react-icons/gi";
+import { CastingMethod, SpellList } from "../classes";
 import { citizenLichInventory } from "../equipmentKits/citizenLichInventory";
 import { Items } from "../items";
 
 export const citizenLich = {
   name: "Citizen Lich",
   icon: React.createElement(GiDeathNote, {}),
+  castingMethod: "arcane" as CastingMethod,
+  spellList: "magicUser" as SpellList,
+  spellMatrix: [
+    [1, 0, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0, 0],
+    [2, 1, 0, 0, 0, 0],
+    [2, 2, 0, 0, 0, 0],
+    [2, 2, 1, 0, 0, 0],
+    [2, 2, 2, 0, 0, 0],
+    [3, 2, 2, 1, 0, 0],
+    [3, 3, 2, 2, 0, 0],
+    [3, 3, 3, 2, 1, 0],
+    [3, 3, 3, 3, 2, 0],
+    [4, 3, 3, 3, 2, 1],
+    [4, 4, 3, 3, 3, 2],
+    [4, 4, 4, 3, 3, 3],
+    [4, 4, 4, 4, 3, 3]
+  ],
   requirements: "Minimum INT 13",
   primeRequisite: "INT",
   hitDice: "1d4-1",

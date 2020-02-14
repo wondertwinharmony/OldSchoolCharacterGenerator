@@ -1,11 +1,30 @@
 import React from "react";
 import { GiCompass, GiPawPrint } from "react-icons/gi";
 import rangerTrackingTable from "../../static/rangerTrackingTable.png";
+import { CastingMethod, SpellList } from "../classes";
 import { rangerInventory } from "../equipmentKits/rangerInventory";
 
 export const ranger = {
   name: "Ranger",
   icon: React.createElement(GiCompass, {}),
+  castingMethod: "divine" as CastingMethod,
+  spellList: "druid" as SpellList,
+  spellMatrix: [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [1, 0, 0],
+    [2, 0, 0],
+    [2, 1, 0],
+    [2, 2, 0],
+    [2, 2, 1],
+    [3, 2, 1],
+    [3, 2, 2]
+  ],
   skillsIcon: React.createElement(GiPawPrint, {}),
   skillsTable: React.createElement("img", {
     src: rangerTrackingTable,

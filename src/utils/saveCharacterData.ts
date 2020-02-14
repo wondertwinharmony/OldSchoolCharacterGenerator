@@ -26,7 +26,7 @@ const replaceSpaces = (stringToProcess: string) => {
  * @param  {number[]} abilityScores
  * @param  {number} hitPoints
  * @param  {string} languages
- * @param  {string[]} characterSpells
+//  * @param  {string[]} characterSpells
  * @param  {number} equipmentSlots
  * @param  {boolean} knave
  */
@@ -37,23 +37,23 @@ export const saveCharacterData = (
   abilityScores: number[],
   hitPoints: number,
   languages: string,
-  characterSpells: string[],
+  // characterSpells: string[],
   knave: boolean
 ) => {
   const characterData = "";
-  const usersOfMagic = [
-    "elf",
-    "magicUser",
-    "drow",
-    "gnome",
-    "wildMagicUser",
-    "illusionist"
-  ];
-  let spells = "";
+  // const usersOfMagic = [
+  //   "elf",
+  //   "magicUser",
+  //   "drow",
+  //   "gnome",
+  //   "wildMagicUser",
+  //   "illusionist"
+  // ];
+  // let spells = "";
 
-  if (usersOfMagic.includes(classSelection)) {
-    spells = characterSpells.join("#");
-  }
+  // if (usersOfMagic.includes(classSelection)) {
+  //   spells = characterSpells.join("#");
+  // }
 
   let permalink = characterData.concat(
     replaceSpaces(name),
@@ -68,8 +68,8 @@ export const saveCharacterData = (
     "&",
     replaceSpaces(languages),
     "&",
-    replaceSpaces(spells),
-    "&",
+    // replaceSpaces(spells),
+    // "&",
     knave.toString()
   );
 

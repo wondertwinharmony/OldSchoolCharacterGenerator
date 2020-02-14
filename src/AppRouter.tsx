@@ -41,7 +41,7 @@ export default function AppRouter() {
     //     <StyledCreatedCharacter
     //     classSelection={characterData && characterData.class}
     //     abilityScores={characterData && characterData.abilityScores}
-    //     includeKnaveSpells={characterData.knave}
+    //     nonTraditionalSpells={characterData.knave}
     //     savedCharacterData={characterData}
     //   />
     //   )
@@ -62,7 +62,7 @@ export default function AppRouter() {
         <StyledCreatedCharacter
           classSelection={savedData && savedData.class}
           abilityScores={savedData && savedData.abilityScores}
-          includeKnaveSpells={savedData.knave}
+          nonTraditionalSpells={savedData.knave}
           savedCharacterData={savedData}
         />
       );
@@ -102,7 +102,7 @@ export default function AppRouter() {
         <StyledCreatedCharacter
           classSelection={savedCharacterData.class}
           abilityScores={savedCharacterData.abilityScores}
-          includeKnaveSpells={savedCharacterData.knave}
+          nonTraditionalSpells={savedCharacterData.knave}
           savedCharacterData={savedCharacterData}
         />
       );
@@ -114,7 +114,7 @@ export default function AppRouter() {
         <StyledCreatedCharacter
           classSelection={characterClass}
           abilityScores={abilityStringScoreArr.map(item => parseInt(item))}
-          includeKnaveSpells={knave}
+          nonTraditionalSpells={knave}
         />
       );
     }
