@@ -1,7 +1,7 @@
-import React from "react";
-import CharacterNameAndClass from "./characterNameAndClass";
-import ClassIconAndAbilityScores from "./iconAndAbilityScoresGrid";
-import SavesAndStats from "./savesAndStats";
+import React from 'react';
+import CharacterNameAndClass from '../characterNameAndClass';
+import ClassIconAndAbilityScores from '../iconAndAbilityScoresGrid';
+import SavesAndStats from '../savesAndStats';
 
 interface Props {
   characterName: string;
@@ -22,7 +22,7 @@ interface Props {
  * Generic component that renders pertinent Character Sheet details
  * such as Character Name, Class, Class Icon, Ability Scores, Saves and Stats.
  */
-const CharacterDetails: React.SFC<Props> = ({
+const CharacterDetailsDisplay: React.SFC<Props> = ({
   characterName,
   classSelection,
   abilityScores,
@@ -67,4 +67,4 @@ const CharacterDetails: React.SFC<Props> = ({
   );
 };
 
-export default CharacterDetails;
+export default CharacterDetailsDisplay;

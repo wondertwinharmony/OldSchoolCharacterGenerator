@@ -51,7 +51,9 @@ import { getLegacyArmorClass } from '../../utils/getLegacyArmorClass';
 import { SavedCharacterData } from '../../utils/getSavedCharacterData';
 import { getSpells } from '../../utils/getSpells';
 import { getTraits } from '../../utils/getTraits';
-import CharacterDetails from './characterDetails';
+// import OldCharacterDetails from './characterDetailsDisplay';
+import CharacterDetails from './characterDetails/characterDetails';
+import EditCharacterButtonsImpl from './characterDetails/editCharacterButton';
 import CharacterSkills from './characterSkills';
 import InventoryImpl from './inventory/inventory';
 import StyledItemsForPurchase from './itemsForPurchase';
@@ -89,6 +91,9 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   const { savedCharacterSpells, savedCharacterInventory } = useContext(
     AppContext
   );
+
+  const [isEditable, setIsEditable] = useState(false);
+
   // Hit Points
   const [hitPoints, setHitPoints] = useState(
     (savedCharacterData && savedCharacterData.hitPoints) ||
@@ -201,24 +206,32 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   return (
     <div className={className}>
       {/* Permalink Button and Bookmark Message */}
-      <Permalink
-        savedCharacterData={savedCharacterData}
-        characterName={characterName}
-        classSelection={classSelection}
-        traits={traits}
-        abilityScores={abilityScores}
-        hitPoints={hitPoints}
-        languages={languages}
-        inventory={inventory}
-        armorClass={armorClass}
-        spells={spells}
-        nonTraditionalSpells={nonTraditionalSpells}
-      />
+      {savedCharacterData ? (
+        <EditCharacterButtonsImpl
+          isEditable={isEditable}
+          setIsEditable={setIsEditable}
+        />
+      ) : (
+        <Permalink
+          savedCharacterData={savedCharacterData}
+          characterName={characterName}
+          classSelection={classSelection}
+          traits={traits}
+          abilityScores={abilityScores}
+          hitPoints={hitPoints}
+          languages={languages}
+          inventory={inventory}
+          armorClass={armorClass}
+          spells={spells}
+          nonTraditionalSpells={nonTraditionalSpells}
+        />
+      )}
 
       {/**
        * Character Details Section -
        * Name/Class Title/Character Class Icon/Ability Scores Grid/Saves/Stats
        */}
+
       <CharacterDetails
         characterName={characterName}
         classSelection={classSelection}
@@ -232,7 +245,24 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
+        isEditable={isEditable}
+        setIsEditable={setIsEditable}
       />
+
+      {/* <OldCharacterDetails
+        characterName={characterName}
+        classSelection={classSelection}
+        abilityScores={abilityScores}
+        strMod={strMod}
+        dexMod={dexMod}
+        conMod={conMod}
+        intMod={intMod}
+        wisMod={wisMod}
+        chaMod={chaMod}
+        hitPoints={hitPoints}
+        armorClass={armorClass}
+        experienceAdjustment={experienceAdjustment}
+      /> */}
 
       {/* Traits Segment*/}
       <Segment

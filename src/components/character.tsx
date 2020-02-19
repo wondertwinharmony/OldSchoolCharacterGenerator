@@ -12,7 +12,8 @@ export default function Character() {
     setSavedCharacterInventory,
     savedCharacterAC,
     setSavedCharacterAC,
-    setSavedCharacterSpells
+    setSavedCharacterSpells,
+    setSavedCharacterDetails
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -40,6 +41,9 @@ export default function Character() {
       if (apiResponse.spells) {
         setSavedCharacterSpells(apiResponse.spells);
       }
+      if (apiResponse.characterDetails) {
+        setSavedCharacterDetails(apiResponse.characterDetails);
+      }
       setLoading(false);
     };
     fetchCharacter();
@@ -47,7 +51,8 @@ export default function Character() {
     setSavedCharacterData,
     setSavedCharacterInventory,
     setSavedCharacterAC,
-    setSavedCharacterSpells
+    setSavedCharacterSpells,
+    setSavedCharacterDetails
   ]);
 
   return savedCharacterData && !loading ? (

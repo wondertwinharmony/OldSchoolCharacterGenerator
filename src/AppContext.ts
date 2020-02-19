@@ -1,7 +1,15 @@
-import { createContext } from "react";
-import { Items } from "./characterData/items";
-import { Spells } from "./characterData/spells";
-import { SavedCharacterData } from "./utils/getSavedCharacterData";
+import { createContext } from 'react';
+import { Items } from './characterData/items';
+import { Spells } from './characterData/spells';
+import { SavedCharacterData } from './utils/getSavedCharacterData';
+
+export interface SavedCharacterDetails {
+  hp: number;
+  ac: number;
+  level: number;
+  abilityScores: number[];
+  characterName: string;
+}
 
 interface IAppContext {
   abilityScores: number[];
@@ -18,11 +26,15 @@ interface IAppContext {
   setClassSelection: (classSelection: string) => void;
   savedCharacterSpells?: Spells;
   setSavedCharacterSpells: (spells: Spells) => void;
+  savedCharacterDetails?: SavedCharacterDetails;
+  setSavedCharacterDetails: (
+    savedCharacterDetails: SavedCharacterDetails
+  ) => void;
 }
 
 const AppContext = createContext<IAppContext>({
   abilityScores: [0, 0, 0, 0, 0, 0],
-  classSelection: "",
+  classSelection: '',
   nonTraditionalSpells: false,
   savedCharacterData: undefined,
   setSavedCharacterData: () => {},
@@ -34,7 +46,9 @@ const AppContext = createContext<IAppContext>({
   setAbilityScores: () => {},
   setClassSelection: () => {},
   savedCharacterSpells: undefined,
-  setSavedCharacterSpells: () => {}
+  setSavedCharacterSpells: () => {},
+  savedCharacterDetails: undefined,
+  setSavedCharacterDetails: () => {}
 });
 
 export default AppContext;

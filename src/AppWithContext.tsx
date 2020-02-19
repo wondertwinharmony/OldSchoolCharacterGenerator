@@ -1,25 +1,30 @@
-import React, { Component } from "react";
-import AppContext from "./AppContext";
-import AppRouter from "./AppRouter";
-import { Items } from "./characterData/items";
-import { Spells } from "./characterData/spells";
-import { getAbilityScores } from "./utils/getAbilityScores";
-import { SavedCharacterData } from "./utils/getSavedCharacterData";
+import React, { Component } from 'react';
+import AppContext, { SavedCharacterDetails } from './AppContext';
+import AppRouter from './AppRouter';
+import { Items } from './characterData/items';
+import { Spells } from './characterData/spells';
+import { getAbilityScores } from './utils/getAbilityScores';
+import { SavedCharacterData } from './utils/getSavedCharacterData';
 
 export default class AppImpl extends Component {
   state = {
     abilityScores: [0, 0, 0, 0, 0, 0],
-    classSelection: "",
+    classSelection: '',
     nonTraditionalSpells: false,
     savedCharacterData: undefined,
     savedCharacterInventory: undefined,
     savedCharacterAC: undefined,
-    savedCharacterSpells: undefined
+    savedCharacterSpells: undefined,
+    savedCharacterDetails: undefined
   };
 
   componentDidMount() {
     this.setAbilityScores(getAbilityScores());
   }
+
+  setSavedCharacterDetails = (savedCharacterDetails: SavedCharacterDetails) => {
+    this.setState(savedCharacterDetails);
+  };
 
   setNonTraditionalSpells = (includeNonTraditionalSpells: boolean) => {
     this.setState({ nonTraditionalSpells: includeNonTraditionalSpells });
@@ -66,7 +71,9 @@ export default class AppImpl extends Component {
           setSavedCharacterAC: this.setSavedCharacterAC,
           setClassSelection: this.setClassSelection,
           savedCharacterSpells: this.state.savedCharacterSpells,
-          setSavedCharacterSpells: this.setSavedCharacterSpells
+          setSavedCharacterSpells: this.setSavedCharacterSpells,
+          savedCharacterDetails: this.state.savedCharacterDetails,
+          setSavedCharacterDetails: this.setSavedCharacterDetails
         }}
       >
         <AppRouter />

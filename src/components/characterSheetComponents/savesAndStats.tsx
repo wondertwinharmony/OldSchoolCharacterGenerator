@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { characterClasses, saves } from "../../characterData/classes";
-import { createMarkup } from "../../utils/createMarkup";
+import React from 'react';
+import styled from 'styled-components';
+import { characterClasses, saves } from '../../characterData/classes';
+import { createMarkup } from '../../utils/createMarkup';
 
 interface Props {
   hitPoints: number;
@@ -47,8 +47,8 @@ const SavesAndStats: React.SFC<Props> = ({
           <div
             dangerouslySetInnerHTML={createMarkup(
               `<strong>${
-                experienceAdjustment === "+0% XP"
-                  ? ""
+                experienceAdjustment === '+0% XP'
+                  ? ''
                   : `${experienceAdjustment}`
               }</strong>`
             )}
