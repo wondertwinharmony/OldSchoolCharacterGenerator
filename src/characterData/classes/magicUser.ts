@@ -32,12 +32,28 @@ export const magicUser = {
   allowedArmor: "None",
   allowedWeapons: "Daggers and staves only",
   languages: ["Alignment", "Common"],
+  attackBonus: [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+5",
+    "+5",
+    "+5",
+    "+5"
+  ],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 15
+    poison: [13, 13, 13, 13, 13, 11, 11, 11, 11, 11, 8, 8, 8, 8],
+    wands: [14, 14, 14, 14, 14, 12, 12, 12, 12, 12, 9, 9, 9, 9],
+    stone: [13, 13, 13, 13, 13, 11, 11, 11, 11, 11, 8, 8, 8, 8],
+    breath: [16, 16, 16, 16, 16, 14, 14, 14, 14, 14, 11, 11, 11, 11],
+    magic: [15, 15, 15, 15, 15, 12, 12, 12, 12, 12, 8, 8, 8, 8]
   },
   inventory: magicUserInventory,
   abilities: [

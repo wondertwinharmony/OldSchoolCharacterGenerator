@@ -28,12 +28,13 @@ export const elf = {
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common", "Elvish", "Gnoll", "Hobgoblin", "Orcish"],
+  attackBonus: ["0", "0", "0", "+2", "+2", "+2", "+5", "+5", "+5", "+7"],
   saves: {
-    poison: 12,
-    wands: 13,
-    stone: 13,
-    breath: 15,
-    magic: 15
+    poison: [12, 12, 12, 10, 10, 10, 8, 8, 8, 6],
+    wands: [13, 13, 13, 11, 11, 11, 9, 9, 9, 7],
+    stone: [13, 13, 13, 11, 11, 11, 9, 9, 9, 8],
+    breath: [15, 15, 15, 13, 13, 13, 10, 10, 10, 8],
+    magic: [15, 15, 15, 12, 12, 12, 10, 10, 10, 8]
   },
   inventory: elfInventory,
   abilities: [
