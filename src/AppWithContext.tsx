@@ -22,10 +22,6 @@ export default class AppImpl extends Component {
   }
 
   setSavedCharacterDetails = (savedCharacterDetails: SavedCharacterDetails) => {
-    console.log(
-      'SAVEDCHARACTERDETAILS FROM APP WITH CONTEXT: ',
-      savedCharacterDetails
-    );
     this.setState({ savedCharacterDetails });
   };
 

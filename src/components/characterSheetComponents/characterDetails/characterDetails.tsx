@@ -103,7 +103,6 @@ const CharacterDetails: React.SFC<Props> = ({
     };
 
     put(characterId, data).catch(err => alert(err));
-    console.log('UPDATED CHARACTER DEETS: ', updatedCharacterDetails);
     setSavedCharacterDetails({
       ...savedCharacterDetails,
       ...updatedCharacterDetails
