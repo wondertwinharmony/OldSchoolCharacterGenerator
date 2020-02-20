@@ -13,7 +13,6 @@ export default class AppImpl extends Component {
     nonTraditionalSpells: false,
     savedCharacterData: undefined,
     savedCharacterInventory: undefined,
-    savedCharacterAC: undefined,
     savedCharacterSpells: undefined,
     savedCharacterDetails: undefined
   };
@@ -23,7 +22,11 @@ export default class AppImpl extends Component {
   }
 
   setSavedCharacterDetails = (savedCharacterDetails: SavedCharacterDetails) => {
-    this.setState(savedCharacterDetails);
+    console.log(
+      'SAVEDCHARACTERDETAILS FROM APP WITH CONTEXT: ',
+      savedCharacterDetails
+    );
+    this.setState({ savedCharacterDetails });
   };
 
   setNonTraditionalSpells = (includeNonTraditionalSpells: boolean) => {
@@ -40,10 +43,6 @@ export default class AppImpl extends Component {
 
   setSavedCharacterInventory = (items?: Items) => {
     this.setState({ savedCharacterInventory: items });
-  };
-
-  setSavedCharacterAC = (ac: string) => {
-    this.setState({ savedCharacterAC: ac });
   };
 
   setClassSelection = (classSelection: string) => {
@@ -63,12 +62,10 @@ export default class AppImpl extends Component {
           nonTraditionalSpells: this.state.nonTraditionalSpells,
           savedCharacterData: this.state.savedCharacterData,
           savedCharacterInventory: this.state.savedCharacterInventory,
-          savedCharacterAC: this.state.savedCharacterAC,
           setNonTraditionalSpells: this.setNonTraditionalSpells,
           setAbilityScores: this.setAbilityScores,
           setSavedCharacterData: this.setSavedCharacterData,
           setSavedCharacterInventory: this.setSavedCharacterInventory,
-          setSavedCharacterAC: this.setSavedCharacterAC,
           setClassSelection: this.setClassSelection,
           savedCharacterSpells: this.state.savedCharacterSpells,
           setSavedCharacterSpells: this.setSavedCharacterSpells,

@@ -6,6 +6,7 @@ import { SavedCharacterData } from './utils/getSavedCharacterData';
 export interface SavedCharacterDetails {
   hp: number;
   ac: number;
+  xp: number;
   level: number;
   abilityScores: number[];
   characterName: string;
@@ -19,8 +20,6 @@ interface IAppContext {
   setSavedCharacterData: (savedCharacterData?: SavedCharacterData) => void;
   savedCharacterInventory?: Items;
   setSavedCharacterInventory: (items: Items) => void;
-  savedCharacterAC?: number;
-  setSavedCharacterAC: (ac: string) => void;
   setNonTraditionalSpells: (isKnaveSpellsIncluded: boolean) => void;
   setAbilityScores: (abilityScores: number[]) => void;
   setClassSelection: (classSelection: string) => void;
@@ -40,8 +39,6 @@ const AppContext = createContext<IAppContext>({
   setSavedCharacterData: () => {},
   savedCharacterInventory: undefined,
   setSavedCharacterInventory: () => {},
-  savedCharacterAC: undefined,
-  setSavedCharacterAC: () => {},
   setNonTraditionalSpells: () => {},
   setAbilityScores: () => {},
   setClassSelection: () => {},

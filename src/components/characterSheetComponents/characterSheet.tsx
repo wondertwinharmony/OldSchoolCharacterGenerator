@@ -51,7 +51,6 @@ import { getLegacyArmorClass } from '../../utils/getLegacyArmorClass';
 import { SavedCharacterData } from '../../utils/getSavedCharacterData';
 import { getSpells } from '../../utils/getSpells';
 import { getTraits } from '../../utils/getTraits';
-// import OldCharacterDetails from './characterDetailsDisplay';
 import CharacterDetails from './characterDetails/characterDetails';
 import EditCharacterButtonsImpl from './characterDetails/editCharacterButton';
 import CharacterSkills from './characterSkills';
@@ -67,7 +66,6 @@ interface Props {
   classSelection: string;
   nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
-  savedCharacterAC?: number;
 }
 
 interface ImplProps extends Props {}
@@ -77,35 +75,40 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   className,
   classSelection,
   nonTraditionalSpells,
-  savedCharacterData,
-  savedCharacterAC
+  savedCharacterData
 }) => {
-  /**
-   * NOTE!!!
-   * HARDCODED character level for now
-   */
-  const characterLevel = 6;
-  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
-  const levelSpellMatrixIndex = characterLevel - 1;
-
-  const { savedCharacterSpells, savedCharacterInventory } = useContext(
-    AppContext
-  );
+  const {
+    savedCharacterSpells,
+    savedCharacterInventory,
+    savedCharacterDetails
+  } = useContext(AppContext);
 
   const [isEditable, setIsEditable] = useState(false);
 
+  // Character Level
+  const characterLevel = savedCharacterDetails
+    ? savedCharacterDetails.level
+    : 1;
+  const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
+  const levelSpellMatrixIndex = characterLevel - 1;
+
+  // Character XP
+  const characterXP = savedCharacterDetails ? savedCharacterDetails.xp : 0;
+
   // Hit Points
-  const [hitPoints, setHitPoints] = useState(
+  const hitPoints =
+    (savedCharacterDetails && savedCharacterDetails.hp) ||
     (savedCharacterData && savedCharacterData.hitPoints) ||
-      getHitPoints(
-        characterClasses[classSelection].hitDice,
-        abilityScores[CON],
-        classSelection
-      )
-  );
-  useEffect(() => {
-    setHitPoints(hitPoints);
-  }, [hitPoints]);
+    getHitPoints(
+      characterClasses[classSelection].hitDice,
+      abilityScores[CON],
+      classSelection
+    );
+
+  // Updated Ability Scores
+  const characterAbilityScores = savedCharacterDetails
+    ? savedCharacterDetails.abilityScores
+    : abilityScores;
 
   // Languages
   const [languages, setLanguages] = useState(
@@ -122,40 +125,28 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   }, [languages]);
 
   // Inventory
-  const [inventory] = useState(
-    savedCharacterInventory
-      ? savedCharacterInventory
-      : getInventory(classSelection, abilityScores[CON])
-  );
-  // Old Inventory
-  const [oldInventory] = useState(
-    savedCharacterData && savedCharacterData.equipment
-  );
+  const oldInventory = savedCharacterData && savedCharacterData.equipment;
+  const inventory = savedCharacterInventory
+    ? savedCharacterInventory
+    : getInventory(classSelection, abilityScores[CON]);
 
   // Armor Class
-  const [armorClass, setArmorClass] = useState(
-    savedCharacterAC
-      ? savedCharacterAC
-      : savedCharacterData && savedCharacterData.equipment
-      ? getLegacyArmorClass(
-          abilityScores[DEX],
-          classSelection,
-          savedCharacterData
-        )
-      : getArmorClass(abilityScores[DEX], classSelection, inventory)
-  );
-  useEffect(() => {
-    setArmorClass(armorClass);
-  }, [armorClass]);
+  const armorClass = savedCharacterDetails
+    ? savedCharacterDetails.ac
+    : savedCharacterData && savedCharacterData.equipment
+    ? getLegacyArmorClass(
+        abilityScores[DEX],
+        classSelection,
+        savedCharacterData
+      )
+    : getArmorClass(abilityScores[DEX], classSelection, inventory);
 
   // Spells
-  const [spells] = useState(
-    savedCharacterSpells
-      ? savedCharacterSpells
-      : getSpells(nonTraditionalSpells, classSelection)
-  );
-  // Old Spells
-  const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
+  const oldSpells = savedCharacterData && savedCharacterData.spells;
+  const spells = savedCharacterSpells
+    ? savedCharacterSpells
+    : getSpells(nonTraditionalSpells, classSelection);
+
   // Spell Level Headers (dynamically determined and tracked)
   const [levelHeadersVisible, setLevelHeadersVisible] = useState(() => {
     let levelHeaders: { [key: string]: boolean } = {};
@@ -178,12 +169,14 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       : getTraits(abilityScores[INT], languages, classSelection)
   );
 
-  //Character Name
-  const [characterName] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.name
-      : getCharacterName(classSelection)
-  );
+  // Character Name
+  const oldCharacterName = savedCharacterData && savedCharacterData.name;
+  const characterName =
+    oldCharacterName && !savedCharacterDetails
+      ? oldCharacterName
+      : savedCharacterDetails
+      ? savedCharacterDetails.characterName
+      : getCharacterName(classSelection);
 
   // Character Segment Visibility
   const [segmentVisibility, setSegmentVisibility] = useState<
@@ -192,16 +185,16 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
-    abilityScores,
+    characterAbilityScores,
     getClassPrimeRequisites(classSelection),
     classSelection
   );
-  const strMod = getAbilityScoreModifier(abilityScores[STR]);
-  const dexMod = getAbilityScoreModifier(abilityScores[DEX]);
-  const conMod = getAbilityScoreModifier(abilityScores[CON]);
-  const intMod = getAbilityScoreModifier(abilityScores[INT]);
-  const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
-  const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
+  const strMod = getAbilityScoreModifier(characterAbilityScores[STR]);
+  const dexMod = getAbilityScoreModifier(characterAbilityScores[DEX]);
+  const conMod = getAbilityScoreModifier(characterAbilityScores[CON]);
+  const intMod = getAbilityScoreModifier(characterAbilityScores[INT]);
+  const wisMod = getAbilityScoreModifier(characterAbilityScores[WIS]);
+  const chaMod = getAbilityScoreModifier(characterAbilityScores[CHA]);
 
   return (
     <div className={className}>
@@ -221,9 +214,16 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
           hitPoints={hitPoints}
           languages={languages}
           inventory={inventory}
-          armorClass={armorClass}
           spells={spells}
           nonTraditionalSpells={nonTraditionalSpells}
+          characterDetails={{
+            hp: hitPoints,
+            ac: armorClass,
+            xp: characterXP,
+            level: characterLevel,
+            abilityScores: abilityScores,
+            characterName: characterName
+          }}
         />
       )}
 
@@ -231,11 +231,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
        * Character Details Section -
        * Name/Class Title/Character Class Icon/Ability Scores Grid/Saves/Stats
        */}
-
       <CharacterDetails
         characterName={characterName}
         classSelection={classSelection}
-        abilityScores={abilityScores}
+        abilityScores={characterAbilityScores}
         strMod={strMod}
         dexMod={dexMod}
         conMod={conMod}
@@ -245,24 +244,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
+        characterLevel={characterLevel}
+        characterXP={characterXP}
         isEditable={isEditable}
         setIsEditable={setIsEditable}
       />
-
-      {/* <OldCharacterDetails
-        characterName={characterName}
-        classSelection={classSelection}
-        abilityScores={abilityScores}
-        strMod={strMod}
-        dexMod={dexMod}
-        conMod={conMod}
-        intMod={intMod}
-        wisMod={wisMod}
-        chaMod={chaMod}
-        hitPoints={hitPoints}
-        armorClass={armorClass}
-        experienceAdjustment={experienceAdjustment}
-      /> */}
 
       {/* Traits Segment*/}
       <Segment

@@ -5,6 +5,8 @@ import { characterClasses } from '../../characterData/classes';
 interface Props {
   characterName: string;
   classSelection: string;
+  characterXP: number;
+  characterLevel: number;
 }
 
 /**
@@ -12,13 +14,25 @@ interface Props {
  */
 const CharacterNameAndClass: React.SFC<Props> = ({
   characterName,
-  classSelection
+  classSelection,
+  characterXP,
+  characterLevel
 }) => {
   return (
     <NameAndClassContainer>
       <CharacterName>{characterName}</CharacterName>
-      <LevelText>{`Level 1 ${characterClasses[classSelection].name}`}</LevelText>
-      <XPText>{`1,201,000/2,400,000 XP`}</XPText>
+      <LevelText>{`Level ${characterLevel} ${characterClasses[classSelection].name}`}</LevelText>
+      {characterLevel ===
+      parseInt(characterClasses[classSelection].maximumLevel) ? (
+        <XPText>Max Level</XPText>
+      ) : (
+        <>
+          <XPText>{`${characterXP.toLocaleString()}/${
+            characterClasses[classSelection].experienceLevel[characterLevel - 1]
+          }`}</XPText>
+          <XPText>{`XP to Level ${characterLevel + 1}`}</XPText>
+        </>
+      )}
     </NameAndClassContainer>
   );
 };

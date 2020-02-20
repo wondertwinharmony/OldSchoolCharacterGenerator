@@ -16,6 +16,8 @@ interface Props {
   hitPoints: number;
   armorClass: number;
   experienceAdjustment: string;
+  characterXP: number;
+  characterLevel: number;
 }
 
 /**
@@ -34,7 +36,9 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
   chaMod,
   hitPoints,
   armorClass,
-  experienceAdjustment
+  experienceAdjustment,
+  characterXP,
+  characterLevel
 }) => {
   return (
     <>
@@ -42,6 +46,8 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
       <CharacterNameAndClass
         characterName={characterName}
         classSelection={classSelection}
+        characterXP={characterXP}
+        characterLevel={characterLevel}
       />
 
       {/* Character Class Icon and Ability Scores Grid Segment */}
@@ -62,6 +68,7 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
         classSelection={classSelection}
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
+        characterLevel={characterLevel}
       />
     </>
   );

@@ -8,6 +8,7 @@ interface Props {
   classSelection: string;
   armorClass: number;
   experienceAdjustment: string;
+  characterLevel: number;
 }
 
 /**
@@ -17,8 +18,10 @@ const SavesAndStats: React.SFC<Props> = ({
   hitPoints,
   classSelection,
   armorClass,
-  experienceAdjustment
+  experienceAdjustment,
+  characterLevel
 }) => {
+  console.log(characterLevel);
   return (
     <div>
       <SavesAndStatsGrid>
