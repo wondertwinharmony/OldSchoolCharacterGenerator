@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { Button, Col, Form } from 'react-bootstrap';
-import styled from 'styled-components';
-import { put } from '../../../api/put';
-import AppContext, { SavedCharacterDetails } from '../../../AppContext';
-import { characterClasses } from '../../../characterData/classes';
+import React, { useContext, useState } from "react";
+import { Button, Col, Form } from "react-bootstrap";
+import styled from "styled-components";
+import { put } from "../../../api/put";
+import AppContext, { SavedCharacterDetails } from "../../../AppContext";
+import { characterClasses } from "../../../characterData/classes";
 import {
   CHA,
   CON,
@@ -11,9 +11,9 @@ import {
   INT,
   STR,
   WIS
-} from '../../../constants/abilityScoreConstants';
-import { getAbilityString } from '../../../utils/getAbilityString';
-import CharacterDetailsDisplay from './characterDetailsDisplay';
+} from "../../../constants/abilityScoreConstants";
+import { getAbilityString } from "../../../utils/getAbilityString";
+import CharacterDetailsDisplay from "./characterDetailsDisplay";
 
 interface Props {
   characterName: string;
@@ -59,7 +59,7 @@ const CharacterDetails: React.SFC<Props> = ({
   const { setSavedCharacterDetails, savedCharacterDetails } = useContext(
     AppContext
   );
-  const [characterNameInput, setCharacterNameInput] = useState('');
+  const [characterNameInput, setCharacterNameInput] = useState("");
   const [characterLevelInput, setCharacterLevelInput] = useState(
     characterLevel
   );
@@ -67,9 +67,9 @@ const CharacterDetails: React.SFC<Props> = ({
     characterAbilityScoresInput,
     setCharacterAbilityScoresInput
   ] = useState([...abilityScores]);
-  const [characterHPInput, setCharacterHPInput] = useState('');
-  const [characterACInput, setCharacterACInput] = useState('');
-  const [characterXPInput, setCharacterXPInput] = useState('');
+  const [characterHPInput, setCharacterHPInput] = useState("");
+  const [characterACInput, setCharacterACInput] = useState("");
+  const [characterXPInput, setCharacterXPInput] = useState("");
 
   const isValid =
     characterLevelInput <=
@@ -90,16 +90,16 @@ const CharacterDetails: React.SFC<Props> = ({
     };
 
     const homeURL =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000'
-        : 'https://oldschoolknave.surge.sh';
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://oldschoolknave.surge.sh";
     const URL = window.location.href;
-    const characterId = URL.replace(homeURL.concat('/permalinked/'), '');
+    const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
 
     const data = {
       characterId,
       characterDetails: updatedCharacterDetails,
-      httpMethod: 'PUT'
+      httpMethod: "PUT"
     };
 
     put(characterId, data).catch(err => alert(err));
@@ -146,8 +146,8 @@ const CharacterDetails: React.SFC<Props> = ({
               handleSave();
               setIsEditable(false);
             }}
-            style={{ width: '150px' }}
-            variant={!isValid ? 'secondary' : 'primary'}
+            style={{ width: "150px" }}
+            variant={!isValid ? "secondary" : "primary"}
             type="submit"
             disabled={!isValid}
           >
@@ -159,14 +159,14 @@ const CharacterDetails: React.SFC<Props> = ({
               e.stopPropagation();
               setIsEditable(false);
             }}
-            style={{ width: '150px' }}
-            variant={'danger'}
+            style={{ width: "150px" }}
+            variant={"danger"}
             type="submit"
           >
             Cancel
           </Button>
         </ButtonContainer>
-        <Form>
+        <StyledForm>
           {/* ROW #1: Character Name, Level and XP */}
           <Form.Row>
             <Form.Group as={Col}>
@@ -199,7 +199,7 @@ const CharacterDetails: React.SFC<Props> = ({
                 }
               />
               <Form.Control.Feedback type="invalid">
-                {`Must be between 1 - ${characterClasses[classSelection].maximumLevel}`}
+                {`Enter 1 - ${characterClasses[classSelection].maximumLevel}`}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -254,8 +254,8 @@ const CharacterDetails: React.SFC<Props> = ({
                 } ${
                   parseInt(characterClasses[classSelection].maximumLevel) ===
                   characterLevel
-                    ? ''
-                    : 'XP'
+                    ? ""
+                    : "XP"
                 }`}
               />
             </Form.Group>
@@ -270,7 +270,7 @@ const CharacterDetails: React.SFC<Props> = ({
           <Form.Row>
             {[INT, WIS, CHA].map(ability => getFormGroup(ability))}
           </Form.Row>
-        </Form>
+        </StyledForm>
       </Container>
     </EditFormContainer>
   ) : (
@@ -295,6 +295,10 @@ const CharacterDetails: React.SFC<Props> = ({
 
 const Container = styled.div`
   max-width: 500px;
+`;
+
+const StyledForm = styled(Form)`
+  margin-left: 1.5rem;
 `;
 
 const ButtonContainer = styled.div`
