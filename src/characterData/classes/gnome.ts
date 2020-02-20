@@ -27,12 +27,13 @@ export const gnome = {
   allowedArmor: "Leather armor, shields",
   allowedWeapons: "Appropriate to size (no long bows or two-handed swords)",
   languages: ["Alignment", "Common"],
+  attackBonus: ["0", "0", "0", "0", "0", "+2", "+2", "+2"],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 14,
-    magic: 11
+    poison: [8, 8, 8, 8, 8, 6, 6, 6],
+    wands: [9, 9, 9, 9, 9, 7, 7, 7],
+    stone: [10, 10, 10, 10, 10, 8, 8, 8],
+    breath: [14, 14, 14, 14, 14, 11, 11, 11],
+    magic: [11, 11, 11, 11, 11, 9, 9, 9]
   },
   inventory: gnomeInventory,
   abilities: [

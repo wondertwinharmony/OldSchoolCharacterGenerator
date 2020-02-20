@@ -19,12 +19,28 @@ export const acrobat = {
   allowedArmor: "Leather armor, no shields",
   allowedWeapons: "All missiles, light blades, and staff-weapons",
   languages: ["Alignment", "Common", "Thieves' Cant"],
+  attackBonus: [
+    "0",
+    "0",
+    "0",
+    "0",
+    "+2",
+    "+2",
+    "+2",
+    "+2",
+    "+5",
+    "+5",
+    "+5",
+    "+5",
+    "+7",
+    "+7"
+  ],
   saves: {
-    poison: 13,
-    wands: 14,
-    stone: 13,
-    breath: 16,
-    magic: 15
+    poison: [13, 13, 13, 13, 12, 12, 12, 12, 10, 10, 10, 10, 8, 8],
+    wands: [14, 14, 14, 14, 13, 13, 13, 13, 11, 11, 11, 11, 9, 9],
+    stone: [13, 13, 13, 13, 11, 11, 11, 11, 9, 9, 9, 9, 7, 7],
+    breath: [16, 16, 16, 16, 14, 14, 14, 14, 12, 12, 12, 12, 10, 10],
+    magic: [15, 15, 15, 15, 13, 13, 13, 13, 10, 10, 10, 10, 8, 8]
   },
   inventory: acrobatInventory,
   abilities: [

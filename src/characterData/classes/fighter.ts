@@ -13,12 +13,28 @@ export const fighter = {
   allowedArmor: "Any, including shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common"],
+  attackBonus: [
+    "0",
+    "0",
+    "0",
+    "+2",
+    "+2",
+    "+2",
+    "+5",
+    "+5",
+    "+5",
+    "+7",
+    "+7",
+    "+7",
+    "+9",
+    "+9"
+  ],
   saves: {
-    poison: 12,
-    wands: 13,
-    stone: 14,
-    breath: 15,
-    magic: 16
+    poison: [12, 12, 12, 10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4],
+    wands: [13, 13, 13, 11, 11, 11, 9, 9, 9, 7, 7, 7, 5, 5],
+    stone: [14, 14, 14, 12, 12, 12, 10, 10, 10, 8, 8, 8, 6, 6],
+    breath: [15, 15, 15, 13, 13, 13, 10, 10, 10, 8, 8, 8, 5, 5],
+    magic: [16, 16, 16, 14, 14, 14, 12, 12, 12, 10, 10, 10, 8, 8]
   },
   inventory: fighterInventory,
   abilities: [
