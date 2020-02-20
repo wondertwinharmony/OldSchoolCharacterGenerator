@@ -1,16 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
-import { Button, Dropdown } from "react-bootstrap";
-import styled from "styled-components";
-import { put } from "../../../../api/put";
-import AppContext from "../../../../AppContext";
-import { characterClasses } from "../../../../characterData/classes";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext, useState } from 'react';
+import { Button, Dropdown } from 'react-bootstrap';
+import styled from 'styled-components';
+import { put } from '../../../../api/put';
+import AppContext from '../../../../AppContext';
+import { characterClasses } from '../../../../characterData/classes';
 import {
   allNonTraditionalSpells,
   newAllSpells
-} from "../../../../characterData/spells";
-import AddSpellButtonsImpl from "./addSpellButtons";
-import SpellInputContainerImpl from "./spellInputContainer";
+} from '../../../../characterData/spells';
+import AddSpellButtonsImpl from './addSpellButtons';
+import SpellInputContainerImpl from './spellInputContainer';
 
 export interface Spell {
   name: string;
@@ -28,21 +28,21 @@ interface ImplProps extends Props {}
 
 const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
   const homeURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://oldschoolknave.surge.sh";
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://oldschoolknave.surge.sh';
   const URL = window.location.href;
-  const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
+  const characterId = URL.replace(homeURL.concat('/permalinked/'), '');
 
   const {
     nonTraditionalSpells,
     savedCharacterSpells,
     setSavedCharacterSpells
   } = useContext(AppContext);
-  const [inputValue, setInputValue] = useState("nameString");
-  const [descriptionValue, setDescriptionValue] = useState("descriptionString");
-  const [levelValue, setLevelValue] = useState("1");
-  const [spellKey, setSpellKey] = useState("spellKeyString");
+  const [inputValue, setInputValue] = useState('nameString');
+  const [descriptionValue, setDescriptionValue] = useState('descriptionString');
+  const [levelValue, setLevelValue] = useState('1');
+  const [spellKey, setSpellKey] = useState('spellKeyString');
   const [isLevelDisabled, setIsLevelDisabled] = useState(true);
   const [show, setShow] = useState(false);
 
@@ -77,7 +77,7 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
           preparedCount: 0
         }
       },
-      httpMethod: "PUT"
+      httpMethod: 'PUT'
     };
     put(characterId, data).catch(err => alert(err));
   };
@@ -133,17 +133,17 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
          * think like how we handled inventory, we don't do anything
          * to modify inventory until that character is saved FIRST.
          */
-        setInputValue("");
-        setLevelValue("1");
+        setInputValue('');
+        setLevelValue('1');
         setShow(!show);
       }}
     >
       <Dropdown.Toggle as={AddNewSpellToggle} id="spell-dropdown">
         <>
           <FontAwesomeIcon
-            icon={"plus"}
-            size={"sm"}
-            style={{ margin: "0 0.5rem" }}
+            icon={'plus'}
+            size={'sm'}
+            style={{ margin: '0 0.5rem' }}
           />
           Add Spell
         </>
@@ -161,7 +161,7 @@ const AddSpellImpl: React.SFC<ImplProps> = ({ className, classSelection }) => {
           <AddSpellButtonsImpl
             disabled={
               !inputMatchesValidSpell ||
-              inputValue === "" ||
+              inputValue === '' ||
               parseInt(levelValue) < 0 ||
               parseInt(levelValue) > 6
             }

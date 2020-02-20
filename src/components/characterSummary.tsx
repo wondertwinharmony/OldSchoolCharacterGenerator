@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { FaInfo } from "react-icons/fa";
-import styled from "styled-components";
-import { characterClasses } from "../characterData/classes";
-import { createMarkup } from "../utils/createMarkup";
+import React, { useState } from 'react';
+import { FaInfo } from 'react-icons/fa';
+import styled from 'styled-components';
+import { characterClasses } from '../characterData/classes';
+import { createMarkup } from '../utils/createMarkup';
 
 interface Props {
   className?: string;
@@ -22,21 +22,21 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
       onClick={() => {
         setIsSummaryVisible(!isSummaryVisible);
       }}
-      style={{ border: `${isSummaryVisible ? "1px dashed black" : ""}` }}
+      style={{ border: `${isSummaryVisible ? '1px dashed black' : ''}` }}
     >
       <div
         style={{
-          cursor: "pointer",
-          display: "flex",
-          padding: `${isSummaryVisible ? "0.25rem" : ""}`
+          cursor: 'pointer',
+          display: 'flex',
+          padding: `${isSummaryVisible ? '0.25rem' : ''}`
         }}
       >
-        <FaInfo size={"1.25em"} style={{ marginRight: "0.5rem" }} />
-        {!isSummaryVisible && "Show Class Info"}
-        {isSummaryVisible && "Hide Class Info"}
+        <FaInfo size={'1.25em'} style={{ marginRight: '0.5rem' }} />
+        {!isSummaryVisible && 'Show Class Info'}
+        {isSummaryVisible && 'Hide Class Info'}
       </div>
       {isSummaryVisible && (
-        <div style={{ marginRight: "auto", padding: "0.25rem" }}>
+        <div style={{ marginRight: 'auto', padding: '0.25rem' }}>
           <div
             dangerouslySetInnerHTML={createMarkup(
               `<strong>Hit Dice:</strong> ${characterClasses[classOption].hitDice}`
@@ -49,7 +49,7 @@ const CharacterSummaryImpl: React.SFC<ImplProps> = ({
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>XP to 2nd Level:</strong> ${characterClasses[classOption].xpToSecondLevel}`
+              `<strong>XP to 2nd Level:</strong> ${characterClasses[classOption].experienceLevel[0]} XP`
             )}
           />
           <div

@@ -13,7 +13,7 @@
  * @param  {string} stringToProcess
  */
 const replaceSpaces = (stringToProcess: string) => {
-  let processedString = stringToProcess.replace(/[\s]+/g, "_");
+  let processedString = stringToProcess.replace(/[\s]+/g, '_');
   return processedString;
 };
 
@@ -40,7 +40,7 @@ export const saveCharacterData = (
   // characterSpells: string[],
   knave: boolean
 ) => {
-  const characterData = "";
+  const characterData = '';
   // const usersOfMagic = [
   //   "elf",
   //   "magicUser",
@@ -57,17 +57,17 @@ export const saveCharacterData = (
 
   let permalink = characterData.concat(
     replaceSpaces(name),
-    "&",
+    '&',
     replaceSpaces(classSelection),
-    "&",
+    '&',
     replaceSpaces(traits),
-    "&",
+    '&',
     replaceSpaces(abilityScores.toString()),
-    "&",
+    '&',
     hitPoints.toString(),
-    "&",
+    '&',
     replaceSpaces(languages),
-    "&",
+    '&',
     // replaceSpaces(spells),
     // "&",
     knave.toString()
