@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { characterClasses, saves } from "../../characterData/classes";
-import { createMarkup } from "../../utils/createMarkup";
+import React from 'react';
+import styled from 'styled-components';
+import { characterClasses, saves } from '../../characterData/classes';
+import { createMarkup } from '../../utils/createMarkup';
 
 interface Props {
   hitPoints: number;
   classSelection: string;
   armorClass: number;
   experienceAdjustment: string;
+  characterLevel: number;
 }
 
 /**
@@ -17,7 +18,8 @@ const SavesAndStats: React.SFC<Props> = ({
   hitPoints,
   classSelection,
   armorClass,
-  experienceAdjustment
+  experienceAdjustment,
+  characterLevel
 }) => {
   return (
     <div>
@@ -41,9 +43,16 @@ const SavesAndStats: React.SFC<Props> = ({
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
+              `<strong>ATK Bonus:</strong> ${
+                characterClasses[classSelection].attackBonus[characterLevel - 1]
+              }`
+            )}
+          />
+          <div
+            dangerouslySetInnerHTML={createMarkup(
               `<strong>${
-                experienceAdjustment === "+0% XP"
-                  ? ""
+                experienceAdjustment === '+0% XP'
+                  ? ''
                   : `${experienceAdjustment}`
               }</strong>`
             )}
@@ -57,7 +66,11 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.poison}
+              {
+                characterClasses[classSelection].saves.poison[
+                  characterLevel - 1
+                ]
+              }
             </SaveScore>
           </Save>
           <Save>
@@ -67,7 +80,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.wands}
+              {characterClasses[classSelection].saves.wands[characterLevel - 1]}
             </SaveScore>
           </Save>
           <Save>
@@ -77,7 +90,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.stone}
+              {characterClasses[classSelection].saves.stone[characterLevel - 1]}
             </SaveScore>
           </Save>
           <Save>
@@ -87,7 +100,11 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.breath}
+              {
+                characterClasses[classSelection].saves.breath[
+                  characterLevel - 1
+                ]
+              }
             </SaveScore>
           </Save>
           <Save>
@@ -97,7 +114,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.magic}
+              {characterClasses[classSelection].saves.magic[characterLevel - 1]}
             </SaveScore>
           </Save>
         </SavesContainer>

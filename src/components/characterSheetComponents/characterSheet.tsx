@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaDAndD, FaDiceD20 } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from 'react';
+import { FaDAndD, FaDiceD20 } from 'react-icons/fa';
 import {
   GiChewedSkull,
   GiCoins,
@@ -9,15 +9,15 @@ import {
   GiScrollUnfurled,
   GiSpiralBottle,
   GiSwordwoman
-} from "react-icons/gi";
-import { MdChatBubble, MdStar } from "react-icons/md";
-import styled from "styled-components";
-import AppContext from "../../AppContext";
-import { characterClasses } from "../../characterData/classes";
-import { combatActions } from "../../characterData/combatActions";
-import { gainingXPAndCarousing } from "../../characterData/gainingXPAndCarousing";
-import { retainers } from "../../characterData/retainers";
-import { weaponQualities } from "../../characterData/weaponQualities";
+} from 'react-icons/gi';
+import { MdChatBubble, MdStar } from 'react-icons/md';
+import styled from 'styled-components';
+import AppContext from '../../AppContext';
+import { characterClasses } from '../../characterData/classes';
+import { combatActions } from '../../characterData/combatActions';
+import { gainingXPAndCarousing } from '../../characterData/gainingXPAndCarousing';
+import { retainers } from '../../characterData/retainers';
+import { weaponQualities } from '../../characterData/weaponQualities';
 import {
   CHA,
   CON,
@@ -25,39 +25,40 @@ import {
   INT,
   STR,
   WIS
-} from "../../constants/abilityScoreConstants";
+} from '../../constants/abilityScoreConstants';
 import {
   characterSheetSegments,
   CharacterSheetSegments
-} from "../../constants/characterSheetSegments";
-import charismaAdjustmentTable from "../../static/charismaAdjustmentTable.png";
-import coinConversions from "../../static/coinConversions.png";
-import paladinTurningTable from "../../static/paladinTurningTable.png";
-import parchment from "../../static/parchment.png";
-import turningTableResults from "../../static/turningTableResults.png";
-import turnUndeadTable from "../../static/turnUndeadTable.png";
-import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
-import { createMarkup } from "../../utils/createMarkup";
-import { getAbilityScoreModifier } from "../../utils/getAbilityScoreModifier";
-import { getArmorClass } from "../../utils/getArmorClass";
-import { getCharacterName } from "../../utils/getCharacterName";
-import { getClassPrimeRequisites } from "../../utils/getClassPrimeRequisites";
-import { getExperienceAdjustment } from "../../utils/getExperienceAdjustment";
-import { getHitPoints } from "../../utils/getHitPoints";
-import { getInventory } from "../../utils/getInventory";
-import { getInventorySlotsUsed } from "../../utils/getInventorySlotsUsed";
-import { getLanguages } from "../../utils/getLanguages";
-import { getLegacyArmorClass } from "../../utils/getLegacyArmorClass";
-import { SavedCharacterData } from "../../utils/getSavedCharacterData";
-import { getSpells } from "../../utils/getSpells";
-import { getTraits } from "../../utils/getTraits";
-import CharacterDetails from "./characterDetails";
-import CharacterSkills from "./characterSkills";
-import InventoryImpl from "./inventory/inventory";
-import StyledItemsForPurchase from "./itemsForPurchase";
-import Permalink from "./permalink";
-import Segment from "./segment";
-import SpellsImpl from "./spells/spells";
+} from '../../constants/characterSheetSegments';
+import charismaAdjustmentTable from '../../static/charismaAdjustmentTable.png';
+import coinConversions from '../../static/coinConversions.png';
+import paladinTurningTable from '../../static/paladinTurningTable.png';
+import parchment from '../../static/parchment.png';
+import turningTableResults from '../../static/turningTableResults.png';
+import turnUndeadTable from '../../static/turnUndeadTable.png';
+import { characterSkillsLookUp } from '../../utils/characterSkillsLookUp';
+import { createMarkup } from '../../utils/createMarkup';
+import { getAbilityScoreModifier } from '../../utils/getAbilityScoreModifier';
+import { getArmorClass } from '../../utils/getArmorClass';
+import { getCharacterName } from '../../utils/getCharacterName';
+import { getClassPrimeRequisites } from '../../utils/getClassPrimeRequisites';
+import { getExperienceAdjustment } from '../../utils/getExperienceAdjustment';
+import { getHitPoints } from '../../utils/getHitPoints';
+import { getInventory } from '../../utils/getInventory';
+import { getInventorySlotsUsed } from '../../utils/getInventorySlotsUsed';
+import { getLanguages } from '../../utils/getLanguages';
+import { getLegacyArmorClass } from '../../utils/getLegacyArmorClass';
+import { SavedCharacterData } from '../../utils/getSavedCharacterData';
+import { getSpells } from '../../utils/getSpells';
+import { getTraits } from '../../utils/getTraits';
+import CharacterDetails from './characterDetails/characterDetails';
+import EditCharacterButtonsImpl from './characterDetails/editCharacterButton';
+import CharacterSkills from './characterSkills';
+import InventoryImpl from './inventory/inventory';
+import StyledItemsForPurchase from './itemsForPurchase';
+import Permalink from './permalink';
+import Segment from './segment';
+import SpellsImpl from './spells/spells';
 
 interface Props {
   abilityScores: number[];
@@ -65,7 +66,6 @@ interface Props {
   classSelection: string;
   nonTraditionalSpells: boolean;
   savedCharacterData?: SavedCharacterData;
-  savedCharacterAC?: number;
 }
 
 interface ImplProps extends Props {}
@@ -75,32 +75,40 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   className,
   classSelection,
   nonTraditionalSpells,
-  savedCharacterData,
-  savedCharacterAC
+  savedCharacterData
 }) => {
-  /**
-   * NOTE!!!
-   * HARDCODED character level for now
-   */
-  const characterLevel = 1;
+  const {
+    savedCharacterSpells,
+    savedCharacterInventory,
+    savedCharacterDetails
+  } = useContext(AppContext);
+
+  const [isEditable, setIsEditable] = useState(false);
+
+  // Character Level
+  const characterLevel = savedCharacterDetails
+    ? savedCharacterDetails.level
+    : 1;
   const characterSpellMatrix = characterClasses[classSelection].spellMatrix;
   const levelSpellMatrixIndex = characterLevel - 1;
 
-  const { savedCharacterSpells, savedCharacterInventory } = useContext(
-    AppContext
-  );
+  // Character XP
+  const characterXP = savedCharacterDetails ? savedCharacterDetails.xp : 0;
+
   // Hit Points
-  const [hitPoints, setHitPoints] = useState(
+  const hitPoints =
+    (savedCharacterDetails && savedCharacterDetails.hp) ||
     (savedCharacterData && savedCharacterData.hitPoints) ||
-      getHitPoints(
-        characterClasses[classSelection].hitDice,
-        abilityScores[CON],
-        classSelection
-      )
-  );
-  useEffect(() => {
-    setHitPoints(hitPoints);
-  }, [hitPoints]);
+    getHitPoints(
+      characterClasses[classSelection].hitDice,
+      abilityScores[CON],
+      classSelection
+    );
+
+  // Updated Ability Scores
+  const characterAbilityScores = savedCharacterDetails
+    ? savedCharacterDetails.abilityScores
+    : abilityScores;
 
   // Languages
   const [languages, setLanguages] = useState(
@@ -117,40 +125,28 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   }, [languages]);
 
   // Inventory
-  const [inventory] = useState(
-    savedCharacterInventory
-      ? savedCharacterInventory
-      : getInventory(classSelection, abilityScores[CON])
-  );
-  // Old Inventory
-  const [oldInventory] = useState(
-    savedCharacterData && savedCharacterData.equipment
-  );
+  const oldInventory = savedCharacterData && savedCharacterData.equipment;
+  const inventory = savedCharacterInventory
+    ? savedCharacterInventory
+    : getInventory(classSelection, abilityScores[CON]);
 
   // Armor Class
-  const [armorClass, setArmorClass] = useState(
-    savedCharacterAC
-      ? savedCharacterAC
-      : savedCharacterData && savedCharacterData.equipment
-      ? getLegacyArmorClass(
-          abilityScores[DEX],
-          classSelection,
-          savedCharacterData
-        )
-      : getArmorClass(abilityScores[DEX], classSelection, inventory)
-  );
-  useEffect(() => {
-    setArmorClass(armorClass);
-  }, [armorClass]);
+  const armorClass = savedCharacterDetails
+    ? savedCharacterDetails.ac
+    : savedCharacterData && savedCharacterData.equipment
+    ? getLegacyArmorClass(
+        abilityScores[DEX],
+        classSelection,
+        savedCharacterData
+      )
+    : getArmorClass(abilityScores[DEX], classSelection, inventory);
 
   // Spells
-  const [spells] = useState(
-    savedCharacterSpells
-      ? savedCharacterSpells
-      : getSpells(nonTraditionalSpells, classSelection)
-  );
-  // Old Spells
-  const [oldSpells] = useState(savedCharacterData && savedCharacterData.spells);
+  const oldSpells = savedCharacterData && savedCharacterData.spells;
+  const spells = savedCharacterSpells
+    ? savedCharacterSpells
+    : getSpells(nonTraditionalSpells, classSelection);
+
   // Spell Level Headers (dynamically determined and tracked)
   const [levelHeadersVisible, setLevelHeadersVisible] = useState(() => {
     let levelHeaders: { [key: string]: boolean } = {};
@@ -173,12 +169,14 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       : getTraits(abilityScores[INT], languages, classSelection)
   );
 
-  //Character Name
-  const [characterName] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.name
-      : getCharacterName(classSelection)
-  );
+  // Character Name
+  const oldCharacterName = savedCharacterData && savedCharacterData.name;
+  const characterName =
+    oldCharacterName && !savedCharacterDetails
+      ? oldCharacterName
+      : savedCharacterDetails
+      ? savedCharacterDetails.characterName
+      : getCharacterName(classSelection);
 
   // Character Segment Visibility
   const [segmentVisibility, setSegmentVisibility] = useState<
@@ -187,33 +185,47 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
 
   // Character Building Utils
   const experienceAdjustment = getExperienceAdjustment(
-    abilityScores,
+    characterAbilityScores,
     getClassPrimeRequisites(classSelection),
     classSelection
   );
-  const strMod = getAbilityScoreModifier(abilityScores[STR]);
-  const dexMod = getAbilityScoreModifier(abilityScores[DEX]);
-  const conMod = getAbilityScoreModifier(abilityScores[CON]);
-  const intMod = getAbilityScoreModifier(abilityScores[INT]);
-  const wisMod = getAbilityScoreModifier(abilityScores[WIS]);
-  const chaMod = getAbilityScoreModifier(abilityScores[CHA]);
+  const strMod = getAbilityScoreModifier(characterAbilityScores[STR]);
+  const dexMod = getAbilityScoreModifier(characterAbilityScores[DEX]);
+  const conMod = getAbilityScoreModifier(characterAbilityScores[CON]);
+  const intMod = getAbilityScoreModifier(characterAbilityScores[INT]);
+  const wisMod = getAbilityScoreModifier(characterAbilityScores[WIS]);
+  const chaMod = getAbilityScoreModifier(characterAbilityScores[CHA]);
 
   return (
     <div className={className}>
       {/* Permalink Button and Bookmark Message */}
-      <Permalink
-        savedCharacterData={savedCharacterData}
-        characterName={characterName}
-        classSelection={classSelection}
-        traits={traits}
-        abilityScores={abilityScores}
-        hitPoints={hitPoints}
-        languages={languages}
-        inventory={inventory}
-        armorClass={armorClass}
-        spells={spells}
-        nonTraditionalSpells={nonTraditionalSpells}
-      />
+      {savedCharacterData ? (
+        <EditCharacterButtonsImpl
+          isEditable={isEditable}
+          setIsEditable={setIsEditable}
+        />
+      ) : (
+        <Permalink
+          savedCharacterData={savedCharacterData}
+          characterName={characterName}
+          classSelection={classSelection}
+          traits={traits}
+          abilityScores={abilityScores}
+          hitPoints={hitPoints}
+          languages={languages}
+          inventory={inventory}
+          spells={spells}
+          nonTraditionalSpells={nonTraditionalSpells}
+          characterDetails={{
+            hp: hitPoints,
+            ac: armorClass,
+            xp: characterXP,
+            level: characterLevel,
+            abilityScores: abilityScores,
+            characterName: characterName
+          }}
+        />
+      )}
 
       {/**
        * Character Details Section -
@@ -222,7 +234,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       <CharacterDetails
         characterName={characterName}
         classSelection={classSelection}
-        abilityScores={abilityScores}
+        abilityScores={characterAbilityScores}
         strMod={strMod}
         dexMod={dexMod}
         conMod={conMod}
@@ -232,12 +244,16 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         hitPoints={hitPoints}
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
+        characterLevel={characterLevel}
+        characterXP={characterXP}
+        isEditable={isEditable}
+        setIsEditable={setIsEditable}
       />
 
       {/* Traits Segment*/}
       <Segment
         segmentIcon={<GiScrollUnfurled />}
-        segmentDisplayName={"Traits"}
+        segmentDisplayName={'Traits'}
         segmentData={<TraitsContainer>{traits}</TraitsContainer>}
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
@@ -246,7 +262,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Languages Segment*/}
       <Segment
         segmentIcon={<MdChatBubble />}
-        segmentDisplayName={"Languages"}
+        segmentDisplayName={'Languages'}
         segmentData={<Language>{languages}</Language>}
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
@@ -255,11 +271,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Abilities Segment*/}
       <Segment
         segmentIcon={<MdStar />}
-        segmentDisplayName={"Abilities"}
+        segmentDisplayName={'Abilities'}
         segmentData={
           <Ability
             dangerouslySetInnerHTML={createMarkup(
-              characterClasses[classSelection].abilities!.join("\n\n")
+              characterClasses[classSelection].abilities!.join('\n\n')
             )}
           />
         }
@@ -268,11 +284,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       />
 
       {/* Turn Undead Segment - Cleric/Paladin */}
-      {(classSelection === "paladin" || classSelection === "cleric") && (
+      {(classSelection === 'paladin' || classSelection === 'cleric') && (
         <Segment
           segmentIcon={<GiChewedSkull />}
-          segmentName={"TurnUndeadTable"}
-          segmentDisplayName={"Turning the Undead"}
+          segmentName={'TurnUndeadTable'}
+          segmentDisplayName={'Turning the Undead'}
           segmentData={
             <TurnUndeadContainer>
               {characterClasses[classSelection].clericTurn ? (
@@ -306,7 +322,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         characterSpellMatrix[levelSpellMatrixIndex][0] >= 1 && (
           <Segment
             segmentIcon={<GiCometSpark />}
-            segmentDisplayName={"Spells"}
+            segmentDisplayName={'Spells'}
             segmentData={
               savedCharacterSpells && savedCharacterData ? (
                 <SpellsImpl
@@ -340,7 +356,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
                     <>
                       <Spell
                         dangerouslySetInnerHTML={createMarkup(
-                          oldSpells.join("\n\n")
+                          oldSpells.join('\n\n')
                         )}
                       />
                       {/* {checkSpell(oldSpells) && (
@@ -366,13 +382,13 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       ] && (
         <Segment
           segmentIcon={characterClasses[classSelection].skillsIcon}
-          segmentName={"Skills"}
+          segmentName={'Skills'}
           segmentDisplayName={
-            classSelection !== "ranger"
-              ? classSelection !== "wildMagicUser"
+            classSelection !== 'ranger'
+              ? classSelection !== 'wildMagicUser'
                 ? `${characterClasses[classSelection].name} Skills`
-                : "Wild Surges"
-              : "Ranger Tracking"
+                : 'Wild Surges'
+              : 'Ranger Tracking'
           }
           segmentData={
             <CharacterSkills
@@ -388,7 +404,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Inventory Segment */}
       <Segment
         segmentIcon={<GiKnapsack />}
-        segmentName={"Inventory"}
+        segmentName={'Inventory'}
         segmentDisplayName={
           savedCharacterInventory && savedCharacterData
             ? `Inventory (${getInventorySlotsUsed(savedCharacterInventory)}/${
@@ -433,8 +449,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Combat Actions Segment */}
       <Segment
         segmentIcon={<FaDiceD20 />}
-        segmentName={"CombatActions"}
-        segmentDisplayName={"Combat Actions"}
+        segmentName={'CombatActions'}
+        segmentDisplayName={'Combat Actions'}
         segmentData={
           <>
             <CombatActions
@@ -449,10 +465,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Weapon Quality Descriptions Segment */}
       <Segment
         segmentIcon={<GiSpiralBottle />}
-        segmentName={"WeaponQualities"}
+        segmentName={'WeaponQualities'}
         segmentDisplayName={
           <WeaponQualitiesHeaderText>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               Item
               <HeaderIcon>
                 <FaDAndD />
@@ -476,8 +492,8 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Items for Purchase Segment */}
       <Segment
         segmentIcon={<GiPriceTag />}
-        segmentName={"ItemsForPurchase"}
-        segmentDisplayName={"Items For Purchase"}
+        segmentName={'ItemsForPurchase'}
+        segmentDisplayName={'Items For Purchase'}
         segmentData={
           <>
             <StyledItemsForPurchase />
@@ -490,7 +506,7 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Retainers Segment*/}
       <Segment
         segmentIcon={<GiSwordwoman />}
-        segmentDisplayName={"Retainers"}
+        segmentDisplayName={'Retainers'}
         segmentData={
           <>
             <CharismaAdjustmentsTable />
@@ -504,10 +520,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       {/* Gaining XP & Carousing Description Segment*/}
       <Segment
         segmentIcon={<GiCoins />}
-        segmentName={"GainingXPAndCarousing"}
+        segmentName={'GainingXPAndCarousing'}
         segmentDisplayName={
           <GainingXPAndCarousingHeaderText>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               Gaining XP
               <HeaderIcon>
                 <FaDAndD />
@@ -658,7 +674,7 @@ const CoinConversionsTable = styled.div`
 `;
 
 const StyledCreatedCharacter = styled(CharacterSheetImpl)`
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   background-image: url(${parchment});
   justify-content: center;
   display: flex;

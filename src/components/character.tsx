@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { getURL } from "../api/getURL";
-import AppContext from "../AppContext";
-import { getSavedCharacterData } from "../utils/getSavedCharacterData";
-import CharacterSheet from "./characterSheetComponents/characterSheet";
+import React, { useContext, useEffect, useState } from 'react';
+import { get } from '../api/get';
+import AppContext from '../AppContext';
+import { getSavedCharacterData } from '../utils/getSavedCharacterData';
+import CharacterSheet from './characterSheetComponents/characterSheet';
 
 export default function Character() {
   const [loading, setLoading] = useState(true);
@@ -10,35 +10,36 @@ export default function Character() {
     savedCharacterData,
     setSavedCharacterData,
     setSavedCharacterInventory,
-    savedCharacterAC,
-    setSavedCharacterAC,
-    setSavedCharacterSpells
+    setSavedCharacterSpells,
+    setSavedCharacterDetails
   } = useContext(AppContext);
 
   useEffect(() => {
     const homeURL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/"
-        : "https://oldschoolknave.surge.sh/";
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/'
+        : 'https://oldschoolknave.surge.sh/';
 
     const URL = window.location.href;
-    const characterId = URL.replace(homeURL.concat("permalinked/"), "");
+    const characterId = URL.replace(homeURL.concat('permalinked/'), '');
 
     const fetchCharacter = async () => {
-      const apiResponse = await getURL(characterId).then(response =>
+      const apiResponse = await get(characterId).then(response =>
         response.json().then((data: any) => data)
       );
       setSavedCharacterData(
         getSavedCharacterData(
           apiResponse.permaLink,
           homeURL,
-          "savedCharacter/1&"
+          'savedCharacter/1&'
         )
       );
       setSavedCharacterInventory(apiResponse.inventory);
-      setSavedCharacterAC(apiResponse.AC);
       if (apiResponse.spells) {
         setSavedCharacterSpells(apiResponse.spells);
+      }
+      if (apiResponse.characterDetails) {
+        setSavedCharacterDetails(apiResponse.characterDetails);
       }
       setLoading(false);
     };
@@ -46,8 +47,8 @@ export default function Character() {
   }, [
     setSavedCharacterData,
     setSavedCharacterInventory,
-    setSavedCharacterAC,
-    setSavedCharacterSpells
+    setSavedCharacterSpells,
+    setSavedCharacterDetails
   ]);
 
   return savedCharacterData && !loading ? (
@@ -56,7 +57,6 @@ export default function Character() {
       classSelection={savedCharacterData.class}
       nonTraditionalSpells={savedCharacterData.knave}
       savedCharacterData={savedCharacterData}
-      savedCharacterAC={savedCharacterAC}
     />
   ) : (
     <>

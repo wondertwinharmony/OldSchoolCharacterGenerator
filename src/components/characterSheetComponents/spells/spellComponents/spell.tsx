@@ -1,11 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
-import { FaRegMinusSquare, FaRegPlusSquare } from "react-icons/fa";
-import styled from "styled-components";
-import { put } from "../../../../api/put";
-import AppContext from "../../../../AppContext";
-import { CastingMethod } from "../../../../characterData/classes";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { FaRegMinusSquare, FaRegPlusSquare } from 'react-icons/fa';
+import styled from 'styled-components';
+import { put } from '../../../../api/put';
+import AppContext from '../../../../AppContext';
+import { CastingMethod } from '../../../../characterData/classes';
+import { getSpells } from '../../../../utils/getSpells';
 
 interface Props {
   className?: string;
@@ -29,11 +30,11 @@ const SpellImpl: React.SFC<ImplProps> = ({
   castingMethod
 }) => {
   const homeURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://oldschoolknave.surge.sh";
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://oldschoolknave.surge.sh';
   const URL = window.location.href;
-  const characterId = URL.replace(homeURL.concat("/permalinked/"), "");
+  const characterId = URL.replace(homeURL.concat('/permalinked/'), '');
 
   const {
     savedCharacterData,
@@ -54,17 +55,22 @@ const SpellImpl: React.SFC<ImplProps> = ({
       const data = {
         characterId,
         spells: updatedSpells,
-        httpMethod: "PUT"
+        httpMethod: 'PUT'
       };
       put(characterId, data).catch(err => alert(err));
     }
   };
 
+  const divineSpells =
+    castingMethod === 'divine' && savedCharacterData && !savedCharacterSpells
+      ? getSpells(savedCharacterData.knave, savedCharacterData.class)
+      : undefined;
+
   return (
     <>
       <div
         className={className}
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: 'flex', alignItems: 'center' }}
       >
         {savedCharacterData && (
           <>
@@ -90,23 +96,31 @@ const SpellImpl: React.SFC<ImplProps> = ({
                 onClick={(e: any) => {
                   e.stopPropagation();
                   e.preventDefault();
-                  setSavedCharacterSpells({
-                    ...savedCharacterSpells,
-                    [spellKey]: {
-                      ...spell,
-                      preparedCount: spell.preparedCount + 1
-                    }
-                  });
+                  divineSpells
+                    ? setSavedCharacterSpells({
+                        ...divineSpells,
+                        [spellKey]: {
+                          ...spell,
+                          preparedCount: spell.preparedCount + 1
+                        }
+                      })
+                    : setSavedCharacterSpells({
+                        ...savedCharacterSpells,
+                        [spellKey]: {
+                          ...spell,
+                          preparedCount: spell.preparedCount + 1
+                        }
+                      });
                 }}
               />
             </IncrementButton>
           </>
         )}
-        <div onClick={() => setShow(!show)} style={{ cursor: "pointer" }}>
+        <div onClick={() => setShow(!show)} style={{ cursor: 'pointer' }}>
           <FontAwesomeIcon
-            icon={!show ? "caret-up" : "caret-down"}
+            icon={!show ? 'caret-up' : 'caret-down'}
             size="lg"
-            style={{ margin: "0 0.5rem" }}
+            style={{ margin: '0 0.5rem' }}
           />
           {spell && spell.name}
         </div>
@@ -115,12 +129,12 @@ const SpellImpl: React.SFC<ImplProps> = ({
         <div
           style={
             savedCharacterData
-              ? { paddingLeft: "110px" }
-              : { paddingLeft: "0.5rem" }
+              ? { paddingLeft: '110px' }
+              : { paddingLeft: '0.5rem' }
           }
         >
           {spell && spell.description}
-          {castingMethod === "arcane" && savedCharacterData && (
+          {castingMethod === 'arcane' && savedCharacterData && (
             <RemoveButtonContainer>
               <RemoveButton
                 onClick={() => {

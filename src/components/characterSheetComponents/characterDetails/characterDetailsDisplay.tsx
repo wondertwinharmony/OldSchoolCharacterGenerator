@@ -1,7 +1,7 @@
-import React from "react";
-import CharacterNameAndClass from "./characterNameAndClass";
-import ClassIconAndAbilityScores from "./iconAndAbilityScoresGrid";
-import SavesAndStats from "./savesAndStats";
+import React from 'react';
+import CharacterNameAndClass from '../characterNameAndClass';
+import ClassIconAndAbilityScores from '../iconAndAbilityScoresGrid';
+import SavesAndStats from '../savesAndStats';
 
 interface Props {
   characterName: string;
@@ -16,13 +16,15 @@ interface Props {
   hitPoints: number;
   armorClass: number;
   experienceAdjustment: string;
+  characterXP: number;
+  characterLevel: number;
 }
 
 /**
  * Generic component that renders pertinent Character Sheet details
  * such as Character Name, Class, Class Icon, Ability Scores, Saves and Stats.
  */
-const CharacterDetails: React.SFC<Props> = ({
+const CharacterDetailsDisplay: React.SFC<Props> = ({
   characterName,
   classSelection,
   abilityScores,
@@ -34,7 +36,9 @@ const CharacterDetails: React.SFC<Props> = ({
   chaMod,
   hitPoints,
   armorClass,
-  experienceAdjustment
+  experienceAdjustment,
+  characterXP,
+  characterLevel
 }) => {
   return (
     <>
@@ -42,6 +46,8 @@ const CharacterDetails: React.SFC<Props> = ({
       <CharacterNameAndClass
         characterName={characterName}
         classSelection={classSelection}
+        characterXP={characterXP}
+        characterLevel={characterLevel}
       />
 
       {/* Character Class Icon and Ability Scores Grid Segment */}
@@ -62,9 +68,10 @@ const CharacterDetails: React.SFC<Props> = ({
         classSelection={classSelection}
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
+        characterLevel={characterLevel}
       />
     </>
   );
 };
 
-export default CharacterDetails;
+export default CharacterDetailsDisplay;
