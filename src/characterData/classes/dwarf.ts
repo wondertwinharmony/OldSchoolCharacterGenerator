@@ -20,7 +20,8 @@ export const dwarf = {
     '270,000',
     '400,000',
     '530,000',
-    '660,000'
+    '660,000',
+    'Max Level'
   ],
   maximumLevel: '12',
   allowedArmor: 'Any, including shields',

@@ -47,7 +47,8 @@ export const ranger = {
     '550,000',
     '675,000',
     '800,000',
-    '925,000'
+    '925,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather and chainmail armor, shields',

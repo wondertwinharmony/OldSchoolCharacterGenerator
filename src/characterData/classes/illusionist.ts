@@ -46,7 +46,8 @@ export const illusionist = {
     '600,000',
     '750,000',
     '900,000',
-    '1,050,000'
+    '1,050,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'None',

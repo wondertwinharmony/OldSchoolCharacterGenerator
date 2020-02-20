@@ -22,7 +22,8 @@ export const halfOrc = {
     '14,000',
     '28,000',
     '60,000',
-    '120,000'
+    '120,000',
+    'Max Level'
   ],
   maximumLevel: '8',
   allowedArmor: 'Leather and chainmail armor, shields',

@@ -19,7 +19,8 @@ export const underworldRanger = {
     '120,000',
     '240,000',
     '360,000',
-    '480,000'
+    '480,000',
+    'Max Level'
   ],
   maximumLevel: '1',
   allowedArmor: 'Any',

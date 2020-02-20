@@ -37,7 +37,8 @@ export const halfElf = {
     '300,000',
     '450,000',
     '600,000',
-    '750,000'
+    '750,000',
+    'Max Level'
   ],
   maximumLevel: '10',
   allowedArmor: 'Any, including shields',

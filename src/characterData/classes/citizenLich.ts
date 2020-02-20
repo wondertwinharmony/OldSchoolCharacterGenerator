@@ -41,7 +41,8 @@ export const citizenLich = {
     '450,000',
     '600,000',
     '750,000',
-    '900,000'
+    '900,000',
+    'Max Level'
   ],
   maximumLevel: '13',
   allowedArmor: 'None',

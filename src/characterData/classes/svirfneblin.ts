@@ -16,7 +16,8 @@ export const svirfneblin = {
     '20,000',
     '40,000',
     '80,000',
-    '160,000'
+    '160,000',
+    'Max Level'
   ],
   maximumLevel: '8',
   allowedArmor: 'Any appropriate to size, including shields',

@@ -30,7 +30,8 @@ export const gnome = {
     '30,000',
     '60,000',
     '120,000',
-    '240,000'
+    '240,000',
+    'Max Level'
   ],
   maximumLevel: '8',
   allowedArmor: 'Leather armor, shields',

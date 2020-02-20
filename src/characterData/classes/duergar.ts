@@ -18,7 +18,8 @@ export const duergar = {
     '100,000',
     '200,000',
     '300,000',
-    '400,000'
+    '400,000',
+    'Max Level'
   ],
   maximumLevel: '10',
   allowedArmor: 'Any, including shields',

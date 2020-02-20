@@ -16,7 +16,8 @@ export const halfling = {
     '16,000',
     '32,000',
     '64,000',
-    '120,000'
+    '120,000',
+    'Max Level'
   ],
   maximumLevel: '8',
   allowedArmor: 'Any appropriate to size, including shields',

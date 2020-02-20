@@ -29,7 +29,8 @@ export const assassin = {
     '425,000',
     '575,000',
     '750,000',
-    '900,000'
+    '900,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather armor, no shields',

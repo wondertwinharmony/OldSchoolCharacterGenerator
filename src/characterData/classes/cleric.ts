@@ -41,7 +41,8 @@ export const cleric = {
     '400,000',
     '500,000',
     '600,000',
-    '700,000'
+    '700,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Any, including shields',

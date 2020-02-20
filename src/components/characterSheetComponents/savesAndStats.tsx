@@ -21,7 +21,6 @@ const SavesAndStats: React.SFC<Props> = ({
   experienceAdjustment,
   characterLevel
 }) => {
-  console.log(characterLevel);
   return (
     <div>
       <SavesAndStatsGrid>
@@ -44,7 +43,9 @@ const SavesAndStats: React.SFC<Props> = ({
           />
           <div
             dangerouslySetInnerHTML={createMarkup(
-              `<strong>ATK Bonus:</strong> ${characterClasses[classSelection].attackBonus[0]}`
+              `<strong>ATK Bonus:</strong> ${
+                characterClasses[classSelection].attackBonus[characterLevel - 1]
+              }`
             )}
           />
           <div
@@ -65,7 +66,11 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.poison[0]}
+              {
+                characterClasses[classSelection].saves.poison[
+                  characterLevel - 1
+                ]
+              }
             </SaveScore>
           </Save>
           <Save>
@@ -75,7 +80,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.wands[0]}
+              {characterClasses[classSelection].saves.wands[characterLevel - 1]}
             </SaveScore>
           </Save>
           <Save>
@@ -85,7 +90,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.stone[0]}
+              {characterClasses[classSelection].saves.stone[characterLevel - 1]}
             </SaveScore>
           </Save>
           <Save>
@@ -95,7 +100,11 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.breath[0]}
+              {
+                characterClasses[classSelection].saves.breath[
+                  characterLevel - 1
+                ]
+              }
             </SaveScore>
           </Save>
           <Save>
@@ -105,7 +114,7 @@ const SavesAndStats: React.SFC<Props> = ({
               )}
             />
             <SaveScore>
-              {characterClasses[classSelection].saves.magic[0]}
+              {characterClasses[classSelection].saves.magic[characterLevel - 1]}
             </SaveScore>
           </Save>
         </SavesContainer>

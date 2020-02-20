@@ -249,14 +249,14 @@ const CharacterDetails: React.SFC<Props> = ({
                 plaintext
                 readOnly
                 defaultValue={`${
-                  characterLevel ===
-                  parseInt(characterClasses[classSelection].maximumLevel)
-                    ? 'Max Level'
-                    : `${
-                        characterClasses[classSelection].experienceLevel[
-                          characterLevel - 1
-                        ]
-                      } XP`
+                  characterClasses[classSelection].experienceLevel[
+                    characterLevel - 1
+                  ]
+                } ${
+                  parseInt(characterClasses[classSelection].maximumLevel) ===
+                  characterLevel
+                    ? ''
+                    : 'XP'
                 }`}
               />
             </Form.Group>

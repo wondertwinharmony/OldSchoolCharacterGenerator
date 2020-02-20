@@ -17,7 +17,8 @@ export const crabPerson = {
     '70,000',
     '140,000',
     '270,000',
-    '400,000'
+    '400,000',
+    'Max Level'
   ],
   maximumLevel: '10',
   allowedArmor: 'None',

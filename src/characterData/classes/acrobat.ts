@@ -28,7 +28,8 @@ export const acrobat = {
     '400,000',
     '520,000',
     '640,000',
-    '760,000'
+    '760,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather armor, no shields',

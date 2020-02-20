@@ -33,7 +33,8 @@ export const elf = {
     '120,000',
     '250,000',
     '400,000',
-    '600,000'
+    '600,000',
+    'Max Level'
   ],
   maximumLevel: '10',
   allowedArmor: 'Any, including shields',

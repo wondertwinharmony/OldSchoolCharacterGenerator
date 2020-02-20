@@ -28,7 +28,8 @@ export const barbarian = {
     '530,000',
     '660,000',
     '790,000',
-    '920,000'
+    '920,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather and chainmail armor, shields',

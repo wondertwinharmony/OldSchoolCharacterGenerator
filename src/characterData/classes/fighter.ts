@@ -22,7 +22,8 @@ export const fighter = {
     '480,000',
     '600,000',
     '720,000',
-    '840,000'
+    '840,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Any, including shields',

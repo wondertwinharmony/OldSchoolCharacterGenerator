@@ -41,7 +41,8 @@ export const bard = {
     '480,000',
     '600,000',
     '720,000',
-    '840,000'
+    '840,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather, chainmail, no shields',

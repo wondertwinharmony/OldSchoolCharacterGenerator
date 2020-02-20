@@ -41,7 +41,8 @@ export const druid = {
     '200,000',
     '300,000',
     '750,000',
-    '1,500,000'
+    '1,500,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Leather armor, wooden shields',

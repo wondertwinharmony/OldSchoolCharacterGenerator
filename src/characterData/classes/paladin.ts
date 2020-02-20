@@ -41,7 +41,8 @@ export const paladin = {
     '650,000',
     '800,000',
     '950,000',
-    '1,100,000'
+    '1,100,000',
+    'Max Level'
   ],
   maximumLevel: '14',
   allowedArmor: 'Any, including shields',
