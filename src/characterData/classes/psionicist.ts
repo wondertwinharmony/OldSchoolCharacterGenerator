@@ -31,16 +31,31 @@ export const psionicist = {
     '840,000'
   ],
   maximumLevel: '14',
-  attackBonus: ['0', '+2', '+5', '+7'],
   allowedArmor: 'Any armor, no shields',
   allowedWeapons: 'No two-handed weapons',
   languages: ['Alignment', 'Common'],
+  attackBonus: [
+    '0',
+    '0',
+    '0',
+    '0',
+    '+2',
+    '+2',
+    '+2',
+    '+2',
+    '+5',
+    '+5',
+    '+5',
+    '+5',
+    '+7',
+    '+7'
+  ],
   saves: {
-    poison: [11, 9, 6, 3],
-    wands: [12, 10, 7, 5],
-    stone: [14, 12, 9, 7],
-    breath: [16, 14, 11, 8],
-    magic: [15, 12, 9, 7]
+    poison: [11, 11, 11, 11, 9, 9, 9, 9, 6, 6, 6, 6, 3, 3],
+    wands: [12, 12, 12, 12, 10, 10, 10, 10, 7, 7, 7, 7, 5, 5],
+    stone: [14, 14, 14, 14, 12, 12, 12, 12, 9, 9, 9, 9, 7, 7],
+    breath: [16, 16, 16, 16, 14, 14, 14, 14, 11, 11, 11, 11, 8, 8],
+    magic: [15, 15, 15, 15, 12, 12, 12, 12, 9, 9, 9, 9, 7, 7]
   },
   inventory: psionicistInventory,
   abilities: [

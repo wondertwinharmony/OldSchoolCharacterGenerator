@@ -52,10 +52,10 @@ export interface characterClass {
   hitDiceCount: number[];
   experienceLevel: string[];
   maximumLevel: string;
-  attackBonus: string[];
   allowedArmor: string;
   allowedWeapons: string;
   languages: string[];
+  attackBonus: string[];
   saves: { [key: string]: number[] };
   inventory: any;
   abilities?: string[];

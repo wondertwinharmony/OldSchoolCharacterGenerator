@@ -31,16 +31,31 @@ export const barbarian = {
     '920,000'
   ],
   maximumLevel: '14',
-  attackBonus: ['0', '+2', '+5', '+7', '+9'],
   allowedArmor: 'Leather and chainmail armor, shields',
   allowedWeapons: 'Any',
   languages: ['Alignment', 'Common'],
+  attackBonus: [
+    '0',
+    '0',
+    '0',
+    '+2',
+    '+2',
+    '+2',
+    '+5',
+    '+5',
+    '+5',
+    '+7',
+    '+7',
+    '+7',
+    '+9',
+    '+9'
+  ],
   saves: {
-    poison: [10, 8, 6, 4, 3],
-    wands: [13, 11, 9, 7, 5],
-    stone: [12, 10, 8, 6, 4],
-    breath: [15, 13, 10, 8, 5],
-    magic: [16, 13, 10, 7, 5]
+    poison: [10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4, 4, 3, 3],
+    wands: [13, 13, 13, 11, 11, 11, 9, 9, 9, 7, 7, 7, 5, 5],
+    stone: [12, 12, 12, 10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4],
+    breath: [15, 15, 15, 13, 13, 13, 10, 10, 10, 8, 8, 8, 5, 5],
+    magic: [16, 16, 16, 13, 13, 13, 10, 10, 10, 7, 7, 7, 5, 5]
   },
   inventory: barbarianInventory,
   abilities: [

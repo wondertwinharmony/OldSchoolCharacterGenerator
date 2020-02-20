@@ -25,16 +25,16 @@ export const halfOrc = {
     '120,000'
   ],
   maximumLevel: '8',
-  attackBonus: ['0', '+2'],
   allowedArmor: 'Leather and chainmail armor, shields',
   allowedWeapons: 'Any',
   languages: ['Alignment', 'Common', 'Orcish'],
+  attackBonus: ['0', '0', '0', '0', '+2', '+2', '+2', '+2'],
   saves: {
-    poison: [13, 12],
-    wands: [14, 13],
-    stone: [13, 11],
-    breath: [16, 14],
-    magic: [15, 13]
+    poison: [13, 13, 13, 13, 12, 12, 12, 12],
+    wands: [14, 14, 14, 14, 13, 13, 13, 13],
+    stone: [13, 13, 13, 13, 11, 11, 11, 11],
+    breath: [16, 16, 16, 16, 14, 14, 14, 14],
+    magic: [15, 15, 15, 15, 13, 13, 13, 13]
   },
   inventory: halfOrcInventory,
   abilities: [
