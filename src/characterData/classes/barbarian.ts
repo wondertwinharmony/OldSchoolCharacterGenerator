@@ -19,12 +19,28 @@ export const barbarian = {
   allowedArmor: "Leather and chainmail armor, shields",
   allowedWeapons: "Any",
   languages: ["Alignment", "Common"],
+  attackBonus: [
+    "0",
+    "0",
+    "0",
+    "+2",
+    "+2",
+    "+2",
+    "+5",
+    "+5",
+    "+5",
+    "+7",
+    "+7",
+    "+7",
+    "+9",
+    "+9"
+  ],
   saves: {
-    poison: 10,
-    wands: 13,
-    stone: 12,
-    breath: 15,
-    magic: 16
+    poison: [10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4, 4, 3, 3],
+    wands: [13, 13, 13, 11, 11, 11, 9, 9, 9, 7, 7, 7, 5, 5],
+    stone: [12, 12, 12, 10, 10, 10, 8, 8, 8, 6, 6, 6, 4, 4],
+    breath: [15, 15, 15, 13, 13, 13, 10, 10, 10, 8, 8, 8, 5, 5],
+    magic: [16, 16, 16, 13, 13, 13, 10, 10, 10, 7, 7, 7, 5, 5]
   },
   inventory: barbarianInventory,
   abilities: [

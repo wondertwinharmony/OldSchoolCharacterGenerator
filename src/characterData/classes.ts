@@ -54,7 +54,8 @@ export interface characterClass {
   allowedArmor: string;
   allowedWeapons: string;
   languages: string[];
-  saves: { [key: string]: number };
+  attackBonus: string[];
+  saves: { [key: string]: number[] };
   inventory: any;
   abilities?: string[];
   abilitiesSummary: string;

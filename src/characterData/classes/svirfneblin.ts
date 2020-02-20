@@ -21,12 +21,13 @@ export const svirfneblin = {
     "Kobold",
     "the language of earth elementals"
   ],
+  attackBonus: ["0", "0", "0", "+2", "+2", "+2", "+5", "+5"],
   saves: {
-    poison: 8,
-    wands: 9,
-    stone: 10,
-    breath: 14,
-    magic: 11
+    poison: [8, 8, 8, 6, 6, 6, 4, 4],
+    wands: [9, 9, 9, 7, 7, 7, 5, 5],
+    stone: [10, 10, 10, 8, 8, 8, 6, 6],
+    breath: [14, 14, 14, 11, 11, 11, 9, 9],
+    magic: [11, 11, 11, 9, 9, 9, 7, 7]
   },
   inventory: halflingDwarfDuergarSvirfneblinInventory,
   abilities: [
