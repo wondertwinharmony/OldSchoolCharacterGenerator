@@ -1,7 +1,7 @@
-import React from 'react';
-import CharacterNameAndClass from '../characterNameAndClass';
-import ClassIconAndAbilityScores from '../iconAndAbilityScoresGrid';
-import SavesAndStats from '../savesAndStats';
+import React from "react";
+import CharacterNameAndClass from "../characterNameAndClass";
+import ClassIconAndAbilityScores from "../iconAndAbilityScoresGrid";
+import SavesAndStats from "../savesAndStats";
 
 interface Props {
   characterName: string;
@@ -18,6 +18,8 @@ interface Props {
   experienceAdjustment: string;
   characterXP: number;
   characterLevel: number;
+  hitDiceInput: string;
+  setHitDiceInput: (hitDiceCount: string) => void;
 }
 
 /**
@@ -38,7 +40,9 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
   armorClass,
   experienceAdjustment,
   characterXP,
-  characterLevel
+  characterLevel,
+  hitDiceInput,
+  setHitDiceInput
 }) => {
   return (
     <>
@@ -69,6 +73,8 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
         armorClass={armorClass}
         experienceAdjustment={experienceAdjustment}
         characterLevel={characterLevel}
+        hitDiceInput={hitDiceInput}
+        setHitDiceInput={setHitDiceInput}
       />
     </>
   );

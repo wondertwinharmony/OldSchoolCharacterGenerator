@@ -70,6 +70,9 @@ const CharacterDetails: React.SFC<Props> = ({
   const [characterHPInput, setCharacterHPInput] = useState("");
   const [characterACInput, setCharacterACInput] = useState("");
   const [characterXPInput, setCharacterXPInput] = useState("");
+  const [hitDiceInput, setHitDiceInput] = useState(
+    characterClasses[classSelection].hitDiceCount[characterLevel - 1]
+  );
 
   const isValid =
     characterLevelInput <=
@@ -289,6 +292,8 @@ const CharacterDetails: React.SFC<Props> = ({
       experienceAdjustment={experienceAdjustment}
       characterXP={characterXP}
       characterLevel={characterLevel}
+      hitDiceInput={hitDiceInput}
+      setHitDiceInput={setHitDiceInput}
     />
   );
 };
