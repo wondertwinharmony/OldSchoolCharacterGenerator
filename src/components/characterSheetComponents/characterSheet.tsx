@@ -127,19 +127,6 @@ const CharacterSheetImpl: React.SFC<Props> = ({
         classSelection
       );
   const oldLanguages = savedCharacterData && savedCharacterData.languages;
-  // const [languages, setLanguages] = useState(
-  //   savedCharacterData
-  //     ? savedCharacterData && savedCharacterData.languages
-  //     : getLanguages(
-  //         characterClasses[classSelection].languages,
-  //         abilityScores[INT],
-  //         classSelection
-  //       )
-  // );
-  // useEffect(() => {
-  //   setLanguages(languages);
-  // }, [languages]);
-  // const oldLanguages = savedCharacterData && savedCharacterData.languages;
 
   // Inventory
   const oldInventory = savedCharacterData && savedCharacterData.equipment;
