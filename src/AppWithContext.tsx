@@ -1,20 +1,23 @@
-import React, { Component } from 'react';
-import AppContext, { SavedCharacterDetails } from './AppContext';
-import AppRouter from './AppRouter';
-import { Items } from './characterData/items';
-import { Spells } from './characterData/spells';
-import { getAbilityScores } from './utils/getAbilityScores';
-import { SavedCharacterData } from './utils/getSavedCharacterData';
+import React, { Component } from "react";
+import AppContext, { SavedCharacterDetails } from "./AppContext";
+import AppRouter from "./AppRouter";
+import { Items } from "./characterData/items";
+import { Spells } from "./characterData/spells";
+import { getAbilityScores } from "./utils/getAbilityScores";
+import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 export default class AppImpl extends Component {
   state = {
     abilityScores: [0, 0, 0, 0, 0, 0],
-    classSelection: '',
+    classSelection: "",
     nonTraditionalSpells: false,
     savedCharacterData: undefined,
     savedCharacterInventory: undefined,
     savedCharacterSpells: undefined,
-    savedCharacterDetails: undefined
+    savedCharacterDetails: undefined,
+    savedCharacterTraits: undefined,
+    savedCharacterLanguages: undefined,
+    savedCharacterNotes: undefined
   };
 
   componentDidMount() {
@@ -49,6 +52,18 @@ export default class AppImpl extends Component {
     this.setState({ savedCharacterSpells });
   };
 
+  setSavedCharacterTraits = (traits: string) => {
+    this.setState({ savedCharacterTraits: traits });
+  };
+
+  setSavedCharacterLanguages = (languages: string) => {
+    this.setState({ savedCharacterLanguages: languages });
+  };
+
+  setSavedCharacterNotes = (notes: string) => {
+    this.setState({ savedCharacterNotes: notes });
+  };
+
   render() {
     return (
       <AppContext.Provider
@@ -66,7 +81,13 @@ export default class AppImpl extends Component {
           savedCharacterSpells: this.state.savedCharacterSpells,
           setSavedCharacterSpells: this.setSavedCharacterSpells,
           savedCharacterDetails: this.state.savedCharacterDetails,
-          setSavedCharacterDetails: this.setSavedCharacterDetails
+          setSavedCharacterDetails: this.setSavedCharacterDetails,
+          savedCharacterTraits: this.state.savedCharacterTraits,
+          setSavedCharacterTraits: this.setSavedCharacterTraits,
+          savedCharacterLanguages: this.state.savedCharacterLanguages,
+          setSavedCharacterLanguages: this.setSavedCharacterLanguages,
+          savedCharacterNotes: this.state.savedCharacterNotes,
+          setSavedCharacterNotes: this.setSavedCharacterNotes
         }}
       >
         <AppRouter />
