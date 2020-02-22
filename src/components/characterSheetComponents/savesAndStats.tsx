@@ -12,6 +12,8 @@ interface Props {
   characterLevel: number;
   hitDiceInput: string;
   setHitDiceInput: (hitDiceCount: string) => void;
+  maxResurrections: number;
+  raiseDeadChance: string;
 }
 
 /**
@@ -24,9 +26,11 @@ const SavesAndStats: React.SFC<Props> = ({
   experienceAdjustment,
   characterLevel,
   hitDiceInput,
-  setHitDiceInput
+  setHitDiceInput,
+  maxResurrections,
+  raiseDeadChance
 }) => (
-  <div>
+  <SavesAndStatsContainer>
     <SavesAndStatsGrid>
       <StatsContainer>
         <div
@@ -41,7 +45,7 @@ const SavesAndStats: React.SFC<Props> = ({
         />
         <div
           dangerouslySetInnerHTML={createMarkup(
-            `<strong>ATK Bonus:</strong> ${
+            `<strong>ATK Bonus:</strong>${
               characterClasses[classSelection].attackBonus[characterLevel - 1]
             }`
           )}
@@ -132,13 +136,20 @@ const SavesAndStats: React.SFC<Props> = ({
         </Save>
       </SavesContainer>
     </SavesAndStatsGrid>
-  </div>
+    <RaiseDeadText>{`${maxResurrections} resurrections possible with ${raiseDeadChance}% of success.`}</RaiseDeadText>
+  </SavesAndStatsContainer>
 );
+
+const SavesAndStatsContainer = styled.div`
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+`;
 
 const SavesAndStatsGrid = styled.div`
   padding: 0.5rem;
   display: grid;
   grid-template-columns: 1fr 1.75fr;
+  grid-gap: 0.5rem;
   justify-content: center;
 `;
 
@@ -146,8 +157,6 @@ const SavesContainer = styled.div`
   display: grid;
   grid-gap: 0.25rem;
   justify-content: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
 `;
 
 const Save = styled.div`
@@ -164,8 +173,12 @@ const StatsContainer = styled.div`
   justify-content: flex-end;
   align-content: baseline;
   grid-gap: 0.25rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+`;
+
+const RaiseDeadText = styled.div`
+  text-align: center;
+  padding: 0 2.25rem;
+  font-style: italic;
 `;
 
 const HDCount = styled.div`

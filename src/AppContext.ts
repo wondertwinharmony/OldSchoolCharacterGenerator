@@ -1,7 +1,7 @@
-import { createContext } from 'react';
-import { Items } from './characterData/items';
-import { Spells } from './characterData/spells';
-import { SavedCharacterData } from './utils/getSavedCharacterData';
+import { createContext } from "react";
+import { Items } from "./characterData/items";
+import { Spells } from "./characterData/spells";
+import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 export interface SavedCharacterDetails {
   hp: number;
@@ -9,6 +9,7 @@ export interface SavedCharacterDetails {
   xp: number;
   level: number;
   abilityScores: number[];
+  maxResurrections: number;
   characterName: string;
 }
 
@@ -33,7 +34,7 @@ interface IAppContext {
 
 const AppContext = createContext<IAppContext>({
   abilityScores: [0, 0, 0, 0, 0, 0],
-  classSelection: '',
+  classSelection: "",
   nonTraditionalSpells: false,
   savedCharacterData: undefined,
   setSavedCharacterData: () => {},

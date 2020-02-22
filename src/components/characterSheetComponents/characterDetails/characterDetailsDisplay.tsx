@@ -20,6 +20,8 @@ interface Props {
   characterLevel: number;
   hitDiceInput: string;
   setHitDiceInput: (hitDiceCount: string) => void;
+  maxResurrections: number;
+  raiseDeadChance: string;
 }
 
 /**
@@ -42,7 +44,9 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
   characterXP,
   characterLevel,
   hitDiceInput,
-  setHitDiceInput
+  setHitDiceInput,
+  maxResurrections,
+  raiseDeadChance
 }) => {
   return (
     <>
@@ -75,6 +79,8 @@ const CharacterDetailsDisplay: React.SFC<Props> = ({
         characterLevel={characterLevel}
         hitDiceInput={hitDiceInput}
         setHitDiceInput={setHitDiceInput}
+        maxResurrections={maxResurrections}
+        raiseDeadChance={raiseDeadChance}
       />
     </>
   );
