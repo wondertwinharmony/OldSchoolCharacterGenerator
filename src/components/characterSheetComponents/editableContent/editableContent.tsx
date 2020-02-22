@@ -41,6 +41,7 @@ const EditableContent: React.SFC<Props> = ({ content, contentType }) => {
   };
 
   const isModified = content !== inputValue;
+  const isMaxLength = inputValue.length >= 500;
 
   return (
     <Container>
@@ -89,7 +90,13 @@ const EditableContent: React.SFC<Props> = ({ content, contentType }) => {
             rows={
               contentType === "Traits" || contentType === "Notes" ? "5" : "2"
             }
+            maxLength="500"
           />
+          {isMaxLength && (
+            <MaxLengthText>
+              Max length of input is 500 characters.
+            </MaxLengthText>
+          )}
         </>
       )}
     </Container>
@@ -121,6 +128,11 @@ const ButtonContainer = styled.div`
   align-items: center;
   flex-direction: row;
   padding-bottom: 0.5rem;
+`;
+
+const MaxLengthText = styled.div`
+  font-size: 0.75rem;
+  color: #dc3545;
 `;
 
 export default EditableContent;
