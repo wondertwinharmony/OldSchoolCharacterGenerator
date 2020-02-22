@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaDAndD, FaDiceD20 } from "react-icons/fa";
 import {
   GiChewedSkull,
@@ -6,6 +6,7 @@ import {
   GiCometSpark,
   GiKnapsack,
   GiPriceTag,
+  GiQuillInk,
   GiScrollUnfurled,
   GiSpiralBottle,
   GiSwordwoman
@@ -54,6 +55,7 @@ import { getTraits } from "../../utils/getTraits";
 import CharacterDetails from "./characterDetails/characterDetails";
 import EditCharacterButtonsImpl from "./characterDetails/editCharacterButton";
 import CharacterSkills from "./characterSkills";
+import EditableContent from "./editableContent/editableContent";
 import InventoryImpl from "./inventory/inventory";
 import StyledItemsForPurchase from "./itemsForPurchase";
 import Permalink from "./permalink";
@@ -68,9 +70,7 @@ interface Props {
   savedCharacterData?: SavedCharacterData;
 }
 
-interface ImplProps extends Props {}
-
-const CharacterSheetImpl: React.SFC<ImplProps> = ({
+const CharacterSheetImpl: React.SFC<Props> = ({
   abilityScores,
   className,
   classSelection,
@@ -80,7 +80,10 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   const {
     savedCharacterSpells,
     savedCharacterInventory,
-    savedCharacterDetails
+    savedCharacterDetails,
+    savedCharacterTraits,
+    savedCharacterLanguages,
+    savedCharacterNotes
   } = useContext(AppContext);
 
   const [isEditable, setIsEditable] = useState(false);
@@ -116,18 +119,27 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
     : characterAbilityScores[CON];
 
   // Languages
-  const [languages, setLanguages] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.languages
-      : getLanguages(
-          characterClasses[classSelection].languages,
-          abilityScores[INT],
-          classSelection
-        )
-  );
-  useEffect(() => {
-    setLanguages(languages);
-  }, [languages]);
+  const languages = savedCharacterLanguages
+    ? savedCharacterLanguages
+    : getLanguages(
+        characterClasses[classSelection].languages,
+        abilityScores[INT],
+        classSelection
+      );
+  const oldLanguages = savedCharacterData && savedCharacterData.languages;
+  // const [languages, setLanguages] = useState(
+  //   savedCharacterData
+  //     ? savedCharacterData && savedCharacterData.languages
+  //     : getLanguages(
+  //         characterClasses[classSelection].languages,
+  //         abilityScores[INT],
+  //         classSelection
+  //       )
+  // );
+  // useEffect(() => {
+  //   setLanguages(languages);
+  // }, [languages]);
+  // const oldLanguages = savedCharacterData && savedCharacterData.languages;
 
   // Inventory
   const oldInventory = savedCharacterData && savedCharacterData.equipment;
@@ -168,11 +180,11 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
   });
 
   // Traits
-  const [traits] = useState(
-    savedCharacterData
-      ? savedCharacterData && savedCharacterData.traits
-      : getTraits(abilityScores[INT], languages, classSelection)
-  );
+  const traits =
+    savedCharacterData && savedCharacterTraits
+      ? savedCharacterTraits
+      : getTraits(abilityScores[INT], languages, classSelection);
+  const oldTraits = savedCharacterData && savedCharacterData.traits;
 
   // Character Name
   const oldCharacterName = savedCharacterData && savedCharacterData.name;
@@ -261,7 +273,12 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       <Segment
         segmentIcon={<GiScrollUnfurled />}
         segmentDisplayName={"Traits"}
-        segmentData={<TraitsContainer>{traits}</TraitsContainer>}
+        segmentData={
+          <EditableContent
+            content={oldTraits && !savedCharacterTraits ? oldTraits : traits}
+            contentType="Traits"
+          />
+        }
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
       />
@@ -270,7 +287,16 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
       <Segment
         segmentIcon={<MdChatBubble />}
         segmentDisplayName={"Languages"}
-        segmentData={<Language>{languages}</Language>}
+        segmentData={
+          <EditableContent
+            content={
+              oldLanguages && !savedCharacterLanguages
+                ? oldLanguages
+                : languages
+            }
+            contentType="Languages"
+          />
+        }
         collapse={segmentVisibility}
         setCollapse={setSegmentVisibility}
       />
@@ -453,6 +479,20 @@ const CharacterSheetImpl: React.SFC<ImplProps> = ({
         setCollapse={setSegmentVisibility}
       />
 
+      {/* Character Notes Segment*/}
+      <Segment
+        segmentIcon={<GiQuillInk />}
+        segmentDisplayName={"Notes"}
+        segmentData={
+          <EditableContent
+            content={savedCharacterNotes ? savedCharacterNotes : "No notes."}
+            contentType="Notes"
+          />
+        }
+        collapse={segmentVisibility}
+        setCollapse={setSegmentVisibility}
+      />
+
       {/* Combat Actions Segment */}
       <Segment
         segmentIcon={<FaDiceD20 />}
@@ -558,21 +598,10 @@ const HeaderIcon = styled.div`
   margin: 0 0.5rem;
 `;
 
-const Language = styled.div`
-  display: flex;
-  justify-content: center;
-  white-space: pre-line;
-  padding: 0.5rem;
-`;
-
 const Ability = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
-`;
-
-const TraitsContainer = styled.div`
-  padding: 0.5rem;
 `;
 
 const TurnUndeadContainer = styled.div`

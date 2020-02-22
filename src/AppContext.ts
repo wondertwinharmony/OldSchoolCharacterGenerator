@@ -30,6 +30,12 @@ interface IAppContext {
   setSavedCharacterDetails: (
     savedCharacterDetails: SavedCharacterDetails
   ) => void;
+  savedCharacterTraits?: string;
+  setSavedCharacterTraits: (traits: string) => void;
+  savedCharacterLanguages?: string;
+  setSavedCharacterLanguages: (languages: string) => void;
+  savedCharacterNotes?: string;
+  setSavedCharacterNotes: (notes: string) => void;
 }
 
 const AppContext = createContext<IAppContext>({
@@ -46,7 +52,13 @@ const AppContext = createContext<IAppContext>({
   savedCharacterSpells: undefined,
   setSavedCharacterSpells: () => {},
   savedCharacterDetails: undefined,
-  setSavedCharacterDetails: () => {}
+  setSavedCharacterDetails: () => {},
+  savedCharacterTraits: undefined,
+  setSavedCharacterTraits: () => {},
+  savedCharacterLanguages: undefined,
+  setSavedCharacterLanguages: () => {},
+  savedCharacterNotes: undefined,
+  setSavedCharacterNotes: () => {}
 });
 
 export default AppContext;

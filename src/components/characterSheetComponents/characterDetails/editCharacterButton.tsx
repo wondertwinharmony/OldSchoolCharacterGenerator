@@ -1,61 +1,57 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import styled from 'styled-components';
-import { createMarkup } from '../../../utils/createMarkup';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Button } from "react-bootstrap";
+import styled from "styled-components";
+import { createMarkup } from "../../../utils/createMarkup";
 
 interface Props {
   isEditable: boolean;
   setIsEditable: (setIsEditable: boolean) => void;
 }
 
-interface ImplProps extends Props {}
-
-const EditCharacterButtonsImpl: React.SFC<ImplProps> = ({
+const EditCharacterButtonsImpl: React.SFC<Props> = ({
   isEditable,
   setIsEditable
-}) => {
-  return (
-    <>
-      <ButtonContainer>
-        {isEditable ? null : (
-          <Button
-            onClick={(e: any) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setIsEditable(true);
-            }}
-            style={{ width: '275px' }}
-            variant={'outline-secondary'}
-            type="submit"
-          >
-            Edit Character
-          </Button>
-        )}
-      </ButtonContainer>
-      <SaveMessageContainer>
-        <SaveHeader>
-          <FontAwesomeIcon
-            icon={'exclamation-triangle'}
-            size="sm"
-            style={{ margin: '0.5rem' }}
-          />
-          IMPORTANT
-          <FontAwesomeIcon
-            icon={'exclamation-triangle'}
-            size="sm"
-            style={{ margin: '0.5rem' }}
-          />
-        </SaveHeader>
-        <SaveMessage
-          dangerouslySetInnerHTML={createMarkup(
-            '<strong>Bookmark this page. Save the results!\n</strong>'
-          )}
+}) => (
+  <>
+    <ButtonContainer>
+      {isEditable ? null : (
+        <Button
+          onClick={(e: any) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsEditable(true);
+          }}
+          style={{ width: "275px" }}
+          variant={"outline-secondary"}
+          type="submit"
+        >
+          Edit Character
+        </Button>
+      )}
+    </ButtonContainer>
+    <SaveMessageContainer>
+      <SaveHeader>
+        <FontAwesomeIcon
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}
         />
-      </SaveMessageContainer>
-    </>
-  );
-};
+        IMPORTANT
+        <FontAwesomeIcon
+          icon={"exclamation-triangle"}
+          size="sm"
+          style={{ margin: "0.5rem" }}
+        />
+      </SaveHeader>
+      <SaveMessage
+        dangerouslySetInnerHTML={createMarkup(
+          "<strong>Bookmark this page. Save the results!\n</strong>"
+        )}
+      />
+    </SaveMessageContainer>
+  </>
+);
 
 const ButtonContainer = styled.div`
   justify-content: space-evenly;
@@ -74,7 +70,7 @@ const SaveMessage = styled.div`
 const SaveHeader = styled.div`
   display: flex;
   justify-content: center;
-  font-family: 'Sancreek', cursive;
+  font-family: "Sancreek", cursive;
   font-size: 2rem;
 `;
 

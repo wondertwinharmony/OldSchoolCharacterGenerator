@@ -328,7 +328,7 @@ const CharacterDetails: React.SFC<Props> = ({
 };
 
 const Container = styled.div`
-  max-width: 500px;
+  max-width: 450px;
 `;
 
 const StyledForm = styled(Form)`
