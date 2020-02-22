@@ -1,7 +1,7 @@
-import { createContext } from 'react';
-import { Items } from './characterData/items';
-import { Spells } from './characterData/spells';
-import { SavedCharacterData } from './utils/getSavedCharacterData';
+import { createContext } from "react";
+import { Items } from "./characterData/items";
+import { Spells } from "./characterData/spells";
+import { SavedCharacterData } from "./utils/getSavedCharacterData";
 
 export interface SavedCharacterDetails {
   hp: number;
@@ -9,6 +9,7 @@ export interface SavedCharacterDetails {
   xp: number;
   level: number;
   abilityScores: number[];
+  maxResurrections: number;
   characterName: string;
 }
 
@@ -29,11 +30,17 @@ interface IAppContext {
   setSavedCharacterDetails: (
     savedCharacterDetails: SavedCharacterDetails
   ) => void;
+  savedCharacterTraits?: string;
+  setSavedCharacterTraits: (traits: string) => void;
+  savedCharacterLanguages?: string;
+  setSavedCharacterLanguages: (languages: string) => void;
+  savedCharacterNotes?: string;
+  setSavedCharacterNotes: (notes: string) => void;
 }
 
 const AppContext = createContext<IAppContext>({
   abilityScores: [0, 0, 0, 0, 0, 0],
-  classSelection: '',
+  classSelection: "",
   nonTraditionalSpells: false,
   savedCharacterData: undefined,
   setSavedCharacterData: () => {},
@@ -45,7 +52,13 @@ const AppContext = createContext<IAppContext>({
   savedCharacterSpells: undefined,
   setSavedCharacterSpells: () => {},
   savedCharacterDetails: undefined,
-  setSavedCharacterDetails: () => {}
+  setSavedCharacterDetails: () => {},
+  savedCharacterTraits: undefined,
+  setSavedCharacterTraits: () => {},
+  savedCharacterLanguages: undefined,
+  setSavedCharacterLanguages: () => {},
+  savedCharacterNotes: undefined,
+  setSavedCharacterNotes: () => {}
 });
 
 export default AppContext;

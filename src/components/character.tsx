@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { get } from '../api/get';
-import AppContext from '../AppContext';
-import { getSavedCharacterData } from '../utils/getSavedCharacterData';
-import CharacterSheet from './characterSheetComponents/characterSheet';
+import React, { useContext, useEffect, useState } from "react";
+import { get } from "../api/get";
+import AppContext from "../AppContext";
+import { getSavedCharacterData } from "../utils/getSavedCharacterData";
+import CharacterSheet from "./characterSheetComponents/characterSheet";
 
 export default function Character() {
   const [loading, setLoading] = useState(true);
@@ -11,17 +11,20 @@ export default function Character() {
     setSavedCharacterData,
     setSavedCharacterInventory,
     setSavedCharacterSpells,
-    setSavedCharacterDetails
+    setSavedCharacterDetails,
+    setSavedCharacterTraits,
+    setSavedCharacterLanguages,
+    setSavedCharacterNotes
   } = useContext(AppContext);
 
   useEffect(() => {
     const homeURL =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/'
-        : 'https://oldschoolknave.surge.sh/';
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/"
+        : "https://oldschoolknave.surge.sh/";
 
     const URL = window.location.href;
-    const characterId = URL.replace(homeURL.concat('permalinked/'), '');
+    const characterId = URL.replace(homeURL.concat("permalinked/"), "");
 
     const fetchCharacter = async () => {
       const apiResponse = await get(characterId).then(response =>
@@ -31,7 +34,7 @@ export default function Character() {
         getSavedCharacterData(
           apiResponse.permaLink,
           homeURL,
-          'savedCharacter/1&'
+          "savedCharacter/1&"
         )
       );
       setSavedCharacterInventory(apiResponse.inventory);
@@ -41,6 +44,15 @@ export default function Character() {
       if (apiResponse.characterDetails) {
         setSavedCharacterDetails(apiResponse.characterDetails);
       }
+      if (apiResponse.traits) {
+        setSavedCharacterTraits(apiResponse.traits);
+      }
+      if (apiResponse.languages) {
+        setSavedCharacterLanguages(apiResponse.languages);
+      }
+      if (apiResponse.notes) {
+        setSavedCharacterNotes(apiResponse.notes);
+      }
       setLoading(false);
     };
     fetchCharacter();
@@ -48,7 +60,10 @@ export default function Character() {
     setSavedCharacterData,
     setSavedCharacterInventory,
     setSavedCharacterSpells,
-    setSavedCharacterDetails
+    setSavedCharacterDetails,
+    setSavedCharacterTraits,
+    setSavedCharacterLanguages,
+    setSavedCharacterNotes
   ]);
 
   return savedCharacterData && !loading ? (

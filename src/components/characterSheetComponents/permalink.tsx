@@ -1,17 +1,17 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import { useHistory, useRouteMatch } from 'react-router-dom';
-import styled from 'styled-components';
-import UUID5 from 'uuid/v5';
-import { post } from '../../api/post';
-import { SavedCharacterDetails } from '../../AppContext';
-import { characterClasses } from '../../characterData/classes';
-import { Items } from '../../characterData/items';
-import { Spells } from '../../characterData/spells';
-import { createMarkup } from '../../utils/createMarkup';
-import { SavedCharacterData } from '../../utils/getSavedCharacterData';
-import { saveCharacterData } from '../../utils/saveCharacterData';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Button } from "react-bootstrap";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
+import UUID5 from "uuid/v5";
+import { post } from "../../api/post";
+import { SavedCharacterDetails } from "../../AppContext";
+import { characterClasses } from "../../characterData/classes";
+import { Items } from "../../characterData/items";
+import { Spells } from "../../characterData/spells";
+import { createMarkup } from "../../utils/createMarkup";
+import { SavedCharacterData } from "../../utils/getSavedCharacterData";
+import { saveCharacterData } from "../../utils/saveCharacterData";
 
 interface Props {
   savedCharacterData?: SavedCharacterData;
@@ -44,7 +44,7 @@ const Permalink: React.SFC<Props> = ({
   characterDetails
 }) => {
   let history = useHistory();
-  let match = useRouteMatch('/generatedCharacter/:character/');
+  let match = useRouteMatch("/generatedCharacter/:character/");
 
   const handleClick = () => {
     let URL = saveCharacterData(
@@ -58,18 +58,20 @@ const Permalink: React.SFC<Props> = ({
     );
 
     const longLink =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000'
-        : 'https://oldschoolknave.surge.sh';
-    const permaLink = longLink.concat('/savedCharacter/1&', URL);
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://oldschoolknave.surge.sh";
+    const permaLink = longLink.concat("/savedCharacter/1&", URL);
     const characterUUID = UUID5(permaLink, UUID5.URL);
 
     let data: any = {
       characterId: characterUUID,
       permaLink: permaLink,
       inventory,
-      characterDetails: characterDetails,
-      httpMethod: 'POST'
+      characterDetails,
+      traits,
+      languages,
+      httpMethod: "POST"
     };
 
     /**
@@ -78,7 +80,7 @@ const Permalink: React.SFC<Props> = ({
      * save arcane spells only.
      */
     let castingMethod = characterClasses[classSelection].castingMethod;
-    if (spells && castingMethod === 'arcane') data.spells = spells;
+    if (spells && castingMethod === "arcane") data.spells = spells;
 
     const postCharacter = async () => {
       await post(data).then(() =>
@@ -91,7 +93,7 @@ const Permalink: React.SFC<Props> = ({
   return !savedCharacterData ? (
     <PermalinkButtonContainer>
       <PermalinkButton
-        style={{ width: '275px' }}
+        style={{ width: "275px" }}
         variant="outline-secondary"
         onClick={() => {
           handleClick();
@@ -115,20 +117,20 @@ const Permalink: React.SFC<Props> = ({
     <SaveMessageContainer>
       <SaveHeader>
         <FontAwesomeIcon
-          icon={'exclamation-triangle'}
+          icon={"exclamation-triangle"}
           size="sm"
-          style={{ margin: '0.5rem' }}
+          style={{ margin: "0.5rem" }}
         />
         IMPORTANT
         <FontAwesomeIcon
-          icon={'exclamation-triangle'}
+          icon={"exclamation-triangle"}
           size="sm"
-          style={{ margin: '0.5rem' }}
+          style={{ margin: "0.5rem" }}
         />
       </SaveHeader>
       <SaveMessage
         dangerouslySetInnerHTML={createMarkup(
-          '<strong>Bookmark this page. Save the results!\n</strong>'
+          "<strong>Bookmark this page. Save the results!\n</strong>"
         )}
       />
     </SaveMessageContainer>
@@ -157,7 +159,7 @@ const SaveMessage = styled.div`
 const SaveHeader = styled.div`
   display: flex;
   justify-content: center;
-  font-family: 'Sancreek', cursive;
+  font-family: "Sancreek", cursive;
   font-size: 2rem;
 `;
 

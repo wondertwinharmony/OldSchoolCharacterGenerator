@@ -21,53 +21,53 @@ export const getSavedCharacterData = (
   home: string,
   route: string
 ) => {
-  let decodedURI = '';
+  let decodedURI = "";
   let rawCharacterData = [];
 
   decodedURI = decodeURI(url)
-    .replace(home, '')
-    .replace(route, '')
-    .replace(/\$/gm, '&')
-    .replace(/-/gm, ' ');
+    .replace(home, "")
+    .replace(route, "")
+    .replace(/\$/gm, "&")
+    .replace(/-/gm, " ");
 
-  rawCharacterData = decodedURI.split('&');
+  rawCharacterData = decodedURI.split("&");
 
   let savedCharacterData = {
-    name: '',
-    class: '',
-    traits: '',
+    name: "",
+    class: "",
+    traits: "",
     abilityScores: [] as number[],
     hitPoints: 0,
-    languages: '',
+    languages: "",
     spells: [] as string[],
-    equipment: { characterEquipmentString: '', slotsToFill: 0 },
+    equipment: { characterEquipmentString: "", slotsToFill: 0 },
     knave: false
   };
 
-  let abilityScores = rawCharacterData[3].split(',');
+  let abilityScores = rawCharacterData[3].split(",");
 
-  savedCharacterData.name = rawCharacterData[0].replace(/_/gm, ' ');
+  savedCharacterData.name = rawCharacterData[0].replace(/_/gm, " ");
   savedCharacterData.class = rawCharacterData[1];
-  savedCharacterData.traits = rawCharacterData[2].replace(/_/gm, ' ');
+  savedCharacterData.traits = rawCharacterData[2].replace(/_/gm, " ");
   savedCharacterData.abilityScores = abilityScores.map(item => parseInt(item));
   savedCharacterData.hitPoints = parseInt(rawCharacterData[4]);
-  savedCharacterData.languages = rawCharacterData[5].replace(/_/gm, ' ');
+  savedCharacterData.languages = rawCharacterData[5].replace(/_/gm, " ");
   /**
    * As we remove stuff from permalink just do a ternary check so we don't
    * bork old legacy permalink support just yet.
    */
   savedCharacterData.spells = rawCharacterData[6]
-    ? rawCharacterData[6].replace(/_/gm, ' ').split('#')
+    ? rawCharacterData[6].replace(/_/gm, " ").split("#")
     : [];
   savedCharacterData.equipment.characterEquipmentString = rawCharacterData[7]
     ? rawCharacterData[7]
-        .replace(/_/gm, ' ')
-        .replace('5’ 10’ / 11’ 20’ / 21’ 30’', '5’-10’ / 11’-20’ / 21’-30’')
-    : '';
+        .replace(/_/gm, " ")
+        .replace("5’ 10’ / 11’ 20’ / 21’ 30’", "5’-10’ / 11’-20’ / 21’-30’")
+    : "";
   savedCharacterData.equipment.slotsToFill = rawCharacterData[8]
     ? parseInt(rawCharacterData[8])
     : 0;
-  savedCharacterData.knave = rawCharacterData[9] === 'true';
+  savedCharacterData.knave = rawCharacterData[9] === "true";
 
   return savedCharacterData;
 };
