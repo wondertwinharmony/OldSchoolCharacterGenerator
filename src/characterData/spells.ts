@@ -1,11 +1,11 @@
-import { clericSpells } from "./clericSpells";
-import { druidSpells } from "./druidSpells";
-import { illusionistSpells } from "./illusionistSpells";
-import { magicUserSpells } from "./magicUserSpells";
+import { clericSpells } from './clericSpells';
+import { druidSpells } from './druidSpells';
+import { illusionistSpells } from './illusionistSpells';
+import { magicUserSpells } from './magicUserSpells';
 import {
   knaveSpells,
   operationUnfathomableSpells
-} from "./nonTraditionalSpells";
+} from './nonTraditionalSpells';
 
 export interface Spells {
   [key: string]: {
@@ -37,10 +37,10 @@ export const newAllSpells = {
   drow: {
     ...clericSpells,
     web: {
-      name: "Web",
+      name: 'Web',
       description:
-        "OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-      level: "3",
+        'OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66',
+      level: '3',
       preparedCount: 0,
       levelVariable: false
     }
@@ -56,9 +56,9 @@ export const allNonTraditionalSpells: Spells = {
  * Basic Magic-User Level One Spells
  */
 export const spells = [
-  "<strong>Detect Magic</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>Enchanted objects, areas, or creatures are caused to glow. Both permanent and temporary enchantments are revealed.",
+  '<strong>Detect Magic</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>Enchanted objects, areas, or creatures are caused to glow. Both permanent and temporary enchantments are revealed.',
   "<strong>Hold Portal</strong><br><strong>Duration:</strong> 2d6 turns<br><strong>Range:</strong> 10’<br><br>This spell magically holds shut a door, gate, window, or other kind of portal.<br><div style='padding: 0 1.5rem'><br>• <strong>Opening by magic:</strong> A <i>knock</i> spell opens the held portal instantly.<br><br>• <strong>Opening by force:</strong> Creatures with at least 3 Hit Dice more than the caster can open the held portal with one round of effort.</div>",
-  "<strong>Read Languages</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> The caster<br><br>For the duration of this spell, the caster may read any language, coded message, map, or other set of written instructions. This spell does not grant any ability to speak unknown languages.",
+  '<strong>Read Languages</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> The caster<br><br>For the duration of this spell, the caster may read any language, coded message, map, or other set of written instructions. This spell does not grant any ability to speak unknown languages.',
   "<strong>Protection from Evil</strong><br><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> The caster<br><br>This spell wards the caster from attacks by creatures of another alignment, as follows:<br><div style='padding: 0 1.5rem'><br>• <strong>Bonuses:</strong> The caster gains a +1 bonus to saving throws against attacks or special abilities of affected creatures.<br><br>• <strong>Affected creatures’ attacks:</strong> against the caster are penalised by -1.<br><br>• <strong>Enchanted, constructed, or summoned creatures:</strong> The spell additionally prevents such creatures from attacking the caster in melee, though they may still make ranged attacks. If the caster engages such a creature in melee, this protection is broken (the caster still gains the bonuses to saving throws and attack rolls mentioned above).</div>",
   "<strong>Light (Darkness)</strong><br><strong>Duration:</strong> 6 turns +1 per level<br><strong>Range:</strong> 120’<br><br>This spell has three usages:<br><br><div style='padding: 0 1.5rem'><strong>1. Conjuring light:</strong> In a 15’ radius. The magical light is sufficient for reading, but is not as bright as daylight. The spell may be cast upon an object, in which case, the light moves with the object.<br><br><strong>2. Blinding a creature:</strong> By casting the spell upon its eyes. If the target fails a <strong>saving throw versus spells</strong>, it is blinded for the duration. A blind creature cannot attack.<br><br><strong>3. Cancelling darkness:</strong> <i>Light</i> may cancel a <i>darkness</i> spell (see below).</div><br><strong>Reversed: Darkness</strong><br>Creates a 15’ radius area of magical blackness, preventing normal sight (but not infravision). Like <i>light</i>, it may alternatively be used to blind creatures or to dispel a <i>light</i> spell.",
   "<strong>Charm Person</strong><br><strong>Duration:</strong> One or more days (see below)<br><strong>Range:</strong> 120’<br><br>A single, humanoid creature must <strong>save versus spells</strong> or be charmed, as follows:<br><div style='padding: 0 1.5rem'><br>• <strong>Friendship:</strong> The subject regards the caster as its trusted friend and ally and will come to the caster’s defence.<br><br>• <strong>Commands:</strong> If they share a language, the caster may give the charmed creature commands, which it will obey.<br><br>• <strong>Alignment:</strong> Commands that contradict the charmed creature's nature or alignment may be ignored.<br><br>• <strong>Suicidal Commands:</strong> An affected creature never obeys suicidal or obviously harmful orders.</div><br><strong>Restrictions:</strong> Humanoids of greater than 4+1 HD and undead are not affected.<br><br><strong>Duration: </strong> The charm lasts indefinitely, but the subject is allowed to make further <strong>saves vs spells</strong> at intervals depending on it's INT score. If one of these saves succeeds, the spell ends.<br><br><div style='padding: 0 1.5rem'>• <strong>INT 3-8:</strong> The creature gains a new save once every month.<br>• <strong>INT 9-12:</strong> The creature gains a new save each week.<br>• <strong>INT 13-18:</strong>The creature gains a new save once every day.</div>",
@@ -66,7 +66,7 @@ export const spells = [
   "<strong>Floating Disc</strong><br><strong>Duration:</strong> 6 turns<br><strong>Range:</strong> 6’<br><br>The caster conjures a slightly concave, circular disc of magical force that follows him or her about and carries loads.<br><br><div style='padding: 0 1.5rem'>• <strong>Dimensions:</strong> The disc is 3 feet in diameter and 1 inch deep at its centre.<br><br>• <strong>Load:</strong> It can hold a maximum load of 5,000 coins (500 pounds).<br><br>• <strong>Motion:</strong> The disc floats at waist height and remains level, floating along horizontally within spell range.<br><br>• <strong>End:</strong> When the disc winks out at the end of the spell’s duration, anything it was supporting is dropped.</div>",
   "<strong>Magic Missile</strong><br><strong>Duration:</strong> 1 turn<br><strong>Range:</strong> 150’<br><br>This spell conjures a glowing dart of energy that the caster may choose to shoot at a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Hit:</strong> The missile hits unerringly (no attack roll or saving throw is required).<br><br>• <strong>Damage:</strong> The missile inflicts 1d6+1 damage.<br><br>• <strong>Higher level casters:</strong> May conjure more missiles: two additional missiles are conjured per five experience levels the caster has gained (i.e. three missiles at 6th-10th level, five missiles at 11th-15th level, etc). Multiple missiles may be directed at a single target.</div>",
   "<strong>Shield</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> The caster<br><br>Shield creates an invisible field of force that protects the caster:<br><div style='padding: 0 1.5rem'><br>• <strong>Against missile attacks:</strong> The caster's AC is 17.<br><br>• <strong>Against other attacks:</strong> The caster's AC is 15.</div>",
-  "<strong>Ventriloquism</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>The caster may make his or her voice appear to come from any location or source (e.g. a statue or animal) within the spell’s range."
+  '<strong>Ventriloquism</strong><br><strong>Duration:</strong> 2 turns<br><strong>Range:</strong> 60’<br><br>The caster may make their voice appear to come from any location or source (e.g. a statue or animal) within the spell’s range.'
 ];
 
 export const readMagicSpell =
@@ -80,7 +80,7 @@ export const oldIllusionistSpells = [
   "<strong>Chromatic Orb</strong><br><strong>Duration:</strong> instant<br><strong>Range:</strong> 60'<br><br>This spell conjures an orb of pure color that shoots towards a visible target within range.<br><div style='padding: 0 1.5rem'><br>• <strong>Color:</strong> The caster may conjure an orb of one of the colors listed on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>, depending on their experience level and the gems available.<br><br>• <strong>Gemstone:</strong> The color orb is created by refracting and amplifying the pure hue and intrinsic properties of a gemstone, which must be in the caster’s possession. Casting <i>chromatic orb</i> does not cause the gemstone to be consumed.<br><br>• <strong>Value:</strong> The gem to be used must be of a certain minimum value (also indicated on <i>p.17 of Advanced Fantasy, Druid and Illusionist Spells</i>).<br><br>• <strong>Hit:</strong> The orb hits unerringly, inflicting damage on the target and another effect that depends on its color.</div>",
   "<strong>Color Spray</strong><br><strong>Duration:</strong> Instant<br><strong>Range:</strong> 20’ long cone, 20’ wide at end<br><br>A flurry of clashing, rainbow-hued colors erupts from the caster’s hand.<br><div style='padding: 0 1.5rem'><br>• <strong>Targets:</strong> 1d6 creatures in the area of effect.<br>• <strong>The effect:</strong> Depends on the HD of each target, relative to the caster:<div style='padding: 0 1.5rem'><br>• <strong>HD less than or equal to caster:</strong> Knocked unconscious for 2d4 rounds. (Creatures of 6HD or greater may <b>save versus spells</b>.)<br><br>• <strong>HD up to 2 greater than caster:</strong> <b>Save versus spells</b> or be blinded for 1d4 rounds.<br><br>• <strong>HD 3 or more greater than caster:</strong> <b>Save versus spells</b> or be unable to move, attack, or make other actions for one round.</div><br>• <strong>Creatures that cannot see:</strong> Are unaffected by this spell.</div>",
   "<strong>Dancing Lights</strong><br><strong>Duration:</strong> 1 turn<br><strong>Range:</strong> 40’ + 10’ per level<br><br>Lights under the caster’s control are conjured and may be directed to move anywhere within range. The caster may choose to conjure one of the following types of light:<br><div style='padding: 0 1.5rem'><br> <strong>1. Torches:</strong> 1–4 lights that resemble torches or lanterns, casting the appropriate volume of light.<br><br> <strong>2. Spheres:</strong> 1–4 glowing spheres, resembling will-o-the-wisps.<br><br> <strong>3. Humanoid:</strong> A single, glowing, humanoid form.</div>",
-  "<strong>Detect Illusion</strong><br><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject can see through illusions within 10’ per level of the caster. Invisible creatures or objects in the same range are also revealed.",
+  '<strong>Detect Illusion</strong><br><strong>Duration:</strong> 3 turns<br><strong>Range:</strong> The caster or a creature touched<br><br>The subject can see through illusions within 10’ per level of the caster. Invisible creatures or objects in the same range are also revealed.',
   "<strong>Glamour</strong><br><strong>Duration:</strong> 2d6 rounds +2 per level<br><strong>Range:</strong> The caster<br><br>The caster is wrapped in an illusion, taking on the outward appearance of another humanoid. Two variants are possible, chosen as the spell is cast:<br><div style='padding: 0 1.5rem'><br> <strong>1. Imagined form:</strong> The caster takes on a form which they imagine.<br><br> <strong>2. Duplicate individual:</strong> The caster copies the form of a living individual whom they touch (an attack roll is required if the target is unwilling).</div><br><strong>Stipulations:</strong> The following apply:<br><div style='padding: 0 1.5rem'><br>• <strong>Height:</strong> The illusionary form may be at most 1’ taller or shorter than the caster’s normal form.<br><br>• <strong>Weight:</strong> Apparent weight may be altered in any way.<br><br>• <strong>Gear:</strong> Clothing or items may be altered in any way.<br><br>• <strong>Observers:</strong>  If the spell is used to copy another’s appearance, those familiar with the copied individual may <b>save versus spells</b> to detect the ruse.</div>",
   "<strong>Hypnotism</strong><br><strong>Duration:</strong> 1 round +1 per level<br><strong>Range:</strong> 30'<br><br>The caster’s gestures and droning syllables open the minds of one or more creatures within range to hypnotic suggestion that is spoken as part of the spell casting. The suggestion works as follows:<br><div style='padding: 0 1.5rem'><br>• <strong>Wording:</strong> The suggestion must take the form of a short phrase (at most one or two sentences) suggesting a course of action to the targeted creatures.<br><br>• <strong>Comprehension:</strong> A language that is understood by the targets must be used.<br><br>• <strong>Harmful suggestions:</strong> Suggested actions that are obviously harmful to the targets cause the spell to automatically fail.</div><br><strong>Affected targets:</strong><div style='padding: 0 1.5rem'><br>• <strong>Number of targets:</strong> Up to 1d6 creatures are affected. The number of creatures affected is determined after the suggestion is made.<br><br>• <strong>Saving throw:</strong> Each target may <b>save versus spells</b> to resist the hypnotic suggestion. If the save fails, the target will follow the caster’s suggestion for up to the duration of the spell.<br><br>• <strong>Reasonable suggestions:</strong> A suggestion that is worded in a way to make it sound very reasonable incurs a –2 penalty to the saving throw.<br><br>• <strong>Restrictions:</strong>  Undead are not affected by <i>hypnotism</i>.</div>",
   "<strong>Light (Darkness)</strong><br><strong>Duration:</strong> 6 turns +1 per level<br><strong>Range:</strong> 120’<br><br>This spell has three usages:<br><br><div style='padding: 0 1.5rem'><strong>1. Conjuring light:</strong> In a 15’ radius. The magical light is sufficient for reading, but is not as bright as daylight. The spell may be cast upon an object, in which case, the light moves with the object.<br><br><strong>2. Blinding a creature:</strong> By casting the spell upon its eyes. If the target fails a <strong>saving throw versus spells</strong>, it is blinded for the duration. A blind creature cannot attack.<br><br><strong>3. Cancelling darkness:</strong> <i>Light</i> may cancel a <i>darkness</i> spell (see below).</div><br><strong>Reversed: Darkness</strong><br>Creates a 15’ radius area of magical blackness, preventing normal sight (but not infravision). Like <i>light</i>, it may alternatively be used to blind creatures or to dispel a <i>light</i> spell.",
@@ -215,15 +215,15 @@ export const knaveSpellAddendum =
  * Cure Light Wounds
  */
 export const divineScrollSpells = [
-  "Spell Scroll of Light (Darkness) - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-  "Spell Scroll of Detect Magic - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-  "Spell Scroll of Protection from Evil - OSE Cleric and Magic-User Spells p.11, OSE Classic Fantasy Tome p.67",
-  "Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66",
-  "Spell Scroll of Hold Person - OSE Cleric and Magic-User Spells p.12, OSE Classic Fantasy Tome p.68",
-  "Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71",
-  "Spell Scroll of Continual Light - OSE Cleric and Magic-User Spells p.14, OSE Classic Fantasy Tome p.70",
-  "Spell Scroll of Remove Curse - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71",
-  "Spell Scroll of Cure Light Wounds - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66"
+  'Spell Scroll of Light (Darkness) - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66',
+  'Spell Scroll of Detect Magic - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66',
+  'Spell Scroll of Protection from Evil - OSE Cleric and Magic-User Spells p.11, OSE Classic Fantasy Tome p.67',
+  'Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66',
+  'Spell Scroll of Hold Person - OSE Cleric and Magic-User Spells p.12, OSE Classic Fantasy Tome p.68',
+  'Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71',
+  'Spell Scroll of Continual Light - OSE Cleric and Magic-User Spells p.14, OSE Classic Fantasy Tome p.70',
+  'Spell Scroll of Remove Curse - OSE Cleric and Magic-User Spells p.15, OSE Classic Fantasy Tome p.71',
+  'Spell Scroll of Cure Light Wounds - OSE Cleric and Magic-User Spells p.10, OSE Classic Fantasy Tome p.66'
 ];
 
 /**
@@ -243,18 +243,18 @@ export const divineScrollSpells = [
  * Disintegrate
  */
 export const magicUserScrollSpells = [
-  "Spell Scroll of Magic Missile - OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79",
-  "Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.78",
-  "Spell Scroll of Knock - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
-  "Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
-  "Spell Scroll of Mirror Image - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82",
-  "Spell Scroll of Dispel Magic - OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78",
-  "Spell Scroll of Fire Ball - OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84",
-  "Spell Scroll of Wall of Ice - OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88",
-  "Spell Scroll of Cloudkill - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
-  "Spell Scroll of Pass-Wall - OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92",
-  "Spell Scroll of Animate Dead - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89",
-  "Spell Scroll of Disintegrate - OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95"
+  'Spell Scroll of Magic Missile - OSE Cleric and Magic-User Spells p.23, OSE Classic Fantasy Tome p.79',
+  'Spell Scroll of Detect Evil - OSE Cleric and Magic-User Spells p.25, OSE Classic Fantasy Tome p.78',
+  'Spell Scroll of Knock - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82',
+  'Spell Scroll of Locate Object - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82',
+  'Spell Scroll of Mirror Image - OSE Cleric and Magic-User Spells p.26, OSE Classic Fantasy Tome p.82',
+  'Spell Scroll of Dispel Magic - OSE Cleric and Magic-User Spells p.22, OSE Classic Fantasy Tome p.78',
+  'Spell Scroll of Fire Ball - OSE Cleric and Magic-User Spells p.28, OSE Classic Fantasy Tome p.84',
+  'Spell Scroll of Wall of Ice - OSE Cleric and Magic-User Spells p.32, OSE Classic Fantasy Tome p.88',
+  'Spell Scroll of Cloudkill - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89',
+  'Spell Scroll of Pass-Wall - OSE Cleric and Magic-User Spells p.36, OSE Classic Fantasy Tome p.92',
+  'Spell Scroll of Animate Dead - OSE Cleric and Magic-User Spells p.33, OSE Classic Fantasy Tome p.89',
+  'Spell Scroll of Disintegrate - OSE Cleric and Magic-User Spells p.39, OSE Classic Fantasy Tome p.95'
 ];
 
 /**
@@ -270,15 +270,15 @@ export const magicUserScrollSpells = [
  * True Seeing
  */
 export const illusionistSpellScrolls = [
-  "Spell Scroll of Color Spray - OSE Druid and Illusionist Spells p.18",
-  "Spell Scroll of Chromatic Orb - OSE Druid and Illusionist Spells p.16",
-  "Spell Scroll of Detect Magic - OSE Druid and Illusionist Spells p.22",
-  "Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.29",
-  "Spell Scroll of Mirror Image - OSE Druid and Illusionist Spells p.24",
-  "Spell Scroll of Massmorph - OSE Druid and Illusionist Spells p.30",
-  "Spell Scroll of Looking Glass - OSE Druid and Illusionist Spells p.34",
-  "Spell Scroll of Maze of Mirrors - OSE Druid and Illusionist Spells p.35",
-  "Spell Scroll of True Seeing - OSE Druid and Illusionist Spells p.43"
+  'Spell Scroll of Color Spray - OSE Druid and Illusionist Spells p.18',
+  'Spell Scroll of Chromatic Orb - OSE Druid and Illusionist Spells p.16',
+  'Spell Scroll of Detect Magic - OSE Druid and Illusionist Spells p.22',
+  'Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.29',
+  'Spell Scroll of Mirror Image - OSE Druid and Illusionist Spells p.24',
+  'Spell Scroll of Massmorph - OSE Druid and Illusionist Spells p.30',
+  'Spell Scroll of Looking Glass - OSE Druid and Illusionist Spells p.34',
+  'Spell Scroll of Maze of Mirrors - OSE Druid and Illusionist Spells p.35',
+  'Spell Scroll of True Seeing - OSE Druid and Illusionist Spells p.43'
 ];
 
 /**
@@ -293,11 +293,11 @@ export const illusionistSpellScrolls = [
  * Protection from Fire and Lightning
  */
 export const druidSpellScrolls = [
-  "Spell Scroll of Entangle - OSE Druid and Illusionist Spells p.6",
-  "Spell Scroll of Barkskin - OSE Druid and Illusionist Spells p.8",
-  "Spell Scroll of Call Lightning - OSE Druid and Illusionist Spells p.10",
-  "Spell Scroll of Water Breathing - OSE Druid and Illusionist Spells p.11",
-  "Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.12",
-  "Spell Scroll of Protection from Poison - OSE Druid and Illusionist Spells p.11",
-  "Spell Scroll of Protection from Fire and Lightning - OSE Druid and Illusionist Spells p.12"
+  'Spell Scroll of Entangle - OSE Druid and Illusionist Spells p.6',
+  'Spell Scroll of Barkskin - OSE Druid and Illusionist Spells p.8',
+  'Spell Scroll of Call Lightning - OSE Druid and Illusionist Spells p.10',
+  'Spell Scroll of Water Breathing - OSE Druid and Illusionist Spells p.11',
+  'Spell Scroll of Dispel Magic - OSE Druid and Illusionist Spells p.12',
+  'Spell Scroll of Protection from Poison - OSE Druid and Illusionist Spells p.11',
+  'Spell Scroll of Protection from Fire and Lightning - OSE Druid and Illusionist Spells p.12'
 ];
