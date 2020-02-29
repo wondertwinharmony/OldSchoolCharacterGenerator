@@ -28,7 +28,21 @@ export const citizenLich = {
   requirements: 'Minimum INT 13',
   primeRequisite: 'INT',
   hitDice: '1d4-1',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  hitDiceCount: [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '9',
+    '9',
+    '9',
+    '9'
+  ],
   experienceLevel: [
     '2,500',
     '5,000',

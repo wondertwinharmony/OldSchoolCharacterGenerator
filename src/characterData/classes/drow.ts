@@ -23,7 +23,7 @@ export const drow = {
   requirements: 'Minimum INT 9',
   primeRequisite: 'STR and WIS',
   hitDice: '1d6',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  hitDiceCount: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '9'],
   experienceLevel: [
     '4,000',
     '8,000',

@@ -32,7 +32,22 @@ export const illusionist = {
   requirements: 'None',
   primeRequisite: 'INT',
   hitDice: '1d4',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  hitDiceCount: [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '9',
+    '9',
+    '9',
+    '9',
+    '9'
+  ],
   experienceLevel: [
     '2,500',
     '5,000',

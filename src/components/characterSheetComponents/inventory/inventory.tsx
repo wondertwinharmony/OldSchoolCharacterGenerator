@@ -27,7 +27,7 @@ const InventoryImpl: React.SFC<ImplProps> = ({ className, inventory }) => {
             if (inventory[itemA].description > inventory[itemB].description) {
               return 1;
             }
-            // Names equal
+            // Descriptions equal
             return 0;
           })
           .map(inventoryItem => (

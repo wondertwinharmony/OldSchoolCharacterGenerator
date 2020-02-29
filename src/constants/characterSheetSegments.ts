@@ -14,6 +14,7 @@ export interface CharacterSheetSegments {
   isSpellsVisible: boolean;
   isInventoryVisible: boolean;
   isSkillsVisible: boolean;
+  isNotesVisible: boolean;
   isCombatActionsVisible: boolean;
   isWeaponQualitiesVisible: boolean;
   isItemsForPurchaseVisible: boolean;
@@ -30,6 +31,7 @@ export let characterSheetSegments = {
   isSpellsVisible: true,
   isInventoryVisible: true,
   isSkillsVisible: true,
+  isNotesVisible: true,
   isCombatActionsVisible: false,
   isWeaponQualitiesVisible: false,
   isItemsForPurchaseVisible: false,

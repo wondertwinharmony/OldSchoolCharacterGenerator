@@ -147,7 +147,7 @@ const AppImpl: React.SFC<ImplProps> = ({ className }) => {
               ) : (
                 <MdCheckBoxOutlineBlank size="1.5em" />
               )}
-              <KnaveSpellText>Include Knave Spells</KnaveSpellText>
+              <KnaveSpellText>Include Non-Traditional Spells</KnaveSpellText>
             </KnaveSpellOptionsContainer>
             {Object.keys(classOptions).map(classOptionKey => (
               <ClassOptionContainer key={classOptionKey}>

@@ -22,7 +22,7 @@ export const gnome = {
   requirements: 'Minimum CON 9',
   primeRequisite: 'DEX and INT',
   hitDice: '1d4',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8],
+  hitDiceCount: ['1', '2', '3', '4', '5', '6', '7', '8'],
   experienceLevel: [
     '3,000',
     '6,000',

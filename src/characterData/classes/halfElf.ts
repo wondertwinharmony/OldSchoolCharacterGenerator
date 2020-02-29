@@ -25,7 +25,7 @@ export const halfElf = {
   requirements: 'Minimum CHA and CON 9',
   primeRequisite: 'INT and STR',
   hitDice: '1d6',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  hitDiceCount: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '9', '9'],
   experienceLevel: [
     '2,500',
     '5,000',

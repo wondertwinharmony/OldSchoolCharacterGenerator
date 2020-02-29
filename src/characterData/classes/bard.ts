@@ -27,7 +27,22 @@ export const bard = {
   requirements: 'Minimum DEX 9 and INT 9',
   primeRequisite: 'CHA',
   hitDice: '1d6',
-  hitDiceCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  hitDiceCount: [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '9',
+    '9',
+    '9',
+    '9',
+    '9'
+  ],
   experienceLevel: [
     '2,000',
     '4,000',
