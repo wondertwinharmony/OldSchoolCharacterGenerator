@@ -12,6 +12,7 @@ import {
   STR,
   WIS
 } from "../../../constants/abilityScoreConstants";
+import { raiseDeadChance } from "../../../constants/raiseDeadChance";
 import { getAbilityString } from "../../../utils/getAbilityString";
 import CharacterDetailsDisplay from "./characterDetailsDisplay";
 
@@ -27,6 +28,7 @@ interface Props {
   chaMod: string;
   hitPoints: number;
   armorClass: number;
+  maxResurrections: number;
   experienceAdjustment: string;
   characterLevel: number;
   characterXP: number;
@@ -50,6 +52,7 @@ const CharacterDetails: React.SFC<Props> = ({
   chaMod,
   hitPoints,
   armorClass,
+  maxResurrections,
   experienceAdjustment,
   characterLevel,
   characterXP,
@@ -69,7 +72,14 @@ const CharacterDetails: React.SFC<Props> = ({
   ] = useState([...abilityScores]);
   const [characterHPInput, setCharacterHPInput] = useState("");
   const [characterACInput, setCharacterACInput] = useState("");
+  const [
+    characterMaxResurrectionsInput,
+    setCharacterMaxResurrectionsInput
+  ] = useState("");
   const [characterXPInput, setCharacterXPInput] = useState("");
+  const [hitDiceInput, setHitDiceInput] = useState(
+    characterClasses[classSelection].hitDiceCount[characterLevel - 1]
+  );
 
   const isValid =
     characterLevelInput <=
@@ -86,6 +96,9 @@ const CharacterDetails: React.SFC<Props> = ({
       xp: characterXPInput ? parseInt(characterXPInput) : characterXP,
       level: characterLevelInput,
       abilityScores: characterAbilityScoresInput,
+      maxResurrections: characterMaxResurrectionsInput
+        ? parseInt(characterMaxResurrectionsInput)
+        : maxResurrections,
       characterName: characterNameInput ? characterNameInput : characterName
     };
 
@@ -111,7 +124,7 @@ const CharacterDetails: React.SFC<Props> = ({
 
   const getFormGroup = (ability: number) => (
     <Form.Group as={Col} key={ability}>
-      <Form.Label>{getAbilityString(ability)}</Form.Label>
+      <StyledFormLabel>{getAbilityString(ability)}</StyledFormLabel>
       <SmallFormControl
         placeholder={abilityScores[ability].toString()}
         onChange={(e: any) => {
@@ -167,20 +180,64 @@ const CharacterDetails: React.SFC<Props> = ({
           </Button>
         </ButtonContainer>
         <StyledForm>
-          {/* ROW #1: Character Name, Level and XP */}
+          {/* ROW #1: Character Name */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
+              <StyledFormLabel>Name</StyledFormLabel>
+              <NameFormControl
                 placeholder={characterName}
                 onChange={(e: any) => {
                   setCharacterNameInput(e.target.value);
                 }}
               />
             </Form.Group>
+          </Form.Row>
+
+          {/* ROW: #2 Character HP, AC, and Resurrections */}
+          <Form.Row style={{ alignItems: "flex-end" }}>
+            <Form.Group as={Col}>
+              <StyledFormLabel>HP</StyledFormLabel>
+              <SmallFormControl
+                placeholder={hitPoints.toString()}
+                onChange={(e: any) => {
+                  setCharacterHPInput(e.target.value);
+                }}
+                type="number"
+                min={0}
+              />
+            </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label>Level</Form.Label>
+              <StyledFormLabel>AC</StyledFormLabel>
+              <SmallFormControl
+                placeholder={armorClass.toString()}
+                onChange={(e: any) => {
+                  setCharacterACInput(e.target.value);
+                }}
+                type="number"
+                min={0}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col}>
+              <SmallFormLabel>Resurrections</SmallFormLabel>
+              <SmallFormLabel>Remaining</SmallFormLabel>
+              <SmallFormControl
+                placeholder={maxResurrections}
+                onChange={(e: any) => {
+                  setCharacterMaxResurrectionsInput(e.target.value);
+                }}
+                type="number"
+                min={0}
+                max={maxResurrections}
+              />
+            </Form.Group>
+          </Form.Row>
+
+          {/* ROW #3: Character Level, XP, and Next Level */}
+          <Form.Row>
+            <Form.Group as={Col}>
+              <StyledFormLabel>Level</StyledFormLabel>
               <SmallFormControl
                 placeholder={characterLevel.toString()}
                 onChange={(e: any) => {
@@ -204,34 +261,7 @@ const CharacterDetails: React.SFC<Props> = ({
             </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label>HP</Form.Label>
-              <SmallFormControl
-                placeholder={hitPoints.toString()}
-                onChange={(e: any) => {
-                  setCharacterHPInput(e.target.value);
-                }}
-                type="number"
-                min={0}
-              />
-            </Form.Group>
-          </Form.Row>
-
-          {/* ROW #2: Character HP and AC */}
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label>AC</Form.Label>
-              <SmallFormControl
-                placeholder={armorClass.toString()}
-                onChange={(e: any) => {
-                  setCharacterACInput(e.target.value);
-                }}
-                type="number"
-                min={0}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col}>
-              <Form.Label>XP</Form.Label>
+              <StyledFormLabel>XP</StyledFormLabel>
               <LargeFormControl
                 placeholder={characterXP.toLocaleString()}
                 onChange={(e: any) => {
@@ -243,7 +273,7 @@ const CharacterDetails: React.SFC<Props> = ({
             </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label>Next Level</Form.Label>
+              <SmallFormLabel>Next Level</SmallFormLabel>
               <Form.Control
                 plaintext
                 readOnly
@@ -261,12 +291,12 @@ const CharacterDetails: React.SFC<Props> = ({
             </Form.Group>
           </Form.Row>
 
-          {/* ROW #3: Ability Scores STR, DEX, CON */}
+          {/* ROW #4: Ability Scores STR, DEX, CON */}
           <Form.Row>
             {[STR, DEX, CON].map(ability => getFormGroup(ability))}
           </Form.Row>
 
-          {/* ROW #4: Ability Scores INT, WIS, CHA */}
+          {/* ROW #5: Ability Scores INT, WIS, CHA */}
           <Form.Row>
             {[INT, WIS, CHA].map(ability => getFormGroup(ability))}
           </Form.Row>
@@ -289,12 +319,16 @@ const CharacterDetails: React.SFC<Props> = ({
       experienceAdjustment={experienceAdjustment}
       characterXP={characterXP}
       characterLevel={characterLevel}
+      hitDiceInput={hitDiceInput}
+      setHitDiceInput={setHitDiceInput}
+      maxResurrections={maxResurrections}
+      raiseDeadChance={raiseDeadChance[abilityScores[CON]]}
     />
   );
 };
 
 const Container = styled.div`
-  max-width: 500px;
+  max-width: 450px;
 `;
 
 const StyledForm = styled(Form)`
@@ -313,8 +347,21 @@ const SmallFormControl = styled(Form.Control)`
   width: 5.6rem;
 `;
 
+const StyledFormLabel = styled(Form.Label)`
+  margin-bottom: 0;
+`;
+
+const SmallFormLabel = styled(Form.Label)`
+  font-size: 0.75rem;
+  margin-bottom: 0;
+`;
+
 const LargeFormControl = styled(Form.Control)`
   width: 6.8rem;
+`;
+
+const NameFormControl = styled(Form.Control)`
+  width: 16rem;
 `;
 
 const EditFormContainer = styled.div`
