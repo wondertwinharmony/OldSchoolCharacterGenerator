@@ -20,7 +20,7 @@
     "dompurify": "^2.0.7",
     "i": "^0.3.6",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "npm": "^6.13.6",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
