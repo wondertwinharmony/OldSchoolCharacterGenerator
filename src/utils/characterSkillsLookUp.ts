@@ -3,6 +3,7 @@ export const charactersWithSkills = [
   "acrobat",
   "assasin",
   "barbarian",
+  "catPerson",
   "halfOrc",
   "ranger",
   "psionicist",

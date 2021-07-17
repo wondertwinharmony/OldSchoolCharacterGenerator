@@ -4,6 +4,7 @@ import {
   GiChewedSkull,
   GiCoins,
   GiCometSpark,
+  GiHemp,
   GiKnapsack,
   GiPriceTag,
   GiQuillInk,
@@ -31,6 +32,7 @@ import {
   characterSheetSegments,
   CharacterSheetSegments
 } from "../../constants/characterSheetSegments";
+import catsmintEffectTable from "../../static/catsmintEffectTable.png";
 import charismaAdjustmentTable from "../../static/charismaAdjustmentTable.png";
 import coinConversions from "../../static/coinConversions.png";
 import paladinTurningTable from "../../static/paladinTurningTable.png";
@@ -396,6 +398,22 @@ const CharacterSheetImpl: React.SFC<Props> = ({
           />
         )}
 
+      {/* Catsmint Effect Segment - Cat Person */}
+      {(classSelection === "catPerson") && (
+        <Segment
+          segmentIcon={<GiHemp />}
+          segmentName={"CatsmintEffectTable"}
+          segmentDisplayName={"Catsmint Effect Table"}
+          segmentData={
+            <CatsmintEffectContainer>
+              <CatsmintEffectTable />
+            </CatsmintEffectContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
+      )}
+
       {/* Character Skills Segment */}
       {characterClasses[classSelection][
         characterSkillsLookUp(classSelection)
@@ -420,6 +438,7 @@ const CharacterSheetImpl: React.SFC<Props> = ({
           setCollapse={setSegmentVisibility}
         />
       )}
+
 
       {/* Inventory Segment */}
       <Segment
@@ -589,6 +608,20 @@ const Ability = styled.div`
   padding: 0.5rem;
   display: block;
   white-space: pre-line;
+`;
+
+const CatsmintEffectContainer = styled.div`
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+`;
+
+const CatsmintEffectTable = styled.div`
+  height: 26.75rem;
+  background-image: url(${catsmintEffectTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 23rem 27rem;
 `;
 
 const TurnUndeadContainer = styled.div`
