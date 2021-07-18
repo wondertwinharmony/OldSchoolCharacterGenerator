@@ -4,6 +4,7 @@ import {
   GiChewedSkull,
   GiCoins,
   GiCometSpark,
+  GiExplosionRays,
   GiHemp,
   GiKnapsack,
   GiPriceTag,
@@ -37,6 +38,7 @@ import charismaAdjustmentTable from "../../static/charismaAdjustmentTable.png";
 import coinConversions from "../../static/coinConversions.png";
 import paladinTurningTable from "../../static/paladinTurningTable.png";
 import parchment from "../../static/parchment.png";
+import spellLevelVariabilityTable from "../../static/spellLevelVariabilityTable.png";
 import turningTableResults from "../../static/turningTableResults.png";
 import turnUndeadTable from "../../static/turnUndeadTable.png";
 import { characterSkillsLookUp } from "../../utils/characterSkillsLookUp";
@@ -414,6 +416,22 @@ const CharacterSheetImpl: React.SFC<Props> = ({
         />
       )}
 
+      {/* Spell Level Variability Segment - Wild Magic-User */}
+      {(classSelection === "wildMagicUser") && (
+        <Segment
+          segmentIcon={<GiExplosionRays />}
+          segmentName={"SpellLevelVariabilityTable"}
+          segmentDisplayName={"Spell Level Variability Table"}
+          segmentData={
+            <SpellLevelVariabilityContainer>
+              <SpellLevelVariabilityTable />
+            </SpellLevelVariabilityContainer>
+          }
+          collapse={segmentVisibility}
+          setCollapse={setSegmentVisibility}
+        />
+      )}
+
       {/* Character Skills Segment */}
       {characterClasses[classSelection][
         characterSkillsLookUp(classSelection)
@@ -622,6 +640,20 @@ const CatsmintEffectTable = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 23rem 27rem;
+`;
+
+const SpellLevelVariabilityContainer = styled.div`
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+`;
+
+const SpellLevelVariabilityTable = styled.div`
+  height: 26.75rem;
+  background-image: url(${spellLevelVariabilityTable});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 34rem 26rem;
 `;
 
 const TurnUndeadContainer = styled.div`

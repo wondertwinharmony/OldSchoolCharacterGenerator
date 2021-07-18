@@ -506,7 +506,6 @@ export const crabPersonTraits = {
 
   background: [
     "gladiator",
-    "slave",
     "servant",
     "laborer",
     "ditcher",
@@ -516,5 +515,82 @@ export const crabPersonTraits = {
     "bodyguard",
     "fisher",
     "pearl diver"
+  ]
+};
+
+// Caimen Traits are different from other classes since they are
+// so radically different from other classes in appearance.
+// ("Traits\n"
+// "--------------------------------------------------\n"
+// "A {background}. Wears {clothing} clothing.\n"
+// "Has a {physique} physique, a {snout} snout, and {scales} scales.\n"
+// "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
+// "Favors {alignment}.")
+export const caimenTraits = {
+  physique: [
+    "athletic",
+    "brawny",
+    "gaunt",
+    "hulking",
+    "lanky",
+    "ripped",
+    "rugged",
+    "short",
+    "stout",
+    "towering"
+  ],
+
+  snout: [
+    "blunt",
+    "elongated",
+    "broken",
+    "impish",
+    "narrow",
+    "round",
+    "sharp",
+    "square",
+    "wide"
+  ],
+
+  scales: [
+    "crusted",
+    "battle scarred",
+    "dark green",
+    "olive green",
+    "vibrant green",
+    "emerald green",
+    "seafoam green",
+    "perfect",
+    "pierced",
+    "rough",
+    "smooth",
+    "painted",
+    "weathered",
+    "jagged",
+    "cracked"
+  ],
+
+  background: [
+    "gladiator",
+    "laborer",
+    "ditcher",
+    "beggar",
+    "scullion",
+    "gravedigger",
+    "bodyguard",
+    "burglar",
+    "butcher",
+    "miner",
+    "bandit",
+    "fisher",
+    "pearl diver",
+    "farmer",
+    "mariner",
+    "mercenary",
+    "outlaw",
+    "mason",
+    "herbalist",
+    "cook",
+    "potter"
   ]
 };

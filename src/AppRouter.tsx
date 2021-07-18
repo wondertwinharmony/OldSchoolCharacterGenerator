@@ -74,6 +74,7 @@ export default function AppRouter() {
     let knave = generatedCharacterData[2] === "true";
 
     let hyphenatedCharacters = [
+      "arcane bard",
       "cat person",
       "crab-person",
       "citizen lich",

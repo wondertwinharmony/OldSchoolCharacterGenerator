@@ -38,6 +38,10 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
    * Note: this is the order in which remaining classes will
    * appear in app view.
    */
+  // if INT >= 9 add Barbarian to list of possible classes
+  if (abilityScores[INT] >= 9)
+    classOptions.arcaneBard = characterClasses.arcaneBard.name;
+
   // if DEX >= 9 add Barbarian to list of possible classes
   if (abilityScores[DEX] >= 9)
     classOptions.barbarian = characterClasses.barbarian.name;

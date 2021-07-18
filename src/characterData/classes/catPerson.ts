@@ -31,6 +31,7 @@ export const catPerson= {
     "14,400",
     "29,600",
     "59,200",
+    "118,400",
     "Max Level"
   ],
   maximumLevel: "8",

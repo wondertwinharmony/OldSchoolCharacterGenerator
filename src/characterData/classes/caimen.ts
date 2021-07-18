@@ -18,7 +18,7 @@ export const caimen = {
     "7",
     "8",
     "9",
-    "10"
+    "9"
   ],
   experienceLevel: [
     "2,000",
@@ -29,6 +29,7 @@ export const caimen = {
     "66,000",
     "132,000",
     "232,000",
+    "332,000",
     "Max Level"
   ],
   maximumLevel: "10",

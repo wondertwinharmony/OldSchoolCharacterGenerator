@@ -1,4 +1,5 @@
 import { acrobat } from "./classes/acrobat";
+import { arcaneBard } from "./classes/arcaneBard";
 import { assassin } from "./classes/assassin";
 import { barbarian } from "./classes/barbarian";
 import { bard } from "./classes/bard";
@@ -86,6 +87,7 @@ export const characterClasses: { [key: string]: characterClass } = {
   wildMagicUser,
   thief,
   acrobat,
+  arcaneBard,
   assassin,
   barbarian,
   bard,

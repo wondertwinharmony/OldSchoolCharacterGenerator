@@ -1,5 +1,6 @@
 import { sampleSize } from "lodash";
 import {
+  caimenTraits,
   citizenLichTraits,
   crabPersonTraits,
   traits
@@ -89,6 +90,37 @@ export const getTraits = (
   if (intScore === 18 && classOptionKey !== "barbarian") {
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
+
+    /**
+   * Caimen Traits are different from other classes since they are
+   * so radically different from other classes in appearance.
+   */
+     if (classOptionKey === "caimen") {
+      let caimenTraitsString = `A ${sampleSize(
+        caimenTraits.background,
+        1
+      )}. Wears ${sampleSize(
+        traits.clothing,
+        1
+      )} clothing.\n Has a ${sampleSize(
+        caimenTraits.physique,
+        1
+      )} physique, a ${sampleSize(
+        caimenTraits.snout,
+        1
+      )} snout, and ${sampleSize(
+        caimenTraits.scales,
+        1
+      )} scales.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+        traits.vices,
+        1
+      )}. Has been ${sampleSize(
+        traits.misfortunes,
+        1
+      )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
+  
+      return caimenTraitsString;
+    }
 
   /**
    * Citizen Lich Traits are different from other classes since they are
