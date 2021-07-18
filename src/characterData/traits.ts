@@ -578,7 +578,6 @@ export const caimenTraits = {
     "scullion",
     "gravedigger",
     "bodyguard",
-    "burglar",
     "butcher",
     "miner",
     "bandit",
@@ -587,10 +586,105 @@ export const caimenTraits = {
     "farmer",
     "mariner",
     "mercenary",
-    "outlaw",
     "mason",
     "herbalist",
     "cook",
-    "potter"
+    "potter",
+    "smuggler"
   ]
 };
+
+// Cat Person Traits
+export const catPersonTraits = {
+  fur: [
+    "silky",
+    "fluffy",
+    "shaggy",
+    "coarse",
+    "stiff",
+    "matted",
+    "glossy",
+    "spotted",
+    "calico",
+    "tortoiseshell",
+    "short",
+    "long",
+    "solid color",
+    "striped",
+    "hairless"
+  ],
+  ears: [
+    "bent",
+    "crooked",
+    "asymmetrical",
+    "pierced",
+    "delicate",
+    "pointed",
+    "oval",
+    "punctured",
+    "scarred",
+    "floppy",
+    "rigid",
+    "folded",
+    "curled",
+    "flared"
+  ]
+}
+
+// Giant Woman Traits
+export const giantWomanTraits = {
+  background: [
+    "hunter",
+    "gladiator",
+    "bodyguard",
+    "mercenary",
+    "soldier",
+    "outlander",
+    "hermit",
+    "champion",
+    "mason",
+    "mariner",
+    "farmer",
+    "cook",
+    "fisher",
+    "potter",
+    "miner",
+    "ditcher",
+    "laborer",
+    "gravedigger",
+    "ex-town guard",
+    "herbalist",
+    "carpenter",
+    "tracker",
+    "blacksmith"
+  ],
+  physique: [
+    "athletic",
+    "brawny",
+    "delicate",
+    "hulking",
+    "ripped",
+    "rugged",
+    "sinewy",
+    "statuesque",
+    "towering"
+  ],
+  face: [
+    "blunt",
+    "bony",
+    "chiseled",
+    "delicate",
+    "elongated",
+    "hawkish",
+    "broken",
+    "impish",
+    "narrow",
+    "round",
+    "sunken",
+    "sharp",
+    "soft",
+    "square",
+    "wide",
+    "wolfish"
+  ]
+}

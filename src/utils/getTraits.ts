@@ -1,8 +1,10 @@
 import { sampleSize } from "lodash";
 import {
   caimenTraits,
+  catPersonTraits,
   citizenLichTraits,
   crabPersonTraits,
+  giantWomanTraits,
   traits
 } from "../characterData/traits";
 
@@ -91,36 +93,63 @@ export const getTraits = (
     languageDescriptor = `able to read and write in ${languageCount} different languages, and has `;
   }
 
-    /**
+  /**
    * Caimen Traits are different from other classes since they are
    * so radically different from other classes in appearance.
    */
-     if (classOptionKey === "caimen") {
-      let caimenTraitsString = `A ${sampleSize(
-        caimenTraits.background,
-        1
-      )}. Wears ${sampleSize(
-        traits.clothing,
-        1
-      )} clothing.\n Has a ${sampleSize(
-        caimenTraits.physique,
-        1
-      )} physique, a ${sampleSize(
-        caimenTraits.snout,
-        1
-      )} snout, and ${sampleSize(
-        caimenTraits.scales,
-        1
-      )} scales.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
-        traits.vices,
-        1
-      )}. Has been ${sampleSize(
-        traits.misfortunes,
-        1
-      )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
-  
-      return caimenTraitsString;
-    }
+  if (classOptionKey === "caimen") {
+    let caimenTraitsString = `A ${sampleSize(
+      caimenTraits.background,
+      1
+    )}. Wears ${sampleSize(
+      traits.clothing,
+      1
+    )} clothing.\n Has a ${sampleSize(
+      caimenTraits.physique,
+      1
+    )} physique, a ${sampleSize(
+      caimenTraits.snout,
+      1
+    )} snout, and ${sampleSize(
+      caimenTraits.scales,
+      1
+    )} scales. Is ${languageDescriptor} ${sampleSize(
+      traits.speech,
+      1
+    )} speech.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+      traits.vices,
+      1
+    )}. Has been ${sampleSize(
+      traits.misfortunes,
+      1
+    )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
+
+    return caimenTraitsString;
+  }
+
+  /**
+   * Cat Person Traits
+   */
+   if (classOptionKey === "catPerson") {
+    let catPersonTraitsString = `A ${sampleSize(traits.background, 1)}. Wears ${sampleSize(
+      traits.clothing,
+      1
+    )} clothes, ${languageDescriptor} ${sampleSize(
+      traits.speech,
+      1
+    )} speech.\n Has a ${sampleSize(traits.physique, 1)} physique, 
+    ${sampleSize(catPersonTraits.fur, 1)} fur, and ${sampleSize(
+      catPersonTraits.ears,
+      1
+    )} ears.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+      traits.vices,
+      1
+    )}. Has been ${sampleSize(traits.misfortunes, 1)} in the past.\n Favors
+    ${sampleSize(traits.alignment, 1)
+    }.`;
+
+    return catPersonTraitsString;
+  }
 
   /**
    * Citizen Lich Traits are different from other classes since they are
@@ -152,6 +181,32 @@ export const getTraits = (
     )} in the past.\n Favors ${sampleSize(traits.alignment, 1)}.`;
 
     return citizenLichString;
+  }
+
+  /**
+   * Giant Woman Traits
+   */
+   if (classOptionKey === "giantWoman") {
+    let giantWomanTraitsString = `A ${sampleSize(giantWomanTraits.background, 1)}. Wears ${sampleSize(
+      traits.clothing,
+      1
+    )} clothes, ${languageDescriptor} ${sampleSize(
+      traits.speech,
+      1
+    )} speech.\n Has a ${sampleSize(giantWomanTraits.physique, 1)} physique, a ${sampleSize(
+      giantWomanTraits.face,
+      1
+    )} face, ${sampleSize(traits.skin, 1)} skin, and ${sampleSize(
+      traits.hair,
+      1
+    )} hair.\n Is ${sampleSize(traits.virtues, 1)}, but ${sampleSize(
+      traits.vices,
+      1
+    )}. Has been ${sampleSize(traits.misfortunes, 1)} in the past.\n Favors
+    ${sampleSize(traits.alignment, 1)
+    }.`;
+
+    return giantWomanTraitsString;
   }
 
   /**
