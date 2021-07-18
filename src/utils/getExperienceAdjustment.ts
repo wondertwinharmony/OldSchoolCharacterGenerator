@@ -66,6 +66,18 @@ export const getExperienceAdjustment = (
   // The following classes have unique prime requisite rules and
   // unique experience adjustments and need special handling.
 
+  // Arcane Bard
+  if (
+    classSelection === "arcaneBard" &&
+    classPrimeRequisites === "CHA and DEX"
+  ) {
+    if (abilityScores[CHA] >= 13 && abilityScores[DEX] >= 13)
+      experienceAdjustment = "+5% XP";
+    if ((abilityScores[CHA] >= 13 && abilityScores[DEX] >= 16)
+    || (abilityScores[CHA] >= 16 && abilityScores[DEX] >= 13))
+      experienceAdjustment = "+10% XP";
+  }
+
   // Barbarian
   if (
     classSelection === "barbarian" &&

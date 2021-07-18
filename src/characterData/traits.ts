@@ -506,7 +506,6 @@ export const crabPersonTraits = {
 
   background: [
     "gladiator",
-    "slave",
     "servant",
     "laborer",
     "ditcher",
@@ -518,3 +517,174 @@ export const crabPersonTraits = {
     "pearl diver"
   ]
 };
+
+// Caimen Traits are different from other classes since they are
+// so radically different from other classes in appearance.
+// ("Traits\n"
+// "--------------------------------------------------\n"
+// "A {background}. Wears {clothing} clothing.\n"
+// "Has a {physique} physique, a {snout} snout, and {scales} scales.\n"
+// "Is {virtue}, but {vice}. Has been {misfortune} in the past.\n"
+// "Favors {alignment}.")
+export const caimenTraits = {
+  physique: [
+    "athletic",
+    "brawny",
+    "gaunt",
+    "hulking",
+    "lanky",
+    "ripped",
+    "rugged",
+    "short",
+    "stout",
+    "towering"
+  ],
+
+  snout: [
+    "blunt",
+    "elongated",
+    "broken",
+    "impish",
+    "narrow",
+    "round",
+    "sharp",
+    "square",
+    "wide"
+  ],
+
+  scales: [
+    "crusted",
+    "battle scarred",
+    "dark green",
+    "olive green",
+    "vibrant green",
+    "emerald green",
+    "seafoam green",
+    "perfect",
+    "pierced",
+    "rough",
+    "smooth",
+    "painted",
+    "weathered",
+    "jagged",
+    "cracked"
+  ],
+
+  background: [
+    "gladiator",
+    "laborer",
+    "ditcher",
+    "beggar",
+    "scullion",
+    "gravedigger",
+    "bodyguard",
+    "butcher",
+    "miner",
+    "bandit",
+    "fisher",
+    "pearl diver",
+    "farmer",
+    "mariner",
+    "mercenary",
+    "mason",
+    "herbalist",
+    "cook",
+    "potter",
+    "smuggler"
+  ]
+};
+
+// Cat Person Traits
+export const catPersonTraits = {
+  fur: [
+    "silky",
+    "fluffy",
+    "shaggy",
+    "coarse",
+    "stiff",
+    "matted",
+    "glossy",
+    "spotted",
+    "calico",
+    "tortoiseshell",
+    "short",
+    "long",
+    "solid color",
+    "striped",
+    "hairless"
+  ],
+  ears: [
+    "bent",
+    "crooked",
+    "asymmetrical",
+    "pierced",
+    "delicate",
+    "pointed",
+    "oval",
+    "punctured",
+    "scarred",
+    "floppy",
+    "rigid",
+    "folded",
+    "curled",
+    "flared"
+  ]
+}
+
+// Giant Woman Traits
+export const giantWomanTraits = {
+  background: [
+    "hunter",
+    "gladiator",
+    "bodyguard",
+    "mercenary",
+    "soldier",
+    "outlander",
+    "hermit",
+    "champion",
+    "mason",
+    "mariner",
+    "farmer",
+    "cook",
+    "fisher",
+    "potter",
+    "miner",
+    "ditcher",
+    "laborer",
+    "gravedigger",
+    "ex-town guard",
+    "herbalist",
+    "carpenter",
+    "tracker",
+    "blacksmith"
+  ],
+  physique: [
+    "athletic",
+    "brawny",
+    "delicate",
+    "hulking",
+    "ripped",
+    "rugged",
+    "sinewy",
+    "statuesque",
+    "towering"
+  ],
+  face: [
+    "blunt",
+    "bony",
+    "chiseled",
+    "delicate",
+    "elongated",
+    "hawkish",
+    "broken",
+    "impish",
+    "narrow",
+    "round",
+    "sunken",
+    "sharp",
+    "soft",
+    "square",
+    "wide",
+    "wolfish"
+  ]
+}

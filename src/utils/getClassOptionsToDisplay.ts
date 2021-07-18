@@ -38,6 +38,10 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
    * Note: this is the order in which remaining classes will
    * appear in app view.
    */
+  // if INT >= 9 add Barbarian to list of possible classes
+  if (abilityScores[INT] >= 9)
+    classOptions.arcaneBard = characterClasses.arcaneBard.name;
+
   // if DEX >= 9 add Barbarian to list of possible classes
   if (abilityScores[DEX] >= 9)
     classOptions.barbarian = characterClasses.barbarian.name;
@@ -45,10 +49,19 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   if (abilityScores[DEX] >= 9 && abilityScores[INT] >= 9)
     classOptions.bard = characterClasses.bard.name;
   // if INT >= 13 add Citizen Lich to list of possible classes
-  if (abilityScores[INT] >= 13)
-    classOptions.citizenLich = characterClasses.citizenLich.name;
+  // if (abilityScores[INT] >= 13)
+  //   classOptions.citizenLich = characterClasses.citizenLich.name;
 
   classOptions.cleric = characterClasses.cleric.name;
+
+  // if CON >= 9 add Caimen to list of possible classes
+  if (abilityScores[CON] >= 9) {
+    classOptions.caimen = characterClasses.caimen.name;
+  }
+
+  // if DEX >= 9 add Cat Person to list of possible classes
+  if (abilityScores[DEX] >= 9)
+  classOptions.catPerson = characterClasses.catPerson.name;
 
   // if STR >= 9 && CON >= 9 add Crab-Person to list of possible classes
   if (abilityScores[STR] >= 9 && abilityScores[CON] >= 9)
@@ -70,6 +83,10 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   }
 
   classOptions.fighter = characterClasses.fighter.name;
+
+  // if STR >= 13 && CON >= 9 add Giant Woman to list of possible classes
+    if (abilityScores[STR] >= 13 && abilityScores[CON] >= 9)
+    classOptions.giantWoman = characterClasses.giantWoman.name;
 
   // if CON >= 9 add Gnome to list of possible classes
   if (abilityScores[CON] >= 9) {
@@ -95,8 +112,8 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   if (abilityScores[CHA] >= 9)
     classOptions.paladin = characterClasses.paladin.name;
   // if CON >= 9 add Psionicist to list of possible classes
-  if (abilityScores[CON] >= 9)
-    classOptions.psionicist = characterClasses.psionicist.name;
+  // if (abilityScores[CON] >= 9)
+  //   classOptions.psionicist = characterClasses.psionicist.name;
   // if CON >= 9 && WIS >= 9 add Ranger to list of possible classes
   if (abilityScores[WIS] >= 9 && abilityScores[CON] >= 9)
     classOptions.ranger = characterClasses.ranger.name;
@@ -107,13 +124,13 @@ export const getClassOptionsToDisplay = (abilityScores: number[]) => {
   classOptions.thief = characterClasses.thief.name;
 
   // if STR >= 9 && CON >= 9 add Underworld Ranger to list of possible classes
-  if (abilityScores[STR] >= 12 && abilityScores[CON] >= 12)
-    classOptions.underworldRanger = characterClasses.underworldRanger.name;
+  // if (abilityScores[STR] >= 12 && abilityScores[CON] >= 12)
+  //   classOptions.underworldRanger = characterClasses.underworldRanger.name;
   // if INT >= 9 add Wild Magic-User to list of possible classes
   if (abilityScores[INT] >= 9)
     classOptions.wildMagicUser = characterClasses.wildMagicUser.name;
 
-  classOptions.ynnianChangeling = characterClasses.ynnianChangeling.name;
+  // classOptions.ynnianChangeling = characterClasses.ynnianChangeling.name;
 
   return classOptions;
 };

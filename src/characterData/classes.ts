@@ -1,8 +1,10 @@
 import { acrobat } from "./classes/acrobat";
+import { arcaneBard } from "./classes/arcaneBard";
 import { assassin } from "./classes/assassin";
 import { barbarian } from "./classes/barbarian";
 import { bard } from "./classes/bard";
-import { citizenLich } from "./classes/citizenLich";
+import { caimen } from "./classes/caimen";
+import { catPerson } from "./classes/catPerson";
 import { cleric } from "./classes/cleric";
 import { crabPerson } from "./classes/crabPerson";
 import { drow } from "./classes/drow";
@@ -11,6 +13,7 @@ import { duergar } from "./classes/duergar";
 import { dwarf } from "./classes/dwarf";
 import { elf } from "./classes/elf";
 import { fighter } from "./classes/fighter";
+import { giantWoman } from "./classes/giantWoman";
 import { gnome } from "./classes/gnome";
 import { halfElf } from "./classes/halfElf";
 import { halfling } from "./classes/halfling";
@@ -19,13 +22,10 @@ import { illusionist } from "./classes/illusionist";
 import { knight } from "./classes/knight";
 import { magicUser } from "./classes/magicUser";
 import { paladin } from "./classes/paladin";
-import { psionicist } from "./classes/psionicist";
 import { ranger } from "./classes/ranger";
 import { svirfneblin } from "./classes/svirfneblin";
 import { thief } from "./classes/thief";
-import { underworldRanger } from "./classes/underworldRanger";
 import { wildMagicUser } from "./classes/wildMagicUser";
-import { ynnianChangeling } from "./classes/ynnianChangeling";
 
 /**
  * Saves
@@ -87,16 +87,20 @@ export const characterClasses: { [key: string]: characterClass } = {
   wildMagicUser,
   thief,
   acrobat,
+  arcaneBard,
   assassin,
   barbarian,
   bard,
-  citizenLich,
+  // citizenLich,
+  caimen,
+  catPerson,
   crabPerson,
   drow,
   druid,
   duergar,
   dwarf,
   elf,
+  giantWoman,
   gnome,
   halfElf,
   halfling,
@@ -104,9 +108,9 @@ export const characterClasses: { [key: string]: characterClass } = {
   illusionist,
   knight,
   paladin,
-  psionicist,
+  // psionicist,
   ranger,
   svirfneblin,
-  underworldRanger,
-  ynnianChangeling
+  // underworldRanger,
+  // ynnianChangeling
 };

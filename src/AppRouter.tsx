@@ -74,13 +74,16 @@ export default function AppRouter() {
     let knave = generatedCharacterData[2] === "true";
 
     let hyphenatedCharacters = [
-      "magic-user",
-      "citizen lich",
+      "arcane bard",
+      "cat person",
       "crab-person",
+      "citizen lich",
+      "giant woman",
       "half-elf",
-      "wild magic-user",
       "half-orc",
+      "magic-user",
       "underworld ranger",
+      "wild magic-user",
       "ynnian changeling"
     ];
 
