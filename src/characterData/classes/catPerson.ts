@@ -11,7 +11,7 @@ export const catPerson= {
     src: catPersonSkillsTable,
     style: { width: "40rem", height: "33rem" }
   }),
-  requirements: "None",
+  requirements: "Minimum DEX 9",
   primeRequisite: "DEX",
   hitDice: "1d4",
   hitDiceCount: [

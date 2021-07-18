@@ -3,7 +3,7 @@ import { GiCrocJaws } from "react-icons/gi";
 import { fighterInventory } from "../equipmentKits/fighterInventory";
 
 export const caimen = {
-  name: "caimen",
+  name: "Caimen",
   icon: React.createElement(GiCrocJaws, {}),
   requirements: "Minimum CON 9",
   primeRequisite: "CON",
